@@ -69,7 +69,7 @@
   var ICO_MARK = {
     scroll: 1, cards: 1, family: 1, puzzle: 1,
     amphora: 1, hourglass: 1, magnifier: 1, cloud: 1,
-    book: 1, blocks: 1, headphones: 1, star: 1
+    book: 1, blocks: 1, headphones: 1, star: 1, boat: 1
   };
   function icoSrc(n) { return "img/icons/" + (ICO_MARK[n] ? n + "-mark" : n) + ".webp"; }
   function icoH(n, cls) {
@@ -729,10 +729,14 @@
       { id: "puzzle", em: "puzzle", name: T("qPuzzle"), run: function () {
         freeMech(T("qPuzzle"), pickFrom(all), mechPuzzle);
       } },
+      { id: "jigsaw", em: "puzzle", name: T("qJigsaw"), run: function () {
+        openBook({ title: B.ui.qJigsaw || B.ui.gBook, reader: VOLUME_BOOK.reader }, "&games=1&play=jigsaw");
+      } },
       { id: "memory", em: "cards", name: T("gMemory"), run: gameMemory },
       { id: "quiz", em: "scroll", name: T("gQuiz"), run: gameQuiz },
       { id: "artifact", em: "amphora", name: T("gArtifact"), run: gameArtifact },
       { id: "order", em: "hourglass", name: T("gOrder"), run: gameOrder },
+      { id: "arkflap", em: "boat", name: T("gArkFlap"), run: gameArkFlappy },
       { id: "findon", em: "magnifier", name: T("qFindOn").replace(/[::]\s*$/, ""), run: function () {
         freeMech(T("qFindOn").replace(/[::]\s*$/, ""), pickFrom(findable), mechFind);
       } },
@@ -1917,6 +1921,437 @@
       lst.appendChild(b);
     })(items[n]);
     w.appendChild(lst);
+  }
+
+  /* Ковчег-флэппи: механика как у «Птиц мира» (полёт), без выбора персонажа.
+     Игрок — всегда ковчег; препятствия — скалы с просветом. */
+  function gameArkFlappy() {
+    var BEST_KEY = "bible_arkflap_best_v1";
+    /* спрайт без фона; mark-иконка — boat-mark.webp */
+    var ARK_SRCS = ["img/games/ark-flap.webp", "img/icons/poster/ark.svg", "img/icons/boat.webp"];
+    var w = gameShell(T("gArkFlap"), T("gArkFlapHint"));
+    var wrap = el("div", "arkflap-wrap");
+    var canvas = document.createElement("canvas");
+    canvas.className = "arkflap-canvas";
+    canvas.setAttribute("role", "img");
+    wrap.appendChild(canvas);
+    var hud = el("div", "arkflap-hud");
+    var hudL = el("span", null, "");
+    var hudR = el("span", null, "");
+    hud.appendChild(hudL);
+    hud.appendChild(hudR);
+    wrap.appendChild(hud);
+    var overlay = el("div", "arkflap-overlay");
+    overlay.hidden = true;
+    wrap.appendChild(overlay);
+    w.appendChild(wrap);
+
+    var ctx = canvas.getContext("2d");
+    var DPR = Math.min(window.devicePixelRatio || 1, 2);
+    var W = 600, H = 340;
+    var raf = 0, running = false, started = false, dead = false;
+    var py = 0, vy = 0, speed = 2.05, score = 0, t = 0, pipes = [];
+    var best = parseInt(localStorage.getItem(BEST_KEY) || "0", 10) || 0;
+    var lastTs = 0;
+    var arkSprite = null, arkReady = false;
+    var bubbles = [];
+
+    function stopLoop() {
+      running = false;
+      if (raf) { cancelAnimationFrame(raf); raf = 0; }
+    }
+    function size() {
+      W = Math.max(280, Math.round(wrap.clientWidth || 600));
+      H = Math.max(260, Math.round(Math.min(420, Math.max(280, wrap.clientWidth * 0.62))));
+      canvas.width = W * DPR;
+      canvas.height = H * DPR;
+      canvas.style.width = W + "px";
+      canvas.style.height = H + "px";
+      ctx.setTransform(1, 0, 0, 1, 0, 0);
+      ctx.scale(DPR, DPR);
+    }
+    /* вырезает кремовый фон, круг рамки и воду — остаётся только деревянный ковчег */
+    function isolateArkSprite(img) {
+      try {
+        var iw = img.naturalWidth || 64, ih = img.naturalHeight || 64;
+        if (!iw || !ih) return null;
+        var src = document.createElement("canvas");
+        src.width = iw; src.height = ih;
+        var g = src.getContext("2d", { willReadFrequently: true }) || src.getContext("2d");
+        g.drawImage(img, 0, 0, iw, ih);
+        var imageData = g.getImageData(0, 0, iw, ih);
+        var data = imageData.data;
+        var minX = iw, minY = ih, maxX = 0, maxY = 0, found = false;
+        for (var i = 0; i < data.length; i += 4) {
+          var r = data[i], gch = data[i + 1], b = data[i + 2], a = data[i + 3];
+          if (a < 8) { data[i + 3] = 0; continue; }
+          var maxc = Math.max(r, gch, b), minc = Math.min(r, gch, b);
+          var lum = 0.299 * r + 0.587 * gch + 0.114 * b;
+          var sat = maxc - minc;
+          var cream = lum > 200 && sat < 45;
+          var paper = lum > 175 && sat < 28 && Math.abs(r - gch) < 20;
+          var water = b > r + 18 && b > gch + 8 && b > 90 && r < 170;
+          var foam = lum > 210 && b > 150 && sat < 60;
+          if (cream || paper || water || foam) {
+            data[i + 3] = 0;
+            continue;
+          }
+          /* тёплый деревянный тон оставляем */
+          var keepWood = r > 70 && r > gch && r > b - 10 && lum < 210;
+          var keepDark = lum < 70 && sat < 40;
+          if (!keepWood && !keepDark && sat < 18 && lum > 140) {
+            data[i + 3] = 0;
+            continue;
+          }
+          var px = (i / 4) % iw, py2 = ((i / 4) / iw) | 0;
+          found = true;
+          if (px < minX) minX = px;
+          if (py2 < minY) minY = py2;
+          if (px > maxX) maxX = px;
+          if (py2 > maxY) maxY = py2;
+        }
+        if (!found) return null;
+        g.putImageData(imageData, 0, 0);
+        var bw = maxX - minX + 1, bh = maxY - minY + 1;
+        var out = document.createElement("canvas");
+        out.width = bw; out.height = bh;
+        out.getContext("2d").drawImage(src, minX, minY, bw, bh, 0, 0, bw, bh);
+        return out;
+      } catch (e) { return null; }
+    }
+    function loadArk(done) {
+      var idxSrc = 0;
+      function tryNext() {
+        if (idxSrc >= ARK_SRCS.length) { done(null); return; }
+        var im = new Image();
+        var src = ARK_SRCS[idxSrc++];
+        im.onload = function () {
+          var cut = isolateArkSprite(im);
+          if (cut) done(cut);
+          else tryNext();
+        };
+        im.onerror = tryNext;
+        im.src = src;
+      }
+      tryNext();
+    }
+    function seedBubbles() {
+      bubbles = [];
+      for (var i = 0; i < 18; i++) {
+        bubbles.push({
+          x: Math.random() * W,
+          y: Math.random() * H,
+          r: 2 + Math.random() * 5,
+          sp: 0.35 + Math.random() * 0.9,
+          wob: Math.random() * Math.PI * 2
+        });
+      }
+    }
+    function flyTier() { return Math.floor(Math.max(0, score) / 10); }
+    function flySpeed() { return Math.min(4.2, 2.05 + flyTier() * 0.32); }
+    function gapX() {
+      var wide = Math.max(300, Math.min(440, W * 0.62));
+      return Math.max(210, wide - flyTier() * 24);
+    }
+    function spawnPipe(x) {
+      var gap = Math.max(120, Math.min(160, H * 0.36));
+      var top = 40 + Math.random() * Math.max(40, H - gap - 100);
+      pipes.push({
+        x: x, gapY: top, gapH: gap, w: 58,
+        seed: Math.floor(Math.random() * 1000),
+        scored: false
+      });
+    }
+    function reset() {
+      py = H * 0.42;
+      vy = 0;
+      score = 0;
+      speed = flySpeed();
+      pipes = [];
+      t = 0;
+      seedBubbles();
+      var firstX = W + Math.max(160, Math.round(W * 0.55));
+      var spacing = gapX();
+      for (var i = 0; i < 3; i++) spawnPipe(firstX + i * spacing);
+    }
+    function syncHud() {
+      hudL.textContent = T("score") + " " + score;
+      hudR.textContent = "🏆 " + best;
+    }
+    function begin() {
+      overlay.hidden = true;
+      overlay.innerHTML = "";
+      size();
+      reset();
+      started = true;
+      dead = false;
+      running = true;
+      lastTs = 0;
+      if (!raf) loop();
+    }
+    function gameOver() {
+      if (dead) return;
+      dead = true;
+      if (score > best) {
+        best = score;
+        try { localStorage.setItem(BEST_KEY, String(best)); } catch (e) {}
+      }
+      saveBest("arkflap", score);
+      stopLoop();
+      syncHud();
+      overlay.hidden = false;
+      overlay.innerHTML = "";
+      overlay.appendChild(el("div", "arkflap-over-title", esc(T("gArkFlapOver"))));
+      overlay.appendChild(el("div", "arkflap-over-score",
+        esc(T("score")) + ": " + score + " · " + esc(T("gArkFlapBest")) + ": " + best));
+      var again = el("button", "bigbtn", esc(T("again")));
+      again.onclick = function () { begin(); };
+      overlay.appendChild(again);
+    }
+    function onTap(e) {
+      if (e) e.preventDefault();
+      if (!started || dead) { begin(); return; }
+      vy = 3.0;
+    }
+    function step(dt) {
+      if (!started || dead) return;
+      t++;
+      speed = flySpeed();
+      vy -= 0.18;
+      py -= vy;
+      if (py < -40 || py > H + 20) { gameOver(); return; }
+
+      pipes.forEach(function (p) { p.x -= speed; });
+      pipes = pipes.filter(function (p) { return p.x > -120; });
+      if (!pipes.length || pipes[pipes.length - 1].x < W - gapX()) {
+        spawnPipe(W + 40);
+      }
+
+      var bx = W * 0.28, by = py, br = 22;
+      for (var i = 0; i < pipes.length; i++) {
+        var p = pipes[i];
+        if (!p.scored && p.x + p.w < bx - br) {
+          p.scored = true;
+          score++;
+        }
+        var inX = bx + br > p.x && bx - br < p.x + p.w;
+        if (inX) {
+          var botY = p.gapY + p.gapH;
+          if (by - br < p.gapY || by + br > botY) { gameOver(); return; }
+        }
+      }
+    }
+    function rockColor(seed, shade) {
+      /* подводные скалы: сине-зелёно-серые */
+      var tones = [
+        ["#3a4f55", "#5a7378", "#2a383c"],
+        ["#40584a", "#5f7d68", "#2c3c34"],
+        ["#364a5c", "#557089", "#243240"],
+        ["#4a5548", "#6a7864", "#323a30"]
+      ];
+      return tones[seed % tones.length][shade % 3];
+    }
+    function drawRockColumn(x, y, ww, hh, seed, flipY) {
+      if (hh <= 1 || ww <= 1) return;
+      var ledge = Math.round(ww * 0.22);
+      ctx.save();
+      if (flipY) {
+        ctx.translate(x + ww / 2, y + hh);
+        ctx.scale(1, -1);
+        ctx.translate(-(x + ww / 2), 0);
+        y = 0;
+      }
+      ctx.fillStyle = rockColor(seed, 2);
+      ctx.beginPath();
+      ctx.moveTo(x - ledge, y + hh);
+      ctx.lineTo(x + 4, y + 10);
+      ctx.lineTo(x + ww * 0.35, y);
+      ctx.lineTo(x + ww * 0.62, y + 8);
+      ctx.lineTo(x + ww - 2, y + 4);
+      ctx.lineTo(x + ww + ledge, y + hh);
+      ctx.closePath();
+      ctx.fill();
+      ctx.fillStyle = rockColor(seed, 0);
+      ctx.beginPath();
+      ctx.moveTo(x + 6, y + hh);
+      ctx.lineTo(x + ww * 0.28, y + 18);
+      ctx.lineTo(x + ww * 0.48, y + 6);
+      ctx.lineTo(x + ww * 0.72, y + 20);
+      ctx.lineTo(x + ww - 8, y + hh);
+      ctx.closePath();
+      ctx.fill();
+      ctx.fillStyle = rockColor(seed, 1);
+      ctx.fillRect(x + ww * 0.18, y + hh * 0.35, ww * 0.22, Math.max(8, hh * 0.12));
+      ctx.fillRect(x + ww * 0.55, y + hh * 0.55, ww * 0.18, Math.max(8, hh * 0.1));
+      /* водоросли у кромки */
+      ctx.strokeStyle = "rgba(50,140,90,.55)";
+      ctx.lineWidth = 2;
+      for (var a = 0; a < 3; a++) {
+        var ax = x + ww * (0.2 + a * 0.25);
+        ctx.beginPath();
+        ctx.moveTo(ax, y + hh - 4);
+        ctx.quadraticCurveTo(ax + Math.sin(t * 0.05 + a) * 6, y + hh - 22, ax, y + hh - 36);
+        ctx.stroke();
+      }
+      ctx.fillStyle = rockColor(seed + 1, 1);
+      ctx.fillRect(x - 6, y + hh - 16, ww + 12, 16);
+      ctx.restore();
+    }
+    function drawArk(cx, cy, rot) {
+      ctx.save();
+      ctx.translate(cx, cy);
+      if (rot) ctx.rotate(rot);
+      if (arkReady && arkSprite) {
+        var sw = arkSprite.width, sh = arkSprite.height;
+        var tw = 72, th = tw * (sh / Math.max(1, sw));
+        if (th > 52) { th = 52; tw = th * (sw / Math.max(1, sh)); }
+        ctx.drawImage(arkSprite, -tw / 2, -th / 2, tw, th);
+      } else {
+        /* фолбэк: ковчег без фона */
+        ctx.fillStyle = "#b57a38";
+        ctx.beginPath();
+        ctx.moveTo(-30, 2);
+        ctx.lineTo(30, 2);
+        ctx.lineTo(24, 16);
+        ctx.quadraticCurveTo(0, 22, -24, 16);
+        ctx.closePath();
+        ctx.fill();
+        ctx.fillStyle = "#c48a45";
+        ctx.fillRect(-18, -14, 36, 16);
+        ctx.fillStyle = "#a86e32";
+        ctx.beginPath();
+        ctx.moveTo(-20, -14);
+        ctx.lineTo(0, -24);
+        ctx.lineTo(20, -14);
+        ctx.closePath();
+        ctx.fill();
+        ctx.fillStyle = "#3a2a18";
+        ctx.fillRect(-8, -8, 4, 4);
+        ctx.fillRect(6, -8, 4, 4);
+      }
+      ctx.restore();
+    }
+    function draw() {
+      /* толща воды: светлее сверху, темнее снизу */
+      var water = ctx.createLinearGradient(0, 0, 0, H);
+      water.addColorStop(0, "#3a8fc4");
+      water.addColorStop(0.35, "#2a6f9e");
+      water.addColorStop(0.7, "#1a4f78");
+      water.addColorStop(1, "#0e2f4a");
+      ctx.fillStyle = water;
+      ctx.fillRect(0, 0, W, H);
+      /* лучи света сверху */
+      ctx.save();
+      ctx.globalAlpha = 0.12;
+      for (var ray = 0; ray < 5; ray++) {
+        var rx = ((ray * 110 - (t * 0.15) % 110) + W) % (W + 80) - 40;
+        ctx.fillStyle = "#cfefff";
+        ctx.beginPath();
+        ctx.moveTo(rx, 0);
+        ctx.lineTo(rx + 28, 0);
+        ctx.lineTo(rx + 70, H);
+        ctx.lineTo(rx + 18, H);
+        ctx.closePath();
+        ctx.fill();
+      }
+      ctx.restore();
+      /* пузырьки */
+      ctx.strokeStyle = "rgba(200,235,255,.55)";
+      ctx.fillStyle = "rgba(220,245,255,.22)";
+      for (var b = 0; b < bubbles.length; b++) {
+        var bub = bubbles[b];
+        bub.y -= bub.sp;
+        bub.x += Math.sin(t * 0.04 + bub.wob) * 0.35;
+        if (bub.y < -10) {
+          bub.y = H + 10;
+          bub.x = Math.random() * W;
+        }
+        ctx.beginPath();
+        ctx.arc(bub.x, bub.y, bub.r, 0, 7);
+        ctx.fill();
+        ctx.stroke();
+      }
+      /* дно */
+      ctx.fillStyle = "rgba(30,50,40,.45)";
+      ctx.beginPath();
+      ctx.moveTo(0, H);
+      for (var s = 0; s <= 8; s++) {
+        var sx = (s / 8) * W;
+        ctx.lineTo(sx, H - 18 - Math.sin(s * 1.3 + t * 0.01) * 6);
+      }
+      ctx.lineTo(W, H);
+      ctx.closePath();
+      ctx.fill();
+
+      pipes.forEach(function (p) {
+        var botY = p.gapY + p.gapH;
+        drawRockColumn(p.x, 0, p.w, p.gapY, p.seed, true);
+        drawRockColumn(p.x, botY, p.w, H - botY, p.seed + 3, false);
+      });
+      var rot = started ? Math.max(-0.35, Math.min(0.45, -vy * 0.05)) : 0;
+      drawArk(W * 0.28, py, rot);
+      if (!started) {
+        ctx.fillStyle = "rgba(230,245,255,.9)";
+        ctx.font = "700 16px system-ui,sans-serif";
+        ctx.textAlign = "center";
+        ctx.fillText(T("gArkFlapTap"), W / 2, H * 0.72);
+      }
+    }
+    function loop(ts) {
+      if (!running) { raf = 0; return; }
+      if (!document.body.contains(canvas)) { stopLoop(); return; }
+      if (!lastTs) lastTs = ts || performance.now();
+      var now = ts || performance.now();
+      var dt = Math.min(40, now - lastTs);
+      lastTs = now;
+      step(dt);
+      draw();
+      syncHud();
+      raf = requestAnimationFrame(loop);
+    }
+
+    var backBtn = w.querySelector(".topbar .bt");
+    if (backBtn) {
+      var prev = backBtn.onclick;
+      backBtn.onclick = function () {
+        stopLoop();
+        if (typeof prev === "function") prev();
+        else render();
+      };
+    }
+
+    canvas.addEventListener("pointerdown", onTap);
+    wrap.addEventListener("pointerdown", function (e) {
+      if (e.target === canvas || e.target === wrap || e.target === hud || e.target === hudL || e.target === hudR) onTap(e);
+    });
+    function onKey(e) {
+      if (!document.body.contains(canvas)) {
+        document.removeEventListener("keydown", onKey);
+        return;
+      }
+      if (e.code === "Space" || e.code === "ArrowUp" || e.key === " ") {
+        e.preventDefault();
+        onTap(e);
+      }
+    }
+    document.addEventListener("keydown", onKey);
+
+    loadArk(function (sprite) {
+      if (sprite) {
+        arkSprite = sprite;
+        arkReady = true;
+      }
+      draw();
+    });
+
+    size();
+    reset();
+    started = false;
+    dead = false;
+    running = true;
+    syncHud();
+    draw();
+    loop();
   }
 
   /* ── карты мира: Путь Исхода (анимированный маршрут) и Библейский мир ── */

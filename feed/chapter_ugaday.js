@@ -6,7 +6,7 @@
   deck:"biblejskie-istorii", chapter:8, audio:false,
   title:{ru:"Угадай героя",en:"Guess the hero",de:"Rate den Helden",es:"Adivina el héroe",pt:"Adivinhe o herói",fr:"Devine le héros",ar:"خمّن البطل"}, emoji:"🔎", icon:"../img/icons/question.webp", color:"#4f8fb0", cards: [
 
-  { id:"vg_intro", kind:"sys", emoji:"🔎", icon:"../img/icons/question.webp", color:"#4f8fb0",
+  { id:"vg_intro", kind:"sys", img:"../img/feed_vg_intro.webp", emoji:"🔎", icon:"../img/icons/question.webp", color:"#4f8fb0",
     title:{ru:"Угадай героя!",en:"Guess the hero!",de:"Rate den Helden!",es:"¡Adivina el héroe!",pt:"Adivinhe o herói!",fr:"Devine le héros !",ar:"خمّن البطل!"},
     lines:[{ru:"Смотри на картинку и вспоминай, кто это. Нажми — и проверь себя!",en:"Look at the picture and remember who it is. Tap — and check yourself!",de:"Schau auf das Bild und erinnere dich, wer das ist. Tippe — und prüfe dich!",es:"Mira la imagen y recuerda quién es. ¡Toca y compruébate!",pt:"Olhe a imagem e lembre quem é. Toque — e confira!",fr:"Regarde l’image et souviens-toi qui c’est. Appuie — et vérifie !",ar:"انظر إلى الصورة وتذكّر من هذا. اضغط — واختبر نفسك!"}] },
 

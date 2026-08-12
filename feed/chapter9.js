@@ -8,7 +8,7 @@
   deck:"biblejskie-istorii", chapter:10, audio:false,
   title:{ru:"Эксперт",en:"Expert",de:"Experte",es:"Experto",pt:"Especialista",fr:"Expert",ar:"خبير"}, emoji:"🏆", icon:"../img/icons/trophy.webp", color:"#b08968", cards: [
 
-  { id:"b9_intro", kind:"sys", emoji:"🏆", icon:"../img/icons/trophy.webp", color:"#b08968", title:{ru:"Испытание экспертов",en:"Experts’ challenge",de:"Experten-Prüfung",es:"Desafío de expertos",pt:"Desafio dos especialistas",fr:"Défi des experts",ar:"تحدّي الخبراء"},
+  { id:"b9_intro", kind:"sys", img:"../img/feed_b9_intro.webp", emoji:"🏆", icon:"../img/icons/trophy.webp", color:"#b08968", title:{ru:"Испытание экспертов",en:"Experts’ challenge",de:"Experten-Prüfung",es:"Desafío de expertos",pt:"Desafio dos especialistas",fr:"Défi des experts",ar:"تحدّي الخبراء"},
     lines:[{ru:"Самые хитрые вопросы — про связи между историями. Вопросы открываются, когда истории уже изучены!",en:"The trickiest questions are about how stories link. They unlock once you’ve learned the stories!",de:"Die kniffligsten Fragen gehen um Verbindungen. Sie öffnen sich, wenn du die Geschichten schon kennst!",es:"Las preguntas más astutas son sobre cómo se enlazan las historias. ¡Se abren cuando ya las has aprendido!",pt:"As perguntas mais espertas são sobre como as histórias se ligam. Elas abrem quando você já aprendeu as histórias!",fr:"Les questions les plus malines portent sur les liens entre les histoires. Elles s’ouvrent quand tu les as déjà apprises !",ar:"أصعب الأسئلة عن الروابط بين القصص. تُفتح عندما تكون القصص قد دُرست!"}] },
 
   { id:"b9_x01", kind:"check", exam:true, concept:"ark", concepts:["ark","babel"], img:"../img/feed_b9_x01.webp",

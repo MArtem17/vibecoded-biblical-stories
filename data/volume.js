@@ -290,6 +290,51 @@ window.BIBLE = {
    "fr": "Appuie sur les événements dans l’ordre : quoi d’abord ?",
    "ar": "اضغط على الأحداث بالترتيب: ماذا حدث أولًا؟"
   },
+  "gArkFlap": {
+   "ru": "Ковчег сквозь скалы",
+   "en": "Ark through the cliffs",
+   "de": "Arche durch die Felsen",
+   "es": "Arca entre peñascos",
+   "pt": "Arca entre rochas",
+   "fr": "Arche entre les rochers",
+   "ar": "الفلك بين الصخور"
+  },
+  "gArkFlapHint": {
+   "ru": "Тапай, чтобы всплывать на ковчеге и проплывать между подводными скалами.",
+   "en": "Tap to rise with the ark and swim between underwater cliffs.",
+   "de": "Tippe, um mit der Arche aufzusteigen und zwischen Unterwasserfelsen zu schwimmen.",
+   "es": "Toca para ascender con el arca y pasar entre peñascos bajo el agua.",
+   "pt": "Toca para subir com a arca e passar entre rochas submersas.",
+   "fr": "Appuie pour remonter avec l’arche et passer entre les rochers sous-marins.",
+   "ar": "اضغط للصعود بالفلك والسباحة بين الصخور تحت الماء."
+  },
+  "gArkFlapTap": {
+   "ru": "Нажми — всплывай!",
+   "en": "Tap — rise!",
+   "de": "Tippen — auftauchen!",
+   "es": "¡Toca — sube!",
+   "pt": "Toca — sobe!",
+   "fr": "Appuie — remonte !",
+   "ar": "اضغط — اصعد!"
+  },
+  "gArkFlapOver": {
+   "ru": "Упс!",
+   "en": "Oops!",
+   "de": "Ups!",
+   "es": "¡Uy!",
+   "pt": "Ups!",
+   "fr": "Oups !",
+   "ar": "أوه!"
+  },
+  "gArkFlapBest": {
+   "ru": "Рекорд",
+   "en": "Best",
+   "de": "Rekord",
+   "es": "Récord",
+   "pt": "Recorde",
+   "fr": "Record",
+   "ar": "الأفضل"
+  },
   "whoIs": {
    "ru": "Кто это?",
    "en": "Who is it?",
@@ -712,6 +757,15 @@ window.BIBLE = {
    "pt": "Monte a figura!",
    "fr": "Reconstitue l’image !",
    "ar": "ركّب الصورة!"
+  },
+  "qJigsaw": {
+   "ru": "Пазл-история",
+   "en": "Story puzzle",
+   "de": "Geschichten-Puzzle",
+   "es": "Puzzle de historias",
+   "pt": "Puzzle de histórias",
+   "fr": "Puzzle d’histoires",
+   "ar": "أحجية القصص"
   },
   "qPuzzleHint": {
    "ru": "Нажми на два кусочка, чтобы поменять их местами",

@@ -1817,6 +1817,38 @@ window.BOOK = window.BOOK || {
        }
       }
      ]
+    },
+    {
+     "type": "jigsaw",
+     "id": "jigsaw",
+     "icon": "../img/icons/puzzle-mark.webp",
+     "chip": {
+      "ru": "Пазл",
+      "en": "Puzzle",
+      "de": "Puzzle",
+      "es": "Puzzle",
+      "pt": "Puzzle",
+      "fr": "Puzzle",
+      "ar": "أحجية"
+     },
+     "title": {
+      "ru": "Пазл-история",
+      "en": "Story puzzle",
+      "de": "Geschichten-Puzzle",
+      "es": "Puzzle de historias",
+      "pt": "Puzzle de histórias",
+      "fr": "Puzzle d’histoires",
+      "ar": "أحجية القصص"
+     },
+     "hint": {
+      "ru": "Собери картинку из кусочков",
+      "en": "Assemble the picture from pieces",
+      "de": "Setze das Bild aus Teilen zusammen",
+      "es": "Arma la imagen con las piezas",
+      "pt": "Monta a imagem com as peças",
+      "fr": "Assemble l’image avec les pièces",
+      "ar": "ركّب الصورة من القطع"
+     }
     }
    ]
   }

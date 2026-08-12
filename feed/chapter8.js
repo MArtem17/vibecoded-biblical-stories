@@ -8,7 +8,7 @@
   deck:"biblejskie-istorii", chapter:9, audio:false,
   title:{ru:"Секреты пути",en:"Path Secrets",de:"Geheimnisse des Weges",es:"Secretos del camino",pt:"Segredos do caminho",fr:"Secrets du chemin",ar:"أسرار الطريق"}, emoji:"🗝️", icon:"../img/icons/lock.webp", color:"#9a6fb0", cards: [
 
-  { id:"b8_intro", kind:"sys", emoji:"🗝️", icon:"../img/icons/lock.webp", color:"#9a6fb0", title:{ru:"Секреты пути",en:"Path Secrets",de:"Geheimnisse des Weges",es:"Secretos del camino",pt:"Segredos do caminho",fr:"Secrets du chemin",ar:"أسرار الطريق"},
+  { id:"b8_intro", kind:"sys", img:"../img/feed_b8_intro.webp", emoji:"🗝️", icon:"../img/icons/lock.webp", color:"#9a6fb0", title:{ru:"Секреты пути",en:"Path Secrets",de:"Geheimnisse des Weges",es:"Secretos del camino",pt:"Segredos do caminho",fr:"Secrets du chemin",ar:"أسرار الطريق"},
     lines:[{ru:"Ты прошёл весь путь! Теперь — секреты и хитрые вопросы. Проверь, что ты запомнил.",en:"You finished the whole path! Now — secrets and tricky questions. Check what you remember.",de:"Du hast den ganzen Weg geschafft! Jetzt — Geheimnisse und knifflige Fragen. Prüfe, was du behalten hast.",es:"¡Recorriste todo el camino! Ahora — secretos y preguntas astutas. Comprueba lo que recuerdas.",pt:"Você percorreu o caminho inteiro! Agora — segredos e perguntas esperas. Confira o que você lembrou.",fr:"Tu as parcouru tout le chemin ! Maintenant — secrets et questions malines. Vérifie ce que tu as retenu.",ar:"أكملت الطريق كله! الآن — أسرار وأسئلة ذكية. اختبر ما تتذكّره."}] },
 
   /* ── эпоха 1: Начало мира ── */

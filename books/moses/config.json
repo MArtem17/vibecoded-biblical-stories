@@ -1,0 +1,41 @@
+{
+  "book_id": "moses",
+  "title": "История Моисея",
+  "master_language": "ru",
+  "languages": ["ru", "en", "de", "es", "pt", "fr", "ar"],
+
+  "image": {
+    "model": "gpt-image-2",
+    "size": "1024x1536",
+    "quality": "high",
+    "web_width": 820,
+    "webp_quality": 82,
+    "anchor_candidates": 4
+  },
+
+  "claude_model": "claude-sonnet-4-6",
+
+  "translation": {
+    "max_length_ratio": 1.2,
+    "audience": "дети 5–9 лет"
+  },
+
+  "tts": {
+    "provider": "elevenlabs",
+    "model_id": "eleven_multilingual_v2",
+    "single_voice_all_languages": true,
+    "default_voice_id": "REPLACE_WITH_MULTILINGUAL_VOICE_ID",
+    "voice_by_language": {
+      "ru": "REPLACE_WITH_MARINA_V3_VOICE_ID"
+    },
+    "trim_silence": true,
+    "output_format": "mp3_44100_128"
+  },
+
+  "paths": {
+    "anchor": "img/_anchor.png",
+    "images_dir": "img",
+    "audio_dir": "audio",
+    "out_data": "book_data.js"
+  }
+}

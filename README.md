@@ -1,64 +1,76 @@
-Example plain HTML site using GitLab Pages.
+# Библейские истории (BST) — колода-приложение
 
-Learn more about GitLab Pages at https://pages.gitlab.io and the official
-documentation https://docs.gitlab.com/ce/user/project/pages/.
+Том «Библия: великие истории» серии «Моя первая большая энциклопедия».
+Культурно-образовательный, конфессионально-нейтральный продукт для 5–9 лет.
+Handoff-документ владельца — источник контента (тексты карт перенесены в
+`data/volume.js`). План интеграции — `docs/bible-deck-plan.md`.
 
----
-
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
-
-- [GitLab CI](#gitlab-ci)
-- [GitLab User or Group Pages](#gitlab-user-or-group-pages)
-- [Did you fork this project?](#did-you-fork-this-project)
-- [Troubleshooting](#troubleshooting)
-
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
-
-## GitLab CI
-
-This project's static Pages are built by [GitLab CI][ci], following the steps
-defined in [`.gitlab-ci.yml`](.gitlab-ci.yml):
+## Состав
 
 ```
-image: busybox
-
-pages:
-  stage: deploy
-  script:
-  - echo 'Nothing to do...'
-  artifacts:
-    paths:
-    - public
-    expire_in: 1 day
-  rules:
-    - if: $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH
+index.html      оболочка приложения (заставка → «Начать»); логика в app.js (инвариант iOS 21 КБ)
+app.js          движок приложения (ES5, vanilla)
+app.css         стили (высокий контраст, чёрное по белому)
+data/volume.js  ВЕСЬ контент тома: герои, сюжеты, пары, эпохи, артефакты, глоссарий
+img/            карты WebP 820×1230: heroes_NN_slug.webp (20 готовы), plots_NN_slug.webp (ждут генерации)
+anchors/        якоря сквозных персонажей для генерации сцен (Ной утверждён; Моисей — из книги)
+audio/          озвучка карт Marina v3: heroes_NN_slug.mp3 / plots_NN_slug.mp3 (следующая фаза)
+cover.webp      обложка для главного навигатора (сейчас плейсхолдер = heroes_01; заменить сгенерированной)
 ```
 
-The above example expects to put all your HTML files in the `public/` directory.
+## Режимы приложения
 
-## GitLab User or Group Pages
+- **Герои / Сюжеты** — иконостас 3 колонки → карта крупно → переворот на изнанку.
+  Изнанка героя: имя + эпитет + 3 факта + аудиоблок. Изнанка сюжета: источник +
+  пересказ + «Найди на карточке». Аудиоблок: 🎧 + ▶ + название трека, без
+  длительности; появляется только при `audioReady:true` у карты.
+- **Книги** — встроенные готовые аудиокниги `books/moses` и `books/noev-kovcheg`
+  (движок `core/engines/encyclopedia`, 7 языков, караоке) через
+  `iframe reader.html?embed=1&lang=<lang>` + live-синхронизация языка
+  postMessage `{type:"dinoLang"}`, остановка звука `{type:"bookStop"}` — приём
+  из `decks/strany-mira`. Новые книги (Иосиф, Давид, Иона, Рождество) добавляются
+  конвейером `docs/audiobook-pipeline.md` и одной записью в `data/volume.js`.
+- **Игры** — мемори «Герой↔Сюжет» (пары из `pair` в данных), квиз (вопросы
+  генерируются из эпитетов и фактов), «Чья вещь?» (артефакты), «Порядок событий»
+  (хронология по эпохам). Всё «нажми», без драга.
+- **Лента времени** — 7 эпох, цветовые зоны, чипы героев/сюжетов → карта.
+- **Словарик** — 30 слов: слово + объяснение ≤15 слов + эмодзи + связанные карты.
 
-To use this project as your user/group website, you will need one additional
-step: just rename your project to `namespace.gitlab.io`, where `namespace` is
-your `username` or `groupname`. This can be done by navigating to your
-project's **Settings**.
+## Язык и прогресс
 
-Read more about [user/group Pages][userpages] and [project Pages][projpages].
+- 7 языков `ru en de es pt fr ar` (RTL для ar), ключ `bibi_lang`. Тексты карт —
+  пока только ru; функция `L()` даёт фолбэк на ru, переводы добавляются в
+  `data/volume.js` конвейером (Claude, tool-схема — как `books/*/pipeline/translate.py`).
+- Прогресс `bibi_prog`: просмотренные карты + результаты игр. Уникальный ключ,
+  ни с кем не делится (инвариант платформы).
 
-## Did you fork this project?
+## Конвейер (`pipeline/`, ключи в git НЕ живут)
 
-If you forked this project for your own use, please go to your project's
-**Settings** and remove the forking relationship, which won't be necessary
-unless you want to contribute back to the upstream project.
+```
+export OPENAI_API_KEY=... ANTHROPIC_API_KEY=... GENAPI_KEY=...
+python3 pipeline/gen_plots.py         # 20 сцен «Сюжетов»: images.edit от якоря + автопроверка тона
+python3 pipeline/gen_cover.py         # обложка с надписью (текст статический — можно в картинке)
+node    pipeline/export_json.js       # data/volume.js → pipeline/volume.master.json
+python3 pipeline/translate_cards.py   # 6 языков батчами (Claude, tool-схема) → pipeline/translations/
+node    pipeline/apply_translations.js# слияние переводов, ПЕРЕЗАПИСЫВАЕТ data/volume.js
+python3 pipeline/tts_cards.py         # 40 ru-треков gen-api Kore + trim краёв + whisper-проверка языка
+```
 
-## Troubleshooting
+- Автопроверка тона (handoff §2, по копии 200×300): L̄ ≥ 150, глухие тени
+  (L<70) < 6%, «бумага» (L>200) ≥ 25%. Не прошло — перегенерация (до 3 попыток).
+- Якоря: сцены с Ноем/Моисеем/Иосифом/Давидом/Марией — images.edit от их
+  `anchors/*_anchor.webp` (PRESERVE); остальные — от noah_anchor как чистого
+  стиль-референса (NO_CHARACTER).
+- После прогона: `imgReady`/`audioReady` в volume.js → true; аудиоблок
+  показывается только для языков из `audioLangs` (сейчас `["ru"]`).
+- ru-тексты и флаги правь руками в data/volume.js; переводы — только конвейером
+  (apply_translations.js перегенерирует файл).
 
-1. CSS is missing! That means that you have wrongly set up the CSS URL in your
-   HTML files. Have a look at the [index.html] for an example.
+## Что дальше (фаза 3)
 
-[ci]: https://about.gitlab.com/gitlab-ci/
-[index.html]: https://gitlab.com/pages/plain-html/blob/master/public/index.html
-[userpages]: https://docs.gitlab.com/ce/user/project/pages/introduction.html#user-or-group-pages
-[projpages]: https://docs.gitlab.com/ce/user/project/pages/introduction.html#project-pages
+1. Книги 3–6 (Иосиф, Давид, Иона, Рождество) по бит-листам handoff §6 —
+   конвейер `docs/audiobook-pipeline.md`, якоря уже в `anchors/`.
+2. Озвучка карт на остальных 6 языках (добавить язык в `audioLangs` + прогнать
+   tts с переводами) — по мере надобности.
+3. Карты мира «Путь Исхода» и «Библейский мир», реконструктор — handoff §7–8.
+4. Печатный слой: PDF колоды, раскраска white-on-black (handoff §9).

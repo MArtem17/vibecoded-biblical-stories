@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="ru"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>Демо · Панорама с хотспотами</title>
+<style>
+ html,body{margin:0;height:100%;background:#1a1410;color:#f0e9dc;font-family:-apple-system,Segoe UI,Roboto,sans-serif;}
+ .wrap{min-height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;padding:24px;text-align:center;}
+ h1{font-size:20px;margin:0;} p{opacity:.8;font-size:13px;max-width:340px;margin:0;}
+ button{font:800 15px sans-serif;border:2px solid #C9A24B;background:#8E1B1B;color:#fff;border-radius:14px;padding:14px 22px;cursor:pointer;}
+ button.alt{background:#2a2018;color:#f0e9dc;}
+</style>
+</head><body>
+<div class="wrap">
+  <h1>Панорама с хотспотами — демо</h1>
+  <p>Открой панораму (пан/зум + точки) или ту же сцену в режиме «вписать в экран».</p>
+  <button onclick="openPano(true)">Открыть панораму (пан/зум)</button>
+  <button class="alt" onclick="openPano(false)">Открыть «в размер экрана»</button>
+  <button class="alt" onclick="SCENE.pan=true;PanoramaHotspots.edit(SCENE)">✎ Редактор хотспотов</button>
+</div>
+
+<!-- единственное подключение движка: -->
+<script src="../panorama-hotspots.js"></script>
+<script>
+  var SCENE = {
+    image: 'pano.webp',
+    base:  '',                       // префикс для картинок/звука хотспотов
+    hint:  'Нажми золотую точку',
+    // intro: 'intro.mp4',           // (опц.) видео-заставка
+    hotspots: [
+      { x:50, y:17, title:'Люстра', subtitle:'над залом',
+        text:'Демо-хотспот. Здесь была бы хрустальная люстра и факт о ней.', image:'chandelier.webp' },
+      { x:22, y:54, title:'Ложа', subtitle:'сбоку',
+        text:'Ещё один хотспот с картинкой-героем и текстом.', image:'box.webp' },
+      { x:78, y:54, title:'Без картинки', subtitle:'фолбэк',
+        text:'Если у хотспота нет image — показывается монограмма (первая буква).' }
+    ]
+  };
+  function openPano(pan){ SCENE.pan = pan; PanoramaHotspots.open(SCENE); }
+</script>
+</body></html>

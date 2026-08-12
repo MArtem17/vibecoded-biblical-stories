@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-hidden="true">
+  <!-- lens glass -->
+  <circle cx="28" cy="28" r="14.5" fill="#d7e8f2" stroke="#6a4220" stroke-width="2.2"/>
+  <circle cx="28" cy="28" r="10.5" fill="#eef6fb" opacity=".9"/>
+  <path d="M21 22c2.5-2.8 6.2-3.6 9-2.2" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" opacity=".85"/>
+  <!-- handle -->
+  <path d="M38.5 38.5l14 14" stroke="#8a5a28" stroke-width="6.5" stroke-linecap="round"/>
+  <path d="M38.5 38.5l14 14" stroke="#c48a45" stroke-width="3.6" stroke-linecap="round"/>
+  <path d="M49.2 49.2l3.3 3.3" stroke="#6a4220" stroke-width="1.2" stroke-linecap="round" opacity=".55"/>
+</svg>

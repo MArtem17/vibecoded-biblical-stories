@@ -1,0 +1,89 @@
+/* ============================================================
+   BuildWord — стили механики «собери слово из букв».
+   Заскоплено под .bw-root, та же палитра, что у LabelDrag.
+   ============================================================ */
+.bw-root {
+  --bw-navy:  #1f3a5f;
+  --bw-amber: #e8a33d;
+  --bw-green: #2e7d4f;
+  --bw-red:   #c0392b;
+  --bw-ink:   #12243a;
+  --bw-stage: #ffffff;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  -webkit-tap-highlight-color: transparent;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+  color: var(--bw-ink);
+}
+
+.bw-root .bw-stage {
+  flex: 1; min-height: 0;
+  margin: 0 12px;
+  background: var(--bw-stage);
+  border: 2px solid #e2e8f0; border-radius: 18px;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 16px; padding: 18px 14px; overflow: hidden;
+}
+
+.bw-root .bw-pic {
+  width: min(46%, 230px); aspect-ratio: 1 / 1;
+  display: flex; align-items: center; justify-content: center;
+}
+.bw-root .bw-img {
+  max-width: 100%; max-height: 100%; object-fit: contain;
+  -webkit-user-select: none; user-select: none; pointer-events: none;
+}
+.bw-root .bw-hint {
+  font-size: 16px; font-weight: 700; color: #5b6b7d;
+}
+
+/* ряд слотов */
+.bw-root .bw-slots {
+  display: flex; flex-wrap: wrap; gap: 8px; justify-content: center;
+}
+.bw-root .bw-slot {
+  width: 46px; height: 56px; border-radius: 12px;
+  border: 2.5px dashed #c4cdd8; background: #f6f8fb;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 26px; font-weight: 800; color: var(--bw-navy);
+  text-transform: none;
+}
+.bw-root .bw-slot.bw-fill {
+  border-style: solid; border-color: var(--bw-navy); background: #eef3f9; cursor: pointer;
+}
+.bw-root .bw-slot.bw-lock {
+  border-color: var(--bw-amber); background: #fff7ec; cursor: default; color: #8a6a2f;
+}
+.bw-root .bw-slot.bw-good {
+  border-color: var(--bw-green); background: #eaf6ee; color: var(--bw-green);
+  animation: bw-pop .4s;
+}
+.bw-root .bw-slot.bw-shown {
+  border-color: var(--bw-amber); background: #fff7ec; color: #8a6a2f;
+}
+.bw-root .bw-slot.bw-bad {
+  border-color: var(--bw-red); background: #fdecea; color: var(--bw-red);
+  animation: bw-shake .42s;
+}
+@keyframes bw-pop { 40% { transform: translateY(-7px) scale(1.08); } }
+@keyframes bw-shake { 20%,60% { transform: translateX(-6px); } 40%,80% { transform: translateX(6px); } }
+
+/* банк букв */
+.bw-root .bw-bank {
+  display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; padding: 14px 14px 6px;
+}
+.bw-root .bw-tile {
+  min-width: 46px; height: 52px; padding: 0 6px; border-radius: 12px;
+  background: var(--bw-navy); color: #fff; font-size: 24px; font-weight: 800;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; user-select: none; -webkit-user-select: none;
+  box-shadow: 0 2px 4px rgba(31,58,95,.25);
+}
+.bw-root .bw-tile.bw-used { visibility: hidden; }
+
+.bw-root .bw-cmt {
+  margin: 4px 16px 10px; min-height: 24px; font-size: 14px; line-height: 1.35; text-align: center; color: #33414f;
+}
+.bw-root .bw-cmt b { color: var(--bw-navy); }

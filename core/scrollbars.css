@@ -1,0 +1,39 @@
+/* Единые стилизованные скроллбары — terracotta / cream. */
+:root{
+  --sb-size:9px;
+  --sb-track:#F5EFE4;
+  --sb-thumb:rgba(184,90,58,.55);
+  --sb-thumb-hover:rgba(184,90,58,.78);
+}
+html[data-theme="dark"]{
+  --sb-track:rgba(245,239,228,.08);
+  --sb-thumb:rgba(212,120,85,.5);
+  --sb-thumb-hover:rgba(240,216,137,.65);
+}
+
+*{
+  scrollbar-width:thin;
+  scrollbar-color:var(--sb-thumb) var(--sb-track);
+}
+
+*::-webkit-scrollbar{
+  width:var(--sb-size);
+  height:var(--sb-size);
+}
+*::-webkit-scrollbar-track{
+  background:var(--sb-track);
+  border-radius:999px;
+}
+*::-webkit-scrollbar-thumb{
+  background:var(--sb-thumb);
+  border-radius:999px;
+  border:2px solid transparent;
+  background-clip:padding-box;
+}
+*::-webkit-scrollbar-thumb:hover{
+  background:var(--sb-thumb-hover);
+  background-clip:padding-box;
+}
+*::-webkit-scrollbar-corner{
+  background:transparent;
+}

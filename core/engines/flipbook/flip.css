@@ -1,0 +1,73 @@
+:root{
+  --ink:#1c1c1c; --paper:#ffffff;
+  --teal:#a9d6da; --teal-deep:#6cb9c1;
+  --lime:#c3d63b; --lime-deep:#a9bf21;
+  --blue:#5aa9e8; --muted:#6b6b6b; --soft:#f6f4ef; --line:#e7e3da;
+  --mat:#eef1f2;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;padding:0;background:var(--paper);color:var(--ink)}
+body{font:17px/1.45 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;-webkit-font-smoothing:antialiased}
+button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
+button:focus-visible{outline:3px solid var(--teal-deep);outline-offset:2px}
+
+.screen{display:none}
+.screen.active{display:block}
+
+/* ===== СТАРТОВАЯ ПОЛКА (иконостос обложек pdf-листалок) ===== */
+.p-catalog{position:relative;padding:7% 7% 9%;background:#fff}
+.p-catalog h2{color:var(--teal-deep);font-size:23px;font-weight:800;font-family:-apple-system,Arial,sans-serif;margin:0;text-align:center}
+.cat-sub{color:var(--muted);font-size:14px;text-align:center;margin:2px 0 14px}
+.cat-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.cat-cell{position:relative;border:2px solid var(--line);border-radius:14px;overflow:hidden;background:#fff;padding-bottom:8px}
+.cat-cell.acc-teal{border-color:var(--teal)} .cat-cell.acc-lime{border-color:var(--lime)}
+.cat-cover{aspect-ratio:3/4;display:flex;align-items:center;justify-content:center;background:linear-gradient(160deg,#eef4ee,#dde9df);overflow:hidden}
+.cat-cover img{width:100%;height:100%;object-fit:cover}
+.cat-emoji{font-size:62px;line-height:1}
+.cat-title{text-align:center;font-weight:800;color:#2a2a2a;font-size:15px;margin-top:7px}
+
+/* ===== РИДЕР-ЛИСТАЛКА ===== */
+.r-main{position:fixed;top:env(safe-area-inset-top);bottom:calc(70px + env(safe-area-inset-bottom));left:0;right:0;display:flex;align-items:center;justify-content:center;padding:0;overflow:hidden;touch-action:pan-y;-webkit-perspective:1600px;perspective:1600px}
+.r-foot{position:fixed;left:12px;right:12px;bottom:0;max-width:520px;margin:0 auto;padding:8px 14px calc(9px + env(safe-area-inset-bottom));background:#fff;border:1px solid var(--line);border-bottom:none;border-radius:18px 18px 0 0;box-shadow:0 -3px 14px rgba(0,0,0,.06);z-index:5}
+.r-controls{display:flex;align-items:center;gap:12px}
+.r-pageno{flex:1;text-align:center;font-size:13px;font-weight:700;color:#333}
+.navbtn{flex:0 0 auto;width:44px;height:44px;border-radius:50%;background:#fff;border:1.5px solid var(--line);color:var(--blue);font-size:22px;font-weight:700;display:flex;align-items:center;justify-content:center}
+.navbtn:disabled{opacity:.35}
+.homebtn{flex:0 0 auto;width:40px;height:40px;border-radius:50%;background:#fff;border:1.5px solid var(--line);color:var(--teal-deep);font-size:18px;display:flex;align-items:center;justify-content:center}
+
+.stage{position:relative;width:100%;height:100%;max-width:560px;margin:0 auto;-webkit-transform-style:preserve-3d;transform-style:preserve-3d}
+
+/* переворот «как в книге»: корешок по центру, левая половина неподвижна */
+.turn{position:absolute;inset:0;z-index:5;display:none;pointer-events:none;-webkit-transform-style:preserve-3d;transform-style:preserve-3d}
+.turn.on{display:block}
+.turn .base{position:absolute;inset:0;z-index:1}
+.turn .half{position:absolute;top:0;bottom:0;width:50%;overflow:hidden;background:#fff}
+.turn .half.l{left:0}
+.turn .half.r{left:50%}
+.turn .full{position:absolute;top:0;height:100%;width:200%;background:#fff;overflow:hidden}
+.turn .half.l .full{left:0}
+.turn .half.r .full{left:-100%}
+.turn .gutter{position:absolute;top:0;bottom:0;left:50%;width:50px;z-index:2;opacity:0;background:linear-gradient(90deg,rgba(0,0,0,.32),rgba(0,0,0,0))}
+.turn .leaf{position:absolute;top:0;bottom:0;left:50%;width:50%;z-index:3;-webkit-transform-origin:left center;transform-origin:left center;-webkit-transform-style:preserve-3d;transform-style:preserve-3d;-webkit-transform:rotateY(0deg);transform:rotateY(0deg)}
+.turn .leaf.lift{box-shadow:0 16px 40px rgba(0,0,0,.26)}
+.turn .face{position:absolute;inset:0;overflow:hidden;background:#fff;-webkit-backface-visibility:hidden;backface-visibility:hidden}
+.turn .face.back{-webkit-transform:rotateY(180deg);transform:rotateY(180deg)}
+.turn .face .full{position:absolute;top:0;height:100%;width:200%}
+.turn .face.front .full{left:-100%}
+.turn .face.back .full{left:0}
+.turn .face .shade{position:absolute;inset:0;background:#000;opacity:0;pointer-events:none}
+
+.page{position:absolute;inset:0;background:#fff;overflow:hidden;-webkit-backface-visibility:hidden;backface-visibility:hidden}
+.page.rest{z-index:1}
+
+/* страница-листалка: целый лист PDF на нейтральном фоне (contain) */
+.p-page{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:var(--mat)}
+.p-page img{display:block;width:100%;height:100%;object-fit:contain}
+.p-page .ph{font-size:96px}
+
+/* обложка-лист целиком (первая страница pdf) — как обычная страница */
+.p-cover{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:var(--mat)}
+.p-cover img{display:block;width:100%;height:100%;object-fit:contain}
+
+.mask{display:none;position:fixed;inset:0;background:rgba(20,20,20,.5);align-items:center;justify-content:center;padding:24px;z-index:20}
+.mask.on{display:flex}

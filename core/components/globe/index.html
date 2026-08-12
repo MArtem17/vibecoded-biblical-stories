@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Globe · вращающийся глобус (демо)</title>
+<style>
+  :root { --ink:#3A2E22; --paper:#EFE7D6; --line:#CDBFA3; --terra:#B5532A; }
+  * { box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+  body { margin:0; font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+         color:var(--ink); background:#0b1622; display:flex; flex-direction:column;
+         align-items:center; min-height:100vh; padding:24px 12px 40px; }
+  h1 { color:#e8dcc4; font-size:19px; font-weight:700; margin:0 0 4px; }
+  .sub { color:#8fa3b8; font-size:12.5px; margin:0 0 20px; }
+  .stage { width:min(88vw,360px); aspect-ratio:1/1; }
+  canvas { width:100%; height:100%; display:block; }
+  .panel { margin-top:18px; display:flex; flex-wrap:wrap; gap:8px; justify-content:center;
+           width:min(92vw,420px); }
+  button { border:1.5px solid var(--line); background:var(--paper); color:var(--ink);
+           font-weight:700; font-size:13px; padding:8px 14px; border-radius:9px; cursor:pointer; }
+  button:active { transform:scale(.97); }
+  button.on { background:var(--terra); color:#fff; border-color:var(--terra); }
+  .row { display:flex; align-items:center; gap:8px; color:#cfe0ff; font-size:12.5px; }
+  input[type=range] { width:150px; }
+  .hint { color:#6f829a; font-size:11.5px; margin-top:16px; max-width:420px; text-align:center; line-height:1.5; }
+  code { color:#e8b98a; }
+</style>
+</head>
+<body>
+  <h1>🌍 Вращающийся глобус</h1>
+  <p class="sub">переиспользуемый компонент <code>core/components/globe</code></p>
+
+  <div class="stage"><canvas id="globe"></canvas></div>
+
+  <div class="panel">
+    <button id="toggle" class="on">⏸ Пауза</button>
+    <button id="light-sphere" class="on">Объём</button>
+    <button id="light-daynight">День/ночь</button>
+    <button id="light-flat">Плоско</button>
+  </div>
+  <div class="panel">
+    <div class="row">скорость <input id="speed" type="range" min="0" max="1.2" step="0.05" value="0.35"></div>
+  </div>
+
+  <p class="hint">Крути пальцем/мышью. Открывать по <code>http://</code> (не <code>file://</code>),
+  иначе текстура не читается и покажется сетка-заглушка.</p>
+
+<script src="globe.js"></script>
+<script>
+  var globe = Globe.create({
+    canvas: 'globe',
+    texture: 'world_tex.jpg',
+    autoRotate: true,
+    speed: 0.35,
+    drag: true,
+    light: 'sphere'
+  });
+
+  var toggle = document.getElementById('toggle');
+  toggle.addEventListener('click', function () {
+    if (globe.running) { globe.stop(); toggle.textContent = '▶ Пуск'; toggle.classList.remove('on'); }
+    else { globe.start(); toggle.textContent = '⏸ Пауза'; toggle.classList.add('on'); }
+  });
+
+  var lightBtns = { sphere: 'light-sphere', daynight: 'light-daynight', flat: 'light-flat' };
+  function setLight(mode) {
+    globe.setLight(mode);
+    for (var m in lightBtns) document.getElementById(lightBtns[m]).classList.toggle('on', m === mode);
+  }
+  document.getElementById('light-sphere').onclick = function () { setLight('sphere'); };
+  document.getElementById('light-daynight').onclick = function () { setLight('daynight'); };
+  document.getElementById('light-flat').onclick = function () { setLight('flat'); };
+
+  document.getElementById('speed').addEventListener('input', function () {
+    globe.setSpeed(parseFloat(this.value));
+  });
+
+  window.addEventListener('resize', function () { globe.resize(); });
+</script>
+</body>
+</html>

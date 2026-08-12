@@ -1,0 +1,113 @@
+/* ============================================================
+   LabelDrag — стили механики «перетащи название на деталь».
+   Всё заскоплено под .ld-root, цвета — через CSS-переменные,
+   чтобы легко встроить в любой проект, не задев его стили.
+   Палитра по умолчанию совпадает с колодой «Как всё устроено».
+   ============================================================ */
+.ld-root {
+  --ld-navy:  #1f3a5f;
+  --ld-amber: #e8a33d;
+  --ld-green: #2e7d4f;
+  --ld-ink:   #12243a;
+  --ld-line:  #1f3a5f;
+  --ld-stage: #ffffff;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  -webkit-tap-highlight-color: transparent;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+  color: var(--ld-ink);
+}
+
+/* сцена с картинкой */
+.ld-root .ld-stage {
+  position: relative;
+  flex: 1;
+  min-height: 56vh;
+  margin: 0 12px;
+  background: var(--ld-stage);
+  border: 2px solid #e2e8f0;
+  border-radius: 18px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.ld-root .ld-imgwrap { position: relative; margin: auto; }
+.ld-root .ld-img {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: contain; -webkit-user-select: none; user-select: none; pointer-events: none;
+}
+.ld-root .ld-ov {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  pointer-events: none; z-index: 3;
+}
+
+/* пин — точка на детали */
+.ld-root .ld-pin {
+  position: absolute; width: 19px; height: 19px; border-radius: 50%;
+  background: var(--ld-navy); border: 2.5px solid #fff;
+  box-shadow: 0 1px 3px rgba(0,0,0,.3);
+  transform: translate(-50%, -50%); z-index: 6;
+  transition: opacity .25s, background .2s;
+}
+.ld-root .ld-pin.hot { background: var(--ld-amber); }
+.ld-root .ld-pin.dim { opacity: .3; }
+@keyframes ld-seekp { 0%,100% { box-shadow: 0 0 0 0 rgba(232,163,61,.6); } 55% { box-shadow: 0 0 0 10px rgba(232,163,61,0); } }
+.ld-root .ld-pin.ld-seek { background: var(--ld-amber); animation: ld-seekp 1.5s infinite; }
+
+/* подпись (заполненная) */
+.ld-root .ld-box {
+  position: absolute; max-width: 46%; box-sizing: border-box;
+  background: #f4faf6; border: 2.5px solid var(--ld-green); border-radius: 12px;
+  padding: 8px 9px 8px 11px; font-size: 12.5px; font-weight: 700; line-height: 1.15;
+  color: var(--ld-ink); z-index: 5; transition: opacity .25s;
+}
+.ld-root .ld-box .ld-num {
+  position: absolute; left: -10px; top: -10px; width: 21px; height: 21px; border-radius: 50%;
+  background: var(--ld-green); color: #fff; font-size: 12px; font-weight: 800;
+  display: flex; align-items: center; justify-content: center;
+}
+/* пустая зона-приёмник */
+.ld-root .ld-box.ld-empty {
+  background: rgba(255,255,255,.6); border-style: dashed; border-color: var(--ld-amber);
+  color: #8a98a8; min-height: 34px; min-width: 0; padding: 6px 6px;
+}
+.ld-root .ld-box.ld-empty .ld-num { background: var(--ld-amber); }
+@keyframes ld-seekb { 0%,100% { border-color: var(--ld-amber); } 50% { border-color: #9fc7ab; } }
+.ld-root .ld-box.ld-seek { animation: ld-seekb 1.5s infinite; }
+.ld-root .ld-box.ld-targets { background: #fff7ec; }
+.ld-root .ld-box.ld-over {
+  border-color: var(--ld-amber); border-style: solid; background: #ffe9c9; transform: scale(1.05);
+}
+@keyframes ld-shake { 25% { transform: translateX(-5px); } 75% { transform: translateX(5px); } }
+.ld-root .ld-box.ld-wrong { border-color: #c0392b; animation: ld-shake .35s; }
+.ld-root .ld-box.hot { border-color: var(--ld-amber); background: #fff7ec; }
+.ld-root .ld-box.dim { opacity: .32; }
+.ld-root.ld-finished .ld-box[data-done="1"] { cursor: pointer; }
+
+/* банк фишек */
+.ld-root .ld-bank {
+  display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; padding: 12px 14px 6px;
+}
+.ld-root .ld-chip {
+  font-size: 13px; font-weight: 700; color: #fff; background: var(--ld-navy);
+  border-radius: 999px; padding: 9px 13px; cursor: grab;
+  touch-action: none; user-select: none; -webkit-user-select: none;
+  box-shadow: 0 2px 4px rgba(31,58,95,.25);
+}
+.ld-root .ld-chip.ld-used { display: none; }
+.ld-root .ld-drag { position: fixed; z-index: 60; pointer-events: none; opacity: .95; }
+
+/* подпись-комментарий снизу */
+.ld-root .ld-cmt {
+  margin: 6px 16px 10px; min-height: 42px; font-size: 14px; line-height: 1.35; color: #33414f;
+}
+.ld-root .ld-cmt b { color: var(--ld-navy); }
+
+/* --- фишки-предметы (расширение img) --- */
+.ld-chip-img{padding:4px;line-height:0}
+.ld-chip-img img{width:54px;height:54px;object-fit:contain;display:block;pointer-events:none}
+.ld-drag.ld-chip-img img{width:54px;height:54px}
+.ld-lab-img{width:46px;height:46px;object-fit:contain;display:block;margin:0 auto;pointer-events:none}

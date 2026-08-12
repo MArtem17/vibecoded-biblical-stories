@@ -1,0 +1,370 @@
+/* rech-deck-kit — общий движок колод серии «Речь» (Болталки, Бормоталки…).
+   Высокий контраст: тёмный текст на светлом тёплом фоне; детский UI, «нажми».
+   Фирменный округлый шрифт Nunito встроен (nunito.css, офлайн base64). */
+@import url("nunito.css");
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{height:100%}
+body{font-family:-apple-system,"Segoe UI",Roboto,Arial,sans-serif;background:#fff;color:#000}
+.wrap{max-width:720px;margin:0 auto;padding:12px 12px 40px}
+header{display:flex;align-items:center;gap:10px;padding:6px 2px 14px}
+header .logo{font-size:30px}
+header b{font-size:19px;display:block;line-height:1.15}
+header span{font-size:13px;color:#000}
+header .plink{margin-left:auto;font-size:20px;line-height:1;text-decoration:none;color:#000;border:3px solid #000;border-radius:12px;padding:7px 10px}
+header .plink.plink2{margin-left:8px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.tile{position:relative;border:3px solid #000;border-radius:14px;background:#fff;overflow:hidden;cursor:pointer;padding:0;text-align:center;display:block;width:100%}
+/* прогресс */
+.pcount{display:block;font-size:12px;font-weight:900;color:#000;padding-top:1px}
+.digbadge{position:absolute;top:5px;left:5px;width:26px;height:26px;border-radius:50%;background:#fff;border:3px solid #000;font-size:13px;line-height:20px;text-align:center}
+.donebadge{position:absolute;top:5px;right:5px;width:26px;height:26px;border-radius:50%;background:#fff;border:3px solid #000;font-weight:900;font-size:15px;line-height:20px;color:#000}
+.resetbtn{grid-column:1/-1;justify-self:center;font-family:inherit;font-weight:700;font-size:13px;color:#000;background:#fff;border:2px solid #000;border-radius:999px;padding:7px 16px;margin-top:14px;cursor:pointer;opacity:0.7}
+/* «Дальше по серии» */
+.nextcard{grid-column:1/-1;display:flex;align-items:center;gap:12px;border:3px solid #000;border-radius:16px;background:#fff;text-decoration:none;color:#000;padding:10px 12px;margin-top:14px}
+.nextcard img{width:64px;aspect-ratio:2/3;object-fit:cover;border:2px solid #000;border-radius:10px;flex:none}
+.nextcard span{flex:1 1 auto;min-width:0}
+.nextcard i{display:block;font-style:normal;font-size:12px;font-weight:700}
+.nextcard b{display:block;font-weight:900;font-size:17px;line-height:1.2}
+.nextcard em{display:block;font-style:normal;font-size:13px;font-weight:700}
+.nextcard u{text-decoration:none;font-weight:900;font-size:28px;flex:none}
+/* темп чистоговорки */
+.temporow{display:flex;justify-content:center;gap:8px;padding:0 0 10px}
+.tempo{font-family:inherit;font-weight:900;font-size:13px;color:#000;background:#fff;border:3px solid #000;border-radius:999px;padding:6px 12px;cursor:pointer}
+.tempo.on{background:#000;color:#fff}
+/* перепутанные истории */
+.mixrow{display:flex;flex-direction:column;gap:10px;padding:12px 0 4px}
+.mixbtn{display:flex;align-items:center;gap:10px;font-size:18px;font-weight:900;padding:12px 14px;border-radius:16px;text-align:left}
+.mixbtn .stbar{width:14px;height:28px;border:3px solid #000;border-radius:8px;flex:none}
+/* игра «что ещё так звучит?» */
+.echorow{display:flex;align-items:center;justify-content:center;gap:14px;padding:2px 0 8px}
+.echopic{width:min(38%,180px);border:3px solid #000;border-radius:14px;display:block}
+.tile img{width:100%;aspect-ratio:2/3;object-fit:cover;display:block}
+.tile .cap{font-weight:900;font-size:13px;padding:6px 4px;border-top:3px solid #000;background:#fff;color:#000;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tile .cap .dot{display:inline-block;width:10px;height:10px;border-radius:50%;border:2px solid #000;margin-right:4px;vertical-align:baseline}
+.tile .mini{display:grid;grid-template-columns:1fr 1fr;gap:2px;background:#000;aspect-ratio:2/3}
+.tile .mini img{width:100%;height:100%;aspect-ratio:auto;object-fit:cover}
+/* фильтр по звуку (включается данными group/color) */
+.chips{display:flex;flex-wrap:wrap;gap:8px;padding:0 0 12px}
+.chip{font-family:inherit;font-weight:900;font-size:14px;color:#000;background:#fff;border:3px solid #000;border-radius:999px;padding:7px 13px;cursor:pointer}
+.chip .dot{display:inline-block;width:11px;height:11px;border-radius:50%;border:2px solid #000;margin-right:5px;vertical-align:baseline}
+.chip.on{background:#000;color:#fff}
+/* карта крупно */
+.modal{position:fixed;inset:0;background:#fff;display:none;overflow-y:auto;z-index:10}
+.modal.on{display:block}
+.mwrap{max-width:560px;margin:0 auto;padding:12px 14px 30px;min-height:100%;display:flex;flex-direction:column}
+.mtop{display:flex;align-items:center;justify-content:space-between;gap:10px;padding-bottom:10px}
+.mnum{font-weight:900;font-size:16px}
+.btn{font-family:inherit;font-weight:900;color:#000;background:#fff;border:3px solid #000;border-radius:14px;cursor:pointer}
+.btn:active{background:#000;color:#fff}
+.bclose{font-size:22px;line-height:1;padding:8px 14px}
+/* слог + play в строку */
+.syrow{display:flex;align-items:center;justify-content:center;gap:14px;padding:2px 0 10px}
+.syll{font-weight:900;font-size:42px;letter-spacing:1px}
+.bplay{font-size:24px;line-height:1;padding:12px 16px;border-radius:50%}
+.bplay.playing{background:#000;color:#fff}
+/* картинка карты: высоту ограничиваем вьюпортом, чтобы карта влезала на
+   экран без скролла (заголовок + картинка + текст помещаются целиком) */
+.pic{width:auto;max-width:100%;max-height:60vh;max-height:52dvh;margin:0 auto;border:3px solid #000;border-radius:16px;display:block}
+.verse{font-size:22px;line-height:1.4;text-align:center;font-weight:700;padding:14px 4px 4px}
+.verse .hl{border-radius:6px;padding:0 2px;font-weight:900}
+.soundtag{display:block;width:fit-content;margin:0 auto 10px;font-weight:900;font-size:15px;border:3px solid #000;border-radius:999px;padding:5px 14px}
+.brow{display:flex;gap:10px;justify-content:center;align-items:stretch;padding-top:14px}
+.brepeat{font-size:18px;padding:13px 20px;border-radius:20px}
+.hint{text-align:center;font-size:15px;font-weight:700;padding-top:12px}
+/* индикатор «твоя очередь» (режим «повтори за диктором») */
+.turn{display:none;text-align:center;font-weight:900;font-size:24px;border:3px solid #000;border-radius:20px;padding:14px 10px;margin-top:14px}
+.turn.on{display:block;animation:pulse 0.9s ease-in-out infinite alternate}
+@keyframes pulse{from{transform:scale(1)}to{transform:scale(1.05)}}
+/* звуковая карта: сетка 2×2 */
+.stitle{font-weight:900;text-align:center;font-size:32px;padding:2px 0 12px}
+.sgrid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.scell{border:3px solid #000;border-radius:16px;background:#fff;overflow:hidden;cursor:pointer;padding:0;font-family:inherit;display:block;width:100%}
+.scell img{width:100%;aspect-ratio:1/1;object-fit:cover;display:block}
+.scell .lab{font-weight:900;font-size:20px;color:#000;background:#fff;border-top:3px solid #000;padding:8px 4px;text-align:center}
+.scell.playing{outline:6px solid #000;outline-offset:-6px}
+.scell.playing .lab{background:#000;color:#fff}
+/* стили схемы разбора — в schema.css (общие с печатным видом) */
+/* ── интерактивный разбор (фонетика) ── */
+.fzword{display:flex;align-items:center;justify-content:center;gap:14px;padding:2px 0 8px}
+.fzword b{font-weight:900;font-size:46px;letter-spacing:2px}
+.fzpic{width:min(46%,240px);border:3px solid #000;border-radius:14px;display:block;margin:0 auto 8px}
+.fzcell .schc{cursor:pointer;background:#fff}
+.fzcell .schstress{cursor:pointer;min-width:100%;text-align:center;color:#bbb}
+.fzcell.stressed .schstress{color:#000}
+.fzver{font-weight:900;line-height:1;padding-top:2px;min-height:20px;font-size:18px;color:#000}
+.fzrow{display:flex;justify-content:center;gap:10px;padding:10px 0 2px;flex-wrap:wrap}
+.fzhint{display:flex;align-items:center;justify-content:center;gap:8px;font-weight:700;font-size:15px;padding-top:10px}
+.fzhint input{width:22px;height:22px;accent-color:#000}
+.fzresult{text-align:center;font-weight:900;font-size:20px;padding-top:10px}
+.fzet{padding-top:12px;border-top:3px solid #000;margin-top:14px}
+.fzet .fzetlab{text-align:center;font-weight:900;font-size:15px;padding-bottom:6px}
+/* разделы уровней в иконостасе */
+.lvlhead{grid-column:1/-1;font-weight:900;font-size:17px;padding:12px 2px 2px;border-bottom:3px solid #000;margin-bottom:4px}
+.tile .wordface{aspect-ratio:2/3;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding:6px}
+.tile .wordface b{font-weight:900;font-size:21px;letter-spacing:1px}
+.tile .wordface span{font-size:12px;font-weight:700}
+/* ── слоговый режим («Читаем по слогам») ── */
+.dmark{display:inline-block;width:0.55em;height:0.55em;border:3px solid #000;border-radius:8px;margin-left:0.18em;vertical-align:baseline}
+.bigletter{font-weight:900;font-size:92px;line-height:1;display:inline-flex;align-items:center}
+.sylcard{border:3px solid #000;border-radius:20px;display:flex;align-items:center;justify-content:center;min-height:44vh;margin:4px 0}
+.sylcard b{font-weight:900;font-size:110px;letter-spacing:4px}
+.tile .wordface b .dmark{border-width:2px}
+.ctorbtn{grid-column:1/-1;font-family:inherit;font-weight:900;font-size:19px;color:#000;background:#fff;border:3px solid #000;border-radius:16px;padding:14px;cursor:pointer;text-align:center}
+.ctorbtn span{display:block;font-size:13px;font-weight:700;padding-top:3px}
+.ctorbtn:active{background:#000;color:#fff}
+.ctorhead{text-align:center;font-weight:900;font-size:18px;padding:4px 0 10px}
+.ctorsample{text-align:center;font-weight:900;font-size:30px;letter-spacing:2px;color:#999;padding-bottom:12px}
+.slotrow{display:flex;justify-content:center;gap:10px;padding-bottom:16px;flex-wrap:wrap}
+.slot{font-family:inherit;width:86px;height:76px;border:3px dashed #000;border-radius:14px;background:#fff;font-weight:900;font-size:34px;display:flex;align-items:center;justify-content:center;cursor:pointer}
+.slot.filled{border-style:solid}
+.poolrow{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;padding-bottom:6px}
+.pbtn{font-family:inherit;min-width:78px;padding:14px 10px;border:3px solid #000;border-radius:14px;background:#fff;font-weight:900;font-size:30px;cursor:pointer}
+.pbtn:active{background:#000}
+.pbtn.used{opacity:0.25;pointer-events:none}
+/* ── истории по картинкам («Связная речь») ── */
+.sthead{display:flex;align-items:center;justify-content:center;gap:10px;padding:2px 0 8px}
+.sthead .stbar{width:16px;height:34px;border:3px solid #000;border-radius:8px}
+.sthead b{font-weight:900;font-size:24px}
+.stslots{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;padding:6px 0 16px}
+.stslot{font-family:inherit;width:88px;aspect-ratio:2/3;border:3px dashed #000;border-radius:12px;background:#fff;font-weight:900;font-size:26px;color:#000;display:flex;align-items:center;justify-content:center;cursor:pointer;padding:0;overflow:hidden}
+.stslot.filled{border-style:solid}
+.stslot img{width:100%;height:100%;object-fit:cover;display:block}
+.stpool{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;padding-bottom:8px}
+.stpbtn{border:3px solid #000;border-radius:12px;background:#fff;cursor:pointer;padding:0;overflow:hidden}
+.stpbtn img{width:100%;aspect-ratio:2/3;object-fit:cover;display:block}
+.stpbtn.used{opacity:0.25;pointer-events:none}
+.stdone{padding-top:4px}
+.stq{position:relative;border:3px solid #000;border-radius:14px;padding:10px 56px 10px 12px;margin-top:10px;font-weight:700;font-size:16px;line-height:1.35}
+.stq .stqplay{position:absolute;top:9px;right:9px;width:38px;height:38px;font-size:15px;padding:0 0 0 2px;border-width:2px}
+.stq b{display:block;font-size:13px;padding-bottom:2px}
+.stq .vcb{display:block;padding-top:4px;font-weight:900;font-size:14px}
+/* заставка (включается конфигом cover) */
+.splash{position:fixed;inset:0;background:#fff;z-index:20;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:26px;padding:20px}
+.splash.off{display:none}
+.splash img{width:min(76vw,380px,52vh);border-radius:24px;display:block}
+.splash .semoji{font-size:90px;line-height:1}
+.splash .stitle{font-size:27px;font-weight:900;text-align:center;max-width:80vw}
+.bstart{font-size:26px;padding:16px 40px;border-radius:24px}
+.splash .shint{font-size:15px;font-weight:700;color:#000}
+
+/* ── «Читаем сами · первые фразы» ── */
+.tile .phraseface{aspect-ratio:2/3;display:flex;align-items:center;justify-content:center;padding:10px;font-weight:900;font-size:17px;line-height:1.3;text-align:center;word-break:break-word}
+.fraza{text-align:center;font-weight:900;padding:8px 4px 4px;line-height:2.1}
+.fraza.big{font-size:44px}
+.fraza .fw{display:inline-block;white-space:nowrap;margin:0 10px}
+.fraza .syl{display:inline-block;position:relative;padding:0 1px}
+.fraza .syl.arc:after{content:'';position:absolute;left:4px;right:4px;bottom:-8px;height:12px;border:4px solid #000;border-top:none;border-radius:0 0 14px 14px}
+
+/* ── «Живая азбука» и «Слышу звуки» ── */
+.azletter{text-align:center;font-size:120px;line-height:1.1;font-weight:900}
+.azrow{display:flex;gap:10px;justify-content:center;padding:10px 0;flex-wrap:wrap}
+.azopt{min-width:64px;font-size:34px;font-weight:900;padding:10px 14px;border-radius:14px}
+.poswin{font-size:26px;letter-spacing:3px}
+.pairrow{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:8px 0}
+.pairopt img,.gopt img{width:100%;aspect-ratio:2/3;object-fit:cover;border-radius:10px;display:block}
+.gopt img{aspect-ratio:1/1}
+
+/* ── выбор истории перед «Слушать рассказы» ── */
+.plpick{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;padding-top:14px}
+.plpbtn{border:3px solid #000;border-radius:14px;background:#fff;overflow:hidden;cursor:pointer;padding:0;text-align:center;display:block;width:100%;font-family:inherit}
+.plpbtn img{width:100%;aspect-ratio:2/3;object-fit:cover;display:block}
+.plpbtn .cap{display:block;font-weight:900;font-size:13px;color:#000;padding:6px 4px;border-top:3px solid #000;background:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.plpbtn .cap .dot{display:inline-block;width:10px;height:10px;border-radius:50%;border:2px solid #000;margin-right:4px;vertical-align:baseline}
+
+/* ── караоке рассказа: чёрный текст, жёлтая заливка текущего слова ── */
+.kq{font-size:18px;font-weight:700;line-height:1.7;text-align:left;padding:12px 6px 2px;color:#000}
+.kq .kw{border-radius:5px;padding:1px 2px;display:inline-block}
+.kq .kw.on{background:#FFE24D;animation:kwpop .3s ease}
+@keyframes kwpop{0%{transform:scale(1)}50%{transform:scale(1.14)}100%{transform:scale(1)}}
+
+/* ── микро-анимации (все выключаются prefers-reduced-motion, см. низ файла) ── */
+/* фишка «падает» в звуковой бокс */
+@keyframes chipdrop{0%{transform:translateY(-26px) scale(.4);opacity:0}
+  60%{transform:translateY(3px) scale(1.06);opacity:1}100%{transform:translateY(0) scale(1)}}
+.sbchip.drop{animation:chipdrop .32s cubic-bezier(.2,.8,.3,1)}
+/* раскрытая фонема-фишка мягко «всплывает» */
+@keyframes sbgpop{0%{transform:scale(.4);opacity:0}70%{transform:scale(1.12);opacity:1}100%{transform:scale(1)}}
+.sbbox.on .sbg{display:inline-block;animation:sbgpop .3s ease}
+/* 3D-переворот карты (применяется к #mbody на flip) */
+@keyframes cardflip{0%{transform:perspective(900px) rotateY(-88deg);opacity:.15}
+  100%{transform:perspective(900px) rotateY(0);opacity:1}}
+.flipin{animation:cardflip .3s ease-out;transform-origin:center}
+/* награда-бурст: звёздочки разлетаются из центра */
+.burst{position:fixed;left:50%;top:42%;width:0;height:0;pointer-events:none;z-index:30}
+.burst .bp{position:absolute;font-size:24px;left:0;top:0;
+  animation:bpfly 1.1s ease-out forwards}
+@keyframes bpfly{0%{transform:translate(-50%,-50%) scale(.4);opacity:0}
+  18%{opacity:1}100%{transform:translate(calc(-50% + var(--dx)),calc(-50% + var(--dy))) scale(1.1);opacity:0}}
+
+@media (prefers-reduced-motion: reduce){
+  .turn.on,.flipin,.sbchip.drop,.sbbox.on .sbg,.kq .kw.on,.burst .bp{animation:none!important}
+  .flipin{transform:none!important;opacity:1!important}
+  .burst{display:none!important}
+}
+
+/* ── CVC Reading ── */
+.cvcbig{text-align:center;font-size:64px;font-weight:900;letter-spacing:6px;padding:6px 0}
+.cvcblend{text-align:center;padding:14px 0 4px}
+.cvcblend .cvcsnd{display:inline-block;font-size:56px;font-weight:900;border:4px solid #000;border-radius:14px;padding:4px 16px;margin:0 6px}
+.cvcrev{text-align:center;padding-top:8px}
+.azopt.cvconset{min-width:56px;font-size:30px}
+.azopt.cvconset.cur{background:#000}
+.azopt.cvconset.cur span{color:#fff !important}
+.cvcslots{display:flex;gap:10px;justify-content:center;padding:12px 0}
+.cvcslot{width:70px;height:80px;font-size:44px;font-weight:900;border-radius:14px;display:flex;align-items:center;justify-content:center}
+.cvcslot.filled{border-width:4px}
+.cvctile{min-width:60px;font-size:34px;font-weight:900;padding:8px 14px;border-radius:14px}
+
+/* ── I Can Read: подсветка sight words + легенда ── */
+.fraza .fw.sight{background:#FFE24D;border-radius:6px;padding:0 3px}
+.sightlegend{font-size:13px;font-weight:800;text-align:center;padding:6px 8px 2px;line-height:1.4}
+.sightlegend .sight{background:#FFE24D;border-radius:5px;padding:1px 5px}
+
+/* ── Sound Boxes: звуковые боксы Эльконина ── */
+.sbrow{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;padding:12px 0 4px}
+.sbbox{min-width:66px;height:78px;border:4px solid #000;border-radius:14px;background:#fff;
+  display:inline-flex;align-items:center;justify-content:center;font-size:40px;font-weight:900;padding:0 8px}
+.sbbox.active{border-style:dashed;box-shadow:0 0 0 3px #FFE24D inset}
+.sbbox.on{background:#fff}
+.sbchip{width:44px;height:44px;border-radius:50%;background:#000;display:inline-block}
+.sbg{font-weight:900}
+.sbbox .sbg-ru{font-size:28px}
+.sbword{text-align:center;font-size:40px;font-weight:900;letter-spacing:3px;padding:8px 0 2px}
+.sbnums{display:flex;gap:14px;justify-content:center;padding:14px 0}
+.sbnum{width:78px;height:88px;font-size:46px;font-weight:900;border-radius:16px;display:flex;align-items:center;justify-content:center}
+.sbnum.ok{background:#000;color:#fff}
+.sbnum.bad{background:#E05B5B;color:#fff}
+.sbok{text-align:center;font-size:30px;font-weight:900;padding:6px 0}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   ФИРМЕННЫЙ РЕФРЕШ (визуальный слой поверх базовых правил).
+   Цель: убрать «вайрфрейм» — тёплый холст, мягкая глубина, фирменные
+   акценты (бордо/оранж), округлый шрифт — как в главном навигаторе.
+   Высокий контраст сохранён: тёмный (почти чёрный) текст на светлом
+   тёплом фоне; сам контент карты (картинка, стих, буква) не приглушаем.
+   ═══════════════════════════════════════════════════════════════════════ */
+:root{--bordo:#b85a3a;--accent:#b85a3a;--accent-d:#8f452c;--cream:#f6efe3;--ink:#2a2320;--line:#e4d9c6;--orange:#e06104;--mut:#7c6a58}
+body{background:var(--cream);color:var(--ink);
+  font-family:'Nunito',ui-rounded,'SF Pro Rounded',-apple-system,'Segoe UI',Roboto,Arial,sans-serif}
+header b{color:var(--bordo)}
+header span{color:var(--mut)}
+header .plink{border:2px solid var(--bordo);color:var(--bordo);background:#fff;box-shadow:0 4px 12px rgba(110,80,50,.14)}
+/* плитки-иконостас: тёплая рамка + мягкая глубина */
+.tile,.scell{border:2px solid var(--line);background:#fff;box-shadow:0 6px 16px rgba(110,80,50,.13);transition:transform .1s,box-shadow .1s}
+.tile:active,.scell:active{transform:translateY(2px);box-shadow:0 3px 9px rgba(110,80,50,.13)}
+.tile .cap{border-top:2px solid var(--line);color:var(--ink);background:#fff}
+.tile .cap .dot,.chip .dot{border-color:var(--line)}
+/* разделы */
+.lvlhead{border-bottom:3px solid var(--bordo);color:var(--bordo)}
+/* вторичные кнопки — карточка с тенью */
+.btn,.ctorbtn{border:2px solid var(--line);color:var(--ink);background:#fff;box-shadow:0 5px 14px rgba(110,80,50,.15)}
+.btn:active,.ctorbtn:active{background:#fff;color:var(--ink);transform:translateY(2px);box-shadow:0 3px 8px rgba(110,80,50,.15)}
+.ctorbtn span{color:var(--mut);font-weight:800}
+.bclose{color:var(--bordo);border-color:var(--line)}
+.mnum{color:var(--bordo)}
+/* главные действия — заливка */
+.bplay{background:var(--orange);color:#fff;border:2px solid var(--orange);box-shadow:0 6px 16px rgba(200,80,10,.32)}
+.bplay:active,.bplay.playing{background:var(--bordo);border-color:var(--bordo);color:#fff;transform:translateY(2px);box-shadow:0 4px 10px rgba(143,69,44,.30)}
+.brepeat,.bstart{background:var(--bordo);color:#fff;border:2px solid var(--bordo);box-shadow:0 6px 16px rgba(143,69,44,.30)}
+.brepeat:active,.bstart:active{background:var(--bordo);color:#fff;transform:translateY(2px);box-shadow:0 4px 10px rgba(143,69,44,.30)}
+/* фильтр-чипы и темп */
+.chip,.tempo{border:2px solid var(--line);color:var(--ink);background:#fff}
+.chip.on,.tempo.on{background:var(--bordo);color:#fff;border-color:var(--bordo)}
+/* модалка/заставка — тёплый холст; сама картинка карты — белая рамка + мягкая тень */
+.modal,.splash{background:var(--cream)}
+.pic,.fzpic{border:3px solid #fff;border-radius:18px;box-shadow:0 10px 28px rgba(90,60,30,.20)}
+.splash img{box-shadow:0 14px 40px rgba(90,60,30,.22)}
+.splash .stitle{color:var(--bordo)}
+/* «Дальше по серии» */
+.nextcard{border:2px solid var(--line);background:#fff;box-shadow:0 6px 16px rgba(110,80,50,.13)}
+.nextcard img{border:2px solid var(--line)}
+.nextcard i,.nextcard em{color:var(--mut)}
+.nextcard u{color:var(--bordo)}
+/* прогресс-бейджи */
+.donebadge{background:var(--bordo);color:#fff;border:2px solid #fff;box-shadow:0 2px 8px rgba(0,0,0,.22)}
+.digbadge{border:2px solid var(--line);background:#fff}
+.pcount{color:var(--mut)}
+/* «твоя очередь» / результат */
+.turn{border:2px solid var(--bordo);color:var(--bordo);background:#fff;box-shadow:0 6px 16px rgba(143,69,44,.14)}
+.soundtag{border:none;color:#fff}
+/* звуковые боксы: тёплая рамка, активный — бордо-пунктир */
+.sbbox{border:3px solid var(--line);background:#fff}
+.sbbox.active{border-color:var(--bordo);box-shadow:0 0 0 3px rgba(184,90,58,.14) inset}
+.sbnum{border:2px solid var(--line);background:#fff}
+.sbnum.ok{background:var(--bordo);border-color:var(--bordo)}
+
+/* ── заставка: тёплое фирменное «Начать» ── */
+.splash{gap:22px;padding:24px}
+.splash img{border:5px solid #fff;border-radius:26px;box-shadow:0 18px 48px rgba(90,60,30,.24)}
+.splash .stitle{color:var(--bordo);font-size:30px}
+.splash .shint{color:var(--mut);font-size:16px}
+.bstart{background:var(--bordo);color:#fff;border:none;font-size:28px;font-weight:900;
+  padding:20px 54px;border-radius:26px;box-shadow:0 10px 26px rgba(143,69,44,.34)}
+.bstart:active{transform:translateY(3px) scale(.98);box-shadow:0 5px 14px rgba(143,69,44,.34)}
+
+/* ── крупные тач-таргеты + живое нажатие (под малышей) ── */
+.btn,.chip,.tempo,.plink,.mixbtn{min-height:46px}
+.bplay{width:72px;height:72px;padding:0;font-size:30px;display:inline-flex;align-items:center;justify-content:center;line-height:1}
+.bplay:active{transform:translateY(2px) scale(.94)}
+.brepeat{min-height:56px}
+.ctorbtn{padding:18px 16px}
+.tile:active,.scell:active,.plpbtn:active,.stpbtn:active,.pairopt:active,.gopt:active{transform:translateY(2px) scale(.985)}
+
+/* ── мягкие переходы ── */
+.modal.on{animation:modalin .26s ease-out}
+@keyframes modalin{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+.grid{animation:gridin .3s ease-out}
+@keyframes gridin{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion: reduce){
+  .modal.on,.grid{animation:none!important}
+  .bstart:active,.bplay:active,.tile:active,.scell:active,.plpbtn:active,.stpbtn:active{transform:none!important}
+}
+
+/* ── брендовый вид игровых экранов (тёплые рамки + глубина вместо чёрных) ── */
+.sylcard{border:2px solid var(--line);background:#fff;box-shadow:0 8px 22px rgba(110,80,50,.14)}
+.plpbtn,.stpbtn{border:2px solid var(--line);background:#fff;box-shadow:0 6px 16px rgba(110,80,50,.13)}
+.plpbtn .cap{border-top:2px solid var(--line);color:var(--ink);background:#fff}
+.plpbtn .cap .dot{border-color:var(--line)}
+.stslot{border:3px dashed var(--bordo);background:#fff;color:var(--bordo)}
+.stslot.filled{border-style:solid;border-color:var(--line)}
+.mixbtn .stbar{border:2px solid var(--line)}
+/* слоговый конструктор: пустой слот-пунктир, слоги-плитки, чекбокс образца */
+.slot{border:3px dashed var(--bordo)}
+.slot.filled{border-style:solid;border-color:var(--line)}
+.pbtn{border:2px solid var(--line);background:#fff;box-shadow:0 5px 14px rgba(110,80,50,.13)}
+.pbtn:active{background:#fff;transform:translateY(2px)}
+.fzhint input{accent-color:var(--bordo)}
+.ctorsample{color:var(--mut)}
+/* складовая таблица «Спой склады» (прокручивается по горизонтали) */
+.whwrap{overflow-x:auto;-webkit-overflow-scrolling:touch;padding:2px 2px 10px}
+.whtable{display:inline-block;min-width:100%}
+.whrow{display:flex;gap:6px;margin-bottom:6px;align-items:stretch}
+.whplay{flex:0 0 auto;width:46px;border:2px solid var(--bordo);color:#fff;background:var(--bordo);border-radius:12px;font-weight:900;font-size:17px;cursor:pointer;box-shadow:0 5px 14px rgba(143,69,44,.22)}
+.whplay:active{transform:translateY(2px)}
+.whplay.corner{visibility:hidden;box-shadow:none}
+.whcell{flex:0 0 auto;width:58px;height:52px;display:flex;align-items:center;justify-content:center;border:2px solid var(--line);background:#fff;border-radius:12px;font-family:inherit;font-weight:900;font-size:23px;box-shadow:0 4px 12px rgba(110,80,50,.12);cursor:pointer}
+.whcell.head{border:none;background:transparent;box-shadow:none;font-size:19px;height:auto;align-items:flex-end;cursor:default}
+.whcell.empty{border-style:dashed;opacity:.3;box-shadow:none;cursor:default}
+.whcell.playing{outline:3px solid var(--orange);outline-offset:2px;background:#fff7ef}
+.echopic{border:3px solid #fff;box-shadow:0 8px 22px rgba(110,80,50,.16)}
+.cvcblend .cvcsnd{border:3px solid var(--line);background:#fff;box-shadow:0 5px 14px rgba(110,80,50,.13)}
+.cvcslot.filled{border-color:var(--bordo)}
+.azopt.cvconset.cur{background:var(--bordo);color:#fff;border-color:var(--bordo)}
+.scell.playing{outline-color:var(--orange)}
+.scell.playing .lab{background:var(--orange)}
+
+/* ── живая награда: галочка прогресса «отскакивает» ── */
+.donebadge{animation:badgepop .44s cubic-bezier(.2,1.5,.4,1)}
+@keyframes badgepop{0%{transform:scale(0)}68%{transform:scale(1.28)}100%{transform:scale(1)}}
+
+/* ── подсказка первого запуска ── */
+.onboard{position:fixed;left:12px;right:12px;bottom:16px;margin:0 auto;max-width:520px;z-index:15;
+  background:var(--bordo);color:#fff;font-weight:800;font-size:16px;line-height:1.35;text-align:center;
+  padding:15px 20px;border-radius:20px;box-shadow:0 12px 34px rgba(143,69,44,.36);cursor:pointer;
+  animation:obin .32s ease-out}
+@keyframes obin{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
+.onboard.out{animation:obout .32s ease-in forwards}
+@keyframes obout{to{opacity:0;transform:translateY(22px)}}
+@media (prefers-reduced-motion: reduce){
+  .donebadge,.onboard,.onboard.out{animation:none!important}
+}

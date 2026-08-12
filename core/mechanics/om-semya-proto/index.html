@@ -1,0 +1,1921 @@
+<!doctype html>
+<html lang="ru"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Прототип · механики в ОМ · Семья</title>
+<link rel="stylesheet" href="labeldrag.css">
+<link rel="stylesheet" href="buildword.css">
+<style>
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{margin:0;font-family:system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;background:#faf6ec;color:#1b1b1b}
+header{display:flex;align-items:center;gap:10px;padding:12px 14px;background:#fff;border-bottom:3px solid #1b1b1b}
+header b{font-size:16px} header .ver{margin-left:auto;font-weight:800;font-size:12px;background:#1b1b1b;color:#fff;border-radius:8px;padding:4px 8px}
+.wrap{max-width:560px;margin:0 auto;padding:12px}
+.taskcard{background:#fff;border:3px solid #1b1b1b;border-radius:16px;padding:14px;margin-bottom:18px}
+.kick{font-weight:800;font-size:12px;letter-spacing:.06em;color:#fff;background:#1b1b1b;border-radius:8px;padding:3px 8px;display:inline-block}
+h2{margin:8px 0 4px;font-size:20px}
+.instr{margin:0 0 10px;font-size:15px;color:#333}
+.stage{height:430px}
+.taskcard .ld-stage{min-height:0}
+.ld-chip-img{background:#fff !important;border:3px solid #1f3a5f}
+.hs{position:absolute;top:0;height:100%;cursor:pointer}
+.hs2{position:absolute;cursor:pointer;border-radius:14px}
+.hs-ok{box-shadow:inset 0 0 0 5px #2e7d4f;border-radius:12px;background:rgba(46,125,79,.12)}
+.hs-no{box-shadow:inset 0 0 0 5px #c0392b;border-radius:12px;animation:sh .4s}
+@keyframes sh{25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
+.flaps{display:flex;gap:12px;justify-content:center}
+.flap{position:relative;width:104px;height:124px;perspective:600px}
+.flap .under{position:absolute;inset:8px;width:88px;height:108px;object-fit:contain}
+.flap .door{position:absolute;inset:0;background:#e8a33d;border:3px solid #1b1b1b;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:34px;font-weight:800;color:#1b1b1b;transform-origin:left;transition:transform .5s;cursor:pointer;backface-visibility:hidden}
+.flap.open .door{transform:rotateY(-130deg)}
+.snd-opts{display:flex;gap:12px;justify-content:center}
+.sopt{width:100px;height:100px;background:#fff;border:3px solid #1b1b1b;border-radius:14px;padding:8px;cursor:pointer}
+.sopt img{width:100%;height:100%;object-fit:contain;pointer-events:none}
+.sopt.ok{border-color:#2e7d4f;box-shadow:0 0 0 4px rgba(46,125,79,.25)}
+.sopt.no{animation:sh .4s;border-color:#c0392b}
+.bigbtn{font:inherit;font-weight:800;border:3px solid #1b1b1b;background:#ffe9a8;border-radius:10px;padding:6px 10px;cursor:pointer}
+#cmpBar{position:absolute;top:0;bottom:0;left:55%;width:4px;background:#fff;box-shadow:0 0 0 1px #1b1b1b;cursor:ew-resize}
+#cmpBar .knob{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:42px;height:42px;border-radius:50%;background:#fff;border:3px solid #1b1b1b;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:800}
+.cmp-lab{position:absolute;top:8px;font-weight:800;font-size:12px;background:#fff;border:2px solid #1b1b1b;border-radius:8px;padding:2px 6px}
+#flDark{position:absolute;inset:0;pointer-events:none;background:#0a0c28;opacity:.97;
+  -webkit-mask-image:radial-gradient(circle 64px at var(--lx,-200px) var(--ly,-200px), transparent 0 52px, black 80px);
+  mask-image:radial-gradient(circle 64px at var(--lx,-200px) var(--ly,-200px), transparent 0 52px, black 80px);}
+.flh{position:absolute;border-radius:14px;pointer-events:none}
+.flh.found{box-shadow:inset 0 0 0 5px #ffe9a8;background:rgba(255,233,168,.18)}
+.ch{position:absolute;width:13%;padding-top:13%;transform:translate(-50%,-50%);border-radius:50%}
+.ch.tapped{box-shadow:inset 0 0 0 5px #2e7d4f;background:rgba(46,125,79,.18)}
+.ch.no{animation:sh .4s;box-shadow:inset 0 0 0 5px #c0392b}
+.memgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.mc{position:relative;padding-top:118%;perspective:500px;cursor:pointer}
+.mc .in{position:absolute;inset:0;transition:transform .4s;transform-style:preserve-3d}
+.mc.open .in{transform:rotateY(180deg)}
+.mc .f,.mc .b{position:absolute;inset:0;backface-visibility:hidden;border:3px solid #1b1b1b;border-radius:10px}
+.mc .f{background:#e8a33d url('') center/40% no-repeat;display:flex;align-items:center;justify-content:center;font-size:26px}
+.mc .b{transform:rotateY(180deg);background:#fff;display:flex;align-items:center;justify-content:center;padding:6px}
+.mc .b img{max-width:100%;max-height:100%;pointer-events:none}
+.mc.won .b{border-color:#2e7d4f;box-shadow:0 0 0 3px rgba(46,125,79,.3)}
+.seabtn{position:absolute;top:50%;transform:translateY(-50%);width:46px;height:46px;border-radius:50%;border:3px solid #1b1b1b;background:#fff;font-size:26px;font-weight:800;cursor:pointer;line-height:1}
+.seadots{display:flex;gap:8px;justify-content:center;margin-top:10px}
+.seadots .sd{width:12px;height:12px;border-radius:50%;background:#fff;border:2px solid #1b1b1b}
+.seadots .sd.on{background:#1b1b1b}
+.okline{display:none;margin-top:10px;font-weight:800;color:#1b6b2a;font-size:16px}
+.done .okline{display:block}
+/* --- табы --- */
+.tabs{display:flex;gap:4px;max-width:600px;margin:12px auto 0;padding:0 8px;flex-wrap:wrap}
+.tab{flex:1 1 auto;min-width:62px;text-align:center;font-weight:800;font-size:12px;padding:9px 3px;border:3px solid #1b1b1b;border-radius:11px 11px 0 0;background:#f0e7d2;color:#1b1b1b;cursor:pointer;white-space:nowrap}
+.tab.on{background:#1b1b1b;color:#fff}
+
+/* ===== игровой слой (карты) ===== */
+.card{position:relative;background:#fff;border:3px solid #d8d8d8;border-radius:12px;aspect-ratio:2/3;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:6px;cursor:pointer;transition:transform .12s}
+.card:active{transform:scale(.97)}
+.card .pic{width:86%;flex:1;object-fit:contain;pointer-events:none;margin-top:6px}
+.card .nm{font-weight:700;font-size:13px;text-align:center;padding-bottom:2px}
+.card .suit{position:absolute;top:3px;left:6px;font-size:17px;display:none}
+.card .num{position:absolute;top:2px;right:8px;font-weight:800;font-size:17px;color:#1f3a5f;display:none}
+.card .event{position:absolute;bottom:3px;right:5px;font-size:17px;display:none}
+.card.s-suit .suit{display:block}.card.s-num .num{display:block}.card.s-event .event{display:block}
+.card.s-color.c-red{border-color:#e23b3b}.card.s-color.c-blue{border-color:#2f6fd0}.card.s-color.c-green{border-color:#2e9e3f}.card.s-color.c-amber{border-color:#e8a33d}
+.card.ok{border-color:#2e7d4f!important;box-shadow:0 0 0 4px rgba(46,125,79,.35)}
+.card.no{animation:sh .4s}
+.card.big{width:170px;margin:0 auto}.card.big .nm{font-size:18px}.card.big .pic{width:80%}
+.card.big .suit{font-size:26px}.card.big .num{font-size:26px}.card.big .event{font-size:26px}
+.toggles{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-top:12px}
+.tg{font-weight:800;font-size:13px;border:3px solid #1b1b1b;border-radius:10px;padding:8px 12px;background:#f0e7d2;cursor:pointer;user-select:none}
+.tg.on{background:#1b1b1b;color:#fff}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}.grid.g3{grid-template-columns:repeat(3,1fr)}
+.gameq{font-weight:800;font-size:16px;text-align:center;margin:4px 0 12px}
+.gamebtn{display:block;margin:12px auto 0;font:inherit;font-weight:800;font-size:15px;border:3px solid #1b1b1b;background:#ffe9a8;border-radius:12px;padding:10px 18px;cursor:pointer}
+.win{display:none;text-align:center;font-weight:800;color:#1b6b2a;font-size:18px;margin-top:12px}.win.show{display:block}
+.track{display:flex;gap:6px;overflow-x:auto;padding:8px 2px 14px}
+.track .cell{flex:0 0 64px;position:relative}.track .cell .card{aspect-ratio:2/3}
+.track .cell.here{box-shadow:0 0 0 4px #e8a33d;border-radius:12px}
+.track .cell .pawn{position:absolute;top:-8px;left:50%;transform:translateX(-50%);font-size:24px;z-index:3}
+.diceRow{display:flex;align-items:center;justify-content:center;gap:14px;margin-top:6px}
+.dice{font-size:46px;width:70px;height:70px;border:3px solid #1b1b1b;border-radius:14px;background:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer}
+.dice.roll{animation:wob .5s}
+@keyframes wob{0%,100%{transform:rotate(0)}25%{transform:rotate(-12deg)}75%{transform:rotate(12deg)}}
+.hodlog{text-align:center;font-weight:800;font-size:16px;margin-top:10px;min-height:24px}
+.evbig{text-align:center;font-size:15px;color:#7b3fa0;font-weight:800;margin-top:4px;min-height:20px}
+
+/* ===== комбо ===== */
+.cintro{font-size:14px;color:#444;margin-bottom:12px}
+.cseg{display:flex;gap:8px;margin:12px 0}
+.cseg .sb{flex:1;text-align:center;font-weight:800;font-size:13px;padding:10px;border:3px solid #1b1b1b;border-radius:12px;background:#f0e7d2;cursor:pointer}
+.cseg .sb.on{background:#1b1b1b;color:#fff}
+.combo{background:#fff;border:3px solid #1b1b1b;border-radius:16px;margin-bottom:16px;overflow:hidden}
+.combo h3{margin:0;padding:12px 14px;font-size:17px;background:#1f3a5f;color:#fff}
+.combo .meta{padding:8px 14px;font-size:13px;color:#555;background:#eef2f7;border-bottom:2px solid #d8e0ea}
+.combo .meta b{color:#1f3a5f}
+.cstep{display:flex;align-items:center;gap:10px;padding:9px 14px;border-bottom:1px dashed #ddd;cursor:pointer}
+.cstep:last-of-type{border-bottom:none}
+.cstep:hover{background:#faf6ec}
+.cstep .ico{flex:0 0 40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:21px;color:#fff}
+.cstep .t{flex:1}.cstep .t .nm{font-weight:800;font-size:15px}.cstep .t .ds{font-size:12px;color:#666}
+.cstep .go{flex:0 0 auto;font-size:11px;font-weight:800;color:#1f3a5f}
+.c-know{background:#2e7d4f}.c-act{background:#b8721f}.c-cause{background:#7b3fa0}.c-read{background:#1f3a5f}.c-check{background:#c0392b}
+.clegend{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.clegend span{font-size:11px;font-weight:700;color:#fff;border-radius:6px;padding:2px 7px}
+/* подсветка блока при прыжке из комбо */
+.jumpflash{animation:jf 2s ease-out}
+@keyframes jf{0%,40%{box-shadow:0 0 0 5px #e8a33d, 0 0 22px rgba(232,163,61,.7)}100%{box-shadow:0 0 0 0 rgba(232,163,61,0)}}
+.backbar{position:fixed;left:0;right:0;bottom:0;background:#1f3a5f;color:#fff;padding:12px;text-align:center;font-weight:800;font-size:15px;cursor:pointer;z-index:40;display:none;box-shadow:0 -3px 12px rgba(0,0,0,.2)}
+.backbar.on{display:block}
+.panel{background:#fff;border:3px solid #1b1b1b;border-radius:16px;padding:16px;margin-bottom:16px}
+.panel h2{margin:6px 0 4px;font-size:20px}
+.sub{font-size:14px;color:#444;margin:4px 0 10px}
+.tabpane{display:none}
+.tabpane.on{display:block}
+/* --- книжка с картинками --- */
+.book{position:relative;background:#fff;border:3px solid #1b1b1b;border-radius:16px;overflow:hidden}
+.book .page{display:none}
+.book .page.on{display:block}
+.book .pic{width:100%;aspect-ratio:3/2;object-fit:cover;display:block;background:#faf6ec}
+.book .pic-icon{width:100%;aspect-ratio:3/2;object-fit:contain;display:block;background:#faf6ec;padding:14px;box-sizing:border-box}
+.book .cap-big{padding:16px;text-align:center;font-size:30px;font-weight:800;color:#1b1b1b}
+.lvl{display:inline-block;font-size:12px;font-weight:800;color:#fff;background:#2e7d4f;border-radius:8px;padding:2px 8px;margin-left:6px;vertical-align:middle}
+.lvl.l2{background:#b8721f}.lvl.l3{background:#1f3a5f}
+.lvl.lx{background:#7b3fa0}
+/* договорилка */
+.fillgap{display:inline-block;min-width:90px;border-bottom:4px solid #1b1b1b;text-align:center;font-weight:800;color:#1f3a5f}
+.fillgap.filled{border-bottom:4px solid #2e7d4f;background:#e7f3ea;border-radius:8px}
+.pickrow{display:flex;gap:10px;justify-content:center;margin-top:14px}
+.pick{width:96px;height:96px;background:#fff;border:3px solid #1b1b1b;border-radius:14px;padding:8px;cursor:pointer}
+.pick img{width:100%;height:100%;object-fit:contain;pointer-events:none}
+.pick.ok{border-color:#2e7d4f;box-shadow:0 0 0 4px rgba(46,125,79,.25)}
+.pick.no{animation:sh .4s;border-color:#c0392b}
+/* читаем и ищем — хотспоты внутри книжки */
+.bookfind{position:relative}
+.bookfind .fh{position:absolute;border-radius:12px;cursor:pointer}
+.bookfind .fh.ok{box-shadow:inset 0 0 0 5px #2e7d4f;background:rgba(46,125,79,.12)}
+.bookfind .fh.no{box-shadow:inset 0 0 0 5px #c0392b;animation:sh .4s}
+/* волшебное слово */
+.magicword{display:inline-block;background:#efe3fb;border:2px solid #7b3fa0;border-radius:8px;padding:0 8px;font-weight:800;color:#7b3fa0;cursor:pointer}
+.magicword.lit{background:#7b3fa0;color:#fff}
+/* счёт в книжке */
+.countrow{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;padding:16px;min-height:150px;align-items:center}
+.countrow img{width:62px;height:62px;object-fit:contain;cursor:pointer;transition:transform .12s}
+.countrow img.counted{transform:scale(1.12)}
+.bignum{text-align:center;font-size:40px;font-weight:800;color:#1f3a5f;min-height:46px}
+/* выбор пары/предмета в книжке */
+.bookpick{display:flex;justify-content:center;gap:14px;margin-top:10px}
+.bookpick .pk{width:104px;height:104px;background:#fff;border:3px solid #1b1b1b;border-radius:14px;padding:8px;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:48px}
+.bookpick .pk img{width:100%;height:100%;object-fit:contain;pointer-events:none}
+.bookpick .pk.ok{border-color:#2e7d4f;box-shadow:0 0 0 4px rgba(46,125,79,.3)}
+.bookpick .pk.no{animation:sh .4s;border-color:#c0392b}
+/* сравнение большой-маленький */
+.cmprow{display:flex;justify-content:center;align-items:flex-end;gap:30px;padding:14px;min-height:170px}
+.cmprow .it{text-align:center}
+.cmprow .it .lbl{font-weight:800;font-size:18px;margin-top:4px}
+.book .cap{padding:14px 16px;font-size:22px;line-height:1.5;font-weight:600;color:#1b1b1b}
+.book .cap b{color:#1f3a5f}
+.book .word{display:inline-block;background:#ffe9a8;border:2px solid #1b1b1b;border-radius:8px;padding:0 8px;font-weight:800;cursor:pointer}
+.booknav{display:flex;align-items:center;justify-content:space-between;margin-top:10px}
+.booknav button{font:inherit;font-weight:800;font-size:15px;border:3px solid #1b1b1b;background:#ffe9a8;border-radius:10px;padding:8px 14px;cursor:pointer}
+.booknav button:disabled{opacity:.4}
+.bookpages{font-weight:800;color:#666}
+/* --- симулятор: ползунок --- */
+.simwrap{background:#fff;border:3px solid #1b1b1b;border-radius:16px;padding:14px}
+.simstage{position:relative;height:300px;border-radius:12px;overflow:hidden;background:#eaf4fb;display:flex;align-items:center;justify-content:center}
+.simrange{width:100%;margin:18px 0 6px;height:38px;-webkit-appearance:none;background:transparent;cursor:pointer}
+.simrange::-webkit-slider-runnable-track{height:14px;border-radius:8px;background:linear-gradient(90deg,#8ecbff,#bfe3ff,#ffd27f,#ff9a52)}
+.simrange::-webkit-slider-thumb{-webkit-appearance:none;width:38px;height:38px;border-radius:50%;background:#fff;border:4px solid #1b1b1b;margin-top:-12px}
+.simrange::-moz-range-track{height:14px;border-radius:8px;background:linear-gradient(90deg,#8ecbff,#bfe3ff,#ffd27f,#ff9a52)}
+.simrange::-moz-range-thumb{width:34px;height:34px;border-radius:50%;background:#fff;border:4px solid #1b1b1b}
+.simlabels{display:flex;justify-content:space-between;font-weight:800;font-size:15px;color:#1b1b1b}
+.simstate{text-align:center;font-weight:800;font-size:22px;margin-top:8px;color:#1f3a5f}
+</style></head><body>
+<header><div>🌍</div><div><b>ОМ · карта 05 «Семья»</b></div><div class="ver">прототип механик</div></header>
+<div class="tabs">
+  <div class="tab on" data-tab="mech">🎮 Механики</div>
+  <div class="tab" data-tab="sim">🔬 Симуляции</div>
+  <div class="tab" data-tab="book">📖 Книжки</div>
+  <div class="tab" data-tab="cards">🎴 Игры</div>
+  <div class="tab" data-tab="combo">🧩 Комбо</div>
+</div>
+<div class="wrap">
+
+<div class="tabpane on" id="paneMech">
+
+
+  <div class="taskcard" id="tcA0">
+    <span class="kick">НОВОЕ ЗАДАНИЕ · LabelDrag · фишки-ПРЕДМЕТЫ</span>
+    <h2>Что где лежит</h2>
+    <p class="instr">Перетащи каждый предмет в его комнату.</p>
+    <div class="stage" id="ld0" style="height:390px"></div>
+    <div class="okline">Молодец! Всё по местам. → «Дальше»</div>
+  </div>
+
+  <div class="taskcard" id="tcA">
+    <span class="kick">НОВОЕ ЗАДАНИЕ · LabelDrag</span>
+    <h2>Кто есть кто в семье</h2>
+    <p class="instr">Перетащи название к каждому члену семьи.</p>
+    <div class="stage" id="ld" style="height:700px"></div>
+    <div class="okline">Молодец! Всех узнал. → «Дальше»</div>
+  </div>
+
+  <div class="taskcard" id="tcB">
+    <span class="kick">НОВОЕ ЗАДАНИЕ · BuildWord</span>
+    <h2>Собери слово</h2>
+    <p class="instr">Нажми на буквы по порядку и собери слово.</p>
+    <div class="stage" id="bw" style="height:480px"></div>
+    <div class="okline">Слова собраны! → «Дальше»</div>
+  </div>
+
+  <div class="taskcard" id="tcC">
+    <span class="kick">НОВАЯ МЕХАНИКА · «Чья тень?» (Монтессори)</span>
+    <h2>Чья тень?</h2>
+    <p class="instr">Перетащи каждый предмет на его тень.</p>
+    <div class="stage" id="ldS" style="height:380px"></div>
+    <div class="okline">Все тени нашлись! → «Дальше»</div>
+  </div>
+
+  <div class="taskcard" id="tcD">
+    <span class="kick">НОВАЯ МЕХАНИКА · «Найди и покажи» (виммельбух)</span>
+    <h2>Найди и покажи</h2>
+    <p class="instr" id="findQ">Найди собачку. Нажми на неё.</p>
+    <div id="findStage" style="position:relative;border:2px solid #e2e8f0;border-radius:14px;overflow:hidden">
+      <img src="park_day.webp" style="width:100%;display:block" draggable="false">
+      <div class="hs2" data-q="0" style="left:56%;top:36%;width:20%;height:34%"></div>
+      <div class="hs2" data-q="1" style="left:6%;top:30%;width:22%;height:44%"></div>
+      <div class="hs2" data-q="2" style="left:63%;top:68%;width:18%;height:28%"></div>
+    </div>
+    <div class="okline">Всё нашёл! → «Дальше»</div>
+  </div>
+
+  <div class="taskcard" id="tcE">
+    <span class="kick">НОВАЯ МЕХАНИКА · «Открой окошко» (lift-the-flap)</span>
+    <h2>Кто за дверцей?</h2>
+    <p class="instr">Нажми на дверцу — посмотри, что за ней!</p>
+    <div class="flaps">
+      <div class="flap" data-say="Это парк! Тут гуляют."><img class="under" src="park_day.webp"><div class="door">1</div></div>
+      <div class="flap" data-say="Это машина! Би-би!"><img class="under" src="car.webp"><div class="door">2</div></div>
+      <div class="flap" data-say="Это самолёт! У-у-у!"><img class="under" src="plane.webp"><div class="door">3</div></div>
+    </div>
+    <div class="okline">Все дверцы открыты! → «Дальше»</div>
+  </div>
+
+  <div class="taskcard" id="tcF">
+    <span class="kick">НОВАЯ МЕХАНИКА · «Чей голос?» (звуковая книжка)</span>
+    <h2>Что так звучит?</h2>
+    <p class="instr">Послушай и нажми на отгадку. <button id="sndBtn" class="bigbtn">🔊 Послушать ещё раз</button></p>
+    <div class="snd-opts">
+      <div class="sopt" data-id="car"><img src="car.webp"></div>
+      <div class="sopt" data-id="plane"><img src="plane.webp"></div>
+      <div class="sopt" data-id="boat"><img src="sailboat.webp"></div>
+    </div>
+    <div class="okline">Все звуки угаданы! → «Дальше»</div>
+  </div>
+
+  <div class="taskcard" id="tcG">
+    <span class="kick">НОВАЯ МЕХАНИКА · Шторка «было/стало»</span>
+    <h2>День и ночь</h2>
+    <p class="instr">Потяни ползунок и посмотри, как комната засыпает.</p>
+    <div id="cmp" style="position:relative;border-radius:14px;overflow:hidden;touch-action:none;user-select:none">
+      <img src="bedroom_night2.webp" style="width:100%;display:block" draggable="false">
+      <div id="cmpTop" style="position:absolute;inset:0;overflow:hidden;width:55%"><img src="bedroom_day.webp" style="width:100%;display:block;max-width:none" id="cmpTopImg" draggable="false"></div>
+      <div id="cmpBar"><div class="knob">⇄</div></div>
+      <div class="cmp-lab" style="left:10px">ДЕНЬ</div><div class="cmp-lab" style="right:10px">НОЧЬ</div>
+    </div>
+  </div>
+
+  <div class="taskcard" id="tcH">
+    <span class="kick">НОВАЯ МЕХАНИКА · «Проведи дорожку» (лабиринт)</span>
+    <h2>Проведи мальчика к кровати</h2>
+    <p class="instr">Поставь палец на мальчика и проведи по дорожке до кровати.</p>
+    <div id="trace" style="position:relative;touch-action:none;user-select:none;border-radius:14px;overflow:hidden">
+      <img src="maze.webp" style="width:100%;display:block;pointer-events:none" draggable="false">
+      <svg id="traceSvg" viewBox="0 0 360 240" preserveAspectRatio="none" style="position:absolute;inset:0;width:100%;height:100%">
+        <path id="tracePath" d="M 56.2 48.8 C 66.0 50.5 95.0 57.8 115.1 59.1 C 135.2 60.4 168.0 49.5 176.5 56.5 C 185.0 63.5 162.4 88.1 166.2 101.0 C 170.0 113.9 193.7 120.9 199.5 133.8 C 205.3 146.7 209.9 166.5 201.3 178.3 C 192.7 190.1 147.0 196.8 148.1 204.6 C 149.2 212.4 187.9 220.9 207.9 225.2 C 227.9 229.5 258.1 229.4 268.1 230.2"
+              fill="none" stroke="rgba(0,0,0,0)" stroke-width="44" stroke-linecap="round"/>
+        <path id="traceDone" d="M 56.2 48.8 C 66.0 50.5 95.0 57.8 115.1 59.1 C 135.2 60.4 168.0 49.5 176.5 56.5 C 185.0 63.5 162.4 88.1 166.2 101.0 C 170.0 113.9 193.7 120.9 199.5 133.8 C 205.3 146.7 209.9 166.5 201.3 178.3 C 192.7 190.1 147.0 196.8 148.1 204.6 C 149.2 212.4 187.9 220.9 207.9 225.2 C 227.9 229.5 258.1 229.4 268.1 230.2"
+              fill="none" stroke="#2e7d4f" stroke-width="16" stroke-linecap="round" stroke-dasharray="1000" stroke-dashoffset="1000" opacity="0.85"/>
+      </svg>
+    </div>
+    <div class="okline">Дошёл! Спокойной ночи. → «Дальше»</div>
+  </div>
+
+  <div class="taskcard" id="tcI">
+    <span class="kick">НОВАЯ МЕХАНИКА · «Фонарик»</span>
+    <h2>Посвети фонариком</h2>
+    <p class="instr" id="flQ">В парке стемнело! Посвети пальцем и найди бабушку.</p>
+    <div id="fl" style="position:relative;border-radius:14px;overflow:hidden;touch-action:none">
+      <img src="park_day.webp" style="width:100%;display:block;pointer-events:none" draggable="false">
+      <div id="flDark"></div>
+      <div class="flh" data-p="grandma" style="left:6%;top:34%;width:20%;height:40%"></div>
+      <div class="flh" data-p="dog" style="left:58%;top:38%;width:16%;height:30%"></div>
+      <div class="flh" data-p="girl" style="left:77%;top:28%;width:16%;height:42%"></div>
+    </div>
+    <div class="okline">Всех нашёл в темноте! → «Дальше»</div>
+  </div>
+
+  <div class="taskcard" id="tcJ">
+    <span class="kick">НОВАЯ МЕХАНИКА · Виммельбух-счёт</span>
+    <h2>Сосчитай мячики</h2>
+    <p class="instr">Нажми на каждый мячик. <b id="cntLab">Найдено: 0 из 5</b></p>
+    <div id="cnt" style="position:relative;border-radius:14px;overflow:hidden;border:2px solid #e2e8f0">
+      <img src="room_wimmel.webp" style="width:100%;display:block" draggable="false">
+      <div class="ch ok" style="left:5%;top:66%"></div><div class="ch ok" style="left:19%;top:62%"></div>
+      <div class="ch ok" style="left:32%;top:60%"></div><div class="ch ok" style="left:47%;top:72%"></div>
+      <div class="ch ok" style="left:31%;top:82%"></div>
+      <div class="ch" style="left:42%;top:24%"></div><div class="ch" style="left:18%;top:80%"></div>
+    </div>
+    <div class="okline">Пять мячиков! Молодец! → «Дальше»</div>
+  </div>
+
+  <div class="taskcard" id="tcK">
+    <span class="kick">НОВАЯ МЕХАНИКА · «Что изменилось?»</span>
+    <h2>Что пропало?</h2>
+    <p class="instr" id="dfQ">Запомни картинку, потом нажми «Я запомнил!».</p>
+    <div id="df" style="position:relative;border-radius:14px;overflow:hidden;border:2px solid #e2e8f0">
+      <img id="dfImg" src="diff_A.webp" style="width:100%;display:block" draggable="false">
+      <div id="dfSpot" style="position:absolute;left:66%;top:8%;width:30%;height:42%;display:none"></div>
+    </div>
+    <button id="dfBtn" class="bigbtn" style="margin-top:10px">Я запомнил!</button>
+    <div class="okline">Точно — пропала сковородка! → «Дальше»</div>
+  </div>
+
+  <div class="taskcard" id="tcL">
+    <span class="kick">НОВАЯ МЕХАНИКА · «Найди пару» (мемори)</span>
+    <h2>Найди пару</h2>
+    <p class="instr">Переворачивай карточки по две и найди одинаковые.</p>
+    <div id="mem" class="memgrid"></div>
+    <div class="okline">Все пары найдены! → «Дальше»</div>
+  </div>
+
+  <div class="taskcard" id="tcM">
+    <span class="kick">НОВАЯ МЕХАНИКА · Счёт транспорта (улица)</span>
+    <h2>Сосчитай машины на улице</h2>
+    <p class="instr">Нажми на каждую легковую машину. <b id="cntLab2">Найдено: 0 из 3</b></p>
+    <div id="cnt2" style="position:relative;border-radius:14px;overflow:hidden;border:2px solid #e2e8f0">
+      <img src="street.webp" style="width:100%;display:block" draggable="false">
+      <div class="ch ok" style="left:10%;top:62%"></div><div class="ch ok" style="left:55%;top:63%"></div><div class="ch ok" style="left:72%;top:64%"></div>
+      <div class="ch" style="left:30%;top:60%"></div><div class="ch" style="left:85%;top:58%"></div>
+      <div class="ch" style="left:30%;top:12%"></div><div class="ch" style="left:70%;top:15%"></div>
+    </div>
+    <div class="okline">Три машины! Молодец! → «Дальше»</div>
+  </div>
+
+  <div class="taskcard" id="tcN">
+    <span class="kick">НОВАЯ МЕХАНИКА · Времена года (свайп)</span>
+    <h2>Времена года</h2>
+    <p class="instr" id="seaLab">Листай картинки и смотри, как двор меняется. Сейчас: ВЕСНА</p>
+    <div id="sea" style="position:relative;border-radius:14px;overflow:hidden;touch-action:pan-y">
+      <img id="seaImg" src="yard_spring.webp" style="width:100%;display:block;pointer-events:none" draggable="false">
+      <button class="seabtn" id="seaPrev" style="left:8px">‹</button>
+      <button class="seabtn" id="seaNext" style="right:8px">›</button>
+    </div>
+    <div class="seadots"><span class="sd on"></span><span class="sd"></span><span class="sd"></span><span class="sd"></span></div>
+    <div class="okline">Ты прошёл все времена года! → «Дальше»</div>
+  </div>
+
+</div><!-- /paneMech -->
+
+<div class="tabpane" id="paneSim">
+
+  <div class="taskcard">
+    <span class="kick">СИМУЛЯТОР · вода (1 ползунок)</span>
+    <h2>Превращения воды</h2>
+    <p class="instr">Двигай ползунок от снежинки к огню — и смотри, что будет с водой.</p>
+    <div class="simwrap">
+      <div class="simstage" id="waterStage">
+        <canvas id="waterCv" width="600" height="300" style="width:100%;height:100%"></canvas>
+      </div>
+      <input type="range" min="0" max="100" value="15" class="simrange" id="waterR">
+      <div class="simlabels"><span>❄️ Холодно</span><span>🔥 Горячо</span></div>
+      <div class="simstate" id="waterState">Лёд</div>
+    </div>
+  </div>
+
+  <div class="taskcard">
+    <span class="kick">СИМУЛЯТОР · вращение (покрути пальцем)</span>
+    <h2>День и ночь</h2>
+    <p class="instr">Крути шарик пальцем — поворачивай Землю к солнышку и от него.</p>
+    <div class="simwrap">
+      <div class="simstage" id="globeStage" style="background:#0b1733;touch-action:none;height:360px">
+        <canvas id="globeCv" width="440" height="440" style="height:100%;width:auto;display:block;margin:0 auto"></canvas>
+      </div>
+      <div class="simstate" id="globeState">Покрути шарик 👆</div>
+    </div>
+  </div>
+
+  <div class="taskcard">
+    <span class="kick">СИМУЛЯТОР · два ползунка</span>
+    <h2>Что вырастет?</h2>
+    <p class="instr">Дай растению солнце и воду — и смотри, как оно растёт.</p>
+    <div class="simwrap">
+      <div class="simstage" id="growStage" style="background:#eaf7ff;height:340px">
+        <canvas id="growCv" width="620" height="420" style="width:100%;height:100%"></canvas>
+      </div>
+      <div style="margin-top:14px">
+        <div class="simlabels"><span>☀️ Солнце</span></div>
+        <input type="range" min="0" max="100" value="20" class="simrange" id="growSun" style="background:transparent">
+      </div>
+      <div style="margin-top:6px">
+        <div class="simlabels"><span>💧 Вода</span></div>
+        <input type="range" min="0" max="100" value="20" class="simrange" id="growWater" style="background:transparent">
+      </div>
+      <div class="simstate" id="growState">Маленький росток</div>
+    </div>
+  </div>
+
+  <div class="taskcard">
+    <span class="kick">СИМУЛЯТОР · времена года (1 ползунок)</span>
+    <h2>Времена года</h2>
+    <p class="instr">Двигай ползунок — и двор меняется круглый год.</p>
+    <div class="simwrap">
+      <div class="simstage" id="seasonStage" style="height:300px"><canvas id="seasonCv" width="600" height="300" style="width:100%;height:100%"></canvas></div>
+      <input type="range" min="0" max="100" value="25" class="simrange" id="seasonR" style="background:transparent">
+      <div class="simlabels"><span>❄️ Зима</span><span>🌸 Весна</span><span>☀️ Лето</span><span>🍂 Осень</span></div>
+      <div class="simstate" id="seasonState">Весна</div>
+    </div>
+  </div>
+
+  <div class="taskcard">
+    <span class="kick">СИМУЛЯТОР · солнце и тень (1 ползунок)</span>
+    <h2>Солнце и тень</h2>
+    <p class="instr">Веди солнце по небу — и смотри, как двигается тень от дерева.</p>
+    <div class="simwrap">
+      <div class="simstage" id="shadowStage" style="height:280px;background:#cdeeff"><canvas id="shadowCv" width="600" height="280" style="width:100%;height:100%"></canvas></div>
+      <input type="range" min="0" max="100" value="50" class="simrange" id="shadowR" style="background:transparent">
+      <div class="simlabels"><span>🌅 Утро</span><span>🌞 Полдень</span><span>🌇 Вечер</span></div>
+      <div class="simstate" id="shadowState">Полдень — тень короткая</div>
+    </div>
+  </div>
+
+  <div class="taskcard">
+    <span class="kick">СИМУЛЯТОР · погода (1 ползунок)</span>
+    <h2>Какая погода?</h2>
+    <p class="instr">Двигай ползунок — от солнышка к грозе. Смотри, как меняется небо.</p>
+    <div class="simwrap">
+      <div class="simstage" id="weatherStage" style="height:280px"><canvas id="weatherCv" width="600" height="280" style="width:100%;height:100%"></canvas></div>
+      <input type="range" min="0" max="100" value="10" class="simrange" id="weatherR" style="background:transparent">
+      <div class="simlabels"><span>☀️ Ясно</span><span>☁️ Облачно</span><span>🌧️ Дождь</span><span>⛈️ Гроза</span></div>
+      <div class="simstate" id="weatherState">Ясно, светит солнце</div>
+    </div>
+  </div>
+
+  <div class="taskcard">
+    <span class="kick">СИМУЛЯТОР · краски (1 ползунок)</span>
+    <h2>Смешай краски</h2>
+    <p class="instr">Двигай ползунок и смотри: синяя и жёлтая краска вместе дают зелёную!</p>
+    <div class="simwrap">
+      <div class="simstage" id="paintStage" style="height:240px;background:#fff"><canvas id="paintCv" width="600" height="240" style="width:100%;height:100%"></canvas></div>
+      <input type="range" min="0" max="100" value="50" class="simrange" id="paintR" style="background:transparent">
+      <div class="simlabels"><span>🔵 Синяя</span><span>🟢 Зелёная</span><span>🟡 Жёлтая</span></div>
+      <div class="simstate" id="paintState">Зелёная краска</div>
+    </div>
+  </div>
+
+</div><!-- /paneSim -->
+
+<div class="tabpane" id="paneBook">
+
+  <div class="taskcard" id="tcBook1">
+    <span class="kick">КНИЖКА · «Кто это?»<span class="lvl">УРОВЕНЬ 1 · одно слово</span></span>
+    <h2>Кто это?</h2>
+    <p class="instr">Самые лёгкие странички — одно короткое слово. Нажми на слово — услышишь его.</p>
+    <div class="book" id="book1">
+      <div class="page on"><img class="pic-icon" src="cat.webp"><div class="cap-big"><span class="word" data-say="кот">кот</span></div></div>
+      <div class="page"><img class="pic-icon" src="dog.webp"><div class="cap-big"><span class="word" data-say="пёс">пёс</span></div></div>
+      <div class="page"><img class="pic-icon" src="cow.webp"><div class="cap-big"><span class="word" data-say="корова">корова</span></div></div>
+      <div class="page"><img class="pic-icon" src="fox.webp"><div class="cap-big"><span class="word" data-say="лиса">лиса</span></div></div>
+      <div class="page"><img class="pic-icon" src="bear.webp"><div class="cap-big"><span class="word" data-say="мишка">мишка</span></div></div>
+    </div>
+    <div class="booknav">
+      <button id="book1Prev" disabled>‹ Назад</button>
+      <span class="bookpages" id="book1Pages">1 / 5</span>
+      <button id="book1Next">Дальше ›</button>
+    </div>
+    <div class="okline">Молодец! Всех узнал. → «Дальше»</div>
+  </div>
+
+  <div class="taskcard" id="tcBook">
+    <span class="kick">КНИЖКА · «Прогулка»<span class="lvl l2">УРОВЕНЬ 2 · два слова</span></span>
+    <h2>Читаем по картинкам</h2>
+    <p class="instr">Короткая фраза под картинкой. Нажми на жёлтое слово — оно прочитается вслух.</p>
+    <div class="book" id="book">
+      <div class="page on">
+        <img class="pic" src="park_day.webp">
+        <div class="cap">В парке гуляет <span class="word" data-say="кот">кот</span> и большой <span class="word" data-say="пёс">пёс</span>.</div>
+      </div>
+      <div class="page">
+        <img class="pic" src="room_wimmel.webp">
+        <div class="cap">У Ани есть <span class="word" data-say="мяч">мяч</span> и любимый <span class="word" data-say="мишка">мишка</span>.</div>
+      </div>
+      <div class="page">
+        <img class="pic" src="bedroom_day.webp">
+        <div class="cap">Вот <span class="word" data-say="дом">дом</span>. В доме стоит <span class="word" data-say="кровать">кровать</span>.</div>
+      </div>
+      <div class="page">
+        <img class="pic" src="street.webp">
+        <div class="cap">По дороге едет <span class="word" data-say="машина">машина</span> и жёлтый <span class="word" data-say="автобус">автобус</span>.</div>
+      </div>
+    </div>
+    <div class="booknav">
+      <button id="bookPrev" disabled>‹ Назад</button>
+      <span class="bookpages" id="bookPages">1 / 4</span>
+      <button id="bookNext">Дальше ›</button>
+    </div>
+    <div class="okline">Книжка прочитана! → «Дальше»</div>
+  </div>
+
+  <div class="taskcard" id="tcBook3">
+    <span class="kick">КНИЖКА · «Мой день»<span class="lvl l3">УРОВЕНЬ 3 · предложение</span></span>
+    <h2>Мой день</h2>
+    <p class="instr">Целое предложение под картинкой — для тех, кто уже читает. Трудное слово подсветится жёлтым, нажми и услышишь.</p>
+    <div class="book" id="book3">
+      <div class="page on">
+        <img class="pic" src="bedroom_day.webp">
+        <div class="cap">Утром солнце светит в окно. Я просыпаюсь в своей <span class="word" data-say="кровать">кровати</span>.</div>
+      </div>
+      <div class="page">
+        <img class="pic" src="room_wimmel.webp">
+        <div class="cap">После завтрака я играю в комнате. Мой любимый <span class="word" data-say="мишка">мишка</span> сидит на ковре.</div>
+      </div>
+      <div class="page">
+        <img class="pic" src="park_day.webp">
+        <div class="cap">Днём мы гуляем в парке. Там бегает весёлая <span class="word" data-say="собака">собака</span> и плавает кораблик.</div>
+      </div>
+      <div class="page">
+        <img class="pic" src="street.webp">
+        <div class="cap">Мы идём домой по улице. Мимо едет большой жёлтый <span class="word" data-say="автобус">автобус</span>.</div>
+      </div>
+      <div class="page">
+        <img class="pic" src="bedroom_night2.webp">
+        <div class="cap">Вечером на небе появляется луна. Пора спать. Спокойной <span class="word" data-say="ночи">ночи</span>!</div>
+      </div>
+    </div>
+    <div class="booknav">
+      <button id="book3Prev" disabled>‹ Назад</button>
+      <span class="bookpages" id="book3Pages">1 / 5</span>
+      <button id="book3Next">Дальше ›</button>
+    </div>
+    <div class="okline">Целая история прочитана! → «Дальше»</div>
+  </div>
+
+  <div class="taskcard" id="tcBookFill">
+    <span class="kick">КНИЖКА · «Закончи фразу»<span class="lvl lx">ДОГОВОРИЛКА</span></span>
+    <h2>Закончи фразу</h2>
+    <p class="instr">Прочитай начало и выбери внизу нужную картинку — она встанет в пропуск.</p>
+    <div class="book" id="bookFill">
+      <div class="page on" data-answer="cat">
+        <img class="pic-icon" src="cat.webp">
+        <div class="cap-big">Мяу-мяу! Это <span class="fillgap">?</span></div>
+        <div class="pickrow"><div class="pick" data-id="cat"><img src="cat.webp"></div><div class="pick" data-id="dog"><img src="dog.webp"></div><div class="pick" data-id="ball"><img src="ball.webp"></div></div>
+      </div>
+      <div class="page" data-answer="sun">
+        <img class="pic-icon" src="sun.webp">
+        <div class="cap-big">В небе светит <span class="fillgap">?</span></div>
+        <div class="pickrow"><div class="pick" data-id="apple"><img src="apple.webp"></div><div class="pick" data-id="sun"><img src="sun.webp"></div><div class="pick" data-id="fox"><img src="fox.webp"></div></div>
+      </div>
+      <div class="page" data-answer="bus">
+        <img class="pic-icon" src="bus.webp">
+        <div class="cap-big">По дороге едет <span class="fillgap">?</span></div>
+        <div class="pickrow"><div class="pick" data-id="cup"><img src="cup.webp"></div><div class="pick" data-id="cow"><img src="cow.webp"></div><div class="pick" data-id="bus"><img src="bus.webp"></div></div>
+      </div>
+      <div class="page" data-answer="apple">
+        <img class="pic-icon" src="apple.webp">
+        <div class="cap-big">На ветке выросло <span class="fillgap">?</span></div>
+        <div class="pickrow"><div class="pick" data-id="apple"><img src="apple.webp"></div><div class="pick" data-id="train"><img src="train.webp"></div><div class="pick" data-id="duckling"><img src="duckling.webp"></div></div>
+      </div>
+    </div>
+    <div class="bookpages" id="bookFillPages" style="text-align:center;margin-top:10px">1 / 4</div>
+    <div class="okline">Все фразы готовы! → «Дальше»</div>
+  </div>
+
+  <div class="taskcard" id="tcBookFind">
+    <span class="kick">КНИЖКА · «Читаем и ищем»<span class="lvl lx">ИСКАЛКА</span></span>
+    <h2>Читаем и ищем</h2>
+    <p class="instr">Прочитай вопрос под картинкой и нажми на нужное место на картинке.</p>
+    <div class="book" id="bookFind">
+      <div class="page on">
+        <div class="bookfind">
+          <img class="pic" src="park_day.webp">
+          <div class="fh" data-q="0" style="left:61%;top:56%;width:16%;height:34%"></div>
+          <div class="fh" data-q="1" style="left:77%;top:28%;width:16%;height:42%"></div>
+        </div>
+        <div class="cap" id="bfQ">В парке много друзей. Где сидит <span class="word" data-say="кот">кот</span>? Нажми на него.</div>
+      </div>
+    </div>
+    <div class="okline">Молодец! Всё нашёл. → «Дальше»</div>
+  </div>
+
+  <div class="taskcard" id="tcBookMagic">
+    <span class="kick">КНИЖКА · «Волшебное слово»<span class="lvl lx">ЖИВАЯ</span></span>
+    <h2>Волшебное слово</h2>
+    <p class="instr">Нажми на фиолетовое слово — и картинка оживёт!</p>
+    <div class="book" id="bookMagic">
+      <div class="page on" data-magic="sun">
+        <div class="simstage" style="height:240px;background:#cdeeff"><canvas id="magicCv" width="600" height="240" style="width:100%;height:100%"></canvas></div>
+        <div class="cap">Скажи волшебное слово — и засветит <span class="magicword" data-magic="sun">солнце</span>!</div>
+      </div>
+      <div class="page" data-magic="flower">
+        <div class="simstage" style="height:240px;background:#eaf7ea"><canvas id="magicCv2" width="600" height="240" style="width:100%;height:100%"></canvas></div>
+        <div class="cap">Скажи волшебное слово — и распустится <span class="magicword" data-magic="flower">цветок</span>!</div>
+      </div>
+    </div>
+    <div class="booknav">
+      <button id="bookMagicPrev" disabled>‹ Назад</button>
+      <span class="bookpages" id="bookMagicPages">1 / 2</span>
+      <button id="bookMagicNext">Дальше ›</button>
+    </div>
+    <div class="okline">Волшебство удалось! → «Дальше»</div>
+  </div>
+
+  <div class="taskcard" id="tcBookSound">
+    <span class="kick">КНИЖКА · «Кто как говорит»<span class="lvl lx">ЗВУКОВАЯ</span></span>
+    <h2>Кто как говорит</h2>
+    <p class="instr">Нажми на зверя или на кнопку — услышишь, как он говорит.</p>
+    <div class="book" id="bookSound">
+      <div class="page on"><img class="pic-icon word" data-say="Мяу-мяу!" src="cat.webp"><div class="cap-big">Кот говорит: <span class="word" data-say="Мяу-мяу!">мяу! 🔊</span></div></div>
+      <div class="page"><img class="pic-icon word" data-say="Гав-гав!" src="dog.webp"><div class="cap-big">Пёс говорит: <span class="word" data-say="Гав-гав!">гав! 🔊</span></div></div>
+      <div class="page"><img class="pic-icon word" data-say="Му-у-у!" src="cow.webp"><div class="cap-big">Корова говорит: <span class="word" data-say="Му-у-у!">му! 🔊</span></div></div>
+      <div class="page"><img class="pic-icon word" data-say="Кря-кря!" src="duckling.webp"><div class="cap-big">Утёнок говорит: <span class="word" data-say="Кря-кря!">кря! 🔊</span></div></div>
+      <div class="page"><img class="pic-icon word" data-say="Ку-ка-ре-ку!" src="rooster.webp"><div class="cap-big">Петух поёт: <span class="word" data-say="Ку-ка-ре-ку!">ку-ка-ре-ку! 🔊</span></div></div>
+    </div>
+    <div class="booknav">
+      <button id="bookSoundPrev" disabled>‹ Назад</button>
+      <span class="bookpages" id="bookSoundPages">1 / 5</span>
+      <button id="bookSoundNext">Дальше ›</button>
+    </div>
+    <div class="okline">Ты послушал всех! → «Дальше»</div>
+  </div>
+
+
+  <div class="taskcard" id="tcBookTerem">
+    <span class="kick">КНИЖКА · «Теремок»<span class="lvl lx">НАКОПИТЕЛЬНАЯ</span></span>
+    <h2>Кто в теремочке живёт?</h2>
+    <p class="instr">На каждой странице приходит новый зверь. Нажми на любого — узнаешь, кто это.</p>
+    <div class="book" id="bookTerem">
+      <div class="page on">
+        <div style="display:flex;justify-content:center;gap:8px;padding:18px;min-height:150px;align-items:center">
+          <img class="word" data-say="воробей" src="sparrow.webp" style="width:84px;height:84px;object-fit:contain">
+        </div>
+        <div class="cap">Прилетел <span class="word" data-say="воробей">воробей</span>. Кто-кто в теремочке живёт?</div>
+      </div>
+      <div class="page">
+        <div style="display:flex;justify-content:center;gap:8px;padding:18px;min-height:150px;align-items:center">
+          <img class="word" data-say="воробей" src="sparrow.webp" style="width:78px;height:78px;object-fit:contain">
+          <img class="word" data-say="утёнок" src="duckling.webp" style="width:78px;height:78px;object-fit:contain">
+        </div>
+        <div class="cap">Прибежал <span class="word" data-say="утёнок">утёнок</span>. Теперь их двое!</div>
+      </div>
+      <div class="page">
+        <div style="display:flex;justify-content:center;gap:8px;padding:18px;min-height:150px;align-items:center">
+          <img class="word" data-say="воробей" src="sparrow.webp" style="width:70px;height:70px;object-fit:contain">
+          <img class="word" data-say="утёнок" src="duckling.webp" style="width:70px;height:70px;object-fit:contain">
+          <img class="word" data-say="кот" src="cat.webp" style="width:70px;height:70px;object-fit:contain">
+        </div>
+        <div class="cap">Пришёл <span class="word" data-say="кот">кот</span>. Уже трое!</div>
+      </div>
+      <div class="page">
+        <div style="display:flex;justify-content:center;gap:6px;padding:18px;min-height:150px;align-items:center;flex-wrap:wrap">
+          <img class="word" data-say="воробей" src="sparrow.webp" style="width:64px;height:64px;object-fit:contain">
+          <img class="word" data-say="утёнок" src="duckling.webp" style="width:64px;height:64px;object-fit:contain">
+          <img class="word" data-say="кот" src="cat.webp" style="width:64px;height:64px;object-fit:contain">
+          <img class="word" data-say="пёс" src="dog.webp" style="width:64px;height:64px;object-fit:contain">
+        </div>
+        <div class="cap">Прибежал <span class="word" data-say="пёс">пёс</span>. Вот их сколько — четверо!</div>
+      </div>
+      <div class="page">
+        <div style="display:flex;justify-content:center;gap:6px;padding:18px;min-height:150px;align-items:center;flex-wrap:wrap">
+          <img class="word" data-say="воробей" src="sparrow.webp" style="width:62px;height:62px;object-fit:contain">
+          <img class="word" data-say="утёнок" src="duckling.webp" style="width:62px;height:62px;object-fit:contain">
+          <img class="word" data-say="кот" src="cat.webp" style="width:62px;height:62px;object-fit:contain">
+          <img class="word" data-say="пёс" src="dog.webp" style="width:62px;height:62px;object-fit:contain">
+        </div>
+        <div class="cap">Стали они жить вместе. Вместе весело! 🏡</div>
+      </div>
+    </div>
+    <div class="booknav">
+      <button id="bookTeremPrev" disabled>‹ Назад</button>
+      <span class="bookpages" id="bookTeremPages">1 / 5</span>
+      <button id="bookTeremNext">Дальше ›</button>
+    </div>
+    <div class="okline">Все звери в теремке! → «Дальше»</div>
+  </div>
+
+
+  <div class="taskcard" id="tcBookBig">
+    <span class="kick">КНИЖКА · «Большой и маленький»<span class="lvl lx">СРАВНЕНИЕ</span></span>
+    <h2>Большой и маленький</h2>
+    <p class="instr">На каждой странице — большой и маленький. Нажми на слово — услышишь его.</p>
+    <div class="book" id="bookBig">
+      <div class="page on">
+        <div class="cmprow"><div class="it"><img src="bear.webp" style="width:130px;height:130px;object-fit:contain"><div class="lbl">большой</div></div><div class="it"><img src="bear.webp" style="width:64px;height:64px;object-fit:contain"><div class="lbl">маленький</div></div></div>
+        <div class="cap">Это <span class="word" data-say="большой медведь">большой</span> медведь, а это <span class="word" data-say="маленький медвежонок">маленький</span> медвежонок.</div>
+      </div>
+      <div class="page">
+        <div class="cmprow"><div class="it"><img src="tree.webp" style="width:140px;height:140px;object-fit:contain"><div class="lbl">высокое</div></div><div class="it"><img src="daisy.webp" style="width:70px;height:70px;object-fit:contain"><div class="lbl">низкий</div></div></div>
+        <div class="cap">Дерево <span class="word" data-say="высокое">высокое</span>, а цветок <span class="word" data-say="низкий">низкий</span>.</div>
+      </div>
+      <div class="page">
+        <div class="cmprow"><div class="it"><img src="dog.webp" style="width:132px;height:132px;object-fit:contain"><div class="lbl">большой</div></div><div class="it"><img src="cat.webp" style="width:78px;height:78px;object-fit:contain"><div class="lbl">поменьше</div></div></div>
+        <div class="cap">Пёс <span class="word" data-say="большой">большой</span>, а кот <span class="word" data-say="поменьше">поменьше</span>.</div>
+      </div>
+    </div>
+    <div class="booknav"><button id="bookBigPrev" disabled>‹ Назад</button><span class="bookpages" id="bookBigPages">1 / 3</span><button id="bookBigNext">Дальше ›</button></div>
+    <div class="okline">Ты узнал, что бывает большим и маленьким! → «Дальше»</div>
+  </div>
+
+
+  <div class="taskcard" id="tcBookHome">
+    <span class="kick">КНИЖКА · «Чей домик?»<span class="lvl lx">ПАРА · логика</span></span>
+    <h2>Чей домик?</h2>
+    <p class="instr">У каждого зверя свой домик. Нажми на правильный.</p>
+    <div class="book" id="bookHome">
+      <div class="page on" data-answer="nest">
+        <img class="pic-icon" src="sparrow.webp">
+        <div class="cap">Где живёт <span class="word" data-say="воробей">воробей</span>? Нажми на его домик.</div>
+        <div class="bookpick"><div class="pk" data-id="nest">🪹</div><div class="pk" data-id="dogh">🏠</div></div>
+      </div>
+      <div class="page" data-answer="water">
+        <img class="pic-icon" src="duckling.webp">
+        <div class="cap">Где плавает <span class="word" data-say="утёнок">утёнок</span>? Нажми, где его дом.</div>
+        <div class="bookpick"><div class="pk" data-id="tree">🌳</div><div class="pk" data-id="water">💧</div></div>
+      </div>
+      <div class="page" data-answer="hole">
+        <img class="pic-icon" src="fox.webp">
+        <div class="cap">Где живёт <span class="word" data-say="лиса">лиса</span>? Нажми на её норку.</div>
+        <div class="bookpick"><div class="pk" data-id="hole">🕳️</div><div class="pk" data-id="nest2">🪹</div></div>
+      </div>
+    </div>
+    <div class="okline">Ты нашёл всем домики! → «Дальше»</div>
+  </div>
+
+
+  <div class="taskcard" id="tcBookCount">
+    <span class="kick">КНИЖКА · «Сколько?»<span class="lvl lx">СЧЁТ</span></span>
+    <h2>Сколько на странице?</h2>
+    <p class="instr">Нажми на каждого по очереди и считай вслух. В конце появится число.</p>
+    <div class="book" id="bookCount">
+      <div class="page on" data-count="3">
+        <div class="cap">Сколько уточек? Нажми и сосчитай.</div>
+        <div class="countrow"><img src="duckling.webp"><img src="duckling.webp"><img src="duckling.webp"></div>
+        <div class="bignum" data-num="три"></div>
+      </div>
+      <div class="page" data-count="2">
+        <div class="cap">Сколько яблок? Нажми и сосчитай.</div>
+        <div class="countrow"><img src="apple.webp"><img src="apple.webp"></div>
+        <div class="bignum" data-num="два"></div>
+      </div>
+      <div class="page" data-count="4">
+        <div class="cap">Сколько мячиков? Нажми и сосчитай.</div>
+        <div class="countrow"><img src="ball.webp"><img src="ball.webp"><img src="ball.webp"><img src="ball.webp"></div>
+        <div class="bignum" data-num="четыре"></div>
+      </div>
+    </div>
+    <div class="booknav"><button id="bookCountPrev" disabled>‹ Назад</button><span class="bookpages" id="bookCountPages">1 / 3</span><button id="bookCountNext">Дальше ›</button></div>
+    <div class="okline">Ты всё сосчитал! → «Дальше»</div>
+  </div>
+
+
+  <div class="taskcard" id="tcBookLike">
+    <span class="kick">КНИЖКА · «Что любит?»<span class="lvl lx">ВЫБОР · логика</span></span>
+    <h2>Что любит зверёк?</h2>
+    <p class="instr">Нажми, что любит этот зверь.</p>
+    <div class="book" id="bookLike">
+      <div class="page on" data-answer="carrot">
+        <img class="pic-icon" src="rabbit.webp">
+        <div class="cap">Что любит <span class="word" data-say="зайка">зайка</span>?</div>
+        <div class="bookpick"><div class="pk" data-id="carrot"><img src="carrot.webp"></div><div class="pk" data-id="ball"><img src="ball.webp"></div></div>
+      </div>
+      <div class="page" data-answer="bone">
+        <img class="pic-icon" src="dog.webp">
+        <div class="cap">Что любит <span class="word" data-say="пёс">пёс</span>?</div>
+        <div class="bookpick"><div class="pk" data-id="bone">🦴</div><div class="pk" data-id="apple"><img src="apple.webp"></div></div>
+      </div>
+      <div class="page" data-answer="mushroom">
+        <img class="pic-icon" src="bear.webp">
+        <div class="cap">Что любит <span class="word" data-say="мишка">мишка</span>? (мёд или грибочки)</div>
+        <div class="bookpick"><div class="pk" data-id="honey">🍯</div><div class="pk" data-id="mushroom"><img src="mushroom.webp"></div></div>
+      </div>
+    </div>
+    <div class="okline">Ты знаешь, кто что любит! → «Дальше»</div>
+  </div>
+
+
+  <div class="taskcard" id="tcBookMany">
+    <span class="kick">КНИЖКА · «Один — много»<span class="lvl lx">РЕЧЬ</span></span>
+    <h2>Один и много</h2>
+    <p class="instr">Учимся говорить правильно: один — и много. Нажми на слово.</p>
+    <div class="book" id="bookMany">
+      <div class="page on">
+        <div class="cmprow"><div class="it"><img src="apple.webp" style="width:96px;height:96px;object-fit:contain"><div class="lbl">одно</div></div><div class="it"><div style="display:flex;gap:4px;flex-wrap:wrap;width:170px;justify-content:center"><img src="apple.webp" style="width:46px;height:46px"><img src="apple.webp" style="width:46px;height:46px"><img src="apple.webp" style="width:46px;height:46px"><img src="apple.webp" style="width:46px;height:46px"></div><div class="lbl">много</div></div></div>
+        <div class="cap">Одно <span class="word" data-say="яблоко">яблоко</span> — много <span class="word" data-say="яблок">яблок</span>.</div>
+      </div>
+      <div class="page">
+        <div class="cmprow"><div class="it"><img src="cat.webp" style="width:96px;height:96px;object-fit:contain"><div class="lbl">один</div></div><div class="it"><div style="display:flex;gap:4px;flex-wrap:wrap;width:170px;justify-content:center"><img src="cat.webp" style="width:46px;height:46px"><img src="cat.webp" style="width:46px;height:46px"><img src="cat.webp" style="width:46px;height:46px"></div><div class="lbl">много</div></div></div>
+        <div class="cap">Один <span class="word" data-say="кот">кот</span> — много <span class="word" data-say="котов">котов</span>.</div>
+      </div>
+      <div class="page">
+        <div class="cmprow"><div class="it"><img src="daisy.webp" style="width:96px;height:96px;object-fit:contain"><div class="lbl">один</div></div><div class="it"><div style="display:flex;gap:4px;flex-wrap:wrap;width:170px;justify-content:center"><img src="daisy.webp" style="width:46px;height:46px"><img src="daisy.webp" style="width:46px;height:46px"><img src="daisy.webp" style="width:46px;height:46px"><img src="daisy.webp" style="width:46px;height:46px"></div><div class="lbl">много</div></div></div>
+        <div class="cap">Один <span class="word" data-say="цветок">цветок</span> — много <span class="word" data-say="цветов">цветов</span>.</div>
+      </div>
+    </div>
+    <div class="booknav"><button id="bookManyPrev" disabled>‹ Назад</button><span class="bookpages" id="bookManyPages">1 / 3</span><button id="bookManyNext">Дальше ›</button></div>
+    <div class="okline">Теперь ты говоришь правильно! → «Дальше»</div>
+  </div>
+
+
+  <div class="taskcard" id="tcBookTale">
+    <span class="kick">КНИЖКА · «Сказка про утёнка»<span class="lvl l3">ДЛИННОЕ ЧТЕНИЕ</span></span>
+    <h2>Сказка про утёнка</h2>
+    <p class="instr">Целая история на много страниц — для тех, кто уже хорошо читает. Трудное слово нажми и услышишь.</p>
+    <div class="book" id="bookTale">
+      <div class="page on"><img class="pic" src="yard_spring.webp"><div class="cap">Жил-был маленький жёлтый <span class="word" data-say="утёнок">утёнок</span>. Однажды утром он вышел во двор погулять.</div></div>
+      <div class="page"><img class="pic" src="park_day.webp"><div class="cap">Светило тёплое <span class="word" data-say="солнышко">солнышко</span>. Утёнок пошёл по тропинке и увидел большой пруд.</div></div>
+      <div class="page"><img class="pic" src="room_wimmel.webp"><div class="cap">У пруда он встретил друзей. Они вместе играли в мяч и весело <span class="word" data-say="смеялись">смеялись</span>.</div></div>
+      <div class="page"><img class="pic" src="street.webp"><div class="cap">Вдруг пошёл <span class="word" data-say="дождик">дождик</span>. Утёнок и друзья спрятались под большой зонт.</div></div>
+      <div class="page"><img class="pic" src="yard_summer.webp"><div class="cap">Скоро дождик закончился, и на небе появилась <span class="word" data-say="радуга">радуга</span>. Все обрадовались!</div></div>
+      <div class="page"><img class="pic" src="bedroom_night2.webp"><div class="cap">Наступил вечер. Утёнок вернулся домой, лёг в кроватку и сладко <span class="word" data-say="уснул">уснул</span>. Конец.</div></div>
+    </div>
+    <div class="booknav"><button id="bookTalePrev" disabled>‹ Назад</button><span class="bookpages" id="bookTalePages">1 / 6</span><button id="bookTaleNext">Дальше ›</button></div>
+    <div class="okline">Ты прочитал целую сказку! 🎉 → «Дальше»</div>
+  </div>
+
+
+</div><!-- /paneBook -->
+
+<div class="tabpane" id="paneCards">
+
+
+  <div class="panel">
+    <span class="kick">МНОГОСЛОЙНАЯ КАРТА</span>
+    <h2>Что «спрятано» в одной карте</h2>
+    <p class="sub">Одна и та же карта несёт несколько слоёв. Включай и выключай — посмотри, что появляется в уголках. В каждой игре главным становится свой слой.</p>
+    <div id="bigCard"></div>
+    <div class="toggles">
+      <div class="tg on" data-layer="suit">🐾 Масть</div>
+      <div class="tg on" data-layer="num">🔢 Число</div>
+      <div class="tg on" data-layer="color">🎨 Цвет</div>
+      <div class="tg on" data-layer="event">⭐ Событие</div>
+    </div>
+    <p class="sub" style="text-align:center;margin:12px 0 0">Выключи все слои — останется обычная обучающая карта с картинкой и словом.</p>
+  </div>
+
+  <div class="panel">
+    <span class="kick">ИГРА 1 · главный слой ЧИСЛО</span>
+    <h2>🔢 По порядку</h2>
+    <p class="sub">Нажимай карты по порядку — от меньшего числа к большему.</p>
+    <div class="gameq" id="q1">Найди карту с числом 1</div>
+    <div class="grid g3" id="game1"></div>
+    <div class="win" id="win1">Молодец! Все по порядку! 🎉</div>
+    <button class="gamebtn" data-new="1">🔄 Новая игра</button>
+  </div>
+
+  <div class="panel">
+    <span class="kick">ИГРА 2 · главный слой МАСТЬ</span>
+    <h2>🎴 Собери масть</h2>
+    <p class="sub">Нажми все карты одной группы.</p>
+    <div class="gameq" id="q2">Собери всех: 🐾 Звери</div>
+    <div class="grid" id="game2"></div>
+    <div class="win" id="win2">Вся группа собрана! 🎉</div>
+    <button class="gamebtn" data-new="2">🔄 Другая масть</button>
+  </div>
+
+  <div class="panel">
+    <span class="kick">ИГРА 3 · главный слой ЦВЕТ · для малышей</span>
+    <h2>🎨 Найди по цвету</h2>
+    <p class="sub">Читать не нужно — нажми все карты с такой рамкой.</p>
+    <div class="gameq" id="q3">Найди все <span id="q3c">красные</span> карты</div>
+    <div class="grid" id="game3"></div>
+    <div class="win" id="win3">Все цвета найдены! 🎉</div>
+    <button class="gamebtn" data-new="3">🔄 Другой цвет</button>
+  </div>
+
+  <div class="panel">
+    <span class="kick">ИГРА 4 · вся группа · карта = клетка поля</span>
+    <h2>🎲 Ходилка</h2>
+    <p class="sub">Карты колоды — это дорожка. Бросай кубик, шагай фишкой. На карте — её тема, а на карте со значком срабатывает событие.</p>
+    <div class="track" id="track"></div>
+    <div class="diceRow"><div class="dice" id="dice">🎲</div></div>
+    <div class="hodlog" id="hodlog">Нажми кубик, чтобы пойти</div>
+    <div class="evbig" id="evbig"></div>
+    <div class="win" id="win4">Дошли до конца! Молодцы! 🏁</div>
+    <button class="gamebtn" data-new="4">🔄 Сначала</button>
+  </div>
+
+
+</div><!-- /paneCards -->
+
+<div class="tabpane" id="paneCombo">
+  <div class="panel">
+    <span class="kick">КОМБО-СЦЕНАРИИ</span>
+    <h2>🧩 Маршруты занятий</h2>
+    <p class="sub">Комбо — готовая связка блоков по нарастанию: узнал → поиграл → понял причину → закрепил чтением. Нажми на шаг — откроется настоящий блок, потом вернёшься к маршруту.</p>
+    <div class="clegend">
+      <span class="c-know">1 Знакомство</span><span class="c-act">2 Действие</span><span class="c-cause">3 Причина</span><span class="c-read">4 Чтение</span><span class="c-check">5 Проверка</span>
+    </div>
+    <div class="cseg">
+      <div class="sb on" data-mode="theme">По типам тем</div>
+      <div class="sb" data-mode="goal">По целям</div>
+    </div>
+  </div>
+  <div id="comboList"></div>
+</div><!-- /paneCombo -->
+
+<script src="labeldrag.js"></script>
+<script src="buildword.js"></script>
+<script>
+// Точки подключения нашей озвучки (Marina v3 в проде; здесь — заглушка-лог)
+function ttsSay(t){ if(window.console) console.log('🔊', t); }
+
+LabelDrag.mount('#ld0', {
+  image:'rooms_scene.webp', aspect:[710,254], wide:true,
+  strings:{ drag:'Перетащи предмет в его комнату.', done:'Готово! Всё на своих местах.' },
+  parts:[
+    { id:1, word:'Сковородка', img:'frying_pan.webp', ax:16, ay:55, cmt:'Сковородка живёт на кухне.' },
+    { id:2, word:'Кровать',    img:'bed.webp',        ax:50, ay:55, cmt:'Кровать стоит в спальне.' },
+    { id:3, word:'Зубная щётка', img:'toothbrush.webp', ax:84, ay:55, cmt:'Щётка ждёт в ванной.' }
+  ],
+  onFill:function(p,st){ ttsSay(p.cmt||p.word); },
+  onComplete:function(){ document.getElementById('tcA0').classList.add('done'); ttsSay('Молодец! Всё по местам.'); }
+});
+
+LabelDrag.mount('#ld', {
+  image:'om5_family_table4.webp', aspect:'1/1', wide:true,
+  parts:[
+    { id:1, word:'Мама',  ax:14, ay:54, cmt:'Мама — родитель.' },
+    { id:2, word:'Папа',  ax:37, ay:46, cmt:'Папа — родитель.' },
+    { id:3, word:'Сын',   ax:62, ay:56, cmt:'Сын — ребёнок в семье.' },
+    { id:4, word:'Дочка', ax:84, ay:58, cmt:'Дочка — ребёнок в семье.' }
+  ],
+  onFill:function(p,st){ ttsSay(p.cmt||p.word); },
+  onComplete:function(){ document.getElementById('tcA').classList.add('done'); ttsSay('Молодец! Всех узнал.'); }
+});
+
+BuildWord.mount('#bw', {
+  words:[
+    { word:'семья', hint:'самые близкие люди', image:'om5_walk_park.webp' },
+    { word:'мама',  hint:'родитель',           image:'om5_hug_four.webp' },
+    { word:'дом',   hint:'где живёт семья',    image:'om5_family_table4.webp' }
+  ],
+  uppercase:true, distractors:2, anchorFrom:6,
+  onWord:function(w){ ttsSay('Собери слово: '+w); },
+  onComplete:function(s){ document.getElementById('tcB').classList.add('done'); ttsSay('Слова собраны!'); }
+});
+
+LabelDrag.mount('#ldS', {
+  image:'shadows_scene.webp', aspect:[963,250], wide:true,
+  strings:{ drag:'Перетащи предмет на его тень.', done:'Готово! Все тени нашлись.' },
+  parts:[
+    { id:1, word:'Кровать',      img:'bed.webp',         ax:17, ay:50, cmt:'Это тень кровати.' },
+    { id:2, word:'Зубная щётка', img:'toothbrush.webp',  ax:49, ay:50, cmt:'Это тень щётки.' },
+    { id:3, word:'Сковородка',   img:'frying_pan.webp',  ax:82, ay:50, cmt:'Это тень сковородки.' }
+  ],
+  onFill:function(p){ ttsSay(p.cmt); },
+  onComplete:function(){ document.getElementById('tcC').classList.add('done'); ttsSay('Все тени нашлись!'); }
+});
+
+// «Найди и покажи»: тап-хотспоты, вопросы по очереди
+(function(){
+  var QS=[
+    {q:'Найди собачку. Нажми на неё.', ok:0, say:'Молодец! Вот собачка.'},
+    {q:'Где бабушка?', ok:1, say:'Верно! Бабушка на скамейке.'},
+    {q:'Найди кошку.', ok:2, say:'Умница! Вот кошка.'}
+  ];
+  var cur=0, qEl=document.getElementById('findQ'), st=document.getElementById('findStage');
+  st.addEventListener('click', function(e){
+    var h=e.target.closest('.hs2')||e.target.closest('.hs'); if(!h||cur>=QS.length) return;
+    if(+h.dataset.q===QS[cur].ok){
+      h.classList.add('hs-ok'); ttsSay(QS[cur].say); cur++;
+      if(cur<QS.length){ qEl.textContent=QS[cur].q; ttsSay(QS[cur].q); }
+      else { document.getElementById('tcD').classList.add('done'); qEl.textContent='Молодец!'; }
+    } else {
+      h.classList.add('hs-no'); setTimeout(function(){h.classList.remove('hs-no');},420);
+      ttsSay('Поищи ещё.');
+    }
+  });
+})();
+
+// ===== ТАБЫ =====
+(function(){
+  var tabs=document.querySelectorAll('.tab');
+  var map={mech:'paneMech',sim:'paneSim',book:'paneBook',cards:'paneCards',combo:'paneCombo'};
+  tabs.forEach(function(t){ t.addEventListener('click',function(){
+    tabs.forEach(function(x){x.classList.remove('on');}); t.classList.add('on');
+    document.querySelectorAll('.tabpane').forEach(function(p){p.classList.remove('on');});
+    document.getElementById(map[t.dataset.tab]).classList.add('on');
+    if(t.dataset.tab==='sim'){ if(window._waterDraw)window._waterDraw(); if(window._globeDraw)window._globeDraw(); if(window._growDraw)window._growDraw(); if(window._seasonDraw)window._seasonDraw(); if(window._shadowDraw)window._shadowDraw(); if(window._weatherDraw)window._weatherDraw(); if(window._paintDraw)window._paintDraw(); }
+    if(t.dataset.tab==='book'){ if(window._magicDraw)window._magicDraw(); }
+  });});
+})();
+
+// ===== КНИЖКИ С КАРТИНКАМИ (универсально для всех книжек) =====
+function initBook(bookId, prevId, nextId, pagesId, cardId){
+  var book=document.getElementById(bookId); if(!book)return;
+  var pages=book.querySelectorAll('.page'), cur=0;
+  var prev=document.getElementById(prevId), next=document.getElementById(nextId), pg=document.getElementById(pagesId);
+  book.addEventListener('click',function(e){ var w=e.target.closest('.word'); if(w)ttsSay(w.dataset.say); });
+  function show(i){ cur=i; pages.forEach(function(p,k){p.classList.toggle('on',k===i);});
+    prev.disabled=(i===0); next.textContent=(i===pages.length-1)?'Готово ✓':'Дальше ›';
+    pg.textContent=(i+1)+' / '+pages.length; }
+  prev.addEventListener('click',function(){ if(cur>0)show(cur-1); });
+  next.addEventListener('click',function(){ if(cur<pages.length-1){show(cur+1);}
+    else document.getElementById(cardId).classList.add('done'); });
+  show(0);
+}
+initBook('book1','book1Prev','book1Next','book1Pages','tcBook1'); // уровень 1
+initBook('book','bookPrev','bookNext','bookPages','tcBook');       // уровень 2
+initBook('book3','book3Prev','book3Next','book3Pages','tcBook3');  // уровень 3
+initBook('bookSound','bookSoundPrev','bookSoundNext','bookSoundPages','tcBookSound'); // звуковая
+initBook('bookTerem','bookTeremPrev','bookTeremNext','bookTeremPages','tcBookTerem'); // накопительная
+initBook('bookBig','bookBigPrev','bookBigNext','bookBigPages','tcBookBig');     // сравнение
+initBook('bookMany','bookManyPrev','bookManyNext','bookManyPages','tcBookMany'); // один-много
+initBook('bookTale','bookTalePrev','bookTaleNext','bookTalePages','tcBookTale'); // длинное чтение
+
+// книжки-ВЫБОР (нажми правильную картинку): «Чей домик?», «Что любит?»
+function initPickBook(bookId, cardId){
+  var book=document.getElementById(bookId); if(!book)return;
+  var pages=book.querySelectorAll('.page'), cur=0, done=0;
+  book.addEventListener('click',function(e){
+    var w=e.target.closest('.word'); if(w){ ttsSay(w.dataset.say); return; }
+    var pk=e.target.closest('.pk'); if(!pk)return;
+    var page=pages[cur]; if(page.classList.contains('solved'))return;
+    if(pk.dataset.id===page.getAttribute('data-answer')){
+      pk.classList.add('ok'); page.classList.add('solved'); ttsSay('Верно!'); done++;
+      setTimeout(function(){
+        var ni=-1; for(var i=0;i<pages.length;i++){ if(!pages[i].classList.contains('solved')){ni=i;break;} }
+        if(ni>=0){ pages.forEach(function(p,k){p.classList.toggle('on',k===ni);}); cur=ni; }
+        else document.getElementById(cardId).classList.add('done');
+      }, 800);
+    } else { pk.classList.add('no'); setTimeout(function(){pk.classList.remove('no');},420); ttsSay('Попробуй ещё.'); }
+  });
+}
+initPickBook('bookHome','tcBookHome');
+initPickBook('bookLike','tcBookLike');
+
+// книжка-СЧЁТ: нажимай предметы по очереди, в конце — число
+(function(){
+  var book=document.getElementById('bookCount'); if(!book)return;
+  var pages=book.querySelectorAll('.page'), cur=0;
+  var prev=document.getElementById('bookCountPrev'), next=document.getElementById('bookCountNext'), pg=document.getElementById('bookCountPages');
+  function wire(page){
+    var imgs=page.querySelectorAll('.countrow img'), num=page.querySelector('.bignum'), cnt=0, total=+page.getAttribute('data-count');
+    imgs.forEach(function(im){ im.addEventListener('click',function(){
+      if(im.classList.contains('counted'))return; im.classList.add('counted'); cnt++; ttsSay(String(cnt));
+      if(cnt>=total){ num.textContent=cnt+' — '+num.getAttribute('data-num')+'!'; }
+    });});
+  }
+  pages.forEach(wire);
+  function show(i){ cur=i; pages.forEach(function(p,k){p.classList.toggle('on',k===i);});
+    prev.disabled=(i===0); next.textContent=(i===pages.length-1)?'Готово ✓':'Дальше ›'; pg.textContent=(i+1)+' / '+pages.length; }
+  prev.addEventListener('click',function(){ if(cur>0)show(cur-1); });
+  next.addEventListener('click',function(){ if(cur<pages.length-1){show(cur+1);} else document.getElementById('tcBookCount').classList.add('done'); });
+  show(0);
+})();
+
+// ===== КНИЖКА-ДОГОВОРИЛКА «Закончи фразу» =====
+(function(){
+  var book=document.getElementById('bookFill'); if(!book)return;
+  var pages=book.querySelectorAll('.page'), cur=0, solved=0;
+  var pg=document.getElementById('bookFillPages');
+  function show(i){ cur=i; pages.forEach(function(p,k){p.classList.toggle('on',k===i);}); pg.textContent=(i+1)+' / '+pages.length; }
+  book.addEventListener('click',function(e){
+    var pk=e.target.closest('.pick'); if(!pk)return;
+    var page=pages[cur]; if(page.classList.contains('solved'))return;
+    var ans=page.getAttribute('data-answer');
+    if(pk.dataset.id===ans){
+      pk.classList.add('ok'); page.classList.add('solved');
+      var gap=page.querySelector('.fillgap'); var word=pk.querySelector('img').alt||'';
+      // подставляем слово в пропуск (alt пуст у iconов — берём из data в простом виде)
+      var NAMES={cat:'кот',dog:'пёс',ball:'мяч',sun:'солнце',apple:'яблоко',fox:'лиса',bus:'автобус',cup:'чашка',cow:'корова',train:'поезд',duckling:'утёнок'};
+      gap.textContent=NAMES[ans]||'✓'; gap.classList.add('filled'); ttsSay(NAMES[ans]||'');
+      solved++;
+      setTimeout(function(){ if(cur<pages.length-1)show(cur+1); else document.getElementById('tcBookFill').classList.add('done'); }, 900);
+    } else { pk.classList.add('no'); setTimeout(function(){pk.classList.remove('no');},420); ttsSay('Попробуй ещё раз.'); }
+  });
+  show(0);
+})();
+
+// ===== КНИЖКА «Читаем и ищем» =====
+(function(){
+  var card=document.getElementById('tcBookFind'); if(!card)return;
+  var stage=card.querySelector('.bookfind'), q=document.getElementById('bfQ');
+  var QS=[{ok:0,q:'В парке много друзей. Где сидит кот? Нажми на него.',say:'Верно! Вот кот.',word:'кот'},
+          {ok:1,q:'А где девочка с шариком? Нажми на неё.',say:'Молодец! Вот девочка.',word:'девочка'}];
+  var cur=0;
+  function setQ(){ if(cur>=QS.length)return; q.innerHTML=QS[cur].q.replace(QS[cur].word,'<span class="word" data-say="'+QS[cur].word+'">'+QS[cur].word+'</span>'); }
+  stage.addEventListener('click',function(e){
+    var h=e.target.closest('.fh');
+    var w=e.target.closest('.word'); if(w){ttsSay(w.dataset.say);return;}
+    if(!h||cur>=QS.length)return;
+    if(+h.dataset.q===QS[cur].ok){ h.classList.add('ok'); ttsSay(QS[cur].say); cur++;
+      if(cur<QS.length){ setQ(); } else { q.textContent='Молодец! Всё нашёл.'; document.getElementById('tcBookFind').classList.add('done'); }
+    } else { h.classList.add('no'); setTimeout(function(){h.classList.remove('no');},420); ttsSay('Поищи ещё.'); }
+  });
+  q.addEventListener('click',function(e){ var w=e.target.closest('.word'); if(w)ttsSay(w.dataset.say); });
+  setQ();
+})();
+
+// ===== КНИЖКА «Волшебное слово» (тап оживляет картинку) =====
+(function(){
+  var book=document.getElementById('bookMagic'); if(!book)return;
+  var pages=book.querySelectorAll('.page'), cur=0;
+  var prev=document.getElementById('bookMagicPrev'), next=document.getElementById('bookMagicNext'), pg=document.getElementById('bookMagicPages');
+  var litPages={};
+  // солнце
+  var cv=document.getElementById('magicCv'), ctx=cv?cv.getContext('2d'):null, sunT=0, sunOn=false;
+  function drawSun(){ if(!ctx)return; var W=cv.width,H=cv.height; ctx.clearRect(0,0,W,H);
+    ctx.fillStyle='#cdeeff'; ctx.fillRect(0,0,W,H);
+    var R=20+sunT*34, cx=W/2, cy=H/2;
+    ctx.save(); ctx.translate(cx,cy); ctx.rotate(sunT*1.2);
+    ctx.strokeStyle='#ffce3d'; ctx.lineWidth=6;
+    for(var i=0;i<12;i++){var a=i/12*Math.PI*2; ctx.beginPath(); ctx.moveTo(Math.cos(a)*(R+8),Math.sin(a)*(R+8)); ctx.lineTo(Math.cos(a)*(R+8+18*sunT),Math.sin(a)*(R+8+18*sunT)); ctx.stroke();}
+    ctx.restore();
+    ctx.globalAlpha=0.5+0.5*sunT; ctx.fillStyle='#ffd34d'; ctx.beginPath(); ctx.arc(cx,cy,R,0,7); ctx.fill(); ctx.globalAlpha=1;
+    // личико
+    if(sunT>0.5){ ctx.fillStyle='#7a5a10'; ctx.beginPath();ctx.arc(cx-R*0.3,cy-R*0.15,3,0,7);ctx.arc(cx+R*0.3,cy-R*0.15,3,0,7);ctx.fill();
+      ctx.strokeStyle='#7a5a10';ctx.lineWidth=2;ctx.beginPath();ctx.arc(cx,cy+R*0.1,R*0.35,0.2,Math.PI-0.2);ctx.stroke(); }
+  }
+  // цветок
+  var cv2=document.getElementById('magicCv2'), ctx2=cv2?cv2.getContext('2d'):null, flT=0, flOn=false;
+  function drawFlower(){ if(!ctx2)return; var W=cv2.width,H=cv2.height; ctx2.clearRect(0,0,W,H);
+    ctx2.fillStyle='#eaf7ea'; ctx2.fillRect(0,0,W,H);
+    var bx=W/2, by=H-20, stem=30+flT*120;
+    ctx2.strokeStyle='#2e9e3f'; ctx2.lineWidth=8; ctx2.lineCap='round';
+    ctx2.beginPath(); ctx2.moveTo(bx,by); ctx2.lineTo(bx,by-stem); ctx2.stroke();
+    if(flT>0.3){ ctx2.fillStyle='#3cb24a'; ctx2.beginPath(); ctx2.ellipse(bx-16,by-stem*0.5,18,9,0.5,0,7); ctx2.fill(); }
+    // лепестки раскрываются
+    var top=by-stem, pet=flT*22;
+    ctx2.fillStyle='#ff7eb6';
+    for(var i=0;i<6;i++){var a=i/6*Math.PI*2; ctx2.beginPath(); ctx2.ellipse(bx+Math.cos(a)*pet,top+Math.sin(a)*pet,11,7,a,0,7); ctx2.fill();}
+    ctx2.fillStyle='#ffd34d'; ctx2.beginPath(); ctx2.arc(bx,top,8*Math.max(0.3,flT),0,7); ctx2.fill();
+  }
+  function show(i){ cur=i; pages.forEach(function(p,k){p.classList.toggle('on',k===i);});
+    prev.disabled=(i===0); next.textContent=(i===pages.length-1)?'Готово ✓':'Дальше ›'; pg.textContent=(i+1)+' / '+pages.length;
+    if(i===0)drawSun(); else drawFlower(); }
+  // анимации по тапу слова
+  book.addEventListener('click',function(e){ var m=e.target.closest('.magicword'); if(!m)return;
+    m.classList.add('lit'); ttsSay(m.dataset.magic==='sun'?'Солнце!':'Цветок!');
+    if(m.dataset.magic==='sun'){ sunOn=true; var t0=Date.now(); (function an(){ sunT=Math.min(1,(Date.now()-t0)/900); drawSun(); if(sunT<1)requestAnimationFrame(an); })(); litPages[0]=1; }
+    else { flOn=true; var t1=Date.now(); (function an(){ flT=Math.min(1,(Date.now()-t1)/900); drawFlower(); if(flT<1)requestAnimationFrame(an); })(); litPages[1]=1; }
+  });
+  prev.addEventListener('click',function(){ if(cur>0)show(cur-1); });
+  next.addEventListener('click',function(){ if(cur<pages.length-1){show(cur+1);} else document.getElementById('tcBookMagic').classList.add('done'); });
+  window._magicDraw=function(){ if(cur===0)drawSun(); else drawFlower(); };
+  show(0);
+})();
+
+// ===== СИМУЛЯТОР: ПРЕВРАЩЕНИЯ ВОДЫ (кроссфейд иллюстраций) =====
+(function(){
+  var cv=document.getElementById('waterCv'); if(!cv)return;
+  var ctx=cv.getContext('2d'), R=document.getElementById('waterR'), label=document.getElementById('waterState');
+  var W=cv.width, H=cv.height;
+  // три кадра воды + слой пара
+  var frames={}, steam=null, ready=0, need=4;
+  function load(key,src){ var im=new Image(); im.onload=function(){ready++; if(ready>=need)draw();}; im.src=src; frames[key]=im; }
+  load('ice','water_ice.webp'); load('liquid','water_liquid.webp'); load('boil','water_boil.webp');
+  var steamImg=new Image(); steamImg.onload=function(){ready++; if(ready>=need)draw();}; steamImg.src='sim_steam.webp'; steam=steamImg;
+  // рисуем кадр по центру с сохранением пропорций
+  function drawFit(im,alpha){ if(!im||!im.complete||!im.naturalWidth)return;
+    ctx.globalAlpha=alpha;
+    var s=Math.min(W/im.naturalWidth, H/im.naturalHeight)*0.96;
+    var w=im.naturalWidth*s, h=im.naturalHeight*s;
+    ctx.drawImage(im,(W-w)/2,(H-h)/2,w,h); ctx.globalAlpha=1; }
+  function lerp(a,b,t){return a+(b-a)*t;}
+  var steamY=0;
+  function draw(){
+    var t=+R.value/100; // 0 холод .. 1 жар
+    ctx.clearRect(0,0,W,H);
+    // фон-подложка: холодный->тёплый (мягко)
+    var bg=ctx.createLinearGradient(0,0,0,H);
+    bg.addColorStop(0, t<0.5?'#eaf6ff':'#fff6ec'); bg.addColorStop(1, t<0.5?'#d7eeff':'#ffe9d2');
+    ctx.fillStyle=bg; ctx.fillRect(0,0,W,H);
+    // кроссфейд кадров: [0..0.5] лёд->вода, [0.5..1] вода->кипение
+    if(t<0.5){ var k=t/0.5; drawFit(frames.ice,1); if(k>0)drawFit(frames.liquid,k); }
+    else { var k2=(t-0.5)/0.5; drawFit(frames.liquid,1); if(k2>0)drawFit(frames.boil,k2); }
+    // слой пара поверх кипения
+    if(t>0.72 && steam && steam.complete){
+      var sa=(t-0.72)/0.28; steamY=(steamY+0.8)%(H*0.18);
+      var sw=W*0.30, sh=steam.naturalHeight*(sw/steam.naturalWidth);
+      ctx.save(); ctx.beginPath(); ctx.rect(0,0,W,H*0.62); ctx.clip();
+      ctx.globalAlpha=Math.min(1,sa)*0.85;
+      ctx.drawImage(steam, (W-sw)/2, H*0.10 - steamY, sw, sh);
+      ctx.globalAlpha=1; ctx.restore();
+    }
+    // подпись-состояние
+    label.textContent = t<0.30?'❄️ Лёд' : (t<0.72?'💧 Вода':'♨️ Пар');
+  }
+  window._waterDraw=draw;
+  var raf=null;
+  function loop(){ draw(); raf=requestAnimationFrame(loop); }
+  R.addEventListener('input',function(){ if(!raf)loop(); });
+  // запускаем цикл (для анимации пара); если кадры ещё грузятся — draw() вызовется по onload
+  loop();
+})();
+
+// ===== СИМУЛЯТОР: ДЕНЬ И НОЧЬ (вращение пальцем) — эталон =====
+(function(){
+  var cv=document.getElementById('globeCv'); if(!cv)return;
+  var ctx=cv.getContext('2d'), stage=document.getElementById('globeStage'), label=document.getElementById('globeState');
+  var W=cv.width, H=cv.height, cx=W/2, cy=H/2, rad=Math.min(W,H)*0.40;
+  var angle=0.6; // 0..2pi — поворот Земли; СОЛНЦЕ СЛЕВА
+  var earthA=new Image(), earthB=new Image(), sunImg=new Image();
+  earthA.src='earth_a.webp'; earthB.src='earth_b.webp'; sunImg.src='sim_sun.webp';
+  [earthA,earthB,sunImg].forEach(function(im){ im.onload=function(){draw();}; });
+  // рисуем глобус, ЗАПОЛНЯЯ круг (cover), с бесшовным горизонтальным панорамированием
+  function drawGlobe(){
+    var a=((angle%(Math.PI*2))+Math.PI*2)%(Math.PI*2);
+    var frac=a/(Math.PI*2);                 // 0..1 — полный оборот
+    // выбор кадра по полуобороту + кроссфейд на стыке
+    var im=(frac<0.5)?earthA:earthB;
+    if(!im.complete||!im.naturalWidth)return;
+    // cover: картинка заполняет квадрат 2*rad целиком (без пустых краёв)
+    var d=rad*2, s=Math.max(d/im.naturalWidth, d/im.naturalHeight);
+    var w=im.naturalWidth*s, h=im.naturalHeight*s;
+    // панорамирование по долготе: сдвиг в пределах запаса (w-d)
+    var slack=Math.max(0, w-d);
+    var local=(frac*2)%1;                    // 0..1 внутри полуоборота
+    var panX=(local-0.5)*slack;              // плавный проезд картинки
+    ctx.drawImage(im, cx-w/2 - panX, cy-h/2, w, h);
+  }
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+    // фон-космос
+    ctx.fillStyle='#0b1733'; ctx.fillRect(0,0,W,H);
+    // звёзды (статичные)
+    ctx.fillStyle='rgba(255,255,255,.5)';
+    for(var i=0;i<26;i++){ var sxk=(i*97%W), syk=(i*53%H); if(Math.abs(sxk-cx)>rad+20||Math.abs(syk-cy)>rad+20){ ctx.fillRect(sxk,syk,2,2);} }
+    // солнце слева
+    if(sunImg.complete&&sunImg.naturalWidth){ var ss=66; ctx.drawImage(sunImg, W*0.015, cy-ss/2, ss, ss*sunImg.naturalHeight/sunImg.naturalWidth); }
+    // ---- ШАР ----
+    ctx.save(); ctx.beginPath(); ctx.arc(cx,cy,rad,0,7); ctx.clip();
+    ctx.fillStyle='#3a78c2'; ctx.fillRect(cx-rad,cy-rad,rad*2,rad*2); // океан-подложка
+    drawGlobe();
+    // ---- НОЧНАЯ ТЕНЬ на canvas: солнце СЛЕВА → левая половина светлая, правая тёмная ----
+    var term=ctx.createLinearGradient(cx-rad,0,cx+rad,0); // слева→направо
+    term.addColorStop(0.00,'rgba(8,12,40,0)');     // левый край — свет
+    term.addColorStop(0.42,'rgba(8,12,40,0)');     // дневная половина чистая
+    term.addColorStop(0.55,'rgba(8,12,40,0.45)');  // терминатор — мягкая граница
+    term.addColorStop(0.70,'rgba(8,12,40,0.82)');
+    term.addColorStop(1.00,'rgba(8,12,40,0.92)');  // правый край — глубокая ночь
+    ctx.fillStyle=term; ctx.fillRect(cx-rad,cy-rad,rad*2,rad*2);
+    // ---- НОЧНАЯ ТЕНЬ: терминатор ПРОЕЗЖАЕТ по шару при вращении ----
+    // солнце слева; при кручении граница день/ночь смещается, имитируя вращение планеты
+    var a=((angle%(Math.PI*2))+Math.PI*2)%(Math.PI*2);
+    // нормированное положение терминатора: 0 (вся ночь) .. 1 (весь день), синус по углу
+    var lit=(Math.cos(a)+1)/2;            // 1 когда наша сторона к солнцу, 0 когда от солнца
+    // центр тёмной зоны ездит: чем меньше lit, тем левее заходит тень
+    var edge=0.15+lit*0.7;                // доля светлой части слева (0.15..0.85)
+    var term=ctx.createLinearGradient(cx-rad,0,cx+rad,0);
+    term.addColorStop(0.00,'rgba(8,12,40,0)');
+    term.addColorStop(Math.max(0.01,edge-0.13),'rgba(8,12,40,0)');
+    term.addColorStop(Math.min(0.99,edge),'rgba(8,12,40,0.5)');
+    term.addColorStop(Math.min(1,edge+0.15),'rgba(8,12,40,0.85)');
+    term.addColorStop(1.00,'rgba(8,12,40,0.92)');
+    ctx.fillStyle=term; ctx.fillRect(cx-rad,cy-rad,rad*2,rad*2);
+    // блик света слева (источник — солнце)
+    var glow=ctx.createRadialGradient(cx-rad*0.5,cy-rad*0.3,rad*0.1, cx-rad*0.5,cy-rad*0.3,rad*1.3);
+    glow.addColorStop(0,'rgba(255,250,220,'+(0.12+lit*0.22)+')'); glow.addColorStop(0.5,'rgba(255,250,220,0)');
+    ctx.fillStyle=glow; ctx.fillRect(cx-rad,cy-rad,rad*2,rad*2);
+    ctx.restore();
+    // обводка шара
+    ctx.lineWidth=4; ctx.strokeStyle='#fff'; ctx.beginPath(); ctx.arc(cx,cy,rad,0,7); ctx.stroke();
+    // ---- домик «мы здесь»: СТОИТ НА МЕСТЕ (чуть левее центра). Земля и тень крутятся под ним ----
+    var hx=cx-rad*0.18, hy=cy-rad*0.05;
+    // дом в тени, если терминатор (edge) левее дома. позиция дома по доле: (hx-(cx-rad))/(2rad)
+    var hpos=(hx-(cx-rad))/(rad*2);       // ~0.41
+    var inDay=hpos < edge-0.04;
+    ctx.globalAlpha=inDay?1:0.6;
+    ctx.font='30px serif'; ctx.textAlign='center'; ctx.textBaseline='middle';
+    ctx.fillText('🏠', hx, hy); ctx.globalAlpha=1; ctx.textBaseline='alphabetic';
+    // метка-стрелка «мы здесь» под домом
+    ctx.fillStyle=inDay?'#1f3a5f':'#888'; ctx.font='11px sans-serif';
+    ctx.fillText('мы здесь', hx, hy+24);
+    // подпись день/ночь у дома
+    label.textContent = inDay ? '☀️ У нашего дома ДЕНЬ' : (Math.abs(hpos-edge)<0.12? '🌅 У дома рассвет / закат':'🌙 У нашего дома НОЧЬ');
+  }
+  window._globeDraw=draw;
+  var dragging=false, lastX=0;
+  stage.addEventListener('pointerdown',function(e){ dragging=true; lastX=e.clientX; e.preventDefault(); });
+  document.addEventListener('pointermove',function(e){ if(!dragging)return;
+    var dx=e.clientX-lastX; lastX=e.clientX; angle+=dx*0.012; draw(); });
+  document.addEventListener('pointerup',function(){ dragging=false; });
+  draw();
+})();
+
+// ===== СИМУЛЯТОР: ДВА ПОЛЗУНКА — ЧТО ВЫРАСТЕТ =====
+(function(){
+  var cv=document.getElementById('growCv'); if(!cv)return;
+  var ctx=cv.getContext('2d'), sun=document.getElementById('growSun'), water=document.getElementById('growWater'), label=document.getElementById('growState');
+  var W=cv.width, H=cv.height;
+  // 5 стадий роста + слои солнца и тучки-дождя
+  var stages=[]; ['grow0','grow1','grow2','grow3','grow4'].forEach(function(n){ var im=new Image(); im.onload=draw; im.src=n+'.webp'; stages.push(im); });
+  var sunImg=new Image(); sunImg.onload=draw; sunImg.src='sim_sun.webp';
+  var cloud=new Image(); cloud.onload=draw; cloud.src='sim_cloud.webp';
+  function drawStage(im,alpha){ if(!im||!im.complete||!im.naturalWidth)return;
+    ctx.globalAlpha=alpha;
+    // растение крупно: вписываем ПО ВЫСОТЕ почти на весь холст, по центру
+    var s=(H*0.96)/im.naturalHeight;
+    var w=im.naturalWidth*s, h=im.naturalHeight*s;
+    ctx.drawImage(im,(W-w)/2, H-h, w,h); ctx.globalAlpha=1; }
+  function draw(){
+    var s=+sun.value/100, w=+water.value/100;
+    var health=Math.min(s,w);
+    var over=(s>0.85&&w<0.3)||(w>0.85&&s<0.3);
+    ctx.clearRect(0,0,W,H);
+    // небо по солнцу (светлее при солнце)
+    var sky=ctx.createLinearGradient(0,0,0,H);
+    sky.addColorStop(0, s>0.6?'#bfe8ff':(s>0.3?'#d8f0ff':'#e2e9ee')); sky.addColorStop(0.7,'#eef9ee'); sky.addColorStop(1,'#dcefce');
+    ctx.fillStyle=sky; ctx.fillRect(0,0,W,H);
+    // грунт-полоса снизу
+    ctx.fillStyle = w>0.85? '#6b4f3a':'#caa46f'; ctx.fillRect(0,H*0.9,W,H*0.1);
+    // солнце-слой справа сверху (ярче и крупнее при высоком ползунке)
+    if(sunImg.complete&&sunImg.naturalWidth){ var sr=58+s*52; ctx.globalAlpha=0.4+s*0.6;
+      ctx.drawImage(sunImg, W*0.70, H*0.02, sr, sr*sunImg.naturalHeight/sunImg.naturalWidth); ctx.globalAlpha=1; }
+    // тучка-слой слева сверху при высокой воде + капли
+    if(w>0.45 && cloud.complete&&cloud.naturalWidth){ var cw=W*0.30; var ca=Math.min(1,(w-0.45)/0.4+0.4);
+      ctx.globalAlpha=ca; ctx.drawImage(cloud, W*0.03, H*0.02, cw, cw*cloud.naturalHeight/cloud.naturalWidth); ctx.globalAlpha=1; }
+    if(over){
+      drawStage(stages[1],1);
+      ctx.font='44px serif'; ctx.textAlign='center'; ctx.fillText('🥀', W/2, H*0.42);
+      label.textContent = w>0.85? '🌊 Слишком много воды!' : '🏜️ Слишком жарко и сухо!';
+      return;
+    }
+    // лесенка стадий по health: 0..1 → индекс 0..4 с кроссфейдом соседних
+    var f=health*4, i=Math.max(0,Math.min(4,Math.floor(f))), frac=f-i;
+    drawStage(stages[i],1);
+    if(i<4 && frac>0) drawStage(stages[i+1],frac);
+    if(health>=0.85) label.textContent='🌸 Расцвёл! Молодец!';
+    else if(health>=0.55) label.textContent='🌼 Вот-вот зацветёт!';
+    else if(health>=0.30) label.textContent='🌿 Растёт хорошо!';
+    else if(health>=0.10) label.textContent='🌱 Маленький росток';
+    else label.textContent=(s<0.15&&w<0.15)?'😴 Нужно солнце и вода':'🌱 Маленький росток';
+  }
+  window._growDraw=draw;
+  sun.addEventListener('input',draw); water.addEventListener('input',draw);
+  draw();
+})();
+
+// ===== СИМУЛЯТОР: ВРЕМЕНА ГОДА (кроссфейд 4 сцен двора) =====
+(function(){
+  var cv=document.getElementById('seasonCv'); if(!cv)return;
+  var ctx=cv.getContext('2d'), R=document.getElementById('seasonR'), label=document.getElementById('seasonState');
+  var W=cv.width, H=cv.height;
+  var order=['yard_winter','yard_spring','yard_summer','yard_autumn'];
+  var names=['❄️ Зима','🌸 Весна','☀️ Лето','🍂 Осень'];
+  var imgs=order.map(function(n){ var im=new Image(); im.onload=draw; im.src=n+'.webp'; return im; });
+  function drawFit(im,alpha){ if(!im||!im.complete||!im.naturalWidth)return;
+    ctx.globalAlpha=alpha; var s=Math.max(W/im.naturalWidth,H/im.naturalHeight);
+    var w=im.naturalWidth*s,h=im.naturalHeight*s; ctx.drawImage(im,(W-w)/2,(H-h)/2,w,h); ctx.globalAlpha=1; }
+  function draw(){
+    var t=+R.value/100;            // 0..1 по году
+    ctx.clearRect(0,0,W,H);
+    var f=t*4; var i=Math.floor(f)%4; var nx=(i+1)%4; var frac=f-Math.floor(f);
+    drawFit(imgs[i],1); if(frac>0) drawFit(imgs[nx],frac);
+    label.textContent=names[(frac>0.5?nx:i)];
+  }
+  window._seasonDraw=draw;
+  R.addEventListener('input',draw); draw();
+})();
+
+// ===== СИМУЛЯТОР: СОЛНЦЕ И ТЕНЬ (1 ползунок) =====
+(function(){
+  var cv=document.getElementById('shadowCv'); if(!cv)return;
+  var ctx=cv.getContext('2d'), R=document.getElementById('shadowR'), label=document.getElementById('shadowState');
+  var W=cv.width, H=cv.height;
+  var sun=new Image(); sun.onload=draw; sun.src='sim_sun.webp';
+  var tree=new Image(); tree.onload=draw; tree.src='tree.webp';
+  function draw(){
+    var t=+R.value/100;                 // 0 утро .. 1 вечер
+    ctx.clearRect(0,0,W,H);
+    // небо по времени
+    var sky=ctx.createLinearGradient(0,0,0,H);
+    var dayK=1-Math.abs(t-0.5)*2;        // 0 на краях, 1 в полдень
+    sky.addColorStop(0, t<0.5? '#ffe3c0' : '#ffd9c0'); // утро/вечер тёплое
+    sky.addColorStop(0.5, 'rgb('+Math.round(150+105*dayK)+','+Math.round(200+40*dayK)+',255)');
+    sky.addColorStop(1,'#eaf7ff'); ctx.fillStyle=sky; ctx.fillRect(0,0,W,H*0.78);
+    // земля
+    ctx.fillStyle='#9ccb6a'; ctx.fillRect(0,H*0.78,W,H*0.22);
+    // солнце по дуге слева->вверх->справа
+    var ang=Math.PI*(1-t);               // PI(лево).. 0(право)
+    var sx=W*0.5 + Math.cos(ang)*W*0.42;
+    var sy=H*0.74 - Math.sin(ang)*H*0.6;
+    var sr=64;
+    if(sun.complete&&sun.naturalWidth) ctx.drawImage(sun, sx-sr/2, sy-sr/2, sr, sr*sun.naturalHeight/sun.naturalWidth);
+    // дерево у земли по центру-слева
+    var tx=W*0.42, groundY=H*0.78, th=H*0.5;
+    var tw=tree.naturalWidth? th*tree.naturalWidth/tree.naturalHeight : th*0.7;
+    // ТЕНЬ: противоположно солнцу, длиннее когда солнце низко
+    var sunHeight=Math.sin(ang);          // 0 низко .. 1 высоко
+    var shLen=(1.6-sunHeight*1.2);         // длинная утром/вечером
+    var dir=(sx< tx)?1:-1;                 // солнце слева -> тень вправо
+    if(Math.abs(sx-tx)<W*0.04) dir = (t<0.5?1:-1);
+    ctx.save(); ctx.fillStyle='rgba(40,40,60,0.28)';
+    ctx.beginPath();
+    ctx.ellipse(tx + dir*tw*shLen*0.6, groundY+6, tw*0.55*shLen, 14, 0, 0, 7);
+    ctx.fill(); ctx.restore();
+    // дерево поверх тени
+    if(tree.complete&&tree.naturalWidth) ctx.drawImage(tree, tx-tw/2, groundY-th, tw, th);
+    // подпись
+    label.textContent = t<0.22? '🌅 Утро — тень длинная' : (t>0.78? '🌇 Вечер — тень длинная' : (sunHeight>0.8? '🌞 Полдень — тень короткая':'☀️ День'));
+  }
+  window._shadowDraw=draw;
+  R.addEventListener('input',draw); draw();
+})();
+
+// ===== СИМУЛЯТОР: ПОГОДА (1 ползунок) =====
+(function(){
+  var cv=document.getElementById('weatherCv'); if(!cv)return;
+  var ctx=cv.getContext('2d'), R=document.getElementById('weatherR'), label=document.getElementById('weatherState');
+  var W=cv.width, H=cv.height;
+  var sun=new Image(); sun.onload=function(){if(!raf)draw();}; sun.src='sim_sun.webp';
+  var cloud=new Image(); cloud.onload=function(){if(!raf)draw();}; cloud.src='sim_cloud.webp';
+  var drops=[]; for(var i=0;i<60;i++)drops.push({x:Math.random()*W,y:Math.random()*H,s:3+Math.random()*3});
+  var flash=0, raf=null;
+  function draw(){
+    var t=+R.value/100; // 0 ясно .. 1 гроза
+    ctx.clearRect(0,0,W,H);
+    // небо темнеет к грозе
+    var lum=1-t*0.65;
+    var sky=ctx.createLinearGradient(0,0,0,H);
+    sky.addColorStop(0,'rgb('+Math.round(120*lum+60)+','+Math.round(180*lum+50)+','+Math.round(235*lum+20)+')');
+    sky.addColorStop(1,'rgb('+Math.round(200*lum+40)+','+Math.round(225*lum+25)+','+Math.round(245*lum+10)+')');
+    ctx.fillStyle=sky; ctx.fillRect(0,0,W,H);
+    // молния (на грозе, вспышками)
+    if(t>0.8){ flash=Math.random()<0.06?1:Math.max(0,flash-0.08);
+      if(flash>0){ ctx.fillStyle='rgba(255,255,210,'+(flash*0.5)+')'; ctx.fillRect(0,0,W,H);
+        ctx.strokeStyle='#fff7c0'; ctx.lineWidth=4; ctx.beginPath();
+        var zx=W*0.5; ctx.moveTo(zx,H*0.2); ctx.lineTo(zx-18,H*0.45); ctx.lineTo(zx+8,H*0.5); ctx.lineTo(zx-14,H*0.78); ctx.stroke(); } }
+    // солнце (тает при облаках)
+    if(t<0.55 && sun.complete&&sun.naturalWidth){ var sr=78; ctx.globalAlpha=Math.max(0,1-t/0.55);
+      ctx.drawImage(sun, W*0.66, H*0.06, sr, sr*sun.naturalHeight/sun.naturalWidth); ctx.globalAlpha=1; }
+    // тучка (появляется с облаков)
+    if(t>0.28 && cloud.complete&&cloud.naturalWidth){ var cw=W*0.5; ctx.globalAlpha=Math.min(1,(t-0.28)/0.3);
+      ctx.drawImage(cloud, W*0.25, H*0.04, cw, cw*cloud.naturalHeight/cloud.naturalWidth); ctx.globalAlpha=1; }
+    // дождь
+    if(t>0.5){ ctx.strokeStyle='rgba(120,170,230,0.8)'; ctx.lineWidth=2; var rain=(t-0.5)/0.5;
+      for(var i=0;i<drops.length*rain;i++){ var d=drops[i]; d.y+=d.s*4; if(d.y>H){d.y=-10;d.x=Math.random()*W;}
+        ctx.beginPath(); ctx.moveTo(d.x,d.y); ctx.lineTo(d.x-2,d.y+10); ctx.stroke(); } }
+    label.textContent = t<0.28?'☀️ Ясно, светит солнце' : (t<0.55?'⛅ Облачно' : (t<0.82?'🌧️ Идёт дождь':'⛈️ Гроза!'));
+  }
+  window._weatherDraw=draw;
+  function loop(){ draw(); raf=requestAnimationFrame(loop); }
+  R.addEventListener('input',function(){ if(!raf)loop(); });
+  loop();
+})();
+
+// ===== СИМУЛЯТОР: СМЕШАЙ КРАСКИ (1 ползунок) =====
+(function(){
+  var cv=document.getElementById('paintCv'); if(!cv)return;
+  var ctx=cv.getContext('2d'), R=document.getElementById('paintR'), label=document.getElementById('paintState');
+  var W=cv.width, H=cv.height;
+  function mix(t){ // 0 синий .. 0.5 зелёный .. 1 жёлтый
+    var r,g,b;
+    if(t<0.5){ var k=t/0.5; r=Math.round(30+ (60-30)*k); g=Math.round(90+(170-90)*k); b=Math.round(200+(70-200)*k); }
+    else { var k2=(t-0.5)/0.5; r=Math.round(60+(240-60)*k2); g=Math.round(170+(210-170)*k2); b=Math.round(70+(50-70)*k2); }
+    return 'rgb('+r+','+g+','+b+')';
+  }
+  function blob(cx,cy,rr,color){ ctx.fillStyle=color; ctx.beginPath();
+    for(var a=0;a<Math.PI*2;a+=0.3){ var rad=rr*(0.9+0.12*Math.sin(a*3)); var x=cx+Math.cos(a)*rad, y=cy+Math.sin(a)*rad; if(a===0)ctx.moveTo(x,y); else ctx.lineTo(x,y);} ctx.closePath(); ctx.fill(); }
+  function draw(){
+    var t=+R.value/100;
+    ctx.clearRect(0,0,W,H); ctx.fillStyle='#fff'; ctx.fillRect(0,0,W,H);
+    // синий + жёлтый = результат (две исходные краски постоянны, справа меняется смесь)
+    blob(W*0.15,H*0.5,44,'rgb(30,90,200)');   // синяя (исходная)
+    blob(W*0.45,H*0.5,44,'rgb(240,210,50)');   // жёлтая (исходная)
+    ctx.fillStyle='#1b1b1b'; ctx.font='bold 32px sans-serif'; ctx.textAlign='center';
+    ctx.fillText('+', W*0.30, H*0.56); ctx.fillText('=', W*0.62, H*0.56);
+    // результат справа: зависит от ползунка (сколько подмешали — от синего к жёлтому через зелёный)
+    blob(W*0.82,H*0.5, 52, mix(t));
+    label.textContent = t<0.3?'Получается синеватая' : (t>0.7?'Получается желтоватая':'🟢 Синий и жёлтый дают ЗЕЛЁНЫЙ!');
+  }
+  window._paintDraw=draw;
+  R.addEventListener('input',draw); draw();
+})();
+
+// E: окошки
+(function(){
+  var fl=document.querySelectorAll('#tcE .flap'), opened=0;
+  fl.forEach(function(f){ f.addEventListener('click', function(){
+    if(f.classList.contains('open'))return;
+    f.classList.add('open'); ttsSay(f.dataset.say); opened++;
+    if(opened===fl.length){ document.getElementById('tcE').classList.add('done'); }
+  });});
+})();
+
+// F: чей голос (звукоподражание через TTS-заглушку; в проде — mp3 Marina/SFX)
+(function(){
+  var ROUNDS=[{id:'car',snd:'Би-би! Би-би!'},{id:'plane',snd:'У-у-у! Лечу высоко!'},{id:'boat',snd:'Плыву по волнам, шумит вода!'}];
+  var cur=0, opts=document.querySelectorAll('#tcF .sopt');
+  function play(){ if(cur<ROUNDS.length) ttsSay(ROUNDS[cur].snd); }
+  document.getElementById('sndBtn').addEventListener('click', play);
+  opts.forEach(function(o){ o.addEventListener('click', function(){
+    if(cur>=ROUNDS.length)return;
+    if(o.dataset.id===ROUNDS[cur].id){ o.classList.add('ok'); cur++;
+      if(cur<ROUNDS.length){ setTimeout(function(){opts.forEach(function(x){x.classList.remove('ok');}); play();},700); }
+      else document.getElementById('tcF').classList.add('done');
+    } else { o.classList.add('no'); setTimeout(function(){o.classList.remove('no');},420); ttsSay('Послушай ещё раз.'); }
+  });});
+  play();
+})();
+
+// G: шторка
+(function(){
+  var cmp=document.getElementById('cmp'), top=document.getElementById('cmpTop'), bar=document.getElementById('cmpBar'), drag=false;
+  function setp(x){ var r=cmp.getBoundingClientRect(); var p=Math.max(4,Math.min(96,(x-r.left)/r.width*100));
+    top.style.width=p+'%'; bar.style.left=p+'%';
+    document.getElementById('cmpTopImg').style.width=(10000/p)+'%'; }
+  // ширина внутренней картинки должна компенсировать обрезку
+  document.getElementById('cmpTopImg').style.width=(10000/55)+'%';
+  cmp.addEventListener('pointerdown',function(e){drag=true;setp(e.clientX);});
+  document.addEventListener('pointermove',function(e){if(drag)setp(e.clientX);});
+  document.addEventListener('pointerup',function(){drag=false;});
+})();
+
+// H: дорожка
+(function(){
+  var svg=document.getElementById('traceSvg'), path=document.getElementById('tracePath'), prog=document.getElementById('traceDone');
+  var wrap=document.getElementById('trace');
+  var L=path.getTotalLength(); prog.setAttribute('stroke-dasharray',L); prog.setAttribute('stroke-dashoffset',L);
+  var vb=svg.viewBox.baseVal; // 360 x 240
+  // точки пути в координатах viewBox
+  var N=160, pts=[]; for(var i=0;i<=N;i++)pts.push(path.getPointAtLength(L*i/N));
+  var furthest=0, dragging=false, done=false;
+
+  // палец -> точка в координатах viewBox (px экрана делим на масштаб по каждой оси)
+  function toVB(e){ var r=wrap.getBoundingClientRect();
+    return { x:(e.clientX-r.left)/r.width*vb.width, y:(e.clientY-r.top)/r.height*vb.height,
+             sx:r.width/vb.width, sy:r.height/vb.height }; }
+  // ближайшая точка пути; расстояние считаем В ПИКСЕЛЯХ экрана (учитываем разный масштаб осей)
+  function near(p){ var best=-1, bd=1e9;
+    for(var i=0;i<pts.length;i++){ var dx=(pts[i].x-p.x)*p.sx, dy=(pts[i].y-p.y)*p.sy; var d=dx*dx+dy*dy;
+      if(d<bd){bd=d;best=i;} }
+    return {i:best, d:Math.sqrt(bd)}; }
+
+  var HIT=48;     // радиус «палец на дорожке», px экрана — щедрый, под детский палец
+  var STEP=10;    // на сколько точек максимум прыгаем за кадр (защита от срезания углов)
+  function advance(p){ var n=near(p);
+    if(n.d>HIT) return;                       // палец слишком далеко от тропы — игнор
+    if(n.i>furthest && n.i<=furthest+STEP){   // двигаемся только вперёд и без скачков
+      furthest=n.i;
+      prog.setAttribute('stroke-dashoffset', L*(1-furthest/N));
+      if(furthest>=N-2){ done=true; dragging=false;
+        document.getElementById('tcH').classList.add('done'); ttsSay('Дошёл! Спокойной ночи.'); } } }
+
+  wrap.addEventListener('pointerdown',function(e){ if(done)return;
+    var p=toVB(e), n=near(p);
+    // стартуем, только если палец у начала тропы
+    if(n.d<HIT && n.i<=furthest+STEP){ dragging=true; e.preventDefault(); advance(p); } });
+  document.addEventListener('pointermove',function(e){ if(!dragging||done)return; advance(toVB(e)); });
+  document.addEventListener('pointerup',function(){ dragging=false; });
+  // если палец сорвался с тропы — просто ждём, прогресс не откатываем (по-доброму к малышам)
+})();
+
+// I: фонарик
+(function(){
+  var fl=document.getElementById('fl'), dark=document.getElementById('flDark'), q=document.getElementById('flQ');
+  var R=[{p:'grandma',q:'В парке стемнело! Посвети и найди бабушку.',say:'Вот бабушка на скамейке!'},
+         {p:'dog',q:'Теперь найди собачку.',say:'Вот собачка!'},
+         {p:'girl',q:'А где девочка с шариком?',say:'Вот она! Всех нашёл в темноте!'}];
+  var cur=0, lx=-200, ly=-200;
+  function shine(e){var r=fl.getBoundingClientRect();
+    lx=e.clientX-r.left; ly=e.clientY-r.top;
+    dark.style.setProperty('--lx',lx+'px'); dark.style.setProperty('--ly',ly+'px');}
+  function hitAt(e){var r=fl.getBoundingClientRect();
+    var px=(e.clientX-r.left)/r.width*100, py=(e.clientY-r.top)/r.height*100;
+    var hs=fl.querySelectorAll('.flh'),i;
+    for(i=0;i<hs.length;i++){var h=hs[i];
+      var l=parseFloat(h.style.left),t=parseFloat(h.style.top),w=parseFloat(h.style.width),ht=parseFloat(h.style.height);
+      if(px>=l&&px<=l+w&&py>=t&&py<=t+ht)return h;}
+    return null;}
+  fl.addEventListener('pointermove',shine);
+  fl.addEventListener('pointerdown',function(e){ shine(e);
+    var h=hitAt(e); if(!h||cur>=R.length)return;
+    if(h.dataset.p===R[cur].p){ h.classList.add('found'); ttsSay(R[cur].say); cur++;
+      if(cur<R.length){ q.textContent=R[cur].q; ttsSay(R[cur].q); }
+      else document.getElementById('tcI').classList.add('done');
+    }});
+})();
+
+// J: счёт тапами
+(function(){
+  var n=0, lab=document.getElementById('cntLab'), WORDS=['Один!','Два!','Три!','Четыре!','Пять мячиков!'];
+  document.getElementById('cnt').addEventListener('click',function(e){
+    var h=e.target.closest('.ch'); if(!h)return;
+    if(h.classList.contains('ok')){
+      if(h.classList.contains('tapped'))return;
+      h.classList.add('tapped'); ttsSay(WORDS[n]); n++;
+      lab.textContent='Найдено: '+n+' из 5';
+      if(n===5) document.getElementById('tcJ').classList.add('done');
+    } else { h.classList.add('no'); setTimeout(function(){h.classList.remove('no');},420); ttsSay('Это не мячик.'); }
+  });
+})();
+
+// K: что изменилось
+(function(){
+  var st=0, img=document.getElementById('dfImg'), btn=document.getElementById('dfBtn'),
+      spot=document.getElementById('dfSpot'), q=document.getElementById('dfQ');
+  btn.addEventListener('click',function(){ if(st)return; st=1;
+    img.style.transition='opacity .25s'; img.style.opacity=0;
+    setTimeout(function(){ img.src='diff_B.webp'; img.style.opacity=1; spot.style.display='block';
+      btn.style.display='none'; q.textContent='Что пропало? Нажми на пустое место.'; ttsSay(q.textContent); },350); });
+  document.getElementById('df').addEventListener('click',function(e){
+    if(st!==1)return;
+    if(e.target===spot){ st=2; spot.style.boxShadow='inset 0 0 0 5px #2e7d4f'; spot.style.background='rgba(46,125,79,.15)';
+      document.getElementById('tcK').classList.add('done'); ttsSay('Точно! Пропала сковородка.'); }
+    else if(e.target.id==='dfImg'){ ttsSay('Посмотри внимательнее.'); }
+  });
+})();
+
+// L: мемори
+(function(){
+  var IMGS=['cat','dog','rabbit','apple','sun','ball'];
+  var deck=IMGS.concat(IMGS).map(function(n,i){return{n:n,k:i};});
+  for(var i=deck.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1)),t=deck[i];deck[i]=deck[j];deck[j]=t;}
+  var grid=document.getElementById('mem'), open=[], lock=false, won=0;
+  deck.forEach(function(c){
+    var d=document.createElement('div'); d.className='mc'; d.dataset.img=c.n;
+    d.innerHTML='<div class="in"><div class="f">❓</div><div class="b"><img src="'+c.n+'.webp"></div></div>';
+    d.addEventListener('click',function(){
+      if(lock||d.classList.contains('open'))return;
+      d.classList.add('open'); open.push(d);
+      if(open.length===2){ lock=true;
+        var same=open[0].dataset.img===open[1].dataset.img;
+        setTimeout(function(){
+          if(same){ open.forEach(function(x){x.classList.add('won');}); won++;
+            ttsSay('Пара!');
+            if(won===IMGS.length) document.getElementById('tcL').classList.add('done');
+          } else open.forEach(function(x){x.classList.remove('open');});
+          open=[]; lock=false; }, same?350:800);
+      }});
+    grid.appendChild(d);
+  });
+})();
+
+// M: счёт транспорта
+(function(){
+  var n=0, lab=document.getElementById('cntLab2'), WORDS=['Одна!','Две!','Три машины!'];
+  document.getElementById('cnt2').addEventListener('click',function(e){
+    var h=e.target.closest('.ch'); if(!h)return;
+    if(h.classList.contains('ok')){ if(h.classList.contains('tapped'))return;
+      h.classList.add('tapped'); ttsSay(WORDS[n]); n++; lab.textContent='Найдено: '+n+' из 3';
+      if(n===3) document.getElementById('tcM').classList.add('done');
+    } else { h.classList.add('no'); setTimeout(function(){h.classList.remove('no');},420); ttsSay('Это не легковая машина.'); }
+  });
+})();
+
+// N: времена года свайпом/кнопками
+(function(){
+  var SE=[{f:'yard_spring.webp',n:'ВЕСНА',say:'Весна. Всё цветёт!'},
+          {f:'yard_summer.webp',n:'ЛЕТО',say:'Лето. Тепло и зелено!'},
+          {f:'yard_autumn.webp',n:'ОСЕНЬ',say:'Осень. Листья золотые!'},
+          {f:'yard_winter.webp',n:'ЗИМА',say:'Зима. Холодно и тихо!'}];
+  var cur=0, seen={0:1}, img=document.getElementById('seaImg'), lab=document.getElementById('seaLab');
+  var dots=document.querySelectorAll('#tcN .sd'), sea=document.getElementById('sea');
+  function show(i){ cur=(i+SE.length)%SE.length; img.src=SE[cur].f;
+    lab.textContent='Листай картинки и смотри, как двор меняется. Сейчас: '+SE[cur].n;
+    dots.forEach(function(d,k){d.classList.toggle('on',k===cur);});
+    ttsSay(SE[cur].say); seen[cur]=1;
+    if(Object.keys(seen).length===SE.length) document.getElementById('tcN').classList.add('done'); }
+  document.getElementById('seaNext').addEventListener('click',function(){show(cur+1);});
+  document.getElementById('seaPrev').addEventListener('click',function(){show(cur-1);});
+  // свайп
+  var sx=null;
+  sea.addEventListener('pointerdown',function(e){sx=e.clientX;});
+  sea.addEventListener('pointerup',function(e){ if(sx===null)return; var dx=e.clientX-sx; sx=null;
+    if(dx<-30)show(cur+1); else if(dx>30)show(cur-1); });
+})();
+
+
+// ============ ИГРОВОЙ СЛОЙ (карты) ============
+
+
+// ===== КОЛОДА: каждая карта — многослойный объект =====
+var COLOR_RU={red:'красные',blue:'синие',green:'зелёные',amber:'жёлтые'};
+var EVENTS={star:{e:'⭐',t:'Шанс! Попрыгай как зайчик!'},pause:{e:'⏸',t:'Пропусти ход — отдохни кружок.'},fwd:{e:'🚀',t:'Шагни вперёд на 2 клетки!'},help:{e:'🤝',t:'Помоги другу — сделайте вместе!'}};
+var DECK=[
+  {img:'cat',name:'Кот',suit:'🐾',suitName:'Звери',num:1,color:'red',event:null},
+  {img:'dog',name:'Пёс',suit:'🐾',suitName:'Звери',num:2,color:'blue',event:'star'},
+  {img:'fox',name:'Лиса',suit:'🐾',suitName:'Звери',num:3,color:'green',event:null},
+  {img:'sparrow',name:'Воробей',suit:'🐦',suitName:'Птицы',num:4,color:'amber',event:null},
+  {img:'duckling',name:'Утёнок',suit:'🐦',suitName:'Птицы',num:5,color:'red',event:'pause'},
+  {img:'rooster',name:'Петух',suit:'🐦',suitName:'Птицы',num:6,color:'blue',event:null},
+  {img:'car',name:'Машина',suit:'🚗',suitName:'Транспорт',num:7,color:'green',event:'fwd'},
+  {img:'bus',name:'Автобус',suit:'🚗',suitName:'Транспорт',num:8,color:'amber',event:null},
+  {img:'plane',name:'Самолёт',suit:'🚗',suitName:'Транспорт',num:9,color:'red',event:null},
+  {img:'tree',name:'Дерево',suit:'🌳',suitName:'Природа',num:10,color:'blue',event:'help'},
+  {img:'daisy',name:'Ромашка',suit:'🌳',suitName:'Природа',num:11,color:'green',event:null},
+  {img:'sun',name:'Солнце',suit:'🌳',suitName:'Природа',num:12,color:'amber',event:null}
+];
+function shuffle(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1)),t=a[i];a[i]=a[j];a[j]=t;}return a;}
+
+// единый рендер карты со слоями
+function renderCard(c, show, big){
+  var d=document.createElement('div');
+  d.className='card'+(big?' big':'')+' c-'+c.color
+    +(show.suit?' s-suit':'')+(show.num?' s-num':'')+(show.color?' s-color':'')+(show.event?' s-event':'');
+  d.dataset.img=c.img;
+  var ev=c.event?EVENTS[c.event].e:'';
+  d.innerHTML='<div class="suit">'+c.suit+'</div><div class="num">'+c.num+'</div>'
+    +'<img class="pic" src="'+c.img+'.webp" alt="'+c.name+'">'
+    +'<div class="nm">'+c.name+'</div>'
+    +'<div class="event">'+ev+'</div>';
+  return d;
+}
+
+// ===== БОЛЬШАЯ КАРТА + ТУМБЛЕРЫ =====
+(function(){
+  var show={suit:true,num:true,color:true,event:true};
+  var sample=DECK[1]; // Пёс: есть все слои, включая событие ⭐
+  var host=document.getElementById('bigCard');
+  function redraw(){ host.innerHTML=''; host.appendChild(renderCard(sample,show,true)); }
+  document.querySelectorAll('.tg').forEach(function(t){ t.addEventListener('click',function(){
+    var L=t.dataset.layer; show[L]=!show[L]; t.classList.toggle('on',show[L]); redraw();
+  });});
+  redraw();
+})();
+
+// ===== ИГРА 1: ПО ПОРЯДКУ (слой число) =====
+function initGame1(){
+  var host=document.getElementById('game1'), q=document.getElementById('q1'), win=document.getElementById('win1');
+  win.classList.remove('show');
+  var pick=shuffle(DECK).slice(0,6);
+  var order=pick.slice().sort(function(a,b){return a.num-b.num;});
+  var step=0;
+  host.innerHTML='';
+  shuffle(pick).forEach(function(c){
+    var el=renderCard(c,{num:true},false);
+    el.addEventListener('click',function(){
+      if(el.classList.contains('ok'))return;
+      if(c.num===order[step].num){ el.classList.add('ok'); ttsSay(c.num); step++;
+        if(step<order.length){ q.textContent='Теперь число '+order[step].num; }
+        else { q.textContent='Готово!'; win.classList.add('show'); }
+      } else { el.classList.add('no'); setTimeout(function(){el.classList.remove('no');},420); ttsSay('Поищи число '+order[step].num); }
+    });
+    host.appendChild(el);
+  });
+  q.textContent='Найди карту с числом '+order[0].num;
+}
+
+// ===== ИГРА 2: СОБЕРИ МАСТЬ (слой масть) =====
+function initGame2(){
+  var host=document.getElementById('game2'), q=document.getElementById('q2'), win=document.getElementById('win2');
+  win.classList.remove('show');
+  var suits=[]; DECK.forEach(function(c){ if(suits.indexOf(c.suitName)<0)suits.push(c.suitName); });
+  var target=shuffle(suits)[0];
+  var need=DECK.filter(function(c){return c.suitName===target;}).length, got=0;
+  var tEmoji=DECK.find(function(c){return c.suitName===target;}).suit;
+  q.innerHTML='Собери всех: '+tEmoji+' '+target;
+  host.innerHTML='';
+  shuffle(DECK).forEach(function(c){
+    var el=renderCard(c,{suit:true},false);
+    el.addEventListener('click',function(){
+      if(el.classList.contains('ok'))return;
+      if(c.suitName===target){ el.classList.add('ok'); ttsSay(c.name); got++;
+        if(got>=need){ win.classList.add('show'); }
+      } else { el.classList.add('no'); setTimeout(function(){el.classList.remove('no');},420); ttsSay('Это другая группа'); }
+    });
+    host.appendChild(el);
+  });
+}
+
+// ===== ИГРА 3: НАЙДИ ПО ЦВЕТУ (слой цвет) =====
+function initGame3(){
+  var host=document.getElementById('game3'), win=document.getElementById('win3'), q3c=document.getElementById('q3c');
+  win.classList.remove('show');
+  var colors=['red','blue','green','amber'];
+  var target=shuffle(colors)[0];
+  q3c.textContent=COLOR_RU[target];
+  var need=DECK.filter(function(c){return c.color===target;}).length, got=0;
+  host.innerHTML='';
+  shuffle(DECK).forEach(function(c){
+    var el=renderCard(c,{color:true},false);
+    el.addEventListener('click',function(){
+      if(el.classList.contains('ok'))return;
+      if(c.color===target){ el.classList.add('ok'); ttsSay(COLOR_RU[c.color]); got++;
+        if(got>=need){ win.classList.add('show'); }
+      } else { el.classList.add('no'); setTimeout(function(){el.classList.remove('no');},420); ttsSay('Другой цвет'); }
+    });
+    host.appendChild(el);
+  });
+}
+
+// ===== ИГРА 4: ХОДИЛКА (карта = клетка) =====
+function initGame4(){
+  var track=document.getElementById('track'), dice=document.getElementById('dice'), log=document.getElementById('hodlog'), evb=document.getElementById('evbig'), win=document.getElementById('win4');
+  win.classList.remove('show'); evb.textContent=''; log.textContent='Нажми кубик, чтобы пойти';
+  var path=DECK.slice(); // дорожка = вся колода по порядку
+  var pos=-1, busy=false;
+  track.innerHTML='';
+  path.forEach(function(c,i){
+    var cell=document.createElement('div'); cell.className='cell'; cell.dataset.i=i;
+    cell.appendChild(renderCard(c,{suit:true,event:true},false));
+    track.appendChild(cell);
+  });
+  function place(){ track.querySelectorAll('.cell').forEach(function(cl){ cl.classList.remove('here'); var p=cl.querySelector('.pawn'); if(p)p.remove(); });
+    if(pos>=0){ var cell=track.querySelector('.cell[data-i="'+pos+'"]'); cell.classList.add('here');
+      var pw=document.createElement('div'); pw.className='pawn'; pw.textContent='🔴'; cell.appendChild(pw);
+      cell.scrollIntoView({inline:'center',block:'nearest'}); } }
+  function landing(){ var c=path[pos]; log.textContent='🔴 '+c.name; ttsSay(c.name);
+    if(c.event){ var E=EVENTS[c.event]; evb.textContent=E.e+' '+E.t; ttsSay(E.t);
+      if(c.event==='fwd'){ setTimeout(function(){ pos=Math.min(path.length-1,pos+2); place(); afterMove(); },800); return false; }
+    } else evb.textContent='';
+    return true; }
+  function afterMove(){ if(pos>=path.length-1){ win.classList.add('show'); log.textContent='🏁 Финиш!'; } }
+  dice.addEventListener('click',function(){
+    if(busy)return; busy=true;
+    dice.classList.add('roll');
+    var n=1+Math.floor(Math.random()*6);
+    setTimeout(function(){
+      dice.classList.remove('roll'); dice.textContent='⚀⚁⚂⚃⚄⚅'[n-1];
+      pos=Math.min(path.length-1, pos+n); place();
+      var cont=landing(); afterMove();
+      busy=false;
+    },520);
+  });
+  place();
+}
+
+// ===== кнопки «новая игра» =====
+document.querySelectorAll('[data-new]').forEach(function(b){
+  b.addEventListener('click',function(){ var g=b.dataset.new;
+    if(g==='1')initGame1(); else if(g==='2')initGame2(); else if(g==='3')initGame3(); else initGame4();
+  });
+});
+initGame1(); initGame2(); initGame3(); initGame4();
+
+
+
+// ============ КОМБО-СЦЕНАРИИ со сквозными связками ============
+(function(){
+  var PHASE={know:['Знакомство','know'],act:['Действие','act'],cause:['Причина','cause'],read:['Чтение','read'],check:['Проверка','check']};
+  var ICO={know:'🔎',act:'🤚',cause:'🔬',read:'📖',check:'🧠'};
+  // карта: блок -> {tab, id} реального элемента в прототипе (для честных связок)
+  var LINK={
+    'Найди и покажи':['mech','tcD'], 'Найди и сосчитай':['mech','tcJ'], 'Кто есть кто':['mech','tcA'],
+    'Подпиши предмет':['mech','tcA0'], 'Чья тень?':['mech','tcC'], 'Что пропало?':['mech','tcF'],
+    'Найди пару':['mech','tcG'], 'Найди пару (мемори)':['mech','tcG'], 'Фонарик':['mech','tcK'],
+    'Кто за дверцей?':['mech','tcE'], 'Что так звучит?':['mech','tcI'], 'Проведи дорожку':['mech','tcH'],
+    'Времена года (свайп)':['mech','tcN'], 'Собери слово':['mech','tcB'], 'Что где лежит':['mech','tcA0'],
+    'Симулятор «Времена года»':['sim','seasonStage'], 'Симулятор «Вода»':['sim','waterStage'],
+    'Симулятор «Превращения воды»':['sim','waterStage'], 'Симулятор «День и ночь»':['sim','globeStage'],
+    'Симулятор «Что вырастет»':['sim','growStage'], 'Симулятор «Погода»':['sim','weatherStage'],
+    'Симулятор «Какая погода»':['sim','weatherStage'], 'Симулятор «Смешай краски»':['sim','paintStage'],
+    'Книжка «Мой день»':['book','tcBook3'], 'Книжка «Мой день»/«Сказка»':['book','tcBook3'],
+    'Книжка «Прогулка»':['book','tcBook'], 'Книжка «Чей домик?»':['book','tcBookHome'],
+    'Книжка «Что любит?»':['book','tcBookLike'], 'Книжка «Кто как говорит»':['book','tcBookSound'],
+    'Книжка «Сколько?»':['book','tcBookCount'], 'Книжка «Теремок»':['book','tcBookTerem'],
+    '«Большой и маленький»':['book','tcBookBig'], 'Книжка «Большой и маленький»':['book','tcBookBig'],
+    '«Один — много»':['book','tcBookMany'], '«Закончи фразу»':['book','tcBookFill'],
+    '«Кто это?» (ур.1)':['book','tcBook1'], '«Сказка про утёнка»':['book','tcBookTale'],
+    '«Волшебное слово»':['book','tcBookMagic'], 'Найди по цвету (карты)':['cards','game3']
+  };
+  var THEME=[
+    {t:'🍂 Природа и сезоны',f:'Осень · Зима · Лето · Времена года · Деревья · Цветы',s:[['know','Найди и покажи','найди дерево, листок, солнце'],['act','Времена года (свайп)','проведи двор через 4 сезона'],['cause','Симулятор «Времена года»','как меняется природа за год'],['read','Книжка «Мой день»/«Сказка»','история про прогулку'],['check','Что пропало?','что исчезло со сцены']]},
+    {t:'🐾 Животные',f:'Звери · Птицы · Рыбы · Пресмыкающиеся · Жаркие страны',s:[['know','Кто есть кто','подпиши зверей'],['act','Чья тень?','зверь на свой силуэт'],['cause','Книжка «Чей домик?»','где чей дом'],['read','Книжка «Кто как говорит»','голос зверя'],['check','Найди пару','одинаковые звери']]},
+    {t:'🏠 Быт и предметы',f:'Мой дом · Одежда · Из чего сделано · История предметов',s:[['know','Подпиши предмет','вещи на места'],['act','Что где лежит','разложи по комнатам'],['cause','Книжка «Что любит?»','кому что нужно'],['read','Книжка «Прогулка»','про дом и вещи'],['check','Кто за дверцей?','вспомни, что за дверцей']]},
+    {t:'👪 Общество и праздники',f:'Семья · Страна · 8 Марта · День Победы · Детский сад',s:[['know','Найди и покажи','найди членов семьи'],['act','Найди и сосчитай','сколько человек'],['read','Книжка «Мой день»','день в семье/саду'],['cause','«Большой и маленький»','кто старше, кто младше'],['check','Что пропало?','кого не хватает']]},
+    {t:'💧 Явления и стихии',f:'Вода · Солнце-воздух-вода · Космос · Зимние забавы',s:[['know','Найди и покажи','где вода, солнце, облако'],['cause','Симулятор «Превращения воды»','лёд → вода → пар'],['cause','Симулятор «День и ночь»','день и ночь'],['read','«Волшебное слово»','оживи солнце'],['check','Найди пару','соедини явления']]},
+    {t:'🍎 Здоровье и продукты',f:'Здоровье · Дары леса · Продукты на стол',s:[['know','Кто есть кто','назови продукты'],['act','Найди и сосчитай','сосчитай фрукты'],['cause','Симулятор «Что вырастет»','солнце + вода = растёт'],['read','Книжка «Сколько?»','считаем и читаем'],['check','Что пропало?','какого продукта нет']]}
+  ];
+  var GOAL=[
+    {t:'👀 Внимание и память',f:'любая тема',s:[['know','Найди и покажи','найди предмет'],['act','Фонарик','свети, ищи спрятанное'],['check','Что пропало?','что исчезло'],['check','Найди пару','ищи одинаковые']]},
+    {t:'🔬 Причины и следствия',f:'природа, вода, рост, погода',s:[['cause','Симулятор «Превращения воды»','если нагреть'],['cause','Симулятор «Что вырастет»','что нужно растению'],['cause','Симулятор «Какая погода»','от солнца к грозе'],['read','«Сказка про утёнка»','история, где всё связано']]},
+    {t:'🗣️ Речь и чтение',f:'любая тема со словами',s:[['know','«Кто это?» (ур.1)','одно слово'],['act','«Закончи фразу»','подставь слово'],['read','«Один — много»','один и много'],['read','Собери слово','сложи из букв']]},
+    {t:'🔢 Счёт',f:'животные, дары леса, транспорт',s:[['know','Найди и покажи','найди предметы'],['act','Найди и сосчитай','считай вслух'],['read','Книжка «Сколько?»','прочитай число'],['check','Книжка «Теремок»','прибавляем героя']]},
+    {t:'🧩 Сравнение и сортировка',f:'предметы, животные, размеры',s:[['know','Чья тень?','предмет и силуэт'],['act','«Большой и маленький»','сравни по размеру'],['act','Книжка «Чей домик?»','зверь — дом'],['check','Найди пару','память на сходство']]},
+    {t:'🎨 Творчество и краски',f:'цвета, рисование, природа',s:[['know','Найди по цвету (карты)','найди красное/синее'],['cause','Симулятор «Смешай краски»','синий + жёлтый'],['read','«Волшебное слово»','оживи словом'],['check','Что пропало?','какого цвета нет']]}
+  ];
+  function jump(blockName){
+    var lk=LINK[blockName]; if(!lk)return;
+    var tab=document.querySelector('.tab[data-tab="'+lk[0]+'"]'); if(tab)tab.click();
+    var el=document.getElementById(lk[1]);
+    if(el){ setTimeout(function(){
+      el.scrollIntoView({behavior:'smooth',block:'center'});
+      el.classList.remove('jumpflash'); void el.offsetWidth; el.classList.add('jumpflash');
+    },120); }
+    document.getElementById('backbar').classList.add('on');
+  }
+  function render(data){
+    var host=document.getElementById('comboList'); host.innerHTML='';
+    data.forEach(function(c){
+      var el=document.createElement('div'); el.className='combo';
+      var steps=c.s.map(function(s,i){
+        return '<div class="cstep" data-block="'+s[1].replace(/"/g,'&quot;')+'">'
+          +'<div class="ico c-'+PHASE[s[0]][1]+'">'+ICO[s[0]]+'</div>'
+          +'<div class="t"><div class="nm">'+(i+1)+'. '+s[1]+'</div><div class="ds">'+s[2]+'</div></div>'
+          +'<div class="go">открыть ›</div></div>';
+      }).join('');
+      el.innerHTML='<h3>'+c.t+'</h3><div class="meta">Для уроков: <b>'+c.f+'</b></div>'+steps;
+      host.appendChild(el);
+    });
+    host.querySelectorAll('.cstep').forEach(function(st){ st.addEventListener('click',function(){ jump(st.dataset.block); }); });
+  }
+  document.querySelectorAll('#paneCombo .cseg .sb').forEach(function(b){ b.addEventListener('click',function(){
+    document.querySelectorAll('#paneCombo .cseg .sb').forEach(function(x){x.classList.remove('on');}); b.classList.add('on');
+    render(b.dataset.mode==='theme'?THEME:GOAL);
+  });});
+  // кнопка возврата к маршруту
+  var bb=document.createElement('div'); bb.className='backbar'; bb.id='backbar'; bb.textContent='← Вернуться к маршруту';
+  document.body.appendChild(bb);
+  bb.addEventListener('click',function(){
+    var tab=document.querySelector('.tab[data-tab="combo"]'); if(tab)tab.click();
+    window.scrollTo({top:0,behavior:'smooth'}); bb.classList.remove('on');
+  });
+  render(THEME);
+})();
+
+</script>
+</body></html>

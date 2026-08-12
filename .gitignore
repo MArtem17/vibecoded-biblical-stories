@@ -1,0 +1,16 @@
+﻿# Archives (do not upload to GitLab)
+*.zip
+*.rar
+*.7z
+*.tar
+*.tar.gz
+*.tgz
+
+# OS / editor
+Thumbs.db
+Desktop.ini
+.DS_Store
+*.swp
+*~
+.idea/
+.vscode/

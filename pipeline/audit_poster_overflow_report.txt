@@ -1,0 +1,83 @@
+=== АУДИТ ПЕРЕПОЛНЕНИЯ ЖИВОГО ПОСТЕРА ===
+Карт с оверлеем: 40 | Языки: ru, en, de, es, pt, fr, ar
+Оценка геометрии: TILE_W=312px, MODAL_W=380px
+
+--- TILE ---
+title: 0 проблем, 0 карт
+sub: 0 проблем, 0 карт
+find: 0 проблем, 0 карт
+fact: 30 проблем, 15 карт | по языкам: {"es":6,"pt":5,"fr":9,"de":5,"ar":2,"en":3}
+  карты: heroes_02, heroes_09, heroes_11, heroes_19, heroes_20, plots_01, plots_04, plots_05, plots_06, plots_07, plots_08, plots_09, plots_11, plots_17, plots_20
+  heroes_02 [es] fact#3 lines=3 len=28 reason=min-height "descendientes como estrellas"
+  heroes_02 [pt] fact#3 lines=3 len=26 reason=min-height "descendentes como estrelas"
+  heroes_02 [fr] fact#3 lines=3 len=29 reason=min-height "descendants comme des étoiles"
+  heroes_09 [es] fact#3 lines=3 len=30 reason=min-height "llevó las puertas de la ciudad"
+  heroes_09 [pt] fact#3 lines=3 len=25 reason=min-height "levou as portas da cidade"
+  heroes_09 [fr] fact#3 lines=3 len=28 reason=min-height "porta les portes de la ville"
+  heroes_11 [de] fact#2 lines=2 len=16 reason=min-height "diente am Tempel"
+  heroes_19 [de] fact#2 lines=3 len=33 reason=min-height "brachte die Familie in Sicherheit"
+  heroes_19 [pt] fact#2 lines=4 len=36 reason=min-height "levou a família para longe do perigo"
+  heroes_19 [fr] fact#2 lines=3 len=32 reason=min-height "emmena la famille loin du danger"
+  heroes_19 [ar] fact#2 lines=4 len=27 reason=min-height "أخذ العائلة بعيدًا عن الخطر"
+  heroes_20 [en] fact#2 lines=3 len=28 reason=min-height "of travel following the star"
+  … ещё 18
+
+--- MODAL ---
+title: 0 проблем, 0 карт
+sub: 0 проблем, 0 карт
+find: 0 проблем, 0 карт
+fact: 459 проблем, 40 карт | по языкам: {"ru":46,"en":75,"de":73,"es":72,"pt":63,"fr":73,"ar":57}
+  карты: heroes_01, heroes_02, heroes_03, heroes_04, heroes_05, heroes_06, heroes_07, heroes_08, heroes_09, heroes_10, heroes_11, heroes_12, heroes_13, heroes_14, heroes_15, heroes_16, heroes_17, heroes_18, heroes_19, heroes_20, plots_01, plots_02, plots_03, plots_04, plots_05, plots_06, plots_07, plots_08, plots_09, plots_10, plots_11, plots_12, plots_13, plots_14, plots_15, plots_16, plots_17, plots_18, plots_19, plots_20
+  heroes_01 [ru] fact#2 lines=3 len=13 reason=min-height "длина ковчега"
+  heroes_01 [ru] fact#3 lines=5 len=20 reason=min-height "каждой твари по паре"
+  heroes_01 [en] fact#2 lines=2 len=10 reason=min-height "ark length"
+  heroes_01 [en] fact#3 lines=4 len=17 reason=min-height "of every creature"
+  heroes_01 [de] fact#2 lines=3 len=15 reason=min-height "Länge der Arche"
+  heroes_01 [de] fact#3 lines=5 len=22 reason=min-height "von jeder Art ein Paar"
+  heroes_01 [es] fact#2 lines=3 len=14 reason=min-height "largo del arca"
+  heroes_01 [pt] fact#2 lines=3 len=19 reason=min-height "comprimento da arca"
+  heroes_01 [fr] fact#2 lines=3 len=19 reason=min-height "longueur de l'arche"
+  heroes_01 [fr] fact#3 lines=4 len=18 reason=min-height "de chaque créature"
+  heroes_01 [ar] fact#2 lines=2 len=9 reason=min-height "طول الفلك"
+  heroes_01 [ar] fact#3 lines=4 len=15 reason=min-height "من كل مخلوق زوج"
+  … ещё 447
+
+--- TOP FIND (длина символов, tile) ---
+ru: plots_07 (36ch) "разноцветную одежду · братьев · овец"
+en: plots_07 (40ch) "the colorful coat · the brothers · sheep"
+de: heroes_06 (46ch) "die Tafeln · einen Stab · den brennenden Busch"
+es: heroes_11 (44ch) "una lámpara · un rollo · un cuerno de aceite"
+pt: heroes_14 (44ch) "um corvo · uma carruagem de fogo · um riacho"
+fr: plots_09 (46ch) "le buisson ardent · des sandales · des moutons"
+ar: heroes_09 (36ch) "أسدًا · شعرًا طويلاً · أبواب المدينة"
+
+--- TOP FACT LABEL (длина, tile) ---
+ru: plots_07 #3 (26ch, ~2 lines) "монет — цена предательства"
+en: plots_09 #1 (30ch, ~3 lines) "bush burned without burning up"
+de: heroes_19 #2 (33ch, ~3 lines) "brachte die Familie in Sicherheit"
+es: heroes_19 #2 (36ch, ~3 lines) "llevó a la familia lejos del peligro"
+pt: heroes_19 #2 (36ch, ~4 lines) "levou a família para longe do perigo"
+fr: plots_13 #1 (36ch, ~3 lines) "jours ils firent le tour de la ville"
+ar: heroes_19 #2 (27ch, ~4 lines) "أخذ العائلة بعيدًا عن الخطر"
+
+--- DE/AR заметно длиннее RU (find/fact) ---
+heroes_09 fact1 de x2.64 | ru: "раз стригся" | de: "mal schnitt er sich die Haare"
+plots_04 fact3 de x2.00 | ru: "ищи радугу" | de: "suche den Regenbogen"
+heroes_13 find de x1.95 | ru: "корону · храм · свиток" | de: "eine Krone · den Tempel · eine Schriftrolle"
+plots_12 fact3 de x1.92 | ru: "лет правилам" | de: "Jahre gelten die Gebote"
+plots_15 fact3 de x1.92 | ru: "решение царя" | de: "Entscheidung des Königs"
+plots_13 find de x1.90 | ru: "шофар · стены · пыль" | de: "ein Schofar · die Mauern · Staubwolken"
+plots_08 fact1 de x1.86 | ru: "месяца прятали" | de: "Monate versteckten sie ihn"
+heroes_06 fact2 de x1.85 | ru: "лет вёл народ" | de: "Jahre führte er das Volk"
+heroes_01 find de x1.83 | ru: "радугу · голубя · жирафа" | de: "einen Regenbogen · eine Taube · eine Giraffe"
+heroes_19 fact2 de x1.83 | ru: "увёз семью от беды" | de: "brachte die Familie in Sicherheit"
+plots_16 fact3 de x1.82 | ru: "внутри стен" | de: "innerhalb der Mauern"
+plots_06 fact3 ar x1.80 | ru: "шли ангелы" | ar: "كانت الملائكة تسير"
+heroes_16 find de x1.72 | ru: "корону · скипетр · свиток" | de: "eine Krone · ein Zepter · eine Schriftrolle"
+plots_04 fact1 de x1.69 | ru: "цветов радуги" | de: "Farben des Regenbogens"
+heroes_18 find de x1.68 | ru: "ясли · звезду · ослика" | de: "die Krippe · einen Stern · einen Esel"
+heroes_19 find de x1.65 | ru: "пилу · рубанок · фонарь" | de: "eine Säge · einen Hobel · eine Laterne"
+heroes_15 fact1 de x1.64 | ru: "ночь во рву" | de: "Nacht in der Grube"
+plots_17 fact2 de x1.62 | ru: "улеглись львы" | de: "legten sich die Löwen"
+plots_09 fact1 de x1.60 | ru: "куст горел не сгорая" | de: "Busch brannte ohne zu verbrennen"
+plots_04 find de x1.59 | ru: "радугу · ковчег · овец" | de: "den Regenbogen · die Arche · Schafe"

@@ -1,0 +1,2002 @@
+{
+  "Ты видишь не просто истории — ты видишь связи между ними. Это и есть настоящее знание!": {
+    "en": "You see more than stories — you see how they connect. That’s real knowing!",
+    "de": "Du siehst nicht nur Geschichten — du siehst, wie sie zusammenhängen. Das ist echtes Wissen!",
+    "es": "No solo ves historias: ves cómo se conectan. ¡Eso es saber de verdad!",
+    "pt": "Você vê mais do que histórias — vê como elas se ligam. Isso é saber de verdade!",
+    "fr": "Tu ne vois pas seulement des histoires — tu vois comment elles se relient. C’est ça, vraiment savoir !",
+    "ar": "أنت لا ترى قصصًا فقط — ترى كيف تترابط. هذا هو العلم الحقيقي!"
+  },
+  "Ты — эксперт!": {
+    "en": "You’re an expert!",
+    "de": "Du bist ein Experte!",
+    "es": "¡Eres un experto!",
+    "pt": "Você é um especialista!",
+    "fr": "Tu es un expert !",
+    "ar": "أنت خبير!"
+  },
+  "Самые хитрые вопросы — про связи между историями. Вопросы открываются, когда истории уже изучены!": {
+    "en": "The trickiest questions are about how stories link. They unlock once you’ve learned the stories!",
+    "de": "Die kniffligsten Fragen gehen um Verbindungen. Sie öffnen sich, wenn du die Geschichten schon kennst!",
+    "es": "Las preguntas más astutas son sobre cómo se enlazan las historias. ¡Se abren cuando ya las has aprendido!",
+    "pt": "As perguntas mais espertas são sobre como as histórias se ligam. Elas abrem quando você já aprendeu as histórias!",
+    "fr": "Les questions les plus malines portent sur les liens entre les histoires. Elles s’ouvrent quand tu les as déjà apprises !",
+    "ar": "أصعب الأسئلة عن الروابط بين القصص. تُفتح عندما تكون القصص قد دُرست!"
+  },
+  "Испытание экспертов": {
+    "en": "Experts’ challenge",
+    "de": "Experten-Prüfung",
+    "es": "Desafío de expertos",
+    "pt": "Desafio dos especialistas",
+    "fr": "Défi des experts",
+    "ar": "تحدّي الخبراء"
+  },
+  "Весь путь — от творения до Рождества": {
+    "en": "The whole path — from Creation to Christmas",
+    "de": "Der ganze Weg — von der Schöpfung bis Weihnachten",
+    "es": "Todo el camino — de la Creación a la Navidad",
+    "pt": "Todo o caminho — da Criação ao Natal",
+    "fr": "Tout le chemin — de la Création à Noël",
+    "ar": "المسار كله — من الخلق إلى الميلاد"
+  },
+  "Сотворение мира": {
+    "en": "Creation of the world",
+    "de": "Erschaffung der Welt",
+    "es": "La creación del mundo",
+    "pt": "A criação do mundo",
+    "fr": "La création du monde",
+    "ar": "خلق العالم"
+  },
+  "Ковчег Ноя": {
+    "en": "Noah’s ark",
+    "de": "Noahs Arche",
+    "es": "El arca de Noé",
+    "pt": "A arca de Noé",
+    "fr": "L’arche de Noé",
+    "ar": "سفينة نوح"
+  },
+  "Авраам считает звёзды": {
+    "en": "Abraham counts the stars",
+    "de": "Abraham zählt die Sterne",
+    "es": "Abraham cuenta las estrellas",
+    "pt": "Abraão conta as estrelas",
+    "fr": "Abraham compte les étoiles",
+    "ar": "إبراهيم يعدّ النجوم"
+  },
+  "Исход из Египта": {
+    "en": "The Exodus from Egypt",
+    "de": "Der Auszug aus Ägypten",
+    "es": "El Éxodo de Egipto",
+    "pt": "O Êxodo do Egito",
+    "fr": "L’Exode d’Égypte",
+    "ar": "الخروج من مصر"
+  },
+  "Давид становится царём": {
+    "en": "David becomes king",
+    "de": "David wird König",
+    "es": "David se convierte en rey",
+    "pt": "Davi se torna rei",
+    "fr": "David devient roi",
+    "ar": "داود يصير ملكًا"
+  },
+  "Даниил в Вавилоне": {
+    "en": "Daniel in Babylon",
+    "de": "Daniel in Babylon",
+    "es": "Daniel en Babilonia",
+    "pt": "Daniel em Babilônia",
+    "fr": "Daniel à Babylone",
+    "ar": "دانيال في بابل"
+  },
+  "Звезда над Вифлеемом": {
+    "en": "The star over Bethlehem",
+    "de": "Der Stern über Bethlehem",
+    "es": "La estrella sobre Belén",
+    "pt": "A estrela sobre Belém",
+    "fr": "L’étoile au-dessus de Bethléem",
+    "ar": "النجم فوق بيت لحم"
+  },
+  "Великое испытание: нажимай по порядку — от начала мира до звезды": {
+    "en": "Great challenge: tap in order — from the start of the world to the star",
+    "de": "Große Prüfung: tippe der Reihe nach — vom Anfang der Welt bis zum Stern",
+    "es": "Gran desafío: toca en orden — del comienzo del mundo a la estrella",
+    "pt": "Grande desafio: toque na ordem — do começo do mundo até a estrela",
+    "fr": "Grand défi : appuie dans l’ordre — du début du monde jusqu’à l’étoile",
+    "ar": "تحدٍّ عظيم: اضغط بالترتيب — من بداية العالم إلى النجم"
+  },
+  "Вся Библия по порядку": {
+    "en": "The whole Bible in order",
+    "de": "Die ganze Bibel der Reihe nach",
+    "es": "Toda la Biblia en orden",
+    "pt": "Toda a Bíblia em ordem",
+    "fr": "Toute la Bible dans l’ordre",
+    "ar": "الكتاب المقدس كله بالترتيب"
+  },
+  "Потоп был раньше! Башню строили уже потомки Ноя.": {
+    "en": "The flood came first! Noah’s descendants built the tower later.",
+    "de": "Die Flut war früher! Die Nachkommen Noahs bauten den Turm danach.",
+    "es": "¡El diluvio fue primero! Los descendientes de Noé construyeron la torre después.",
+    "pt": "O dilúvio veio primeiro! Os descendentes de Noé construíram a torre depois.",
+    "fr": "Le déluge est venu d’abord ! Les descendants de Noé ont bâti la tour plus tard.",
+    "ar": "الطوفان كان أولًا! أحفاد نوح بنوا البرج بعد ذلك."
+  },
+  "Потоп": {
+    "en": "The Flood",
+    "de": "Die Flut",
+    "es": "El Diluvio",
+    "pt": "O Dilúvio",
+    "fr": "Le Déluge",
+    "ar": "الطوفان"
+  },
+  "Вавилонская башня": {
+    "en": "The Tower of Babel",
+    "de": "Der Turm zu Babel",
+    "es": "La torre de Babel",
+    "pt": "A torre de Babel",
+    "fr": "La tour de Babel",
+    "ar": "برج بابل"
+  },
+  "Что случилось раньше: потоп или Вавилонская башня?": {
+    "en": "What happened first: the flood or the Tower of Babel?",
+    "de": "Was geschah früher: die Flut oder der Turm zu Babel?",
+    "es": "¿Qué pasó primero: el diluvio o la torre de Babel?",
+    "pt": "O que aconteceu primeiro: o dilúvio ou a torre de Babel?",
+    "fr": "Qu’est-ce qui est arrivé en premier : le déluge ou la tour de Babel ?",
+    "ar": "ماذا حدث أولًا: الطوفان أم برج بابل؟"
+  },
+  "Вопрос эксперта": {
+    "en": "Expert question",
+    "de": "Expertenfrage",
+    "es": "Pregunta de experto",
+    "pt": "Pergunta de especialista",
+    "fr": "Question d’expert",
+    "ar": "سؤال للخبير"
+  },
+  "Иосиф! Братья продали его в Египет, а он стал там спасителем страны.": {
+    "en": "Joseph! His brothers sold him to Egypt, and there he became the country’s rescuer.",
+    "de": "Josef! Seine Brüder verkauften ihn nach Ägypten, und dort rettete er das Land.",
+    "es": "¡José! Sus hermanos lo vendieron a Egipto, y allí se convirtió en salvador del país.",
+    "pt": "José! Os irmãos o venderam ao Egito, e lá ele se tornou o salvador do país.",
+    "fr": "Joseph ! Ses frères l’ont vendu en Égypte, et là-bas il est devenu le sauveur du pays.",
+    "ar": "يوسف! باعه إخوته إلى مصر، وصار هناك منقذ البلاد."
+  },
+  "Иосиф": {
+    "en": "Joseph",
+    "de": "Josef",
+    "es": "José",
+    "pt": "José",
+    "fr": "Joseph",
+    "ar": "يوسف"
+  },
+  "Илия": {
+    "en": "Elijah",
+    "de": "Elia",
+    "es": "Elías",
+    "pt": "Elias",
+    "fr": "Élie",
+    "ar": "إيليا"
+  },
+  "Руфь": {
+    "en": "Ruth",
+    "de": "Rut",
+    "es": "Rut",
+    "pt": "Rute",
+    "fr": "Ruth",
+    "ar": "راعوث"
+  },
+  "Самсон": {
+    "en": "Samson",
+    "de": "Simson",
+    "es": "Sansón",
+    "pt": "Sansão",
+    "fr": "Samson",
+    "ar": "شمشون"
+  },
+  "Кто из них жил в Египте?": {
+    "en": "Which of them lived in Egypt?",
+    "de": "Wer von ihnen lebte in Ägypten?",
+    "es": "¿Quién de ellos vivió en Egipto?",
+    "pt": "Quem deles viveu no Egito?",
+    "fr": "Lequel d’entre eux a vécu en Égypte ?",
+    "ar": "من منهم عاش في مصر؟"
+  },
+  "Верно! Ковчег и корзинка — оба спаслись на воде.": {
+    "en": "Right! The ark and the little basket — both were saved on the water.",
+    "de": "Richtig! Arche und Körbchen — beide wurden auf dem Wasser gerettet.",
+    "es": "¡Correcto! El arca y la cestita — ambos se salvaron en el agua.",
+    "pt": "Certo! A arca e o cestinho — os dois se salvaram na água.",
+    "fr": "Exact ! L’arche et le petit panier — tous deux ont été sauvés sur l’eau.",
+    "ar": "صحيح! السفينة والسلّة الصغيرة — كلاهما نجا على الماء."
+  },
+  "Обоих спасло судёнышко на воде": {
+    "en": "A little boat on the water saved both",
+    "de": "Ein kleines Boot auf dem Wasser rettete beide",
+    "es": "Una barquita en el agua salvó a ambos",
+    "pt": "Um barquinho na água salvou os dois",
+    "fr": "Une petite embarcation sur l’eau a sauvé les deux",
+    "ar": "مركبة صغيرة على الماء أنقذت الاثنين"
+  },
+  "Оба были царями": {
+    "en": "Both were kings",
+    "de": "Beide waren Könige",
+    "es": "Ambos fueron reyes",
+    "pt": "Os dois foram reis",
+    "fr": "Tous deux étaient rois",
+    "ar": "كلاهما كانا ملكين"
+  },
+  "Оба жили во дворце": {
+    "en": "Both lived in a palace",
+    "de": "Beide lebten im Palast",
+    "es": "Ambos vivieron en un palacio",
+    "pt": "Os dois viveram num palácio",
+    "fr": "Tous deux vivaient dans un palais",
+    "ar": "كلاهما عاشا في قصر"
+  },
+  "Оба строили храм": {
+    "en": "Both built a temple",
+    "de": "Beide bauten einen Tempel",
+    "es": "Ambos construyeron un templo",
+    "pt": "Os dois construíram um templo",
+    "fr": "Tous deux ont bâti un temple",
+    "ar": "كلاهما بنيا هيكلًا"
+  },
+  "Что общего у Ноя и маленького Моисея?": {
+    "en": "What do Noah and baby Moses have in common?",
+    "de": "Was haben Noah und der kleine Mose gemeinsam?",
+    "es": "¿Qué tienen en común Noé y el pequeño Moisés?",
+    "pt": "O que Noé e o pequenino Moisés têm em comum?",
+    "fr": "Qu’ont en commun Noé et le petit Moïse ?",
+    "ar": "ما المشترك بين نوح وموسى الصغير؟"
+  },
+  "Царя Давида! Доброта Руфи отозвалась через поколения.": {
+    "en": "King David! Ruth’s kindness echoed through the generations.",
+    "de": "König David! Ruts Güte hallte durch die Generationen nach.",
+    "es": "¡Al rey David! La bondad de Rut resonó a través de las generaciones.",
+    "pt": "O rei Davi! A bondade de Rute ecoou pelas gerações.",
+    "fr": "Le roi David ! La bonté de Ruth a résonné à travers les générations.",
+    "ar": "الملك داود! طيبة راعوث تردّدت عبر الأجيال."
+  },
+  "Царя Давида": {
+    "en": "King David",
+    "de": "König David",
+    "es": "Al rey David",
+    "pt": "O rei Davi",
+    "fr": "Le roi David",
+    "ar": "الملك داود"
+  },
+  "Моисея": {
+    "en": "Moses",
+    "de": "Mose",
+    "es": "A Moisés",
+    "pt": "Moisés",
+    "fr": "Moïse",
+    "ar": "موسى"
+  },
+  "Самсона": {
+    "en": "Samson",
+    "de": "Simson",
+    "es": "A Sansón",
+    "pt": "Sansão",
+    "fr": "Samson",
+    "ar": "شمشون"
+  },
+  "Ионы": {
+    "en": "Jonah",
+    "de": "Jona",
+    "es": "A Jonás",
+    "pt": "Jonas",
+    "fr": "Jonas",
+    "ar": "يونان"
+  },
+  "Чьей прабабушкой стала верная Руфь?": {
+    "en": "Whose great-grandmother did faithful Ruth become?",
+    "de": "Wessen Urgroßmutter wurde die treue Rut?",
+    "es": "¿De quién se convirtió en bisabuela la fiel Rut?",
+    "pt": "De quem a fiel Rute se tornou bisavó?",
+    "fr": "De qui la fidèle Ruth est-elle devenue l’arrière-grand-mère ?",
+    "ar": "لمن صارت راعوث الأمينة جدّة أكبر؟"
+  },
+  "7 дней + 7 цветов = 14. Семёрка — любимое число этих историй!": {
+    "en": "7 days + 7 colors = 14. Seven is a favorite number in these stories!",
+    "de": "7 Tage + 7 Farben = 14. Die Sieben ist eine Lieblingszahl in diesen Geschichten!",
+    "es": "7 días + 7 colores = 14. ¡El siete es un número favorito en estas historias!",
+    "pt": "7 dias + 7 cores = 14. Sete é um número querido nestas histórias!",
+    "fr": "7 jours + 7 couleurs = 14. Le sept est un nombre préféré dans ces histoires !",
+    "ar": "٧ أيام + ٧ ألوان = ١٤. السبعة رقم محبوب في هذه القصص!"
+  },
+  "Сложи: дни творения плюс цвета радуги. Сколько получится?": {
+    "en": "Add it up: creation days plus rainbow colors. How many is that?",
+    "de": "Rechne: Schöpfungstage plus Regenbogenfarben. Wie viel ergibt das?",
+    "es": "Suma: días de la creación más colores del arcoíris. ¿Cuánto da?",
+    "pt": "Some: dias da criação mais cores do arco-íris. Quanto dá?",
+    "fr": "Additionne : jours de la création plus couleurs de l’arc-en-ciel. Combien ça fait ?",
+    "ar": "اجمع: أيام الخلق زائد ألوان قوس قزح. كم الناتج؟"
+  },
+  "Руфь! Самые верные слова на свете.": {
+    "en": "Ruth! The most loyal words in the world.",
+    "de": "Rut! Die treuesten Worte der Welt.",
+    "es": "¡Rut! Las palabras más fieles del mundo.",
+    "pt": "Rute! As palavras mais fiéis do mundo.",
+    "fr": "Ruth ! Les paroles les plus fidèles du monde.",
+    "ar": "راعوث! أصدق كلمات في العالم."
+  },
+  "Эсфирь": {
+    "en": "Esther",
+    "de": "Ester",
+    "es": "Ester",
+    "pt": "Ester",
+    "fr": "Esther",
+    "ar": "أستير"
+  },
+  "Мариам": {
+    "en": "Miriam",
+    "de": "Mirjam",
+    "es": "Miriam",
+    "pt": "Miriã",
+    "fr": "Myriam",
+    "ar": "مريم"
+  },
+  "Сарра": {
+    "en": "Sarah",
+    "de": "Sara",
+    "es": "Sara",
+    "pt": "Sara",
+    "fr": "Sara",
+    "ar": "سارة"
+  },
+  "Кто сказал: «Куда ты — туда и я»?": {
+    "en": "Who said: “Where you go, I will go”?",
+    "de": "Wer sagte: „Wohin du gehst, da gehe ich auch“?",
+    "es": "¿Quién dijo: «Adonde tú vayas, iré yo»?",
+    "pt": "Quem disse: “Para onde fores, irei eu”?",
+    "fr": "Qui a dit : « Où tu iras, j’irai » ?",
+    "ar": "من قال: «أينما تذهبين أذهب»؟"
+  },
+  "Верно! Один — во рву у львов, другой — в животе рыбы, и оба не сдались.": {
+    "en": "Right! One was in the lions’ den, the other in a fish’s belly — and neither gave up.",
+    "de": "Richtig! Einer in der Löwengrube, der andere im Bauch eines Fisches — und keiner gab auf.",
+    "es": "¡Correcto! Uno en el foso de los leones, el otro en el vientre de un pez — y ninguno se rindió.",
+    "pt": "Certo! Um na cova dos leões, o outro na barriga do peixe — e nenhum desistiu.",
+    "fr": "Exact ! L’un dans la fosse aux lions, l’autre dans le ventre d’un poisson — et aucun n’a abandonné.",
+    "ar": "صحيح! واحد في جبّ الأسود، والآخر في بطن السمكة — ولم يستسلم أيّ منهما."
+  },
+  "Оба остались верны вдали от дома": {
+    "en": "Both stayed faithful far from home",
+    "de": "Beide blieben treu, weit weg von zu Hause",
+    "es": "Ambos permanecieron fieles lejos de casa",
+    "pt": "Os dois permaneceram fiéis longe de casa",
+    "fr": "Tous deux sont restés fidèles loin de chez eux",
+    "ar": "كلاهما بقي أمينًا بعيدًا عن البيت"
+  },
+  "Оба строили ковчег": {
+    "en": "Both built an ark",
+    "de": "Beide bauten eine Arche",
+    "es": "Ambos construyeron un arca",
+    "pt": "Os dois construíram uma arca",
+    "fr": "Tous deux ont bâti une arche",
+    "ar": "كلاهما بنيا سفينة"
+  },
+  "Оба жили в Египте": {
+    "en": "Both lived in Egypt",
+    "de": "Beide lebten in Ägypten",
+    "es": "Ambos vivieron en Egipto",
+    "pt": "Os dois viveram no Egito",
+    "fr": "Tous deux ont vécu en Égypte",
+    "ar": "كلاهما عاشا في مصر"
+  },
+  "Что общего у Даниила и Ионы?": {
+    "en": "What do Daniel and Jonah have in common?",
+    "de": "Was haben Daniel und Jona gemeinsam?",
+    "es": "¿Qué tienen en común Daniel y Jonás?",
+    "pt": "O que Daniel e Jonas têm em comum?",
+    "fr": "Qu’ont en commun Daniel et Jonas ?",
+    "ar": "ما المشترك بين دانيال ويونان؟"
+  },
+  "Давида! Пастушок стал царём, а его сын — мудрецом.": {
+    "en": "David! The little shepherd became king, and his son became a wise man.",
+    "de": "David! Der kleine Hirte wurde König, und sein Sohn wurde weise.",
+    "es": "¡David! El pastorcito se hizo rey, y su hijo, un sabio.",
+    "pt": "Davi! O pastorzinho virou rei, e o filho dele, um sábio.",
+    "fr": "David ! Le petit berger est devenu roi, et son fils, un sage.",
+    "ar": "داود! الراعي الصغير صار ملكًا، وابنه صار حكيمًا."
+  },
+  "Давида": {
+    "en": "David",
+    "de": "David",
+    "es": "De David",
+    "pt": "Davi",
+    "fr": "David",
+    "ar": "داود"
+  },
+  "Самуила": {
+    "en": "Samuel",
+    "de": "Samuel",
+    "es": "De Samuel",
+    "pt": "Samuel",
+    "fr": "Samuel",
+    "ar": "صموئيل"
+  },
+  "Иакова": {
+    "en": "Jacob",
+    "de": "Jakob",
+    "es": "De Jacob",
+    "pt": "Jacó",
+    "fr": "Jacob",
+    "ar": "يعقوب"
+  },
+  "Чьим сыном был мудрый Соломон?": {
+    "en": "Whose son was wise Solomon?",
+    "de": "Wessen Sohn war der weise Salomo?",
+    "es": "¿De quién era hijo el sabio Salomón?",
+    "pt": "De quem o sábio Salomão era filho?",
+    "fr": "De qui le sage Salomon était-il le fils ?",
+    "ar": "ابن من كان سليمان الحكيم؟"
+  },
+  "Вифлеем! Над ним и зажглась новая звезда.": {
+    "en": "Bethlehem! Over it a new star shone.",
+    "de": "Bethlehem! Über ihm leuchtete ein neuer Stern auf.",
+    "es": "¡Belén! Sobre él se encendió una nueva estrella.",
+    "pt": "Belém! Sobre ela brilhou uma nova estrela.",
+    "fr": "Bethléem ! Au-dessus d’elle s’est allumée une nouvelle étoile.",
+    "ar": "بيت لحم! وفوقها أضاء نجم جديد."
+  },
+  "Вифлеем": {
+    "en": "Bethlehem",
+    "de": "Bethlehem",
+    "es": "Belén",
+    "pt": "Belém",
+    "fr": "Bethléem",
+    "ar": "بيت لحم"
+  },
+  "Назарет": {
+    "en": "Nazareth",
+    "de": "Nazareth",
+    "es": "Nazaret",
+    "pt": "Nazaré",
+    "fr": "Nazareth",
+    "ar": "الناصرة"
+  },
+  "Иерихон": {
+    "en": "Jericho",
+    "de": "Jericho",
+    "es": "Jericó",
+    "pt": "Jericó",
+    "fr": "Jéricho",
+    "ar": "أريحا"
+  },
+  "Вавилон": {
+    "en": "Babylon",
+    "de": "Babylon",
+    "es": "Babilonia",
+    "pt": "Babilônia",
+    "fr": "Babylone",
+    "ar": "بابل"
+  },
+  "В какой город пришли Мария и Иосиф перед Рождеством?": {
+    "en": "Which city did Mary and Joseph come to before Christmas?",
+    "de": "In welche Stadt kamen Maria und Josef vor Weihnachten?",
+    "es": "¿A qué ciudad llegaron María y José antes de la Navidad?",
+    "pt": "A que cidade chegaram Maria e José antes do Natal?",
+    "fr": "Dans quelle ville sont arrivés Marie et Joseph avant Noël ?",
+    "ar": "إلى أي مدينة جاء مريم ويوسف قبل الميلاد؟"
+  },
+  "Скрижали! Сначала — правила в пути, много позже — Храм в Иерусалиме.": {
+    "en": "The tablets! First — the rules on the journey, much later — the Temple in Jerusalem.",
+    "de": "Die Tafeln! Zuerst — die Regeln unterwegs, viel später — der Tempel in Jerusalem.",
+    "es": "¡Las tablas! Primero — las reglas en el camino; mucho después — el Templo en Jerusalén.",
+    "pt": "As tábuas! Primeiro — as regras no caminho; bem depois — o Templo em Jerusalém.",
+    "fr": "Les tables ! D’abord — les règles en chemin, bien plus tard — le Temple à Jérusalem.",
+    "ar": "اللوحان! أولًا — القواعد في الطريق، وبعد زمن طويل — الهيكل في أورشليم."
+  },
+  "Скрижали": {
+    "en": "The tablets",
+    "de": "Die Tafeln",
+    "es": "Las tablas",
+    "pt": "As tábuas",
+    "fr": "Les tables",
+    "ar": "اللوحان"
+  },
+  "Храм": {
+    "en": "The Temple",
+    "de": "Der Tempel",
+    "es": "El Templo",
+    "pt": "O Templo",
+    "fr": "Le Temple",
+    "ar": "الهيكل"
+  },
+  "Что было раньше: скрижали Моисея или Храм Соломона?": {
+    "en": "What came first: Moses’ tablets or Solomon’s Temple?",
+    "de": "Was war früher: Moses Tafeln oder Salomos Tempel?",
+    "es": "¿Qué fue primero: las tablas de Moisés o el Templo de Salomón?",
+    "pt": "O que veio primeiro: as tábuas de Moisés ou o Templo de Salomão?",
+    "fr": "Qu’est-ce qui est venu d’abord : les tables de Moïse ou le Temple de Salomon ?",
+    "ar": "ماذا جاء أولًا: لوحا موسى أم هيكل سليمان؟"
+  },
+  "Верно! Трубы и праща — не оружие силачей. Смелость важнее размера.": {
+    "en": "Right! Trumpets and a sling aren’t strongmen’s weapons. Courage matters more than size.",
+    "de": "Richtig! Hörner und Schleuder sind keine Waffen von Kraftprotzen. Mut zählt mehr als Größe.",
+    "es": "¡Correcto! Trompetas y honda no son armas de forzudos. El valor importa más que el tamaño.",
+    "pt": "Certo! Trombetas e funda não são armas de fortões. A coragem importa mais que o tamanho.",
+    "fr": "Exact ! Trompettes et fronde ne sont pas des armes de costauds. Le courage compte plus que la taille.",
+    "ar": "صحيح! الأبواق والمقلاع ليسا سلاح الأشدّاء. الشجاعة أهم من الحجم."
+  },
+  "Пали не от силы, а от смелости и веры": {
+    "en": "They fell not by force, but by courage and faith",
+    "de": "Sie fielen nicht durch Kraft, sondern durch Mut und Glauben",
+    "es": "Cayeron no por la fuerza, sino por el valor y la fe",
+    "pt": "Caíram não pela força, mas pela coragem e pela fé",
+    "fr": "Ils sont tombés non par la force, mais par le courage et la foi",
+    "ar": "سقطوا لا بالقوة، بل بالشجاعة والإيمان"
+  },
+  "Их одолели тараном": {
+    "en": "They were beaten with a battering ram",
+    "de": "Sie wurden mit einem Rammbock besiegt",
+    "es": "Los derrotaron con un ariete",
+    "pt": "Foram vencidos com um aríete",
+    "fr": "Ils ont été vaincus avec un bélier",
+    "ar": "هُزموا بالمحطّم"
+  },
+  "Они устояли": {
+    "en": "They stood firm",
+    "de": "Sie hielten stand",
+    "es": "Resistieron firmes",
+    "pt": "Eles resistiram",
+    "fr": "Ils ont tenu bon",
+    "ar": "ثبتوا صامدين"
+  },
+  "Их победил Соломон": {
+    "en": "Solomon defeated them",
+    "de": "Salomo besiegte sie",
+    "es": "Salomón los derrotó",
+    "pt": "Salomão os derrotou",
+    "fr": "Salomon les a vaincus",
+    "ar": "هزمهم سليمان"
+  },
+  "Что общего у стен Иерихона и великана Голиафа?": {
+    "en": "What do Jericho’s walls and giant Goliath have in common?",
+    "de": "Was haben Jerichos Mauern und der Riese Goliath gemeinsam?",
+    "es": "¿Qué tienen en común los muros de Jericó y el gigante Goliat?",
+    "pt": "O que as muralhas de Jericó e o gigante Golias têm em comum?",
+    "fr": "Qu’ont en commun les murs de Jéricho et le géant Goliath ?",
+    "ar": "ما المشترك بين أسوار أريحا والعملاق جليات؟"
+  },
+  "Эсфирь! Одна храбрая просьба — и народ спасён.": {
+    "en": "Esther! One brave request — and the people were saved.",
+    "de": "Ester! Eine mutige Bitte — und das Volk war gerettet.",
+    "es": "¡Ester! Una valiente petición — y el pueblo se salvó.",
+    "pt": "Ester! Um pedido corajoso — e o povo foi salvo.",
+    "fr": "Esther ! Une demande courageuse — et le peuple fut sauvé.",
+    "ar": "أستير! طلبة شجاعة واحدة — وخُلّص الشعب."
+  },
+  "Мария": {
+    "en": "Mary",
+    "de": "Maria",
+    "es": "María",
+    "pt": "Maria",
+    "fr": "Marie",
+    "ar": "مريم"
+  },
+  "Кто из этих женщин спасла целый народ?": {
+    "en": "Which of these women saved a whole people?",
+    "de": "Welche dieser Frauen rettete ein ganzes Volk?",
+    "es": "¿Cuál de estas mujeres salvó a todo un pueblo?",
+    "pt": "Qual destas mulheres salvou um povo inteiro?",
+    "fr": "Laquelle de ces femmes a sauvé tout un peuple ?",
+    "ar": "أيّ من هؤلاء النساء أنقذت شعبًا كاملًا؟"
+  },
+  "С земли — на самое небо. И по ней ходили ангелы.": {
+    "en": "From earth up to heaven. And angels walked on it.",
+    "de": "Von der Erde bis in den Himmel. Und Engel gingen darauf.",
+    "es": "De la tierra hasta el cielo. Y por ella caminaban ángeles.",
+    "pt": "Da terra até o céu. E anjos andavam por ela.",
+    "fr": "De la terre jusqu’au ciel. Et des anges y marchaient.",
+    "ar": "من الأرض إلى السماء نفسها. وملائكة تمشي عليها."
+  },
+  "С земли на небо": {
+    "en": "From earth to heaven",
+    "de": "Von der Erde zum Himmel",
+    "es": "De la tierra al cielo",
+    "pt": "Da terra ao céu",
+    "fr": "De la terre au ciel",
+    "ar": "من الأرض إلى السماء"
+  },
+  "В Египет": {
+    "en": "To Egypt",
+    "de": "Nach Ägypten",
+    "es": "A Egipto",
+    "pt": "Para o Egito",
+    "fr": "En Égypte",
+    "ar": "إلى مصر"
+  },
+  "На гору Синай": {
+    "en": "To Mount Sinai",
+    "de": "Zum Berg Sinai",
+    "es": "Al monte Sinaí",
+    "pt": "Ao monte Sinai",
+    "fr": "Au mont Sinaï",
+    "ar": "إلى جبل سيناء"
+  },
+  "В Вифлеем": {
+    "en": "To Bethlehem",
+    "de": "Nach Bethlehem",
+    "es": "A Belén",
+    "pt": "Para Belém",
+    "fr": "À Bethléem",
+    "ar": "إلى بيت لحم"
+  },
+  "Куда вела лестница из сна Иакова?": {
+    "en": "Where did the ladder in Jacob’s dream lead?",
+    "de": "Wohin führte die Leiter aus Jakobs Traum?",
+    "es": "¿Adónde llevaba la escalera del sueño de Jacob?",
+    "pt": "Para onde levava a escada do sonho de Jacó?",
+    "fr": "Où menait l’échelle du rêve de Jacob ?",
+    "ar": "إلى أين أدّى السلّم في حلم يعقوب؟"
+  },
+  "Радуга — после потопа. Манна — много позже, в пустыне после Исхода.": {
+    "en": "The rainbow — after the flood. Manna — much later, in the desert after the Exodus.",
+    "de": "Der Regenbogen — nach der Flut. Manna — viel später, in der Wüste nach dem Auszug.",
+    "es": "El arcoíris — después del diluvio. El maná — mucho después, en el desierto tras el Éxodo.",
+    "pt": "O arco-íris — depois do dilúvio. O maná — bem depois, no deserto após o Êxodo.",
+    "fr": "L’arc-en-ciel — après le déluge. La manne — bien plus tard, dans le désert après l’Exode.",
+    "ar": "قوس قزح — بعد الطوفان. المنّ — بعد زمن طويل، في البرية بعد الخروج."
+  },
+  "Радуга": {
+    "en": "The rainbow",
+    "de": "Der Regenbogen",
+    "es": "El arcoíris",
+    "pt": "O arco-íris",
+    "fr": "L’arc-en-ciel",
+    "ar": "قوس قزح"
+  },
+  "Манна": {
+    "en": "Manna",
+    "de": "Manna",
+    "es": "El maná",
+    "pt": "O maná",
+    "fr": "La manne",
+    "ar": "المنّ"
+  },
+  "Что появилось раньше: радуга или манна?": {
+    "en": "What appeared first: the rainbow or manna?",
+    "de": "Was erschien früher: der Regenbogen oder das Manna?",
+    "es": "¿Qué apareció primero: el arcoíris o el maná?",
+    "pt": "O que apareceu primeiro: o arco-íris ou o maná?",
+    "fr": "Qu’est-ce qui est apparu en premier : l’arc-en-ciel ou la manne ?",
+    "ar": "ماذا ظهر أولًا: قوس قزح أم المنّ؟"
+  },
+  "Самуил! Он ещё мальчиком услышал зов — и потом нашёл Давида.": {
+    "en": "Samuel! Still a boy, he heard the call — and later found David.",
+    "de": "Samuel! Noch als Junge hörte er den Ruf — und fand später David.",
+    "es": "¡Samuel! Siendo aún niño oyó la llamada — y después halló a David.",
+    "pt": "Samuel! Ainda menino ouviu o chamado — e depois encontrou Davi.",
+    "fr": "Samuel ! Encore garçon, il a entendu l’appel — et plus tard il a trouvé David.",
+    "ar": "صموئيل! وهو بعد صبي سمع النداء — ثم وجد داود."
+  },
+  "Самуил": {
+    "en": "Samuel",
+    "de": "Samuel",
+    "es": "Samuel",
+    "pt": "Samuel",
+    "fr": "Samuel",
+    "ar": "صموئيل"
+  },
+  "Соломон": {
+    "en": "Solomon",
+    "de": "Salomo",
+    "es": "Salomón",
+    "pt": "Salomão",
+    "fr": "Salomon",
+    "ar": "سليمان"
+  },
+  "Даниил": {
+    "en": "Daniel",
+    "de": "Daniel",
+    "es": "Daniel",
+    "pt": "Daniel",
+    "fr": "Daniel",
+    "ar": "دانيال"
+  },
+  "Волхвы": {
+    "en": "The wise men",
+    "de": "Die Weisen",
+    "es": "Los magos",
+    "pt": "Os magos",
+    "fr": "Les mages",
+    "ar": "المجوس"
+  },
+  "Расставь мысленно: кто жил раньше всех?": {
+    "en": "Think it through: who lived earliest of all?",
+    "de": "Denk nach: wer lebte am frühesten?",
+    "es": "Piensa: ¿quién vivió antes que todos?",
+    "pt": "Pense: quem viveu antes de todos?",
+    "fr": "Réfléchis : qui a vécu le plus tôt ?",
+    "ar": "فكّر: من عاش قبل الجميع؟"
+  },
+  "Иисус Навин! Он повёл народ дальше.": {
+    "en": "Joshua! He led the people onward.",
+    "de": "Josua! Er führte das Volk weiter.",
+    "es": "¡Josué! Él guió al pueblo más adelante.",
+    "pt": "Josué! Ele conduziu o povo adiante.",
+    "fr": "Josué ! Il a mené le peuple plus loin.",
+    "ar": "يشوع! قاد الشعب إلى الأمام."
+  },
+  "Иисус Навин": {
+    "en": "Joshua",
+    "de": "Josua",
+    "es": "Josué",
+    "pt": "Josué",
+    "fr": "Josué",
+    "ar": "يشوع"
+  },
+  "Голиаф": {
+    "en": "Goliath",
+    "de": "Goliath",
+    "es": "Goliat",
+    "pt": "Golias",
+    "fr": "Goliath",
+    "ar": "جليات"
+  },
+  "Иона": {
+    "en": "Jonah",
+    "de": "Jona",
+    "es": "Jonás",
+    "pt": "Jonas",
+    "fr": "Jonas",
+    "ar": "يونان"
+  },
+  "Исав": {
+    "en": "Esau",
+    "de": "Esau",
+    "es": "Esaú",
+    "pt": "Esaú",
+    "fr": "Ésaü",
+    "ar": "عيسو"
+  },
+  "Кто продолжил дело Моисея?": {
+    "en": "Who carried on Moses’ work?",
+    "de": "Wer setzte Moses Werk fort?",
+    "es": "¿Quién continuó la obra de Moisés?",
+    "pt": "Quem continuou a obra de Moisés?",
+    "fr": "Qui a poursuivi l’œuvre de Moïse ?",
+    "ar": "من واصل عمل موسى؟"
+  },
+  "Верно! Один пошёл в новую землю, другой спас семью в голоде.": {
+    "en": "Right! One went to a new land; the other saved his family in a famine.",
+    "de": "Richtig! Einer ging in ein neues Land, der andere rettete die Familie in der Hungersnot.",
+    "es": "¡Correcto! Uno fue a una tierra nueva; el otro salvó a su familia en el hambre.",
+    "pt": "Certo! Um foi a uma terra nova; o outro salvou a família na fome.",
+    "fr": "Exact ! L’un est allé vers une terre nouvelle ; l’autre a sauvé sa famille pendant la famine.",
+    "ar": "صحيح! واحد ذهب إلى أرض جديدة، والآخر أنقذ عائلته في المجاعة."
+  },
+  "Оба доверились и помогли семье": {
+    "en": "Both trusted and helped their family",
+    "de": "Beide vertrauten und halfen der Familie",
+    "es": "Ambos confiaron y ayudaron a la familia",
+    "pt": "Os dois confiaram e ajudaram a família",
+    "fr": "Tous deux ont fait confiance et aidé leur famille",
+    "ar": "كلاهما وثق وساعد عائلته"
+  },
+  "Оба строили башню": {
+    "en": "Both built a tower",
+    "de": "Beide bauten einen Turm",
+    "es": "Ambos construyeron una torre",
+    "pt": "Os dois construíram uma torre",
+    "fr": "Tous deux ont bâti une tour",
+    "ar": "كلاهما بنيا برجًا"
+  },
+  "Оба были фараонами": {
+    "en": "Both were pharaohs",
+    "de": "Beide waren Pharaonen",
+    "es": "Ambos fueron faraones",
+    "pt": "Os dois foram faraós",
+    "fr": "Tous deux étaient pharaons",
+    "ar": "كلاهما كانا فرعونين"
+  },
+  "Оба жили в Вифлееме": {
+    "en": "Both lived in Bethlehem",
+    "de": "Beide lebten in Bethlehem",
+    "es": "Ambos vivieron en Belén",
+    "pt": "Os dois viveram em Belém",
+    "fr": "Tous deux ont vécu à Bethléem",
+    "ar": "كلاهما عاشا في بيت لحم"
+  },
+  "Что общего у Авраама и Иосифа?": {
+    "en": "What do Abraham and Joseph have in common?",
+    "de": "Was haben Abraham und Josef gemeinsam?",
+    "es": "¿Qué tienen en común Abraham y José?",
+    "pt": "O que Abraão e José têm em comum?",
+    "fr": "Qu’ont en commun Abraham et Joseph ?",
+    "ar": "ما المشترك بين إبراهيم ويوسف؟"
+  },
+  "Соломон! Давид был царём раньше, а Храм построил сын.": {
+    "en": "Solomon! David was king first, and the son built the Temple.",
+    "de": "Salomo! David war früher König, und der Sohn baute den Tempel.",
+    "es": "¡Salomón! David fue rey antes, y el hijo construyó el Templo.",
+    "pt": "Salomão! Davi foi rei antes, e o filho construiu o Templo.",
+    "fr": "Salomon ! David fut roi d’abord, et le fils a bâti le Temple.",
+    "ar": "سليمان! داود كان ملكًا أولًا، والابن بنى الهيكل."
+  },
+  "Сын Давида — Соломон": {
+    "en": "David’s son — Solomon",
+    "de": "Davids Sohn — Salomo",
+    "es": "El hijo de David — Salomón",
+    "pt": "O filho de Davi — Salomão",
+    "fr": "Le fils de David — Salomon",
+    "ar": "ابن داود — سليمان"
+  },
+  "Сам Давид": {
+    "en": "David himself",
+    "de": "David selbst",
+    "es": "El propio David",
+    "pt": "O próprio Davi",
+    "fr": "David lui-même",
+    "ar": "داود نفسه"
+  },
+  "Кто построил Храм — Давид или его сын?": {
+    "en": "Who built the Temple — David or his son?",
+    "de": "Wer baute den Tempel — David oder sein Sohn?",
+    "es": "¿Quién construyó el Templo: David o su hijo?",
+    "pt": "Quem construiu o Templo — Davi ou o filho dele?",
+    "fr": "Qui a bâti le Temple — David ou son fils ?",
+    "ar": "من بنى الهيكل — داود أم ابنه؟"
+  },
+  "Волхвы! Их привела звезда.": {
+    "en": "The wise men! A star led them.",
+    "de": "Die Weisen! Ein Stern führte sie.",
+    "es": "¡Los magos! Una estrella los guió.",
+    "pt": "Os magos! Uma estrela os guiou.",
+    "fr": "Les mages ! Une étoile les a guidés.",
+    "ar": "المجوس! قادهم نجم."
+  },
+  "Фараон": {
+    "en": "Pharaoh",
+    "de": "Pharao",
+    "es": "Faraón",
+    "pt": "Faraó",
+    "fr": "Pharaon",
+    "ar": "فرعون"
+  },
+  "Ной": {
+    "en": "Noah",
+    "de": "Noah",
+    "es": "Noé",
+    "pt": "Noé",
+    "fr": "Noé",
+    "ar": "نوح"
+  },
+  "Кто пришёл к Младенцу позже пастухов?": {
+    "en": "Who came to the Baby later than the shepherds?",
+    "de": "Wer kam später als die Hirten zum Kind?",
+    "es": "¿Quién llegó al Niño después que los pastores?",
+    "pt": "Quem chegou ao Menino depois dos pastores?",
+    "fr": "Qui est venu vers l’Enfant après les bergers ?",
+    "ar": "من جاء إلى الطفل بعد الرعاة؟"
+  },
+  "Илия! Он говорил правду даже сильным.": {
+    "en": "Elijah! He spoke the truth even to the powerful.",
+    "de": "Elia! Er sagte die Wahrheit auch den Mächtigen.",
+    "es": "¡Elías! Decía la verdad incluso a los poderosos.",
+    "pt": "Elias! Ele dizia a verdade até aos poderosos.",
+    "fr": "Élie ! Il disait la vérité même aux puissants.",
+    "ar": "إيليا! كان يقول الحق حتى للأقوياء."
+  },
+  "Строитель башни": {
+    "en": "A tower builder",
+    "de": "Ein Turmbauer",
+    "es": "Un constructor de la torre",
+    "pt": "Um construtor da torre",
+    "fr": "Un bâtisseur de la tour",
+    "ar": "بنّاء البرج"
+  },
+  "Кто из них говорил с царями и оставался смелым?": {
+    "en": "Which of them spoke to kings and stayed brave?",
+    "de": "Wer von ihnen sprach mit Königen und blieb mutig?",
+    "es": "¿Quién de ellos habló con reyes y siguió valiente?",
+    "pt": "Quem deles falou com reis e permaneceu corajoso?",
+    "fr": "Lequel d’entre eux parlait aux rois et restait courageux ?",
+    "ar": "من منهم تكلّم مع الملوك وبقي شجاعًا؟"
+  },
+  "Верно! В обоих случаях путь открылся чудом.": {
+    "en": "Right! In both cases a miracle opened the way.",
+    "de": "Richtig! In beiden Fällen öffnete ein Wunder den Weg.",
+    "es": "¡Correcto! En ambos casos un milagro abrió el camino.",
+    "pt": "Certo! Nos dois casos um milagre abriu o caminho.",
+    "fr": "Exact ! Dans les deux cas, un miracle a ouvert le chemin.",
+    "ar": "صحيح! في الحالين فتح عجيبة الطريق."
+  },
+  "Чудо открыло путь народу": {
+    "en": "A miracle opened the way for the people",
+    "de": "Ein Wunder öffnete dem Volk den Weg",
+    "es": "Un milagro abrió el camino al pueblo",
+    "pt": "Um milagre abriu o caminho ao povo",
+    "fr": "Un miracle a ouvert le chemin au peuple",
+    "ar": "عجيبة فتحت الطريق للشعب"
+  },
+  "Их построил Соломон": {
+    "en": "Solomon built them",
+    "de": "Salomo baute sie",
+    "es": "Salomón las construyó",
+    "pt": "Salomão as construiu",
+    "fr": "Salomon les a bâtis",
+    "ar": "بناها سليمان"
+  },
+  "Там жил Иона": {
+    "en": "Jonah lived there",
+    "de": "Jona lebte dort",
+    "es": "Jonás vivió allí",
+    "pt": "Jonas morou ali",
+    "fr": "Jonas y vivait",
+    "ar": "عاش يونان هناك"
+  },
+  "Там пасли овец": {
+    "en": "They herded sheep there",
+    "de": "Dort hütete man Schafe",
+    "es": "Allí pastoreaban ovejas",
+    "pt": "Ali pastoreavam ovelhas",
+    "fr": "On y gardait les moutons",
+    "ar": "كانوا يرعون الغنم هناك"
+  },
+  "Что общего у моря Исхода и стен Иерихона?": {
+    "en": "What do the sea of the Exodus and Jericho’s walls have in common?",
+    "de": "Was haben das Meer des Auszugs und Jerichos Mauern gemeinsam?",
+    "es": "¿Qué tienen en común el mar del Éxodo y los muros de Jericó?",
+    "pt": "O que o mar do Êxodo e as muralhas de Jericó têm em comum?",
+    "fr": "Qu’ont en commun la mer de l’Exode et les murs de Jéricho ?",
+    "ar": "ما المشترك بين بحر الخروج وأسوار أريحا؟"
+  },
+  "Иосиф! История патриархов была раньше Исхода.": {
+    "en": "Joseph! The patriarchs’ story came before the Exodus.",
+    "de": "Josef! Die Geschichte der Patriarchen war vor dem Auszug.",
+    "es": "¡José! La historia de los patriarcas fue antes del Éxodo.",
+    "pt": "José! A história dos patriarcas foi antes do Êxodo.",
+    "fr": "Joseph ! L’histoire des patriarches était avant l’Exode.",
+    "ar": "يوسف! قصة الآباء كانت قبل الخروج."
+  },
+  "Моисей": {
+    "en": "Moses",
+    "de": "Mose",
+    "es": "Moisés",
+    "pt": "Moisés",
+    "fr": "Moïse",
+    "ar": "موسى"
+  },
+  "Кто жил раньше: Иосиф в разноцветной одежде или малыш Моисей в корзинке?": {
+    "en": "Who lived earlier: Joseph in the colorful coat, or baby Moses in the basket?",
+    "de": "Wer lebte früher: Josef im bunten Gewand oder der kleine Mose im Körbchen?",
+    "es": "¿Quién vivió antes: José con la túnica de colores o el bebé Moisés en la cestita?",
+    "pt": "Quem viveu antes: José com a túnica colorida ou o bebê Moisés no cestinho?",
+    "fr": "Qui a vécu plus tôt : Joseph à la tunique colorée, ou le bébé Moïse dans le panier ?",
+    "ar": "من عاش أولًا: يوسف بثوبه الملون أم موسى الطفل في السلّة؟"
+  },
+  "Радуга — в начале мира. Звезда — в финале пути.": {
+    "en": "The rainbow — at the world’s beginning. The star — at the path’s end.",
+    "de": "Der Regenbogen — am Anfang der Welt. Der Stern — am Ende des Weges.",
+    "es": "El arcoíris — al comienzo del mundo. La estrella — al final del camino.",
+    "pt": "O arco-íris — no começo do mundo. A estrela — no fim do caminho.",
+    "fr": "L’arc-en-ciel — au début du monde. L’étoile — à la fin du chemin.",
+    "ar": "قوس قزح — في بداية العالم. النجم — في ختام المسار."
+  },
+  "Звезда Рождества": {
+    "en": "The Christmas star",
+    "de": "Der Weihnachtsstern",
+    "es": "La estrella de Navidad",
+    "pt": "A estrela do Natal",
+    "fr": "L’étoile de Noël",
+    "ar": "نجم الميلاد"
+  },
+  "Что было знаком раньше: радуга или звезда Рождества?": {
+    "en": "Which sign came first: the rainbow or the Christmas star?",
+    "de": "Welches Zeichen war früher: der Regenbogen oder der Weihnachtsstern?",
+    "es": "¿Qué señal fue primero: el arcoíris o la estrella de Navidad?",
+    "pt": "Qual sinal veio primeiro: o arco-íris ou a estrela do Natal?",
+    "fr": "Quel signe est venu d’abord : l’arc-en-ciel ou l’étoile de Noël ?",
+    "ar": "أي علامة جاءت أولًا: قوس قزح أم نجم الميلاد؟"
+  },
+  "Верно! Сила в волосах и точный камень — не про размер.": {
+    "en": "Right! Strength in the hair and a well-aimed stone — it’s not about size.",
+    "de": "Richtig! Kraft in den Haaren und ein treffsicherer Stein — es geht nicht um die Größe.",
+    "es": "¡Correcto! Fuerza en el cabello y una piedra certera — no se trata del tamaño.",
+    "pt": "Certo! Força nos cabelos e uma pedra certeira — não é sobre tamanho.",
+    "fr": "Exact ! La force dans les cheveux et une pierre juste — ce n’est pas une question de taille.",
+    "ar": "صحيح! القوة في الشعر وحجر دقيق — الأمر ليس بالحجم."
+  },
+  "И Самсон, и Давид": {
+    "en": "Both Samson and David",
+    "de": "Sowohl Simson als auch David",
+    "es": "Tanto Sansón como David",
+    "pt": "Tanto Sansão quanto Davi",
+    "fr": "Samson et David tous les deux",
+    "ar": "شمشون وداود معًا"
+  },
+  "Только Голиаф": {
+    "en": "Only Goliath",
+    "de": "Nur Goliath",
+    "es": "Solo Goliat",
+    "pt": "Só Golias",
+    "fr": "Seulement Goliath",
+    "ar": "جليات فقط"
+  },
+  "Только фараон": {
+    "en": "Only Pharaoh",
+    "de": "Nur der Pharao",
+    "es": "Solo el faraón",
+    "pt": "Só o faraó",
+    "fr": "Seulement le pharaon",
+    "ar": "فرعون فقط"
+  },
+  "Только строители башни": {
+    "en": "Only the tower builders",
+    "de": "Nur die Turmbauer",
+    "es": "Solo los constructores de la torre",
+    "pt": "Só os construtores da torre",
+    "fr": "Seulement les bâtisseurs de la tour",
+    "ar": "بنّاؤو البرج فقط"
+  },
+  "Кто побеждал не размером, а особым даром?": {
+    "en": "Who won not by size, but by a special gift?",
+    "de": "Wer siegte nicht durch Größe, sondern durch eine besondere Gabe?",
+    "es": "¿Quién venció no por el tamaño, sino por un don especial?",
+    "pt": "Quem venceu não pelo tamanho, mas por um dom especial?",
+    "fr": "Qui a vaincu non par la taille, mais par un don spécial ?",
+    "ar": "من انتصر لا بالحجم، بل بهبة خاصة؟"
+  },
+  "Верно! Разные языки остановили стройку.": {
+    "en": "Right! Different languages stopped the building.",
+    "de": "Richtig! Verschiedene Sprachen stoppten den Bau.",
+    "es": "¡Correcto! Lenguas distintas detuvieron la obra.",
+    "pt": "Certo! Línguas diferentes pararam a construção.",
+    "fr": "Exact ! Des langues différentes ont arrêté le chantier.",
+    "ar": "صحيح! لغات مختلفة أوقفت البناء."
+  },
+  "Перестали понимать языки": {
+    "en": "They stopped understanding each other’s languages",
+    "de": "Sie verstanden die Sprachen nicht mehr",
+    "es": "Dejaron de entenderse en sus lenguas",
+    "pt": "Pararam de entender as línguas uns dos outros",
+    "fr": "Ils ont cessé de comprendre les langues",
+    "ar": "توقفوا عن فهم اللغات"
+  },
+  "Кончились кирпичи": {
+    "en": "They ran out of bricks",
+    "de": "Die Ziegel gingen aus",
+    "es": "Se acabaron los ladrillos",
+    "pt": "Acabaram os tijolos",
+    "fr": "Les briques manquaient",
+    "ar": "نفدت الطوب"
+  },
+  "Начался дождь": {
+    "en": "It started to rain",
+    "de": "Es begann zu regnen",
+    "es": "Empezó a llover",
+    "pt": "Começou a chover",
+    "fr": "Il s’est mis à pleuvoir",
+    "ar": "بدأ المطر"
+  },
+  "Уехали верблюды": {
+    "en": "The camels left",
+    "de": "Die Kamele fuhren weg",
+    "es": "Se fueron los camellos",
+    "pt": "Os camelos foram embora",
+    "fr": "Les chameaux sont partis",
+    "ar": "رحلت الجمال"
+  },
+  "Почему люди у башни разошлись?": {
+    "en": "Why did the people at the tower scatter?",
+    "de": "Warum gingen die Leute am Turm auseinander?",
+    "es": "¿Por qué se dispersó la gente de la torre?",
+    "pt": "Por que o povo da torre se espalhou?",
+    "fr": "Pourquoi les gens de la tour se sont-ils dispersés ?",
+    "ar": "لماذا تفرّق الناس عند البرج؟"
+  },
+  "Ты видишь весь Большой путь!": {
+    "en": "You see the whole Great Path!",
+    "de": "Du siehst den ganzen Großen Weg!",
+    "es": "¡Ves todo el Gran Camino!",
+    "pt": "Você vê todo o Grande Caminho!",
+    "fr": "Tu vois tout le Grand Chemin !",
+    "ar": "أنت ترى المسار الكبير كله!"
+  },
+  "Начало мира": {
+    "en": "The world’s beginning",
+    "de": "Der Anfang der Welt",
+    "es": "El comienzo del mundo",
+    "pt": "O começo do mundo",
+    "fr": "Le début du monde",
+    "ar": "بداية العالم"
+  },
+  "Патриархи": {
+    "en": "The patriarchs",
+    "de": "Die Patriarchen",
+    "es": "Los patriarcas",
+    "pt": "Os patriarcas",
+    "fr": "Les patriarches",
+    "ar": "الآباء"
+  },
+  "Исход": {
+    "en": "Exodus",
+    "de": "Auszug",
+    "es": "Éxodo",
+    "pt": "Êxodo",
+    "fr": "Exode",
+    "ar": "الخروج"
+  },
+  "Новая земля": {
+    "en": "A new land",
+    "de": "Ein neues Land",
+    "es": "Una tierra nueva",
+    "pt": "Uma terra nova",
+    "fr": "Une terre nouvelle",
+    "ar": "أرض جديدة"
+  },
+  "Цари": {
+    "en": "Kings",
+    "de": "Könige",
+    "es": "Reyes",
+    "pt": "Reis",
+    "fr": "Rois",
+    "ar": "الملوك"
+  },
+  "Пророки": {
+    "en": "Prophets",
+    "de": "Propheten",
+    "es": "Profetas",
+    "pt": "Profetas",
+    "fr": "Prophètes",
+    "ar": "الأنبياء"
+  },
+  "Рождество": {
+    "en": "Christmas",
+    "de": "Weihnachten",
+    "es": "Navidad",
+    "pt": "Natal",
+    "fr": "Noël",
+    "ar": "الميلاد"
+  },
+  "Нажимай по порядку большие остановки пути": {
+    "en": "Tap the big stops on the path in order",
+    "de": "Tippe die großen Stationen des Weges der Reihe nach",
+    "es": "Toca en orden las grandes paradas del camino",
+    "pt": "Toque na ordem as grandes paradas do caminho",
+    "fr": "Appuie dans l’ordre sur les grandes étapes du chemin",
+    "ar": "اضغط بالترتيب على المحطات الكبيرة في المسار"
+  },
+  "Семь эпох коротко": {
+    "en": "Seven eras in short",
+    "de": "Sieben Epochen kurz",
+    "es": "Siete épocas en breve",
+    "pt": "Sete eras em resumo",
+    "fr": "Sept époques en bref",
+    "ar": "سبع حقبات باختصار"
+  },
+  "Манна! Храм появился гораздо позже, уже у царей.": {
+    "en": "Manna! The Temple came much later, in the time of the kings.",
+    "de": "Manna! Der Tempel kam viel später, schon bei den Königen.",
+    "es": "¡El maná! El Templo apareció mucho después, ya en tiempos de los reyes.",
+    "pt": "O maná! O Templo apareceu bem depois, já no tempo dos reis.",
+    "fr": "La manne ! Le Temple est apparu bien plus tard, déjà au temps des rois.",
+    "ar": "المنّ! الهيكل ظهر بعد زمن طويل، في عهد الملوك."
+  },
+  "Храм Соломона": {
+    "en": "Solomon’s Temple",
+    "de": "Salomos Tempel",
+    "es": "El Templo de Salomón",
+    "pt": "O Templo de Salomão",
+    "fr": "Le Temple de Salomon",
+    "ar": "هيكل سليمان"
+  },
+  "Суд Соломона": {
+    "en": "Solomon’s judgment",
+    "de": "Salomos Urteil",
+    "es": "El juicio de Salomón",
+    "pt": "O julgamento de Salomão",
+    "fr": "Le jugement de Salomon",
+    "ar": "حكم سليمان"
+  },
+  "Дворец Эсфири": {
+    "en": "Esther’s palace",
+    "de": "Esters Palast",
+    "es": "El palacio de Ester",
+    "pt": "O palácio de Ester",
+    "fr": "Le palais d’Esther",
+    "ar": "قصر أستير"
+  },
+  "Что было в пути по пустыне, а не в городе Иерусалиме?": {
+    "en": "What was on the desert journey, not in the city of Jerusalem?",
+    "de": "Was gab es unterwegs in der Wüste, nicht in der Stadt Jerusalem?",
+    "es": "¿Qué hubo en el camino por el desierto, no en la ciudad de Jerusalén?",
+    "pt": "O que houve no caminho pelo deserto, e não na cidade de Jerusalém?",
+    "fr": "Qu’y avait-il en chemin dans le désert, et non dans la ville de Jérusalem ?",
+    "ar": "ماذا كان في طريق البرية، لا في مدينة أورشليم؟"
+  },
+  "Двух! Иосиф в Египте и Иосиф-плотник у Марии.": {
+    "en": "Two! Joseph in Egypt and Joseph the carpenter with Mary.",
+    "de": "Zwei! Josef in Ägypten und Josef der Zimmermann bei Maria.",
+    "es": "¡Dos! José en Egipto y José el carpintero con María.",
+    "pt": "Dois! José no Egito e José o carpinteiro com Maria.",
+    "fr": "Deux ! Joseph en Égypte et Joseph le charpentier auprès de Marie.",
+    "ar": "اثنان! يوسف في مصر ويوسف النجّار مع مريم."
+  },
+  "Двух: сын Иакова и плотник": {
+    "en": "Two: Jacob’s son and the carpenter",
+    "de": "Zwei: Jakobs Sohn und der Zimmermann",
+    "es": "Dos: el hijo de Jacob y el carpintero",
+    "pt": "Dois: o filho de Jacó e o carpinteiro",
+    "fr": "Deux : le fils de Jacob et le charpentier",
+    "ar": "اثنان: ابن يعقوب والنجّار"
+  },
+  "Одного": {
+    "en": "One",
+    "de": "Einen",
+    "es": "Uno",
+    "pt": "Um",
+    "fr": "Un",
+    "ar": "واحد"
+  },
+  "Пятерых": {
+    "en": "Five",
+    "de": "Fünf",
+    "es": "Cinco",
+    "pt": "Cinco",
+    "fr": "Cinq",
+    "ar": "خمسة"
+  },
+  "Ни одного": {
+    "en": "None",
+    "de": "Keinen",
+    "es": "Ninguno",
+    "pt": "Nenhum",
+    "fr": "Aucun",
+    "ar": "ولا واحد"
+  },
+  "Сколько Иосифов ты знаешь в этих историях?": {
+    "en": "How many Josephs do you know in these stories?",
+    "de": "Wie viele Josefs kennst du in diesen Geschichten?",
+    "es": "¿Cuántos José conoces en estas historias?",
+    "pt": "Quantos Josés você conhece nestas histórias?",
+    "fr": "Combien de Joseph connais-tu dans ces histoires ?",
+    "ar": "كم يوسفًا تعرف في هذه القصص؟"
+  },
+  "Сначала зов из куста, потом — скрижали на горе.": {
+    "en": "First the call from the bush, then — the tablets on the mountain.",
+    "de": "Zuerst der Ruf aus dem Busch, dann — die Tafeln auf dem Berg.",
+    "es": "Primero la llamada desde la zarza, luego — las tablas en el monte.",
+    "pt": "Primeiro o chamado do arbusto, depois — as tábuas na montanha.",
+    "fr": "D’abord l’appel du buisson, puis — les tables sur la montagne.",
+    "ar": "أولًا النداء من العليقة، ثم — اللوحان على الجبل."
+  },
+  "Горящий куст": {
+    "en": "The burning bush",
+    "de": "Der brennende Busch",
+    "es": "La zarza ardiente",
+    "pt": "A sarça ardente",
+    "fr": "Le buisson ardent",
+    "ar": "العليقة المشتعلة"
+  },
+  "Что было раньше: горящий куст или скрижали?": {
+    "en": "What came first: the burning bush or the tablets?",
+    "de": "Was war früher: der brennende Busch oder die Tafeln?",
+    "es": "¿Qué fue primero: la zarza ardiente o las tablas?",
+    "pt": "O que veio primeiro: a sarça ardente ou as tábuas?",
+    "fr": "Qu’est-ce qui est venu d’abord : le buisson ardent ou les tables ?",
+    "ar": "ماذا جاء أولًا: العليقة المشتعلة أم اللوحان؟"
+  },
+  "Правда! От первого дня мира — до звезды над Вифлеемом.": {
+    "en": "True! From the world’s first day — to the star over Bethlehem.",
+    "de": "Stimmt! Vom ersten Tag der Welt — bis zum Stern über Bethlehem.",
+    "es": "¡Verdadero! Desde el primer día del mundo — hasta la estrella sobre Belén.",
+    "pt": "Verdade! Do primeiro dia do mundo — até a estrela sobre Belém.",
+    "fr": "Vrai ! Du premier jour du monde — jusqu’à l’étoile au-dessus de Bethléem.",
+    "ar": "صحيح! من أول يوم للعالم — إلى النجم فوق بيت لحم."
+  },
+  "Большой путь начинается творением и заканчивается Рождеством.": {
+    "en": "The Great Path begins with Creation and ends with Christmas.",
+    "de": "Der Große Weg beginnt mit der Schöpfung und endet mit Weihnachten.",
+    "es": "El Gran Camino empieza con la Creación y termina con la Navidad.",
+    "pt": "O Grande Caminho começa com a Criação e termina com o Natal.",
+    "fr": "Le Grand Chemin commence par la Création et se termine avec Noël.",
+    "ar": "المسار الكبير يبدأ بالخلق وينتهي بالميلاد."
+  },
+  "Эксперт: правда?": {
+    "en": "Expert: true or false?",
+    "de": "Experte: stimmt das?",
+    "es": "Experto: ¿verdadero?",
+    "pt": "Especialista: verdade?",
+    "fr": "Expert : vrai ?",
+    "ar": "خبير: هل هذا صحيح؟"
+  },
+  "Исаак! Сарра сначала рассмеялась от удивления.": {
+    "en": "Isaac! Sarah first laughed in surprise.",
+    "de": "Isaak! Sara lachte zuerst vor Überraschung.",
+    "es": "¡Isaac! Sara primero se rió de sorpresa.",
+    "pt": "Isaque! Sara primeiro riu de surpresa.",
+    "fr": "Isaac ! Sara a d’abord ri de surprise.",
+    "ar": "إسحاق! سارة ضحكت أولًا من الدهشة."
+  },
+  "Исаак": {
+    "en": "Isaac",
+    "de": "Isaak",
+    "es": "Isaac",
+    "pt": "Isaque",
+    "fr": "Isaac",
+    "ar": "إسحاق"
+  },
+  "Чьё имя значит «смех»?": {
+    "en": "Whose name means “laughter”?",
+    "de": "Wessen Name bedeutet „Lachen“?",
+    "es": "¿El nombre de quién significa «risa»?",
+    "pt": "O nome de quem significa “riso”?",
+    "fr": "Le nom de qui signifie « rire » ?",
+    "ar": "اسم من يعني «الضحك»؟"
+  },
+  "Мариам — сестра Моисея.": {
+    "en": "Miriam — Moses’ sister.",
+    "de": "Mirjam — Moses Schwester.",
+    "es": "Miriam — la hermana de Moisés.",
+    "pt": "Miriã — a irmã de Moisés.",
+    "fr": "Myriam — la sœur de Moïse.",
+    "ar": "مريم — أخت موسى."
+  },
+  "Кто следил за корзинкой с берега?": {
+    "en": "Who watched the basket from the shore?",
+    "de": "Wer beobachtete das Körbchen vom Ufer aus?",
+    "es": "¿Quién vigilaba la cestita desde la orilla?",
+    "pt": "Quem vigiava o cestinho da margem?",
+    "fr": "Qui surveillait le panier depuis le rivage ?",
+    "ar": "من راقب السلّة من الشاطئ؟"
+  },
+  "Линия царей ясна!": {
+    "en": "The line of kings is clear!",
+    "de": "Die Königslinie ist klar!",
+    "es": "¡La línea de reyes está clara!",
+    "pt": "A linha dos reis está clara!",
+    "fr": "La lignée des rois est claire !",
+    "ar": "سلسلة الملوك واضحة!"
+  },
+  "Давид": {
+    "en": "David",
+    "de": "David",
+    "es": "David",
+    "pt": "Davi",
+    "fr": "David",
+    "ar": "داود"
+  },
+  "Нажимай по порядку": {
+    "en": "Tap in order",
+    "de": "Tippe der Reihe nach",
+    "es": "Toca en orden",
+    "pt": "Toque na ordem",
+    "fr": "Appuie dans l’ordre",
+    "ar": "اضغط بالترتيب"
+  },
+  "Три царя и пророк": {
+    "en": "Three kings and a prophet",
+    "de": "Drei Könige und ein Prophet",
+    "es": "Tres reyes y un profeta",
+    "pt": "Três reis e um profeta",
+    "fr": "Trois rois et un prophète",
+    "ar": "ثلاثة ملوك ونبي"
+  },
+  "Верно! Оба чуда — про верность в беде.": {
+    "en": "Right! Both miracles are about faithfulness in trouble.",
+    "de": "Richtig! Beide Wunder handeln von Treue in der Not.",
+    "es": "¡Correcto! Ambos milagros son sobre fidelidad en el apuro.",
+    "pt": "Certo! Os dois milagres são sobre fidelidade na aflição.",
+    "fr": "Exact ! Les deux miracles parlent de fidélité dans l’épreuve.",
+    "ar": "صحيح! كلا العجيبتين عن الأمانة في الضيق."
+  },
+  "И в рыбе у Ионы, и во рву у Даниила": {
+    "en": "In Jonah’s fish and in Daniel’s den",
+    "de": "Im Fisch bei Jona und in der Grube bei Daniel",
+    "es": "En el pez de Jonás y en el foso de Daniel",
+    "pt": "No peixe de Jonas e na cova de Daniel",
+    "fr": "Dans le poisson de Jonas et dans la fosse de Daniel",
+    "ar": "في سمكة يونان وفي جبّ دانيال"
+  },
+  "Только в башне": {
+    "en": "Only in the tower",
+    "de": "Nur im Turm",
+    "es": "Solo en la torre",
+    "pt": "Só na torre",
+    "fr": "Seulement dans la tour",
+    "ar": "في البرج فقط"
+  },
+  "Только во дворце": {
+    "en": "Only in the palace",
+    "de": "Nur im Palast",
+    "es": "Solo en el palacio",
+    "pt": "Só no palácio",
+    "fr": "Seulement dans le palais",
+    "ar": "في القصر فقط"
+  },
+  "Нигде": {
+    "en": "Nowhere",
+    "de": "Nirgendwo",
+    "es": "En ningún sitio",
+    "pt": "Em nenhum lugar",
+    "fr": "Nulle part",
+    "ar": "لا مكان"
+  },
+  "Где человек остался цел вопреки опасности?": {
+    "en": "Where did someone stay safe despite danger?",
+    "de": "Wo blieb ein Mensch trotz Gefahr unversehrt?",
+    "es": "¿Dónde alguien quedó a salvo a pesar del peligro?",
+    "pt": "Onde alguém ficou a salvo apesar do perigo?",
+    "fr": "Où quelqu’un est-il resté sain et sauf malgré le danger ?",
+    "ar": "أين بقي الإنسان سالمًا رغم الخطر؟"
+  },
+  "Правда! Она стала его прабабушкой.": {
+    "en": "True! She became his great-grandmother.",
+    "de": "Stimmt! Sie wurde seine Urgroßmutter.",
+    "es": "¡Verdadero! Ella se convirtió en su bisabuela.",
+    "pt": "Verdade! Ela se tornou a bisavó dele.",
+    "fr": "Vrai ! Elle est devenue son arrière-grand-mère.",
+    "ar": "صحيح! صارت جدّته الكبرى."
+  },
+  "Верность Руфи связана с будущим царём Давидом.": {
+    "en": "Ruth’s faithfulness is linked to the future king David.",
+    "de": "Ruts Treue ist mit dem künftigen König David verbunden.",
+    "es": "La fidelidad de Rut está ligada al futuro rey David.",
+    "pt": "A fidelidade de Rute se liga ao futuro rei Davi.",
+    "fr": "La fidélité de Ruth est liée au futur roi David.",
+    "ar": "أمانة راعوث مرتبطة بالملك داود الآتي."
+  },
+  "Эксперт: Руфь": {
+    "en": "Expert: Ruth",
+    "de": "Experte: Rut",
+    "es": "Experto: Rut",
+    "pt": "Especialista: Rute",
+    "fr": "Expert : Ruth",
+    "ar": "خبير: راعوث"
+  },
+  "Эксперт": {
+    "en": "Expert",
+    "de": "Experte",
+    "es": "Experto",
+    "pt": "Especialista",
+    "fr": "Expert",
+    "ar": "خبير"
+  },
+  "Богатому Аврааму Бог сказал: «Оставь свой дом и иди в новую землю». И Авраам пошёл.": {
+    "en": "God said to wealthy Abraham: “Leave your home and go to a new land.” And Abraham went.",
+    "de": "Gott sagte zum reichen Abraham: „Verlass dein Haus und geh in ein neues Land.“ Und Abraham ging.",
+    "es": "Dios dijo al rico Abraham: «Deja tu casa y ve a una tierra nueva». Y Abraham se fue.",
+    "pt": "Deus disse ao rico Abraão: “Deixe sua casa e vá a uma terra nova”. E Abraão foi.",
+    "fr": "Dieu dit au riche Abraham : « Quitte ta maison et va vers une terre nouvelle. » Et Abraham partit.",
+    "ar": "قال الله لإبراهيم الغني: «اترك بيتك واذهب إلى أرض جديدة». وذهب إبراهيم."
+  },
+  "Авраам уходит в путь": {
+    "en": "Abraham sets out",
+    "de": "Abraham bricht auf",
+    "es": "Abraham se pone en camino",
+    "pt": "Abraão parte em viagem",
+    "fr": "Abraham se met en route",
+    "ar": "إبراهيم ينطلق في الطريق"
+  },
+  "Глазами видно около трёх тысяч звёзд. А всего их — сосчитать невозможно.": {
+    "en": "You can see about three thousand stars with your eyes. But all of them — you could never count.",
+    "de": "Mit bloßem Auge sieht man etwa dreitausend Sterne. Aber alle zusammen — die kann man nicht zählen.",
+    "es": "A simple vista se ven unas tres mil estrellas. Pero todas — es imposible contarlas.",
+    "pt": "A olho nu dá para ver cerca de três mil estrelas. Mas todas — é impossível contar.",
+    "fr": "À l’œil nu, on voit environ trois mille étoiles. Mais toutes — on ne peut pas les compter.",
+    "ar": "بالعين ترى نحو ثلاثة آلاف نجم. أما كلها — فلا تُحصى."
+  },
+  "«Погляди на небо, — сказал Бог. — Твоих потомков будет больше, чем звёзд на небе».": {
+    "en": "“Look at the sky,” God said. “Your descendants will be more than the stars in the sky.”",
+    "de": "„Schau zum Himmel“, sagte Gott. „Deine Nachkommen werden mehr sein als die Sterne am Himmel.“",
+    "es": "«Mira el cielo», dijo Dios. «Tus descendientes serán más que las estrellas del cielo».",
+    "pt": "“Olhe para o céu”, disse Deus. “Seus descendentes serão mais do que as estrelas do céu”.",
+    "fr": "« Regarde le ciel », dit Dieu. « Tes descendants seront plus nombreux que les étoiles du ciel. »",
+    "ar": "«انظر إلى السماء»، قال الله. «سيكون نسلك أكثر من نجوم السماء»."
+  },
+  "Звёзд не сосчитать": {
+    "en": "Too many stars to count",
+    "de": "Sterne ohne Zahl",
+    "es": "Estrellas sin contar",
+    "pt": "Estrelas sem conta",
+    "fr": "Des étoiles innombrables",
+    "ar": "نجوم لا تُحصى"
+  },
+  "Авраам жил в шатре и всегда привечал путников: усадит, накормит, напоит. Добрый хозяин.": {
+    "en": "Abraham lived in a tent and always welcomed travelers: he’d seat them, feed them, give them drink. A kind host.",
+    "de": "Abraham lebte im Zelt und empfing immer Wanderer: er setzte sie, speiste sie, tränkte sie. Ein guter Gastgeber.",
+    "es": "Abraham vivía en una tienda y siempre acogía a los viajeros: los sentaba, les daba de comer y de beber. Un buen anfitrión.",
+    "pt": "Abraão vivia numa tenda e sempre acolhia viajantes: sentava, alimentava e dava de beber. Um bom anfitrião.",
+    "fr": "Abraham vivait sous une tente et accueillait toujours les voyageurs : il les faisait asseoir, les nourrissait, leur donnait à boire. Un bon hôte.",
+    "ar": "عاش إبراهيم في خيمة وكان دائمًا يرحّب بالمسافرين: يُجلسهم ويُطعمهم ويسقيهم. مضيف طيب."
+  },
+  "Гостеприимный шатёр": {
+    "en": "The welcoming tent",
+    "de": "Das gastfreundliche Zelt",
+    "es": "La tienda hospitalaria",
+    "pt": "A tenda hospitaleira",
+    "fr": "La tente accueillante",
+    "ar": "الخيمة المضيافة"
+  },
+  "У них родился сын Исаак. Его имя как раз и значит «смех».": {
+    "en": "They had a son, Isaac. His name means “laughter.”",
+    "de": "Ihnen wurde ein Sohn geboren: Isaak. Sein Name bedeutet genau „Lachen“.",
+    "es": "Les nació un hijo, Isaac. Su nombre significa precisamente «risa».",
+    "pt": "Nasceu-lhes um filho, Isaque. O nome dele significa justamente “riso”.",
+    "fr": "Ils eurent un fils, Isaac. Son nom signifie justement « rire ».",
+    "ar": "وُلد لهما ابن اسمه إسحاق. واسمه يعني «الضحك»."
+  },
+  "И что дальше?": {
+    "en": "And what next?",
+    "de": "Und was dann?",
+    "es": "¿Y qué sigue?",
+    "pt": "E o que vem depois?",
+    "fr": "Et ensuite ?",
+    "ar": "وماذا بعد؟"
+  },
+  "Жене Авраама Сарре обещали малыша, когда она была уже совсем старенькой. Сарра рассмеялась!": {
+    "en": "Abraham’s wife Sarah was promised a baby when she was already very old. Sarah laughed!",
+    "de": "Abrahams Frau Sara wurde ein Kind versprochen, als sie schon ganz alt war. Sara lachte!",
+    "es": "A Sara, la esposa de Abraham, le prometieron un bebé cuando ya era muy anciana. ¡Sara se rió!",
+    "pt": "À esposa de Abraão, Sara, prometeram um bebê quando ela já era bem idosa. Sara riu!",
+    "fr": "À Sara, la femme d’Abraham, on promit un bébé alors qu’elle était déjà toute vieille. Sara a ri !",
+    "ar": "وُعدَت سارة زوجة إبراهيم بطفل وهي عجوز جدًا. فضحكت سارة!"
+  },
+  "Сарра смеётся": {
+    "en": "Sarah laughs",
+    "de": "Sara lacht",
+    "es": "Sara se ríe",
+    "pt": "Sara ri",
+    "fr": "Sara rit",
+    "ar": "سارة تضحك"
+  },
+  "Исаак рос радостью на всю семью. С него и продолжилась большая семья патриархов.": {
+    "en": "Isaac grew up as a joy for the whole family. Through him the great family of the patriarchs continued.",
+    "de": "Isaak wuchs als Freude für die ganze Familie heran. Mit ihm setzte sich die große Familie der Patriarchen fort.",
+    "es": "Isaac creció como alegría para toda la familia. Con él continuó la gran familia de los patriarcas.",
+    "pt": "Isaque cresceu como alegria para toda a família. Com ele continuou a grande família dos patriarcas.",
+    "fr": "Isaac grandit comme une joie pour toute la famille. Avec lui se poursuivit la grande famille des patriarches.",
+    "ar": "كبر إسحاق فرحًا لكل العائلة. ومنه استمرت عائلة الآباء الكبيرة."
+  },
+  "Долгожданный сын": {
+    "en": "The long-awaited son",
+    "de": "Der lang ersehnte Sohn",
+    "es": "El hijo tan esperado",
+    "pt": "O filho tão esperado",
+    "fr": "Le fils tant attendu",
+    "ar": "الابن المنتظر طويلًا"
+  },
+  "Исав был рыжий и любил охоту, а Иаков — тихий и домашний.": {
+    "en": "Esau was red-haired and loved hunting; Jacob was quiet and stayed at home.",
+    "de": "Esau war rothaarig und liebte die Jagd, Jakob war still und häuslich.",
+    "es": "Esaú era pelirrojo y amaba la caza; Jacob era tranquilo y casero.",
+    "pt": "Esaú era ruivo e gostava de caçar; Jacó era quieto e caseiro.",
+    "fr": "Ésaü était roux et aimait la chasse ; Jacob était calme et casanier.",
+    "ar": "كان عيسو أشقر وأحبّ الصيد، ويعقوب هادئًا بيتيًا."
+  },
+  "У Исаака родились близнецы — Исав и Иаков. Такие разные, что и не скажешь, что братья.": {
+    "en": "Isaac had twin sons — Esau and Jacob. So different, you’d hardly guess they were brothers.",
+    "de": "Isaak bekam Zwillinge — Esau und Jakob. So verschieden, dass man kaum glaubt, sie seien Brüder.",
+    "es": "A Isaac le nacieron gemelos — Esaú y Jacob. Tan distintos que casi no parecen hermanos.",
+    "pt": "Isaque teve gêmeos — Esaú e Jacó. Tão diferentes que mal se diria que são irmãos.",
+    "fr": "Isaac eut des jumeaux — Ésaü et Jacob. Si différents qu’on croirait à peine qu’ils sont frères.",
+    "ar": "وُلد لإسحاق توأمان — عيسو ويعقوب. مختلفان جدًا حتى لا يكادان يبدوان أخوين."
+  },
+  "Два брата": {
+    "en": "Two brothers",
+    "de": "Zwei Brüder",
+    "es": "Dos hermanos",
+    "pt": "Dois irmãos",
+    "fr": "Deux frères",
+    "ar": "أخوان"
+  },
+  "Однажды Иакову пришлось уйти далеко из дома. В пути он лёг спать, положив под голову камень.": {
+    "en": "One day Jacob had to go far from home. On the way he lay down to sleep with a stone under his head.",
+    "de": "Eines Tages musste Jakob weit von zu Hause weg. Unterwegs legte er sich schlafen und legte einen Stein unter den Kopf.",
+    "es": "Un día Jacob tuvo que irse lejos de casa. En el camino se acostó a dormir con una piedra bajo la cabeza.",
+    "pt": "Um dia Jacó teve de ir longe de casa. No caminho deitou-se para dormir com uma pedra sob a cabeça.",
+    "fr": "Un jour, Jacob dut partir loin de chez lui. En chemin, il s’endormit avec une pierre sous la tête.",
+    "ar": "ذات يوم اضطر يعقوب إلى الرحيل بعيدًا عن البيت. وفي الطريق نام واضعًا حجرًا تحت رأسه."
+  },
+  "Долгая дорога": {
+    "en": "A long road",
+    "de": "Ein langer Weg",
+    "es": "Un largo camino",
+    "pt": "Uma longa estrada",
+    "fr": "Un long chemin",
+    "ar": "طريق طويل"
+  },
+  "Что небо совсем рядом и Бог всегда будет рядом с Иаковом.": {
+    "en": "That heaven is very near, and God will always be with Jacob.",
+    "de": "Dass der Himmel ganz nah ist und Gott immer bei Jakob sein wird.",
+    "es": "Que el cielo está muy cerca y Dios siempre estará con Jacob.",
+    "pt": "Que o céu está bem perto e Deus sempre estará com Jacó.",
+    "fr": "Que le ciel est tout proche et que Dieu sera toujours avec Jacob.",
+    "ar": "أن السماء قريبة جدًا وأن الله سيكون دائمًا مع يعقوب."
+  },
+  "Что это значило?": {
+    "en": "What did that mean?",
+    "de": "Was bedeutete das?",
+    "es": "¿Qué significaba eso?",
+    "pt": "O que isso significava?",
+    "fr": "Qu’est-ce que cela voulait dire ?",
+    "ar": "ماذا كان يعني ذلك؟"
+  },
+  "И приснилась Иакову лестница от самой земли до неба, а по ней вверх и вниз ходили ангелы.": {
+    "en": "And Jacob dreamed of a ladder from earth to heaven, with angels going up and down on it.",
+    "de": "Und Jakob träumte von einer Leiter von der Erde bis zum Himmel, und Engel gingen darauf auf und ab.",
+    "es": "Y Jacob soñó con una escalera desde la tierra hasta el cielo, y por ella subían y bajaban ángeles.",
+    "pt": "E Jacó sonhou com uma escada da terra ao céu, e anjos subiam e desciam por ela.",
+    "fr": "Et Jacob rêva d’une échelle de la terre jusqu’au ciel, et des anges y montaient et descendaient.",
+    "ar": "وحلم يعقوب بسلّم من الأرض إلى السماء، وملائكة تصعد وتنزل عليه."
+  },
+  "Лестница до неба": {
+    "en": "A ladder to heaven",
+    "de": "Eine Leiter zum Himmel",
+    "es": "Una escalera hasta el cielo",
+    "pt": "Uma escada até o céu",
+    "fr": "Une échelle jusqu’au ciel",
+    "ar": "سلّم إلى السماء"
+  },
+  "Проснувшись, Иаков поставил тот самый камень стоймя — на память о чудесном сне.": {
+    "en": "When he woke, Jacob set that same stone upright — as a reminder of the wonderful dream.",
+    "de": "Als er aufwachte, stellte Jakob denselben Stein aufrecht — zur Erinnerung an den wunderbaren Traum.",
+    "es": "Al despertar, Jacob puso aquella misma piedra de pie — en memoria del sueño maravilloso.",
+    "pt": "Ao acordar, Jacó pôs aquela mesma pedra em pé — em memória do sonho maravilhoso.",
+    "fr": "En se réveillant, Jacob dressa cette même pierre — en souvenir du rêve merveilleux.",
+    "ar": "ولما استيقظ، أقام يعقوب ذلك الحجر نفسه — تذكارًا للحلم العجيب."
+  },
+  "Камень-памятка": {
+    "en": "A memory stone",
+    "de": "Ein Erinnerungsstein",
+    "es": "Una piedra recuerdo",
+    "pt": "Uma pedra de lembrança",
+    "fr": "Une pierre-souvenir",
+    "ar": "حجر تذكار"
+  },
+  "У Иакова было много сыновей. Любимому, Иосифу, он подарил красивую разноцветную одежду.": {
+    "en": "Jacob had many sons. To his favorite, Joseph, he gave a beautiful colorful coat.",
+    "de": "Jakob hatte viele Söhne. Seinem Liebling Josef schenkte er ein schönes buntes Gewand.",
+    "es": "Jacob tenía muchos hijos. Al favorito, José, le regaló una hermosa túnica de colores.",
+    "pt": "Jacó tinha muitos filhos. Ao favorito, José, deu uma bela túnica colorida.",
+    "fr": "Jacob avait beaucoup de fils. À son préféré, Joseph, il donna une belle tunique colorée.",
+    "ar": "كان ليعقوب أبناء كثيرون. ولحبيبه يوسف أعطى ثوبًا جميلًا ملونًا."
+  },
+  "Разноцветная одежда": {
+    "en": "A colorful coat",
+    "de": "Ein buntes Gewand",
+    "es": "Una túnica de colores",
+    "pt": "Uma túnica colorida",
+    "fr": "Une tunique colorée",
+    "ar": "ثوب ملون"
+  },
+  "Иосиф ещё и рассказывал сны, где братья ему кланяются. Это злило их сильнее.": {
+    "en": "Joseph also told dreams where his brothers bowed to him. That made them even angrier.",
+    "de": "Josef erzählte auch Träume, in denen sich die Brüder vor ihm verbeugten. Das machte sie noch wütender.",
+    "es": "José también contaba sueños en los que sus hermanos se inclinaban ante él. Eso los enfurecía más.",
+    "pt": "José também contava sonhos em que os irmãos se curvavam a ele. Isso os deixava ainda mais zangados.",
+    "fr": "Joseph racontait aussi des rêves où ses frères s’inclinaient devant lui. Cela les mettait encore plus en colère.",
+    "ar": "وكان يوسف أيضًا يروي أحلامًا ينحني فيها إخوته له. فزاد ذلك غضبهم."
+  },
+  "Братья увидели подарок — и позавидовали. Почему отец любит Иосифа больше?": {
+    "en": "The brothers saw the gift — and grew jealous. Why does Father love Joseph more?",
+    "de": "Die Brüder sahen das Geschenk — und wurden neidisch. Warum liebt Vater Josef mehr?",
+    "es": "Los hermanos vieron el regalo — y sintieron envidia. ¿Por qué el padre quiere más a José?",
+    "pt": "Os irmãos viram o presente — e ficaram com inveja. Por que o pai ama mais José?",
+    "fr": "Les frères virent le cadeau — et furent jaloux. Pourquoi papa aime-t-il plus Joseph ?",
+    "ar": "رأى الإخوة الهدية — فغاروا. لماذا يحب الأب يوسف أكثر؟"
+  },
+  "Братья завидуют": {
+    "en": "The brothers are jealous",
+    "de": "Die Brüder sind neidisch",
+    "es": "Los hermanos sienten envidia",
+    "pt": "Os irmãos têm inveja",
+    "fr": "Les frères sont jaloux",
+    "ar": "الإخوة يغارون"
+  },
+  "Братья продали Иосифа, и он попал в далёкий Египет. Совсем один, без семьи и дома.": {
+    "en": "The brothers sold Joseph, and he ended up in faraway Egypt. All alone, without family or home.",
+    "de": "Die Brüder verkauften Josef, und er kam ins ferne Ägypten. Ganz allein, ohne Familie und ohne Zuhause.",
+    "es": "Los hermanos vendieron a José, y llegó al lejano Egipto. Solo del todo, sin familia ni hogar.",
+    "pt": "Os irmãos venderam José, e ele foi parar no Egito distante. Sozinho, sem família nem lar.",
+    "fr": "Les frères vendirent Joseph, et il se retrouva en Égypte lointaine. Tout seul, sans famille ni maison.",
+    "ar": "باع الإخوة يوسف، فصار في مصر البعيدة. وحيدًا تمامًا، بلا أهل ولا بيت."
+  },
+  "Иосиф в Египте": {
+    "en": "Joseph in Egypt",
+    "de": "Josef in Ägypten",
+    "es": "José en Egipto",
+    "pt": "José no Egito",
+    "fr": "Joseph en Égypte",
+    "ar": "يوسف في مصر"
+  },
+  "Семь тучных коров и семь тощих — к семи годам достатка и семи годам голода.": {
+    "en": "Seven fat cows and seven thin ones — for seven years of plenty and seven years of famine.",
+    "de": "Sieben fette Kühe und sieben magere — für sieben Jahre Überfluss und sieben Jahre Hunger.",
+    "es": "Siete vacas gordas y siete flacas — por siete años de abundancia y siete de hambre.",
+    "pt": "Sete vacas gordas e sete magras — por sete anos de fartura e sete de fome.",
+    "fr": "Sept vaches grasses et sept maigres — pour sept années d’abondance et sept de famine.",
+    "ar": "سبع بقرات سمينة وسبع هزيلة — لسبع سنين رخاء وسبع سنين مجاعة."
+  },
+  "Какой сон?": {
+    "en": "What dream?",
+    "de": "Welcher Traum?",
+    "es": "¿Qué sueño?",
+    "pt": "Que sonho?",
+    "fr": "Quel rêve ?",
+    "ar": "أي حلم؟"
+  },
+  "В Египте Иосиф научился разгадывать сны. Однажды он разгадал сон самого фараона!": {
+    "en": "In Egypt Joseph learned to explain dreams. One day he explained Pharaoh’s own dream!",
+    "de": "In Ägypten lernte Josef, Träume zu deuten. Einmal deutete er den Traum des Pharaos selbst!",
+    "es": "En Egipto José aprendió a interpretar sueños. ¡Un día interpretó el sueño del propio faraón!",
+    "pt": "No Egito José aprendeu a explicar sonhos. Um dia ele explicou o sonho do próprio faraó!",
+    "fr": "En Égypte, Joseph apprit à expliquer les rêves. Un jour, il expliqua le rêve du pharaon lui-même !",
+    "ar": "في مصر تعلّم يوسف تفسير الأحلام. ذات يوم فسّر حلم فرعون نفسه!"
+  },
+  "Мастер снов": {
+    "en": "Master of dreams",
+    "de": "Traumdeuter",
+    "es": "Maestro de sueños",
+    "pt": "Mestre dos sonhos",
+    "fr": "Maître des rêves",
+    "ar": "مفسّر الأحلام"
+  },
+  "Так вся семья Иакова переехала в Египет. С этого начнётся следующая история.": {
+    "en": "So all of Jacob’s family moved to Egypt. The next story begins from here.",
+    "de": "So zog Jakobs ganze Familie nach Ägypten. Hier beginnt die nächste Geschichte.",
+    "es": "Así toda la familia de Jacob se mudó a Egipto. Desde aquí empieza la siguiente historia.",
+    "pt": "Assim toda a família de Jacó se mudou para o Egito. Daqui começa a próxima história.",
+    "fr": "Ainsi toute la famille de Jacob s’installa en Égypte. C’est là que commence l’histoire suivante.",
+    "ar": "وهكذا انتقلت كل عائلة يعقوب إلى مصر. من هنا تبدأ القصة التالية."
+  },
+  "Пришёл голод — и Иосиф раздавал хлеб. Он простил братьев и накормил все их семьи.": {
+    "en": "Famine came — and Joseph gave out bread. He forgave his brothers and fed all their families.",
+    "de": "Hunger kam — und Josef teilte Brot aus. Er vergab den Brüdern und speiste all ihre Familien.",
+    "es": "Llegó el hambre — y José repartía pan. Perdonó a sus hermanos y alimentó a todas sus familias.",
+    "pt": "Veio a fome — e José distribuía pão. Ele perdoou os irmãos e alimentou todas as famílias deles.",
+    "fr": "La famine vint — et Joseph distribuait du pain. Il pardonna à ses frères et nourrit toutes leurs familles.",
+    "ar": "جاءت المجاعة — وكان يوسف يوزّع الخبز. غفر لإخوته وأطعم كل عائلاتهم."
+  },
+  "Спаситель семьи": {
+    "en": "Family rescuer",
+    "de": "Retter der Familie",
+    "es": "Salvador de la familia",
+    "pt": "Salvador da família",
+    "fr": "Sauveur de la famille",
+    "ar": "منقذ العائلة"
+  },
+  "Верно! Семь лет достатка — семь лет запаса, чтобы пережить голод.": {
+    "en": "Right! Seven years of plenty — seven years of storing up, to get through the famine.",
+    "de": "Richtig! Sieben Jahre Überfluss — sieben Jahre Vorrat, um den Hunger zu überstehen.",
+    "es": "¡Correcto! Siete años de abundancia — siete años de guardar, para pasar el hambre.",
+    "pt": "Certo! Sete anos de fartura — sete anos de reserva, para atravessar a fome.",
+    "fr": "Exact ! Sept années d’abondance — sept années de réserves, pour traverser la famine.",
+    "ar": "صحيح! سبع سنين رخاء — سبع سنين ادّخار، لتجاوز المجاعة."
+  },
+  "На 3 года": {
+    "en": "For 3 years",
+    "de": "Für 3 Jahre",
+    "es": "Durante 3 años",
+    "pt": "Por 3 anos",
+    "fr": "Pendant 3 ans",
+    "ar": "لمدة ٣ سنوات"
+  },
+  "На 5 лет": {
+    "en": "For 5 years",
+    "de": "Für 5 Jahre",
+    "es": "Durante 5 años",
+    "pt": "Por 5 anos",
+    "fr": "Pendant 5 ans",
+    "ar": "لمدة ٥ سنوات"
+  },
+  "На 7 лет": {
+    "en": "For 7 years",
+    "de": "Für 7 Jahre",
+    "es": "Durante 7 años",
+    "pt": "Por 7 anos",
+    "fr": "Pendant 7 ans",
+    "ar": "لمدة ٧ سنوات"
+  },
+  "На 10 лет": {
+    "en": "For 10 years",
+    "de": "Für 10 Jahre",
+    "es": "Durante 10 años",
+    "pt": "Por 10 anos",
+    "fr": "Pendant 10 ans",
+    "ar": "لمدة ١٠ سنوات"
+  },
+  "На 40 лет": {
+    "en": "For 40 years",
+    "de": "Für 40 Jahre",
+    "es": "Durante 40 años",
+    "pt": "Por 40 anos",
+    "fr": "Pendant 40 ans",
+    "ar": "لمدة ٤٠ سنة"
+  },
+  "На сколько лет Иосиф велел копить хлеб в годы достатка?": {
+    "en": "For how many years did Joseph order bread to be stored in the years of plenty?",
+    "de": "Für wie viele Jahre ließ Josef in den Jahren des Überflusses Brot sammeln?",
+    "es": "¿Durante cuántos años mandó José guardar pan en los años de abundancia?",
+    "pt": "Por quantos anos José mandou guardar pão nos anos de fartura?",
+    "fr": "Pendant combien d’années Joseph a-t-il fait amasser du pain pendant les années d’abondance ?",
+    "ar": "لكم سنة أمر يوسف بادّخار الخبز في سنين الرخاء؟"
+  },
+  "Годы запаса": {
+    "en": "Years of storing up",
+    "de": "Jahre des Vorrats",
+    "es": "Años de reserva",
+    "pt": "Anos de reserva",
+    "fr": "Années de réserves",
+    "ar": "سنوات الادّخار"
+  },
+  "Ты прошёл эпоху патриархов: Авраам, Сарра, Иаков и Иосиф. Дальше — Египет и великий Исход.": {
+    "en": "You’ve finished the patriarchs’ era: Abraham, Sarah, Jacob, and Joseph. Next — Egypt and the great Exodus.",
+    "de": "Du hast die Patriarchen-Epoche geschafft: Abraham, Sara, Jakob und Josef. Weiter — Ägypten und der große Auszug.",
+    "es": "Has terminado la época de los patriarcas: Abraham, Sara, Jacob y José. Sigue — Egipto y el gran Éxodo.",
+    "pt": "Você concluiu a era dos patriarcas: Abraão, Sara, Jacó e José. Depois — o Egito e o grande Êxodo.",
+    "fr": "Tu as terminé l’époque des patriarches : Abraham, Sara, Jacob et Joseph. Ensuite — l’Égypte et le grand Exode.",
+    "ar": "أنهيت حقبة الآباء: إبراهيم وسارة ويعقوب ويوسف. بعد ذلك — مصر والخروج العظيم."
+  },
+  "Глава 2 пройдена!": {
+    "en": "Chapter 2 complete!",
+    "de": "Kapitel 2 geschafft!",
+    "es": "¡Capítulo 2 terminado!",
+    "pt": "Capítulo 2 concluído!",
+    "fr": "Chapitre 2 terminé !",
+    "ar": "اكتمل الفصل ٢!"
+  },
+  "Верно! Потомков у Авраама будет больше, чем звёзд на небе.": {
+    "en": "Right! Abraham’s descendants will be more than the stars in the sky.",
+    "de": "Richtig! Abrahams Nachkommen werden mehr sein als die Sterne am Himmel.",
+    "es": "¡Correcto! Los descendientes de Abraham serán más que las estrellas del cielo.",
+    "pt": "Certo! Os descendentes de Abraão serão mais do que as estrelas do céu.",
+    "fr": "Exact ! Les descendants d’Abraham seront plus nombreux que les étoiles du ciel.",
+    "ar": "صحيح! سيكون نسل إبراهيم أكثر من نجوم السماء."
+  },
+  "Потомков больше, чем звёзд": {
+    "en": "More descendants than stars",
+    "de": "Mehr Nachkommen als Sterne",
+    "es": "Más descendientes que estrellas",
+    "pt": "Mais descendentes do que estrelas",
+    "fr": "Plus de descendants que d’étoiles",
+    "ar": "نسل أكثر من النجوم"
+  },
+  "Новый шатёр": {
+    "en": "A new tent",
+    "de": "Ein neues Zelt",
+    "es": "Una tienda nueva",
+    "pt": "Uma tenda nova",
+    "fr": "Une nouvelle tente",
+    "ar": "خيمة جديدة"
+  },
+  "Гору золота": {
+    "en": "A mountain of gold",
+    "de": "Einen Berg aus Gold",
+    "es": "Una montaña de oro",
+    "pt": "Uma montanha de ouro",
+    "fr": "Une montagne d’or",
+    "ar": "جبل ذهب"
+  },
+  "Большой корабль": {
+    "en": "A big ship",
+    "de": "Ein großes Schiff",
+    "es": "Un gran barco",
+    "pt": "Um grande navio",
+    "fr": "Un grand navire",
+    "ar": "سفينة كبيرة"
+  },
+  "Что пообещали Аврааму, показав на звёзды?": {
+    "en": "What was promised to Abraham when he was shown the stars?",
+    "de": "Was wurde Abraham versprochen, als man auf die Sterne zeigte?",
+    "es": "¿Qué le prometieron a Abraham al señalarle las estrellas?",
+    "pt": "O que prometeram a Abraão ao apontar as estrelas?",
+    "fr": "Que promit-on à Abraham en lui montrant les étoiles ?",
+    "ar": "ماذا وُعد إبراهيم حين أُشير إلى النجوم؟"
+  },
+  "Вопрос по прочитанному": {
+    "en": "Question about what you read",
+    "de": "Frage zum Gelesenen",
+    "es": "Pregunta sobre lo leído",
+    "pt": "Pergunta sobre o que você leu",
+    "fr": "Question sur ce que tu as lu",
+    "ar": "سؤال عما قرأت"
+  },
+  "Да! Авраам жил в шатре и встречал путников.": {
+    "en": "Yes! Abraham lived in a tent and welcomed travelers.",
+    "de": "Ja! Abraham lebte im Zelt und empfing Wanderer.",
+    "es": "¡Sí! Abraham vivía en una tienda y acogía a los viajeros.",
+    "pt": "Sim! Abraão vivia numa tenda e acolhia viajantes.",
+    "fr": "Oui ! Abraham vivait sous une tente et accueillait les voyageurs.",
+    "ar": "نعم! عاش إبراهيم في خيمة واستقبل المسافرين."
+  },
+  "В шатре": {
+    "en": "In a tent",
+    "de": "Im Zelt",
+    "es": "En una tienda",
+    "pt": "Numa tenda",
+    "fr": "Sous une tente",
+    "ar": "في خيمة"
+  },
+  "В замке": {
+    "en": "In a castle",
+    "de": "In einem Schloss",
+    "es": "En un castillo",
+    "pt": "Num castelo",
+    "fr": "Dans un château",
+    "ar": "في قلعة"
+  },
+  "В башне": {
+    "en": "In a tower",
+    "de": "In einem Turm",
+    "es": "En una torre",
+    "pt": "Numa torre",
+    "fr": "Dans une tour",
+    "ar": "في برج"
+  },
+  "На корабле": {
+    "en": "On a ship",
+    "de": "Auf einem Schiff",
+    "es": "En un barco",
+    "pt": "Num navio",
+    "fr": "Sur un navire",
+    "ar": "على سفينة"
+  },
+  "Где жил Авраам в пути?": {
+    "en": "Where did Abraham live on the journey?",
+    "de": "Wo lebte Abraham unterwegs?",
+    "es": "¿Dónde vivía Abraham en el camino?",
+    "pt": "Onde Abraão morava na viagem?",
+    "fr": "Où vivait Abraham en chemin ?",
+    "ar": "أين عاش إبراهيم في الطريق؟"
+  },
+  "Как жил Авраам?": {
+    "en": "How did Abraham live?",
+    "de": "Wie lebte Abraham?",
+    "es": "¿Cómo vivía Abraham?",
+    "pt": "Como Abraão vivia?",
+    "fr": "Comment vivait Abraham ?",
+    "ar": "كيف عاش إبراهيم؟"
+  },
+  "Авраам доверился обещанию!": {
+    "en": "Abraham trusted the promise!",
+    "de": "Abraham vertraute der Verheißung!",
+    "es": "¡Abraham confió en la promesa!",
+    "pt": "Abraão confiou na promessa!",
+    "fr": "Abraham a fait confiance à la promesse !",
+    "ar": "وثق إبراهيم بالوعد!"
+  },
+  "Авраам живёт дома": {
+    "en": "Abraham stays home",
+    "de": "Abraham bleibt zu Hause",
+    "es": "Abraham se queda en casa",
+    "pt": "Abraão fica em casa",
+    "fr": "Abraham reste à la maison",
+    "ar": "إبراهيم يبقى في البيت"
+  },
+  "Бог зовёт в новую землю": {
+    "en": "God calls to a new land",
+    "de": "Gott ruft in ein neues Land",
+    "es": "Dios llama a una tierra nueva",
+    "pt": "Deus chama a uma terra nova",
+    "fr": "Dieu appelle vers une terre nouvelle",
+    "ar": "الله يدعو إلى أرض جديدة"
+  },
+  "Авраам смотрит на звёзды": {
+    "en": "Abraham looks at the stars",
+    "de": "Abraham schaut zu den Sternen",
+    "es": "Abraham mira las estrellas",
+    "pt": "Abraão olha para as estrelas",
+    "fr": "Abraham regarde les étoiles",
+    "ar": "إبراهيم ينظر إلى النجوم"
+  },
+  "Нажимай по порядку: вспомни путь Авраама": {
+    "en": "Tap in order: remember Abraham’s path",
+    "de": "Tippe der Reihe nach: erinnere dich an Abrahams Weg",
+    "es": "Toca en orden: recuerda el camino de Abraham",
+    "pt": "Toque na ordem: lembre o caminho de Abraão",
+    "fr": "Appuie dans l’ordre : souviens-toi du chemin d’Abraham",
+    "ar": "اضغط بالترتيب: تذكّر مسار إبراهيم"
+  },
+  "Обещание звёзд": {
+    "en": "The promise of the stars",
+    "de": "Das Sternenversprechen",
+    "es": "La promesa de las estrellas",
+    "pt": "A promessa das estrelas",
+    "fr": "La promesse des étoiles",
+    "ar": "وعد النجوم"
+  }
+}

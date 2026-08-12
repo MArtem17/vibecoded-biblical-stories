@@ -1,0 +1,37 @@
+{
+  "book_id": "sotvorenie-mira",
+  "title": "Сотворение мира",
+  "master_language": "ru",
+  "languages": ["ru", "en", "de", "es", "pt", "fr", "ar"],
+
+  "image": {
+    "model": "gpt-image-2",
+    "size": "1024x1536",
+    "quality": "high",
+    "web_width": 820,
+    "webp_quality": 82,
+    "anchor_candidates": 4
+  },
+
+  "claude_model": "claude-sonnet-5",
+
+  "translation": {
+    "max_length_ratio": 1.2,
+    "audience": "дети 5–9 лет"
+  },
+
+  "tts": {
+    "provider": "genapi",
+    "model_id": "gemini-3-1-tts",
+    "single_voice_all_languages": true,
+    "trim_silence": true,
+    "output_format": "mp3"
+  },
+
+  "paths": {
+    "anchor": "img/_anchor.png",
+    "images_dir": "img",
+    "audio_dir": "audio",
+    "out_data": "book.data.js"
+  }
+}

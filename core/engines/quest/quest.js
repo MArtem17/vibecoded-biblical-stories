@@ -54,7 +54,16 @@
 
   /* ── утилиты ── */
   function idx(arr, v) { for (var i = 0; i < arr.length; i++) if (arr[i] === v) return i; return -1; }
-  function L(obj) { if (!obj) return ""; return obj[lang] != null ? obj[lang] : (obj.ru != null ? obj.ru : ""); }
+  function L(obj) {
+    if (!obj) return "";
+    if (typeof obj === "string") return obj;
+    if (obj[lang] != null && String(obj[lang]).trim() !== "") return obj[lang];
+    if (obj.ru != null && String(obj.ru).trim() !== "") return obj.ru;
+    for (var k in obj) {
+      if (Object.prototype.hasOwnProperty.call(obj, k) && obj[k] != null && String(obj[k]).trim() !== "") return obj[k];
+    }
+    return "";
+  }
   function T(key) { return L(B.ui[key]); }
   function el(tag, cls, html) {
     var e = document.createElement(tag);
@@ -2292,8 +2301,10 @@
       drawArk(W * 0.28, py, rot);
       if (!started) {
         ctx.fillStyle = "rgba(230,245,255,.9)";
-        ctx.font = "700 16px system-ui,sans-serif";
+        /* Baloo Bhaijaan 2 — чтобы арабские/кириллические подписи не пропадали на canvas */
+        ctx.font = "700 16px 'Baloo Bhaijaan 2','Baloo 2',system-ui,sans-serif";
         ctx.textAlign = "center";
+        ctx.direction = (idx(RTL, lang) >= 0) ? "rtl" : "ltr";
         ctx.fillText(T("gArkFlapTap"), W / 2, H * 0.72);
       }
     }

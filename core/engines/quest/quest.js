@@ -1260,26 +1260,27 @@
   function mechPuzzle(stage, c, done) {
     stage.appendChild(el("div", "qq", icoH("puzzle") + " " + esc(T("qPuzzle"))));
     stage.appendChild(el("p", "hint", esc(T("qPuzzleHint"))));
-    var order = shuffle([0, 1, 2, 3, 4, 5]);
-    var solvedAtStart = true;
-    for (var z = 0; z < 6; z++) if (order[z] !== z) solvedAtStart = false;
-    if (solvedAtStart) order = [1, 0, 3, 2, 5, 4];
+    /* Аналог из “птицы мира”: пазл 3×3 (9 плиток) — тап по двум плиткам меняет их местами */
+    var N = 3;
+    var order = shuffle([0, 1, 2, 3, 4, 5, 6, 7, 8]);
+    /* если сразу попали в решение — делаем один обмен, чтобы игра была интересной */
+    if (order.every(function (v, i) { return v === i; })) order = [1, 0, 2, 3, 4, 5, 6, 7, 8];
     var grid = el("div", "pzgrid");
     var sel = -1, tiles = [], swaps = 0;
     function paint() {
-      for (var i = 0; i < 6; i++) {
+      for (var i = 0; i < 9; i++) {
         var pc = order[i];
         tiles[i].style.backgroundPosition =
-          (pc % 2) * 100 + "% " + Math.floor(pc / 2) * 50 + "%";
+          (pc % N) * 50 + "% " + Math.floor(pc / N) * 50 + "%";
         tiles[i].setAttribute("data-piece", pc);
         tiles[i].className = "pz" + (sel === i ? " sel" : "");
       }
     }
     function solved() {
-      for (var i = 0; i < 6; i++) if (order[i] !== i) return false;
+      for (var i = 0; i < 9; i++) if (order[i] !== i) return false;
       return true;
     }
-    for (var i2 = 0; i2 < 6; i2++) (function (slot) {
+    for (var i2 = 0; i2 < 9; i2++) (function (slot) {
       var tl = el("button", "pz");
       tl.style.backgroundImage = "url('" + cardImg(c) + "')";
       tl.setAttribute("data-slot", slot);
@@ -1291,7 +1292,7 @@
         paint();
         if (solved()) {
           grid.classList.add("win");
-          setTimeout(function () { done(swaps <= 9); }, 700);
+          setTimeout(function () { done(swaps <= 12); }, 700);
         }
       };
       tiles.push(tl); grid.appendChild(tl);

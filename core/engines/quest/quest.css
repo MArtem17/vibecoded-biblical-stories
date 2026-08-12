@@ -465,10 +465,10 @@ main .sec .lbl{position:absolute;top:-11px;left:10px;background:#b4552d;border:1
 .tile.locked .ph .nm{font-size:14px;font-weight:900;color:#111;opacity:.7}
 
 /* ── живые механики квеста ── */
-.pzgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:4px;width:76%;max-width:280px;
+.pzgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:4px;width:92%;max-width:320px;
   margin:0 auto;border:3px solid #111;border-radius:12px;padding:4px;background:#fff}
 .pzgrid .pz{aspect-ratio:1/1;border:1px solid #999;border-radius:6px;
-  background-size:200% 300%;background-repeat:no-repeat;padding:0}
+  background-size:300% 300%;background-repeat:no-repeat;padding:0}
 .pzgrid .pz.sel{outline:4px solid #ffd166;outline-offset:-2px}
 .pzgrid.win{border-color:#2e7d32;box-shadow:0 0 0 4px #c8f0c8}
 .findbox{position:relative;border:3px solid #111;border-radius:14px;overflow:hidden;cursor:crosshair}

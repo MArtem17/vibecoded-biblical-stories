@@ -45,7 +45,9 @@ main{flex:1;padding:14px 12px 40px;max-width:960px;width:100%;margin:0 auto}
 /* ── Иконостас «Карты»: размеры как у Птиц мира (ptitsy-mira) ── */
 .grid{max-width:960px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);
   gap:18px;padding:14px 4px 30px}
-@media (max-width:680px){.grid{gap:14px;padding:12px 0 24px}}
+@media (max-width:768px){
+  .grid{grid-template-columns:1fr;gap:14px;padding:12px 0 24px;max-width:420px}
+}
 .tile{position:relative;width:100%;aspect-ratio:2/3;border:none;border-radius:13px;
   overflow:hidden;background:#fff;padding:0;text-align:center;cursor:pointer;
   box-shadow:0 4px 13px rgba(0,0,0,.16);transition:transform .18s ease,box-shadow .18s ease;z-index:0}

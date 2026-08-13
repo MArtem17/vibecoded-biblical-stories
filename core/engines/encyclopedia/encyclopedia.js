@@ -229,7 +229,16 @@
     langsBox.appendChild(b);
   });
 
-  function T(o){ return (o&&(o[lang]||o[BOOK.languages[0]]))||""; }
+  function T(o){
+    if(!o) return "";
+    if(typeof o==="string") return o;
+    if(o[lang]!=null && String(o[lang]).trim()!=="") return o[lang];
+    if(o.ru!=null && String(o.ru).trim()!=="") return o.ru;
+    var fallback=BOOK.languages&&BOOK.languages[0];
+    if(fallback && o[fallback]!=null && String(o[fallback]).trim()!=="") return o[fallback];
+    for(var k in o){ if(Object.prototype.hasOwnProperty.call(o,k) && o[k]!=null && String(o[k]).trim()!=="") return o[k]; }
+    return "";
+  }
   function escapeHtml(s){return String(s).replace(/[&<>]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]));}
 
   /* один персистентный <audio> на всю книгу: iOS WKWebView разрешает

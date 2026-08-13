@@ -41,11 +41,11 @@ window.FEED_OPENING = { deck:"biblejskie-istorii", chapter:1, audio:false,
     days:[
       { t:{ru:"Свет",en:"Light",de:"Licht",es:"Luz",pt:"Luz",fr:"Lumière",ar:"النور"}, en:"Light", emoji:"💡" },
       { t:{ru:"Небо",en:"Sky",de:"Himmel",es:"Cielo",pt:"Céu",fr:"Ciel",ar:"سماء"}, en:"Sky", emoji:"☁️" },
-      { t:{ru:"Суша и растения",en:"Land and plants",de:"Land und Pflanzen",es:"Tierra y plantas",pt:"Terra e plantas",fr:"Terre et plantes",ar:"اليابسة والنباتات"}, en:"Land and plants", emoji:"🌱" },
-      { t:{ru:"Солнце, луна и звёзды",en:"Sun, moon, and stars",de:"Sonne, Mond und Sterne",es:"Sol, luna y estrellas",pt:"Sol, lua e estrelas",fr:"Soleil, lune et étoiles",ar:"الشمس والقمر والنجوم"}, en:"Sun, moon and stars", emoji:"☀️" },
-      { t:{ru:"Рыбы и птицы",en:"Fish and birds",de:"Fische und Vögel",es:"Peces y aves",pt:"Peixes e aves",fr:"Poissons et oiseaux",ar:"الأسماك والطيور"}, en:"Fish and birds", emoji:"🐟" },
-      { t:{ru:"Звери и человек",en:"Animals and people",de:"Tiere und Mensch",es:"Animales y el ser humano",pt:"Animais e o ser humano",fr:"Animaux et l'humain",ar:"الحيوانات والإنسان"}, en:"Animals and people", emoji:"🦁" },
-      { t:{ru:"День покоя",en:"Day of rest",de:"Ruhetag",es:"Día de descanso",pt:"Dia de descanso",fr:"Jour de repos",ar:"يوم الراحة"}, en:"Day of rest", emoji:"😴" }
+      { t:{ru:"Суша",en:"Land",de:"Land",es:"Tierra",pt:"Terra",fr:"Terre",ar:"يابسة"}, en:"Land", emoji:"🌱" },
+      { t:{ru:"Звёзды",en:"Stars",de:"Sterne",es:"Estrellas",pt:"Estrelas",fr:"Étoiles",ar:"نجوم"}, en:"Stars", emoji:"☀️" },
+      { t:{ru:"Рыбы",en:"Fish",de:"Fische",es:"Peces",pt:"Peixes",fr:"Poissons",ar:"أسماك"}, en:"Fish", emoji:"🐟" },
+      { t:{ru:"Звери",en:"Beasts",de:"Tiere",es:"Animales",pt:"Animais",fr:"Animaux",ar:"حيوانات"}, en:"Beasts", emoji:"🦁" },
+      { t:{ru:"Покой",en:"Rest",de:"Ruhe",es:"Descanso",pt:"Descanso",fr:"Repos",ar:"راحة"}, en:"Rest", emoji:"😴" }
     ] },
 
   /* ── Райский сад — сцена ── */

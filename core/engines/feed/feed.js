@@ -1042,6 +1042,19 @@
       if(lab) return stepUnit(d)+": "+lab;
       return wordN(d);
     }
+    /* плитка дня: эмодзи/иконка + короткая подпись (+ номер после верного клика) */
+    function dayTileHtml(st, dayIdx, numHidden){
+      var hasFace=typeof st==="object" && (st.icon || st.emoji);
+      var face= (typeof st==="object" && st.icon) ? em(st.icon,null,"cti")
+        : (typeof st==="object" && st.emoji) ? '<span class="femo cti">'+st.emoji+'</span>'
+        : '<span class="cnum">'+(dayIdx+1)+'</span>';
+      var lab=countStepLabel(st);
+      var num=hasFace
+        ? '<span class="cdayn"'+(numHidden?' hidden':'')+'>'+(dayIdx+1)+'</span>'
+        : '';
+      var cap=lab ? '<span class="cdaylab">'+esc(lab)+'</span>' : '';
+      return face+num+cap;
+    }
     function finishCount(miss, silent){
       var dn=div("mdone"); dn.textContent=doneTxt(card.done||(L({ru:"Всего",en:"Total",de:"Insgesamt",es:"En total",pt:"No total",fr:"En tout",ar:"المجموع"})+" "+n+"! "+L({ru:"Молодец!",en:"Well done!",de:"Super!",es:"¡Muy bien!",pt:"Muito bem!",fr:"Bravo !",ar:"أحسنت!"})));
       dn.style.position="static"; dn.style.margin="14px auto 0"; dn.style.transform="none";
@@ -1060,11 +1073,7 @@
         var t=div("ctile counted"); t._done=1;
         if(st){
           t.classList.add("cday");
-          var hasFace=typeof st==="object" && (st.icon || st.emoji);
-          var face= (typeof st==="object" && st.icon) ? em(st.icon,null,"cti")
-            : (typeof st==="object" && st.emoji) ? '<span class="femo cti">'+st.emoji+'</span>'
-            : '<span class="cnum">'+(dayIdx+1)+'</span>';
-          t.innerHTML=face+(hasFace?'<span class="cdayn">'+(dayIdx+1)+'</span>':'');
+          t.innerHTML=dayTileHtml(st, dayIdx, false);
         } else if(card.icon) t.innerHTML=em(card.icon,null,"cti");
         else t.textContent=emoji;
         grid.appendChild(t);
@@ -1086,12 +1095,8 @@
         var st=steps[dayIdx];
         var t=div("ctile");
         t.classList.add("cday");
-        var hasFace=typeof st==="object" && (st.icon || st.emoji);
-        var face= (typeof st==="object" && st.icon) ? em(st.icon,null,"cti")
-          : (typeof st==="object" && st.emoji) ? '<span class="femo cti">'+st.emoji+'</span>'
-          : '<span class="cnum">?</span>';
         /* номер дня не показываем до верного клика — иначе порядок очевиден */
-        t.innerHTML=face+(hasFace?'<span class="cdayn" hidden>'+(dayIdx+1)+'</span>':'');
+        t.innerHTML=dayTileHtml(st, dayIdx, true);
         t.addEventListener("click", function(ev){ ev.stopPropagation();
           if(t._done || next>=n) return;
           if(dayIdx===next){
@@ -1115,11 +1120,7 @@
         var t=div("ctile");
         if(st){
           t.classList.add("cday");
-          var hasFace=typeof st==="object" && (st.icon || st.emoji);
-          var face= (typeof st==="object" && st.icon) ? em(st.icon,null,"cti")
-            : (typeof st==="object" && st.emoji) ? '<span class="femo cti">'+st.emoji+'</span>'
-            : '<span class="cnum">'+(i+1)+'</span>';
-          t.innerHTML=face+(hasFace?'<span class="cdayn">'+(i+1)+'</span>':'');
+          t.innerHTML=dayTileHtml(st, i, false);
         } else if(card.icon) t.innerHTML=em(card.icon,null,"cti");
         else t.textContent=emoji;
         t.addEventListener("click", function(ev){ ev.stopPropagation();

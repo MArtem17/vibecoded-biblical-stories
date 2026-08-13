@@ -625,7 +625,17 @@
   .jg-bird .ph img{position:absolute;left:0;top:0;width:100%;height:100%;object-fit:cover;display:block;background:transparent;opacity:0;transition:opacity .15s ease}
   .jg-birds.is-loading .jg-bird .ph img{opacity:0!important;visibility:hidden}
   .jg-birds.is-ready .jg-bird .ph img{opacity:1;visibility:visible}
-  .jg-bird .nm{display:none}
+  /* Подписи героев/сюжетов обязательны: иначе на не-ru непонятно, что выбирать */
+  .jg-bird .nm{
+    display:block;position:absolute;left:0;right:0;bottom:0;z-index:2;
+    padding:20px 5px 6px;box-sizing:border-box;
+    font:800 clamp(10px,2.8vw,12px)/1.15 var(--display),var(--sans),sans-serif;
+    color:#fff;text-align:center;
+    background:linear-gradient(180deg,transparent,rgba(20,14,8,.82) 42%);
+    pointer-events:none;text-shadow:0 1px 2px rgba(0,0,0,.45);
+    overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+  }
+  html[dir="rtl"] .jg-bird .nm{white-space:normal;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
   .jg-bird.pn-bird-done{box-shadow:0 2px 6px rgba(0,0,0,.22),0 0 0 2.5px rgba(90,143,74,.85)}
   .jg-bird.pn-bird-all{box-shadow:0 2px 6px rgba(0,0,0,.22),0 0 0 2.5px var(--green,#5a8f4a)}
   .jg-bird.pn-bird-done .ph::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(35,90,40,.28));pointer-events:none;z-index:1}

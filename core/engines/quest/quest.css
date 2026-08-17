@@ -1,4 +1,3 @@
-@import url("../../scrollbars.css");
 /* Библейские истории — стили приложения.
    Инварианты: высокий контраст (чёрный по белому), витрина ровно 3 колонки. */
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
@@ -39,240 +38,95 @@ nav#tabs{position:sticky;top:0;z-index:9;display:flex;overflow-x:auto;gap:6px;pa
 nav#tabs .tab{white-space:nowrap;border:2px solid #111;border-radius:999px;padding:7px 14px;
   font-weight:800;font-size:15px;background:#fff;color:#111}
 nav#tabs .tab[aria-pressed="true"]{background:#111;color:#fff}
-main{flex:1;padding:14px 12px 40px;max-width:960px;width:100%;margin:0 auto}
-.hint{font-size:15px;color:var(--muted,#333);margin:2px 0 12px}
+main{flex:1;padding:14px 12px 40px;max-width:760px;width:100%;margin:0 auto}
+.hint{font-size:15px;color:#333;margin:2px 0 12px}
 
-/* ── Иконостас «Карты»: размеры как у Птиц мира (ptitsy-mira) ── */
-.grid{max-width:960px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);
-  gap:18px;padding:14px 4px 30px}
-@media (max-width:768px){
-  .grid{grid-template-columns:1fr;gap:14px;padding:12px 0 24px;max-width:420px}
-}
-.tile{position:relative;width:100%;aspect-ratio:2/3;border:none;border-radius:13px;
-  overflow:hidden;background:#fff;padding:0;text-align:center;cursor:pointer;
-  box-shadow:0 4px 13px rgba(0,0,0,.16);transition:transform .18s ease,box-shadow .18s ease;z-index:0}
-.tile:active{transform:scale(.96)}
-.tile:hover{transform:scale(1.05);z-index:2;box-shadow:0 12px 28px rgba(20,40,30,.28),0 4px 10px rgba(0,0,0,.12)}
-.tile img{width:100%;height:100%;object-fit:cover;object-position:50% 0%;display:block;aspect-ratio:auto}
-.tile .cap{position:absolute;left:0;right:0;bottom:0;display:block;font-size:12.5px;font-weight:800;
-  padding:16px 8px 7px;color:#fff;text-align:center;border-top:none;
-  background:linear-gradient(to top,rgba(0,0,0,.72),rgba(0,0,0,0))}
+/* ── Иконостас: РОВНО 3 колонки на всех ширинах ── */
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.tile{position:relative;border:2px solid #111;border-radius:12px;overflow:hidden;background:#fff;
+  padding:0;text-align:center}
+.tile img{width:100%;aspect-ratio:2/3;object-fit:cover}
+.tile .cap{display:block;font-size:12px;font-weight:800;padding:5px 4px;color:#111;background:#fff;
+  border-top:2px solid #111}
 .tile .mark{position:absolute;top:6px;right:6px;width:22px;height:22px;border-radius:50%;
-  background:#111;color:#fff;font-size:13px;line-height:22px;font-weight:900;z-index:2}
-.tile.txt{aspect-ratio:2/3}
-.tile.txt .ph{position:absolute;inset:0;aspect-ratio:auto;display:flex;flex-direction:column;align-items:center;
+  background:#111;color:#fff;font-size:13px;line-height:22px;font-weight:900}
+.tile.txt{aspect-ratio:auto}
+.tile.txt .ph{aspect-ratio:2/3;display:flex;flex-direction:column;align-items:center;
   justify-content:center;gap:8px;padding:8px;background:#fdf6ec}
 .tile.txt .ph .em{font-size:40px}
 .tile.txt .ph .nm{font-size:13px;font-weight:900;color:#111;line-height:1.2}
 
-/* ── Карта крупно: ширина как у птиц (высота окна × 2/3) ── */
-#cardview{position:fixed;inset:0;z-index:70;background:rgba(18,20,17,.86);display:flex;
-  align-items:center;justify-content:center;padding:8px}
-#cardview .frame{position:relative;width:min(97vw,calc((100dvh - 46px) * 0.6667));
-  max-height:94vh;display:flex;flex-direction:column}
-#cardview .face,#cardview .backside{border:none;border-radius:18px;overflow:hidden;
-  box-shadow:0 20px 55px rgba(0,0,0,.5)}
-#cardview .face{position:relative;width:100%;aspect-ratio:2/3;cursor:pointer;background:#fdf6ec}
-#cardview .faceimg{position:absolute;inset:0}
-#cardview .faceimg img,#cardview .face > img{width:100%;height:100%;object-fit:cover;object-position:50% 0%;display:block;
-  max-height:none;background:#fdf6ec}
-#cardview .face .ph{position:absolute;inset:0;aspect-ratio:auto;max-height:none;display:flex;
-  flex-direction:column;align-items:center;justify-content:center;gap:14px;background:#fdf6ec;
-  padding:20px;text-align:center}
+/* ── Карта крупно ── */
+#cardview{position:fixed;inset:0;z-index:30;background:rgba(0,0,0,.55);display:flex;
+  align-items:center;justify-content:center;padding:16px}
+#cardview .frame{position:relative;width:min(92vw,430px);max-height:94vh;display:flex;flex-direction:column}
+#cardview .face,#cardview .backside{background:#fff;border:3px solid #111;border-radius:16px;overflow:hidden}
+#cardview .face img{width:100%;max-height:78vh;object-fit:contain;background:#fdf6ec}
+#cardview .face .ph{aspect-ratio:2/3;max-height:78vh;display:flex;flex-direction:column;align-items:center;
+  justify-content:center;gap:14px;background:#fdf6ec;padding:20px;text-align:center}
 #cardview .face .ph .em{font-size:84px}
 #cardview .face .ph .nm{font-size:24px;font-weight:900}
-
-/* ── ПРОТОТИП живого постера v3: full-bleed + бумажные плашки, иконка над цифрой ── */
-#cardview .face.pface{background:#e8d7bc;padding:0;cursor:pointer;overflow:hidden}
-#cardview .pface-art{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
-  object-position:50% 18%;display:block;z-index:0}
-#cardview .pface-frame{position:absolute;inset:0;z-index:1;pointer-events:none}
-#cardview .pface-head{position:absolute;left:11px;right:11px;top:11px;text-align:center;
-  padding:8px 10px 7px;border-radius:13px;
-  background:linear-gradient(180deg,rgba(252,244,228,.96),rgba(238,220,186,.94));
-  border:1.5px solid rgba(110,70,30,.42);
-  box-shadow:0 3px 12px rgba(40,24,10,.2), inset 0 1px 0 rgba(255,255,255,.6);
-  color:#3a2414}
-#cardview .pface-title{font-size:clamp(15px,4.4vw,21px);font-weight:900;line-height:1.05;
-  letter-spacing:.05em;text-transform:uppercase;color:#4a2c14}
-#cardview .pface-sub{margin-top:3px;font-size:11.5px;font-weight:700;line-height:1.2;color:#6a4a2e}
-#cardview .pface-foot{position:absolute;left:9px;right:9px;bottom:9px;display:flex;
-  flex-direction:column;gap:7px}
-#cardview .face.pface.has-facemore .pface-foot{bottom:54px}
-#cardview .pface-find{display:flex;align-items:center;gap:6px;padding:8px 10px;border-radius:13px;
-  background:
-    linear-gradient(180deg,rgba(255,248,232,.97),rgba(242,224,190,.95)),
-    repeating-linear-gradient(-12deg,transparent,transparent 7px,rgba(120,78,36,.04) 7px,rgba(120,78,36,.04) 8px);
-  border:1.5px solid rgba(110,70,30,.4);
-  box-shadow:0 2px 8px rgba(40,24,10,.16), inset 0 1px 0 rgba(255,255,255,.65);
-  font-size:13px;font-weight:700;color:#3a2414;line-height:1.25}
-#cardview .pface-find-ico{width:18px;height:18px;flex:0 0 auto;display:block;margin:0;
-  background:transparent;filter:drop-shadow(0 1px 1px rgba(40,24,10,.12))}
-#cardview .pface-find b{flex:0 0 auto;color:#6b3a12;margin-right:2px;text-transform:uppercase;
-  letter-spacing:.06em;font-size:11px;font-weight:900}
-#cardview .pface-find b::after{content:":"}
-#cardview .pface-find span{min-width:0}
-#cardview .pface-facts{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px}
-#cardview .pface-fact{display:flex;flex-direction:column;align-items:center;justify-content:flex-start;
-  gap:6px;padding:10px 8px;min-height:188px;height:188px;border-radius:13px;text-align:center;min-width:0;
-  background:
-    linear-gradient(175deg,rgba(255,249,234,.98),rgba(236,216,178,.95));
-  border:1.5px solid rgba(110,70,30,.38);
-  box-shadow:0 2px 7px rgba(40,24,10,.14), inset 0 1px 0 rgba(255,255,255,.7)}
-#cardview .pface-fact-ico{width:64px;height:64px;flex:0 0 auto;display:block;margin:0 auto;align-self:center;
-  background:transparent;filter:drop-shadow(0 1px 1px rgba(40,24,10,.12))}
-#cardview .pface-fact-txt{display:flex;flex-direction:column;align-items:center;
-  justify-content:flex-start;text-align:center;min-width:0;width:100%;gap:2px}
-#cardview .pface-fact b{flex:0 0 auto;display:block;width:100%;font-size:19px;font-weight:900;color:#4e280c;
-  line-height:1.15;letter-spacing:.01em;font-variant-numeric:tabular-nums;text-align:center}
-#cardview .pface-fact i{flex:0 0 auto;min-width:0;display:block;width:100%;margin-top:0;font-style:normal;
-  font-size:12px;font-weight:700;color:#6a4a2e;line-height:1.25;text-align:center;
-  white-space:normal;overflow:visible;text-overflow:unset;max-height:none}
-/* facemore на живом постере — кремовая полоска, не тёмный UI */
-#cardview .facemore.on-pface{background:linear-gradient(to top,rgba(40,24,10,.55),transparent);
-  padding:12px 10px 8px}
-#cardview .facemore.on-pface .fml{color:#f7ecda}
-#cardview .facemore.on-pface .fmrel{border-color:rgba(247,236,218,.9);background:#f7ecda}
-
-/* компактный живой постер в сетке альбома (тот же стиль поверх арта) */
-.tile.pface{background:#e8d7bc;padding:0;text-align:left;overflow:hidden}
-.tile.pface .pface-art{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
-  object-position:50% 18%;display:block;z-index:0}
-.tile.pface .pface-frame{position:absolute;inset:0;z-index:1;pointer-events:none}
-.tile.pface .pface-head{position:absolute;left:4px;right:4px;top:4px;text-align:center;
-  padding:4px 5px 3px;border-radius:9px;
-  background:linear-gradient(180deg,rgba(252,244,228,.96),rgba(238,220,186,.94));
-  border:1px solid rgba(110,70,30,.38);color:#3a2414;
-  box-shadow:0 1px 4px rgba(40,24,10,.14)}
-.tile.pface .pface-title{font-size:10.5px;font-weight:900;line-height:1.05;letter-spacing:.03em;
-  text-transform:uppercase;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:#4a2c14}
-.tile.pface .pface-sub{margin-top:1px;font-size:8px;font-weight:700;line-height:1.15;color:#6a4a2e;
-  overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.tile.pface .pface-foot{position:absolute;left:3px;right:3px;bottom:3px;display:flex;
-  flex-direction:column;gap:3px}
-.tile.pface .pface-find{display:flex;align-items:center;gap:3px;padding:3px 4px;border-radius:9px;
-  background:linear-gradient(180deg,rgba(255,248,232,.97),rgba(242,224,190,.95));
-  border:1px solid rgba(110,70,30,.34);font-size:8px;font-weight:700;color:#3a2414;line-height:1.15;
-  overflow:hidden;box-shadow:0 1px 3px rgba(40,24,10,.12)}
-.tile.pface .pface-find-ico{width:10px;height:10px;flex:0 0 auto;display:block;margin:0;
-  background:transparent}
-.tile.pface .pface-find b{flex:0 0 auto;color:#6b3a12;margin-right:1px;font-size:7px;
-  text-transform:uppercase;letter-spacing:.04em;font-weight:900}
-.tile.pface .pface-find b::after{content:":"}
-.tile.pface .pface-find span{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.tile.pface .pface-facts{display:grid;grid-template-columns:1fr 1fr 1fr;gap:3px}
-.tile.pface .pface-fact{display:flex;flex-direction:column;align-items:center;justify-content:flex-start;
-  gap:3px;padding:5px 4px;min-height:100px;height:100px;border-radius:9px;text-align:center;min-width:0;
-  background:linear-gradient(175deg,rgba(255,249,234,.98),rgba(236,216,178,.95));
-  border:1px solid rgba(110,70,30,.32);box-shadow:0 1px 2px rgba(40,24,10,.1)}
-.tile.pface .pface-fact-ico{width:36px;height:36px;flex:0 0 auto;display:block;margin:0 auto;align-self:center;
-  background:transparent}
-.tile.pface .pface-fact-txt{display:flex;flex-direction:column;align-items:center;
-  justify-content:flex-start;text-align:center;min-width:0;width:100%;gap:1px}
-.tile.pface .pface-fact b{flex:0 0 auto;display:block;width:100%;font-size:12px;font-weight:900;color:#4e280c;
-  line-height:1.15;text-align:center}
-.tile.pface .pface-fact i{flex:0 0 auto;min-width:0;display:block;width:100%;margin-top:0;font-style:normal;
-  font-size:9px;font-weight:700;color:#6a4a2e;line-height:1.2;text-align:center;
-  white-space:normal;overflow:visible;text-overflow:unset;max-height:none}
-.tile.pface .tskdots,.tile.pface .mark{z-index:3}
-/* mid-height of cream .pface-head (top:4 + ~30px banner → center ≈19px; dots 7px → top:16) */
-.tile.pface .tskdots{top:16px;left:16px}
-#cardview .backside{padding:0;overflow:hidden;height:auto;max-height:none;
-  background:transparent;cursor:pointer;width:100%}
-#cardview .cb{--cb-ink:#f7f0e6;--cb-muted:rgba(247,240,230,.72);--cb-line:rgba(255,255,255,.14);
-  --cb-gold:#e8c04a;--cb-r:18px;
-  position:relative;width:100%;height:100%;display:flex;flex-direction:column;color:var(--cb-ink);
-  border-radius:var(--cb-r);overflow:hidden;
-  background-color:#3a1c22;
-  background-image:
-    radial-gradient(95% 70% at 12% -10%,rgba(232,192,74,.26),transparent 52%),
-    radial-gradient(90% 65% at 110% 15%,rgba(224,97,4,.18),transparent 48%),
-    radial-gradient(80% 55% at 50% 110%,rgba(40,14,18,.92),transparent 55%),
-    linear-gradient(165deg,#6b2a36 0%,#3f1a24 42%,#241016 100%);
-  box-shadow:
-    inset 0 0 0 2px rgba(255,255,255,.16),
-    inset 0 0 0 5px #b85a3a,
-    inset 0 0 0 7px rgba(232,192,74,.5)}
-#cardview .cb::before{content:"";position:absolute;inset:10px;border-radius:calc(var(--cb-r) - 10px);
-  border:1px solid rgba(255,255,255,.1);pointer-events:none;z-index:1}
-#cardview .cb::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;z-index:0;
-  background:radial-gradient(120% 80% at 50% 0%,rgba(255,255,255,.07),transparent 45%);
-  box-shadow:inset 0 -36px 48px rgba(20,8,10,.4)}
-#cardview .cb-top{position:relative;z-index:2;flex:none;margin:14px 14px 0;padding:11px 13px 10px;
-  border-radius:14px;color:#fff;
-  background:linear-gradient(135deg,rgba(184,90,58,.96) 0%,rgba(143,69,44,.94) 55%,rgba(107,52,34,.97) 100%);
-  border:1px solid rgba(255,255,255,.16);
-  box-shadow:0 10px 24px rgba(0,0,0,.28),inset 0 1px 0 rgba(255,255,255,.18)}
-#cardview .cb-badge{display:inline-block;margin:0 0 5px;padding:3px 9px;border-radius:999px;
-  background:rgba(232,192,74,.18);border:1px solid rgba(232,192,74,.45);color:#f0d889;
-  font-size:10px;font-weight:800;letter-spacing:1.2px;text-transform:uppercase}
-#cardview .cb-name{margin:0;font-weight:900;font-size:22px;line-height:1.08;letter-spacing:.2px;
-  text-transform:uppercase;overflow-wrap:break-word;text-shadow:0 2px 12px rgba(0,0,0,.28)}
-#cardview .cb-group{margin:5px 0 0;font-size:13px;font-weight:700;opacity:.9;line-height:1.3}
-#cardview .cb-audio{position:relative;z-index:2;flex:none;display:flex;align-items:center;gap:10px;
-  margin:9px 14px 0;padding:9px 11px;border-radius:14px;
-  background:linear-gradient(135deg,rgba(184,90,58,.55) 0%,rgba(107,52,34,.72) 100%);
-  border:1px solid rgba(232,192,74,.35);
-  box-shadow:0 8px 18px rgba(0,0,0,.22),inset 0 1px 0 rgba(255,255,255,.12)}
-#cardview .cb-audio-btn{flex:none;width:40px;height:40px;border-radius:50%;border:none;cursor:pointer;
-  display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:900;
-  background:linear-gradient(145deg,#f0d889,#c9a227);color:#3a1c22;
-  box-shadow:0 4px 12px rgba(0,0,0,.28),inset 0 1px 0 rgba(255,255,255,.35)}
-#cardview .cb-audio-btn:active{transform:scale(.94)}
-#cardview .cb-audio.playing .cb-audio-btn{background:linear-gradient(145deg,#c45a2a,#b85a3a);color:#fff}
-#cardview .cb-audio-main{flex:1;min-width:0;display:flex;flex-direction:column;gap:5px}
-#cardview .cb-audio-title{font-size:11px;font-weight:800;letter-spacing:.6px;text-transform:uppercase;color:#f0d889}
-#cardview .cb-audio-wave{display:flex;align-items:flex-end;gap:3px;height:16px;opacity:.45}
-#cardview .cb-audio-wave i{display:block;width:3px;height:6px;border-radius:99px;background:#e8c04a}
-#cardview .cb-audio.playing .cb-audio-wave{opacity:.95}
-#cardview .cb-audio.playing .cb-audio-wave i{animation:cb-wave .9s ease-in-out infinite}
-#cardview .cb-audio.playing .cb-audio-wave i:nth-child(2){animation-delay:.09s}
-#cardview .cb-audio.playing .cb-audio-wave i:nth-child(3){animation-delay:.18s}
-#cardview .cb-audio.playing .cb-audio-wave i:nth-child(4){animation-delay:.27s}
-#cardview .cb-audio.playing .cb-audio-wave i:nth-child(5){animation-delay:.36s}
-@keyframes cb-wave{0%,100%{height:6px;opacity:.55}50%{height:15px;opacity:1}}
-#cardview .cb-scroll{position:relative;z-index:2;flex:1;min-height:0;overflow-y:auto;overflow-x:hidden;
-  -webkit-overflow-scrolling:touch;padding:10px 14px 6px}
-#cardview .cb-fit{transform-origin:top center}
-#cardview .cb-fit.fill{display:flex;flex-direction:column;justify-content:space-between;min-height:100%}
-#cardview .cb-sec{margin:8px 0 5px;font-size:11px;font-weight:800;letter-spacing:1.1px;
-  text-transform:uppercase;color:var(--cb-gold)}
-#cardview .cb-skills{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:0 0 6px}
-#cardview .cb-skills .skdot{width:26px;height:26px;border-color:rgba(255,255,255,.22);background:rgba(255,255,255,.08)}
-#cardview .cb-skills .skdot.on{border-color:var(--cb-gold);box-shadow:0 0 0 2px rgba(232,192,74,.25)}
-#cardview .cb-skills .skbadge{color:var(--cb-muted);font-size:12px}
-#cardview .cb-skills .skbadge.done{color:#9be08a}
-#cardview .cb-train,#cardview .cb-book{display:block;width:100%;border:none;border-radius:12px;
-  font-weight:900;font-size:14px;padding:10px 12px;margin:0 0 8px;text-align:center;cursor:pointer}
-#cardview .cb-train{background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.16)}
-#cardview .cb-book{background:linear-gradient(145deg,#f0d889,#c9a227);color:#3a1c22;
-  box-shadow:0 6px 16px rgba(0,0,0,.22)}
-#cardview .cb-train:active,#cardview .cb-book:active{transform:scale(.98)}
-#cardview .cb-bul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:5px}
-#cardview .cb-bul li{position:relative;padding:7px 10px 7px 28px;border-radius:10px;
-  background:rgba(0,0,0,.2);border:1px solid rgba(255,255,255,.08);
-  font-size:13.5px;font-weight:700;line-height:1.35;color:var(--cb-ink)}
-#cardview .cb-bul li::before{content:"";position:absolute;left:11px;top:12px;width:7px;height:7px;
-  border-radius:50%;background:var(--cb-gold);box-shadow:0 0 0 3px rgba(232,192,74,.2)}
-#cardview .cb-story{margin:0;padding:4px 2px 2px;font-size:14px;font-weight:600;line-height:1.45;
-  color:rgba(247,240,230,.94)}
-#cardview .cb-find{margin:0;padding:8px 10px;border-radius:12px;font-size:13.5px;font-weight:800;
-  background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.12);line-height:1.35}
-#cardview .cb-duo{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:8px 0 2px}
-#cardview .cb-chip{padding:9px 10px;border-radius:12px;background:rgba(255,255,255,.1);
-  border:1px solid rgba(255,255,255,.12);min-width:0}
-#cardview .cb-chip-l{font-size:10px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;
-  color:var(--cb-muted);margin-bottom:3px}
-#cardview .cb-chip-n{font-size:20px;font-weight:900;line-height:1.1;margin-bottom:3px;overflow-wrap:anywhere}
-#cardview .cb-chip-v{font-size:12px;font-weight:700;line-height:1.3;opacity:.9}
-#cardview .cb-wow{margin:8px 0 4px;padding:11px 12px;border-radius:14px;color:#2a1810;
-  background:linear-gradient(145deg,#f0d889,#c9a227);box-shadow:0 10px 22px rgba(0,0,0,.22);
-  font-size:13.5px;font-weight:700;line-height:1.4}
-#cardview .cb-wow b{display:block;margin-bottom:4px;font-size:11px;font-weight:800;letter-spacing:.8px;
-  text-transform:uppercase;color:#6b2a12}
-#cardview .cb-ft{position:relative;z-index:2;flex:none;display:flex;justify-content:space-between;
-  align-items:center;margin:0 14px 12px;padding:8px 2px 0;border-top:1px solid rgba(255,255,255,.12);
-  font-size:11px;font-weight:800;letter-spacing:.7px;text-transform:uppercase;color:var(--cb-muted)}
+#cardview .face{cursor:pointer}
+#cardview .backside{padding:14px;overflow-y:auto;max-height:88vh;background:#fdf6ec;cursor:pointer}
+#cardview .enchead{display:flex;align-items:flex-start;gap:10px;border-bottom:3px solid #111;
+  padding-bottom:8px}
+#cardview .enchead .htxt{flex:1;min-width:0}
+#cardview .enchead h2{font-size:23px;line-height:1.1;text-transform:uppercase;letter-spacing:.02em}
+#cardview .enchead .ep{font-size:14px;font-weight:800;color:#333;margin-top:3px}
+#cardview .enchead .num{flex:none;font-size:26px;font-weight:900;line-height:1}
+#cardview .enchead .num i{font-style:normal;font-size:13px;font-weight:800;color:#555}
+#cardview .encbar{display:flex;justify-content:space-between;align-items:center;gap:8px;
+  background:#111;color:#fff;border-radius:10px;padding:6px 10px;font-size:11px;font-weight:900;
+  letter-spacing:.05em;text-transform:uppercase;margin-bottom:10px}
+#cardview .sec{position:relative;border:2px solid #111;border-radius:12px;background:#fff;
+  padding:16px 12px 10px;margin-top:18px}
+#cardview .sec .lbl{position:absolute;top:-11px;left:10px;background:#b4552d;border:1px solid #111;
+  color:#fff;font-size:11px;font-weight:900;letter-spacing:.06em;text-transform:uppercase;
+  padding:3px 10px;border-radius:8px;white-space:nowrap}
+#cardview .sec.tinted{background:#fdf6ec}
+#cardview .duo{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:18px}
+#cardview .duo .sec{margin-top:0}
+#cardview .duo .dnum{font-size:46px;font-weight:900;line-height:1;text-align:center;
+  letter-spacing:-.02em;margin-top:2px}
+#cardview .duo .dlbl{font-size:12px;line-height:1.25;font-weight:700;text-align:center;margin-top:4px}
+#cardview .duo .gw{font-size:16px;font-weight:900}
+#cardview .duo .gd{font-size:12px;line-height:1.3;margin-top:4px}
+#cardview .erastrip{border:2px solid #111;border-radius:12px;overflow:hidden;margin-top:18px}
+#cardview .erastrip .eh{padding:6px 10px;font-size:12px;font-weight:900;text-transform:uppercase;
+  letter-spacing:.05em;border-bottom:2px solid #111;color:#111}
+#cardview .erastrip .echips{display:flex;flex-wrap:wrap;gap:6px;padding:8px 10px;background:#fff}
+#cardview .erastrip .chip{font-size:12px;padding:4px 10px}
+#cardview .erastrip .chip.here{background:#111;color:#fff}
+#cardview .listen .wave{display:flex;align-items:flex-end;gap:2px;margin-top:6px;height:18px}
+#cardview .listen .wave i{width:3px;background:#8bc34a;border-radius:2px;display:block}
+#cardview .sec.more{padding-bottom:8px}
+#cardview .fact{display:flex;gap:8px;font-size:15px;line-height:1.35;margin:0 0 9px}
+#cardview .fact:last-child{margin-bottom:0}
+#cardview .fact .n{flex:none;width:22px;height:22px;border-radius:50%;background:#111;color:#fff;
+  text-align:center;line-height:22px;font-size:12px;font-weight:900}
+#cardview .story{font-size:15px;line-height:1.4}
+#cardview .find{font-size:15px;font-weight:700}
+#cardview .sec.digit .drow{display:flex;align-items:center;gap:12px}
+#cardview .sec.digit .dnum{flex:none;font-size:44px;font-weight:900;line-height:1;letter-spacing:-.02em}
+#cardview .sec.digit .dlbl{font-size:14px;line-height:1.3;font-weight:700}
+#cardview .think,#cardview .wow{font-size:14px;line-height:1.4;font-weight:700}
+#cardview .morebtn{display:block;width:100%;margin-top:14px;border:2px dashed #111;border-radius:999px;
+  background:#fff;color:#111;font-size:14px;font-weight:900;padding:9px 12px}
+#cardview .gword{display:flex;gap:8px;font-size:14px;line-height:1.35;margin:0 0 7px;align-items:flex-start}
+#cardview .gword:last-child{margin-bottom:0}
+#cardview .gword .em{flex:none;font-size:18px}
+#cardview .listen{position:relative;display:flex;align-items:center;gap:12px;background:#111;color:#fff;
+  border-radius:14px;padding:16px 14px 12px;margin-top:18px}
+#cardview .listen .lbl{position:absolute;top:-11px;left:50%;transform:translateX(-50%);background:#fff;
+  color:#111;border:2px solid #111;font-size:11px;font-weight:900;letter-spacing:.08em;
+  text-transform:uppercase;padding:2px 12px;border-radius:999px;white-space:nowrap}
+#cardview .listen .pl{flex:none;width:52px;height:52px;border-radius:50%;background:#fff;color:#111;
+  font-size:22px;font-weight:900}
+#cardview .listen .tn{font-size:16px;font-weight:900;color:#fff}
+#cardview .listen .ts{font-size:12px;font-weight:700;color:#ddd;margin-top:2px}
+#cardview .bookbtn{display:flex;align-items:center;gap:8px;width:100%;border:3px solid #111;
+  border-radius:12px;background:#ffd166;color:#111;padding:10px 12px;font-size:15px;font-weight:900;
+  margin-top:14px}
 #cardview .relrow{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
 #cardview .rel{border:2px solid #111;border-radius:10px;background:#fff;overflow:hidden;padding:0;
   display:flex;flex-direction:column;align-items:stretch}
@@ -302,9 +156,9 @@ main{flex:1;padding:14px 12px 40px;max-width:960px;width:100%;margin:0 auto}
   display:flex;flex-direction:column;align-items:center;gap:8px}
 .gamehub .gbtn .em{font-size:38px}
 .gamehub .gbtn .nm{font-size:15px;font-weight:900;text-align:center;color:#111}
-.gamewrap .topbar,.topbar.gamewrap{display:flex;align-items:center;gap:10px;margin-bottom:10px;flex-wrap:wrap}
-.gamewrap .topbar .bt,.topbar.gamewrap .bt{border:2px solid #111;border-radius:999px;padding:6px 14px;font-weight:900;font-size:14px}
-.gamewrap .topbar .sc,.topbar.gamewrap .sc{font-weight:900;font-size:15px;color:var(--ink)}
+.gamewrap .topbar{display:flex;align-items:center;gap:10px;margin-bottom:10px;flex-wrap:wrap}
+.gamewrap .topbar .bt{border:2px solid #111;border-radius:999px;padding:6px 14px;font-weight:900;font-size:14px}
+.gamewrap .topbar .sc{font-weight:900;font-size:15px}
 .memgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
 .memcard{position:relative;border:2px solid #111;border-radius:10px;overflow:hidden;background:#111;
   aspect-ratio:2/3}
@@ -344,34 +198,22 @@ main{flex:1;padding:14px 12px 40px;max-width:960px;width:100%;margin:0 auto}
   text-align:center;line-height:24px;font-size:13px;font-weight:900;visibility:hidden}
 .ordlist .opt.placed .num{visibility:visible}
 
-.arkflap-wrap{position:relative;border:3px solid #111;border-radius:14px;overflow:hidden;
-  background:#1a4f78;touch-action:none;user-select:none;-webkit-user-select:none}
-.arkflap-canvas{display:block;width:100%;height:auto;vertical-align:top}
-.arkflap-hud{position:absolute;top:8px;left:10px;right:10px;display:flex;justify-content:space-between;
-  pointer-events:none;font-weight:900;font-size:15px;color:#eef8ff;text-shadow:0 1px 2px rgba(0,30,50,.65)}
-.arkflap-overlay{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;
-  justify-content:center;gap:10px;background:rgba(8,24,40,.55);padding:16px;text-align:center}
-.arkflap-overlay[hidden]{display:none!important}
-.arkflap-over-title{font-size:28px;font-weight:900;color:#fff}
-.arkflap-over-score{font-size:16px;font-weight:800;color:#fff}
-
 /* ── Лента времени ── */
 .era{border:3px solid #111;border-radius:14px;margin-bottom:14px;overflow:hidden}
 .era .ehead{padding:10px 12px;font-size:17px;font-weight:900;color:#111;border-bottom:2px solid #111}
 .era .echips{display:flex;flex-wrap:wrap;gap:8px;padding:10px 12px;background:#fff}
 .chip{display:flex;align-items:center;gap:6px;border:2px solid #111;border-radius:999px;padding:5px 12px;
   font-size:14px;font-weight:800;background:#fff;color:#111}
-.chip img{width:24px;height:24px;border-radius:50%;object-fit:cover;object-position:center;border:1px solid #111}
+.chip img{width:24px;height:24px;border-radius:50%;object-fit:cover;border:1px solid #111}
 
 /* ── Словарик ── */
 .gloss{display:flex;flex-direction:column;gap:8px}
-.gitem{border:2px solid #111;border-radius:12px;padding:10px 12px;display:flex;gap:10px;
-  background:#fff;color:var(--ink,#111)}
+.gitem{border:2px solid #111;border-radius:12px;padding:10px 12px;display:flex;gap:10px;background:#fff}
 .gitem .em{font-size:26px;flex:none}
-.gitem .w{font-size:16px;font-weight:900;color:var(--ink,#111)}
-.gitem .d{font-size:15px;line-height:1.35;color:var(--muted,#333);font-weight:700}
+.gitem .w{font-size:16px;font-weight:900}
+.gitem .d{font-size:15px;line-height:1.35;color:#111}
 .gitem .refs{margin-top:4px;display:flex;flex-wrap:wrap;gap:6px}
-.gitem .refs .chip{font-size:12px;padding:3px 9px;color:var(--ink,#111);background:#fff}
+.gitem .refs .chip{font-size:12px;padding:3px 9px}
 
 /* RTL: арабский */
 html[dir="rtl"] .qopts .opt,html[dir="rtl"] .ordlist .opt{text-align:right}
@@ -400,29 +242,8 @@ html[dir="rtl"] .qopts .opt,html[dir="rtl"] .ordlist .opt{text-align:right}
 
 /* ── Стройка (реконструктор) ── */
 .buildimg{width:100%;border:3px solid #111;border-radius:14px;background:#fdf6ec}
-.buildcap{font-size:16px;font-weight:700;line-height:1.35;margin:10px 0;color:var(--ink)}
-.buildcount{font-size:13px;font-weight:900;color:var(--muted,#555);margin:6px 0}
-/* активный этап стройки: картинка на весь остаток высоты, подпись/кнопка снизу */
-#app:has(main.buildmode){height:100%;max-height:100%;overflow:hidden;background:var(--cream)}
-main.buildmode{display:flex;flex-direction:column;min-height:0;overflow:hidden;
-  padding-top:10px;padding-bottom:16px;background:var(--cream)}
-body.hasmenu main.buildmode{padding-bottom:calc(74px + env(safe-area-inset-bottom))}
-.buildstage{display:flex;flex-direction:column;flex:1;min-height:0;width:100%}
-.buildstage .topbar.gamewrap{flex:none;margin-bottom:8px}
-.buildmedia{flex:1 1 auto;min-height:0;display:flex;align-items:center;justify-content:center;
-  overflow:hidden}
-/* портретная рамка: высота — остаток между topbar и foot, ширина от 2/3 */
-.buildmedia-frame{height:100%;width:auto;aspect-ratio:2/3;max-width:100%;
-  position:relative;overflow:hidden;border:3px solid #111;border-radius:14px;background:#fdf6ec}
-.buildstage .buildimg,.buildmedia-frame .buildimg{position:absolute;inset:0;
-  width:100%!important;max-width:100%;height:100%;max-height:none;
-  object-fit:cover;object-position:center;display:block;margin:0;
-  border:none;border-radius:0;background:transparent}
-/* фон = холст приложения: иначе padding-bottom под кнопкой даёт чужую полоску (белый/#app) */
-.buildfoot{flex:none;padding-top:8px;padding-bottom:12px;background:var(--cream)}
-.buildfoot .buildcap{margin:0 0 6px;text-align:center}
-.buildfoot .buildcount{margin:0 0 8px;text-align:center}
-.buildfoot .mapnext{margin-top:0}
+.buildcap{font-size:16px;font-weight:700;line-height:1.35;margin:10px 0;color:#111}
+.buildcount{font-size:13px;font-weight:900;color:#555;margin:6px 0}
 
 /* ── квест «Большое путешествие» ── */
 .questhead{display:flex;align-items:baseline;justify-content:space-between;gap:8px;
@@ -472,16 +293,16 @@ main .sec .lbl{position:absolute;top:-11px;left:10px;background:#b4552d;border:1
 .eradone{text-align:center;padding:18px 0}
 .eradone .medal{font-size:74px}
 .eradone .big{font-size:24px;font-weight:900;margin:6px 0}
-.tile.locked .ph{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;
-  aspect-ratio:auto;border-radius:0}
+.tile.locked .ph{display:flex;flex-direction:column;align-items:center;justify-content:center;
+  aspect-ratio:2/3}
 .tile.locked .ph .em{font-size:46px;font-weight:900;color:#111}
 .tile.locked .ph .nm{font-size:14px;font-weight:900;color:#111;opacity:.7}
 
 /* ── живые механики квеста ── */
-.pzgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:4px;width:92%;max-width:320px;
+.pzgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:4px;width:76%;max-width:280px;
   margin:0 auto;border:3px solid #111;border-radius:12px;padding:4px;background:#fff}
 .pzgrid .pz{aspect-ratio:1/1;border:1px solid #999;border-radius:6px;
-  background-size:300% 300%;background-repeat:no-repeat;padding:0}
+  background-size:200% 300%;background-repeat:no-repeat;padding:0}
 .pzgrid .pz.sel{outline:4px solid #ffd166;outline-offset:-2px}
 .pzgrid.win{border-color:#2e7d32;box-shadow:0 0 0 4px #c8f0c8}
 .findbox{position:relative;border:3px solid #111;border-radius:14px;overflow:hidden;cursor:crosshair}
@@ -617,14 +438,20 @@ main .sec .lbl{position:absolute;top:-11px;left:10px;background:#b4552d;border:1
 .dnden .dnlion.zz{opacity:.75}
 
 /* ── изнанка одного формата с лицом; «ещё об этом» на лице ── */
-#cardview .facemore{position:absolute;left:0;right:0;bottom:0;z-index:3;display:flex;align-items:center;gap:8px;
-  background:linear-gradient(to top,rgba(0,0,0,.55),transparent);padding:14px 10px 10px;border-top:none}
-#cardview .facemore .fml{font-size:12px;font-weight:900;white-space:nowrap;color:#fff}
-#cardview .facemore .fmrel{flex:none;border:2px solid rgba(255,255,255,.85);border-radius:50%;
+#cardview .facemore{display:flex;align-items:center;gap:8px;background:#fff;
+  border-top:3px solid #111;padding:7px 10px}
+#cardview .facemore .fml{font-size:12px;font-weight:900;white-space:nowrap}
+#cardview .facemore .fmrel{flex:none;border:2px solid #111;border-radius:50%;
   background:#fdf6ec;padding:2px;width:44px;height:44px}
 #cardview .facemore .fmrel img{width:100%;height:100%;border-radius:50%;object-fit:cover;
   object-position:50% 32%;display:block}
-#cardview .facemore .fmrel .rem{font-size:22px;line-height:36px;color:#fff;text-align:center}
+#cardview .facemore .fmrel .rem{font-size:22px;line-height:36px}
+#cardview .listen.top{margin:0 0 12px}
+
+/* ▶ в заголовке изнанки вместо отдельной плашки */
+#cardview .enchead .pl.hd{flex:none;width:42px;height:42px;border-radius:50%;background:#111;
+  color:#fff;border:none;font-size:17px;margin:0 10px;align-self:center}
+#cardview .enchead .pl.hd.on{background:#8bc34a}
 
 /* ── сюжетные игры, пачка 4 ── */
 .edzoo{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-bottom:10px}
@@ -671,15 +498,13 @@ main .sec .lbl{position:absolute;top:-11px;left:10px;background:#b4552d;border:1
 .tmgrid .tmmat.on{background:#c8f0c8}
 .tmgrid .tmmat[disabled]{opacity:.45}
 
-/* ── растровые иконки вместо эмодзи (круг: cover + center, как .navico) ── */
-.ico,.ico-lg,.ico-xl,.ico-xxl{object-fit:cover;object-position:center}
+/* ── растровые иконки вместо эмодзи ── */
 .ico{width:1.25em;height:1.25em;vertical-align:-.25em;border-radius:50%;display:inline-block}
 .ico-lg{width:34px;height:34px;border-radius:50%;display:inline-block;vertical-align:middle}
 .ico-xl{width:46px;height:46px;border-radius:50%;display:inline-block;vertical-align:middle}
 .ico-xxl{width:84px;height:84px;border-radius:50%;display:inline-block}
 .qst .em .ico-lg{width:34px;height:34px}
-.gamehub .gbtn .em{display:flex;justify-content:center;align-items:center}
-.gamehub .gbtn .em .ico-xl{object-fit:contain;object-position:center;flex:none}
+.gamehub .gbtn .em{display:flex;justify-content:center}
 #cardview .lockbox .stars .ico-xl{margin:0 2px}
 .jwall .jb,.bbrow .jb{width:24px;height:15px;background:#c96f4a;border:2px solid #8a4631;
   border-radius:3px;display:inline-block}
@@ -710,17 +535,16 @@ main .sec .lbl{position:absolute;top:-11px;left:10px;background:#b4552d;border:1
 .pbar i{display:block;height:100%}
 .preset{display:block;margin:14px auto 0;border:2px solid #b23b3b!important;color:#b23b3b}
 
-/* ════════ ТЁПЛАЯ ТЕМА БРЕНДА (кремовый холст, Nunito, тени, terracotta/оранж) ════
+/* ════════ ТЁПЛАЯ ТЕМА БРЕНДА (кремовый холст, Nunito, тени, бордо/оранж) ════
    Переопределяет базовые правила выше; токены — как в корневом навигаторе. */
-:root{--cream:#F5EFE4;--bordo:#b85a3a;--accent:#b85a3a;--accent-d:#8f452c;--orange:#E06104;--ink:#1d1d1b;--muted:#5c5648;
-  --card:#fff;--panel:#fdf6ec;--ok-bg:#c8f0c8;--no-bg:#f6cfcf;
+:root{--cream:#F5EFE4;--bordo:#8a2230;--orange:#E06104;--ink:#1d1d1b;
   --card-sh:0 5px 0 rgba(0,0,0,.07);--soft-sh:0 6px 18px rgba(29,29,27,.12)}
 body{background:var(--cream);color:var(--ink);
   font-family:'Nunito',ui-rounded,-apple-system,'SF Pro Rounded',system-ui,sans-serif;font-weight:700}
 #splash{background:var(--cream)}
 #splash h1{color:var(--bordo)}
 #splash .cover{border:8px solid #fff;box-shadow:var(--soft-sh)}
-.bigbtn{background:var(--bordo);border:none;border-radius:14px;box-shadow:0 9px 22px rgba(184,90,58,.35);font-weight:900}
+.bigbtn{background:var(--bordo);border:none;border-radius:14px;box-shadow:0 9px 22px rgba(138,34,48,.35);font-weight:900}
 #splash .bigbtn{background:var(--orange);box-shadow:0 9px 24px rgba(224,97,4,.5)}
 header{background:var(--cream);border-bottom:none;box-shadow:0 2px 12px rgba(29,29,27,.08)}
 header .ttl{color:var(--bordo);font-weight:900}
@@ -731,80 +555,56 @@ header .ttl{color:var(--bordo);font-weight:900}
 nav#tabs{background:var(--cream);border-bottom:none}
 nav#tabs .tab{border:none;background:#fff;box-shadow:var(--card-sh);color:var(--bordo);font-weight:900}
 nav#tabs .tab[aria-pressed="true"]{background:var(--bordo);color:#fff}
-/* плитки карт: как у птиц — full-bleed 2/3 без белой рамки */
-.tile{border:none;background:#fff;padding:0;border-radius:13px;box-shadow:0 4px 13px rgba(0,0,0,.16)}
-.tile img{border-radius:0}
-.tile.locked .ph{border-radius:0}
-.gamehub .gbtn{border:none;background:var(--card);box-shadow:none;color:var(--ink)}
-.gamehub .gbtn .nm{color:var(--ink)}
-#bookview{background:var(--cream)}
-#bookview .bar{background:var(--cream);border-bottom:1px solid rgba(29,29,27,.1);color:var(--ink)}
-#bookview .bar .bt{border:none;background:var(--card);color:var(--bordo);box-shadow:none}
-#bookview .bar .bttl{color:var(--bordo)}
-.bookgrid .tile{padding:5px;border-radius:14px;box-shadow:var(--card-sh)}
-.bookgrid .tile img{border-radius:9px}
-.qst{border:none!important;background:var(--card);box-shadow:var(--card-sh);color:var(--ink)}
-.qst .nm,.qst .pr{color:var(--ink)}
+/* плитки и карточки: белая рамка + мягкая тень на кремовом */
+.tile{border:none;background:#fff;padding:5px;border-radius:14px;box-shadow:var(--card-sh)}
+.tile img{border-radius:9px}
+.tile.locked .ph{border-radius:9px}
+.gamehub .gbtn{border:none;background:#fff;box-shadow:var(--card-sh)}
+.bookgrid .tile{padding:5px}
+.qst{border:none!important;background:#fff;box-shadow:var(--card-sh)}
 .qst.lock{background:#efe8d9}
 .qst.fin{background:#eef7e6}
 .qst .em{border:none;box-shadow:inset 0 0 0 2px rgba(0,0,0,.06)}
 .questhead b{color:var(--bordo)}
 .qlockmsg{color:var(--bordo)}
-main .sec{border:none;box-shadow:var(--card-sh);background:var(--card);color:var(--ink)}
+main .sec{border:none;box-shadow:var(--card-sh)}
 main .sec .lbl{background:var(--bordo);border:none}
 /* заголовки заданий и секций — бордо */
 .qstage .qq,.qq{color:var(--bordo)}
-.qbox{background:var(--panel);border-color:transparent;color:var(--ink)}
-.qbox .qq{color:var(--bordo)}
-.qdots .qd{border-color:#c9b8a4;background:var(--card)}
+.qdots .qd{border-color:#c9b8a4}
 .qdots .qd.on{background:var(--bordo);border-color:var(--bordo)}
 .qdots .qd.cur{border-color:var(--bordo)}
-/* кнопки действий — бордо; play — оранжевый; без нижней «подушки» */
-.mapnext{border:none;background:var(--bordo);color:#fff;box-shadow:none;font-weight:900}
+/* кнопки действий — бордо; play — оранжевый */
+.mapnext{border:none;background:var(--bordo);color:#fff;box-shadow:0 5px 0 rgba(0,0,0,.12);font-weight:900}
 .mapnext.done{background:#3e8e4d;color:#fff}
 .jblow{background:var(--orange)}
-#cardview .lockbox .rbtns .bt,.bt{border-color:var(--bordo);color:var(--bordo);background:var(--card)}
-.gamewrap .topbar .bt,.topbar.gamewrap .bt{border:none;background:transparent;color:var(--bordo);box-shadow:none}
-.qopts .opt,.artrow .opt,.ordlist .opt{border:none;box-shadow:none;background:var(--card);color:var(--ink)}
-.artrow .opt .nm{border-top-color:rgba(0,0,0,.08);color:var(--ink);background:var(--card)}
-.ordlist .opt .num{background:var(--bordo);color:#fff}
-.qopts .opt.ok,.ordlist .opt.placed{background:var(--ok-bg)}
-.qopts .opt.no,.ordlist .opt.shake{background:var(--no-bg)}
-.qopts .opt.ok{box-shadow:0 0 0 3px #3e8e4d}
-.qopts .opt.no{box-shadow:0 0 0 3px #b23b3b}
-.wchips .wch,.wslots .ws{border-color:#d9cbb4;background:var(--card);color:var(--ink);box-shadow:none}
-.wchips .wch{background:var(--panel)}
-.wslots .ws.on{background:var(--ok-bg)}
-.scchip,.scday,.arkgrid .ak,.tmgrid .tmmat,.edzoo .edan{border:none!important;box-shadow:none}
-.scchip{background:var(--card);color:var(--ink)}
-.scday{background:var(--card);color:var(--ink)}
-.scday .dn{color:var(--ink)}
-.scday.on{background:var(--ok-bg)}
-.arkgrid .ak,.tmgrid .tmmat{background:var(--panel);color:var(--ink)}
-.tmgrid .tmmat .nm,.edzoo .edan .tag{color:var(--ink)}
-.edzoo .edan{background:var(--panel);color:var(--ink)}
-.pzgrid{background:var(--card);border-color:transparent}
-.memcard .inner{background:var(--card)}
-.memcard .inner .nm{background:var(--card);color:var(--ink)}
-.seastep{background:var(--card);color:var(--ink);border-color:transparent}
-.seastep.on{background:var(--ok-bg)}
-.mnfield .mn{background:var(--card);border-color:rgba(0,0,0,.12)}
-.qdigit,.qmapblurb,.mapinfo{background:var(--card);color:var(--ink)}
-.mapinfo .mi-open{background:var(--card);color:var(--ink);border-color:transparent}
+.gamewrap .topbar .bt,#cardview .lockbox .rbtns .bt,.bt{border-color:var(--bordo);color:var(--bordo);background:#fff}
+.qopts .opt,.artrow .opt,.ordlist .opt{border:none;box-shadow:var(--card-sh)}
+.qopts .opt.ok{box-shadow:0 0 0 3px #3e8e4d,var(--card-sh)}
+.qopts .opt.no{box-shadow:0 0 0 3px #b23b3b,var(--card-sh)}
+.wchips .wch,.wslots .ws{border-color:#d9cbb4;background:#fff;box-shadow:var(--card-sh)}
+.scchip,.scday,.arkgrid .ak,.tmgrid .tmmat,.edzoo .edan{border:none!important;box-shadow:var(--card-sh)}
+.scday{background:#fff}
+.scday.on{background:#eef7e6}
 /* карты мира, боксы сценок */
 .mapbox,.findbox,.jsea,.starsky,.dnden,.llsky,.seabox,.bkriver,.rbsky,.mnfield,.dvstream,.jwall,.buildimg,.diploma{
   border:none!important;box-shadow:var(--soft-sh);border-radius:16px}
-.mapinfo,.qmapblurb,.qdigit{border:none;box-shadow:var(--card-sh);background:var(--card);color:var(--ink)}
-.mapswitch .chip{border:2px solid var(--bordo);color:var(--bordo);background:var(--card)}
+.mapinfo,.qmapblurb,.qdigit{border:none;box-shadow:var(--card-sh)}
+.mapswitch .chip{border:2px solid var(--bordo);color:var(--bordo);background:#fff}
 .mapswitch .chip.here{background:var(--bordo)!important;color:#fff}
-.mapdot{border-color:#fff;box-shadow:0 2px 8px rgba(0,0,0,.35);background:var(--card);color:var(--ink)}
-.mapdot.act{background:var(--bordo);color:#fff}
-/* карта-оверлей: размеры как у птиц (2/3, без толстой белой рамки) */
-#cardview .face{border:none;background:#fff;box-shadow:0 20px 55px rgba(0,0,0,.5);border-radius:18px}
-#cardview .face img{border-radius:0}
-#cardview .facemore{border-top:none;background:linear-gradient(to top,rgba(0,0,0,.55),transparent)}
-#cardview .facemore .fmrel{border-color:rgba(255,255,255,.85)}
-#cardview .backside{border:none;box-shadow:0 20px 55px rgba(0,0,0,.5);border-radius:18px;background:transparent}
+.mapdot{border-color:#fff;box-shadow:0 2px 8px rgba(0,0,0,.35)}
+.mapdot.act{background:var(--bordo)}
+/* карта-оверлей: белая рамка + тень */
+#cardview .face{border:8px solid #fff;background:#fff;box-shadow:0 18px 50px rgba(0,0,0,.5);border-radius:18px}
+#cardview .face img{border-radius:10px}
+#cardview .facemore{border-top:none;background:#fff}
+#cardview .facemore .fmrel{border-color:#e2d7c3}
+#cardview .backside{border:8px solid #fff;box-shadow:0 18px 50px rgba(0,0,0,.5);border-radius:18px}
+#cardview .encbar{background:var(--bordo)}
+#cardview .sec{border:none;box-shadow:var(--card-sh)}
+#cardview .sec .lbl{background:var(--bordo);border:none}
+#cardview .enchead .pl.hd{background:var(--orange)}
+#cardview .bookbtn{border:none;background:#fff;box-shadow:var(--card-sh);color:var(--bordo);font-weight:900}
 #cardview .lockbox{border:none;box-shadow:0 18px 50px rgba(0,0,0,.45)}
 .qlisten .pl{background:var(--orange);color:#fff;border:none;box-shadow:0 6px 16px rgba(224,97,4,.45)}
 /* родительский режим */
@@ -812,18 +612,12 @@ main .sec .lbl{background:var(--bordo);border:none}
 .plockin{border-color:#d9cbb4;box-shadow:var(--card-sh)}
 .pbar{border-color:#d9cbb4}
 /* прочее */
-.hint{color:var(--muted,#5c5648)}
+.hint{color:#5c5648}
 .era .ehead{border:none}
-.echips .chip{border-color:#d9cbb4;background:var(--card);color:var(--ink)}
+.echips .chip{border-color:#d9cbb4;background:#fff}
 .erastrip{border:none;box-shadow:var(--card-sh)}
 .eradone .big{color:var(--bordo)}
 .buildcap{font-weight:800}
-/* словарик: крем/терракота как у остальных секций хаба */
-.gitem{border:none;box-shadow:var(--card-sh);background:var(--card);color:var(--ink)}
-.gitem .w{color:var(--bordo)}
-.gitem .d{color:var(--muted)}
-.gitem .refs .chip{border:none;box-shadow:var(--card-sh);background:var(--cream);color:var(--bordo);
-  font-weight:900}
 
 /* ════════ UI-полировка: зашитый шрифт, сплэш-коробка, тач, переходы ════════ */
 /* Nunito (переменный, 200–1000) — локально, работает офлайн на любой платформе */
@@ -845,7 +639,7 @@ main .sec .lbl{background:var(--bordo);border:none}
   border-radius:18px;background:var(--bordo);border:6px solid #fff;z-index:0;
   box-shadow:0 14px 34px rgba(29,29,27,.22)}
 #splash .boxwrap::before{transform:rotate(-7deg) translate(-10px,6px)}
-#splash .boxwrap::after{transform:rotate(5deg) translate(10px,4px);background:#d47855}
+#splash .boxwrap::after{transform:rotate(5deg) translate(10px,4px);background:#a8323f}
 #splash .cover{position:relative;z-index:1;width:100%;border:8px solid #fff;border-radius:18px;
   box-shadow:0 24px 60px rgba(29,29,27,.35)}
 #splash .sub{font-weight:800;color:#5c5648}
@@ -860,36 +654,35 @@ main .sec .lbl{background:var(--bordo);border:none}
   50%{box-shadow:0 6px 0 #a34603,0 14px 40px rgba(224,97,4,.75)}}
 
 /* ── крупные тач-таргеты и рельефные кнопки-«подушки» ── */
-.bigbtn{padding:16px 46px;box-shadow:0 6px 0 #6b3420,0 12px 22px rgba(184,90,58,.3)}
-.bigbtn:active{transform:translateY(5px);box-shadow:0 1px 0 #6b3420}
+.bigbtn{padding:16px 46px;box-shadow:0 6px 0 #5e1620,0 12px 22px rgba(138,34,48,.3)}
+.bigbtn:active{transform:translateY(5px);box-shadow:0 1px 0 #5e1620}
 #splash .bigbtn{box-shadow:0 6px 0 #a34603,0 12px 26px rgba(224,97,4,.4)}
 #splash .bigbtn:active{transform:translateY(5px) scale(1);box-shadow:0 1px 0 #a34603}
-/* игры / варианты ответов: без нижней «подушки» */
-.mapnext{padding:15px 12px;font-size:17px;box-shadow:none}
-.mapnext:active{transform:translateY(5px);box-shadow:none}
-.mapnext.done,.mapnext.done:active{box-shadow:none}
-.jblow{box-shadow:none}
-.jblow:active{transform:translateY(5px);box-shadow:none}
-.qopts .opt,.ordlist .opt{min-height:56px;box-shadow:none;font-size:17px}
-.qopts .opt:active,.ordlist .opt:active{transform:translateY(3px);box-shadow:none}
-.artrow .opt{box-shadow:none}
-.artrow .opt:active{transform:translateY(3px);box-shadow:none}
+.mapnext{padding:15px 12px;font-size:17px;box-shadow:0 6px 0 #5e1620}
+.mapnext:active{transform:translateY(5px);box-shadow:0 1px 0 #5e1620}
+.mapnext.done{box-shadow:0 6px 0 #2b6337}
+.mapnext.done:active{transform:translateY(5px);box-shadow:0 1px 0 #2b6337}
+.jblow{box-shadow:0 6px 0 #a34603}
+.jblow:active{transform:translateY(5px);box-shadow:0 1px 0 #a34603}
+.qopts .opt,.ordlist .opt{min-height:56px;box-shadow:0 4px 0 #ddd2bd;font-size:17px}
+.qopts .opt:active,.ordlist .opt:active{transform:translateY(3px);box-shadow:0 1px 0 #ddd2bd}
+.artrow .opt{box-shadow:0 4px 0 #ddd2bd}
+.artrow .opt:active{transform:translateY(3px);box-shadow:0 1px 0 #ddd2bd}
 nav#tabs .tab{padding:11px 18px;font-size:15px;box-shadow:0 4px 0 #ddd2bd}
 nav#tabs .tab:active{transform:translateY(3px);box-shadow:0 1px 0 #ddd2bd}
-nav#tabs .tab[aria-pressed="true"]{box-shadow:0 4px 0 #6b3420}
-.gamehub .gbtn{min-height:112px;box-shadow:none}
-.gamehub .gbtn:active{transform:translateY(4px);box-shadow:none}
+nav#tabs .tab[aria-pressed="true"]{box-shadow:0 4px 0 #5e1620}
+.gamehub .gbtn{min-height:112px;box-shadow:0 5px 0 #ddd2bd}
+.gamehub .gbtn:active{transform:translateY(4px);box-shadow:0 1px 0 #ddd2bd}
 .qst{min-height:66px;box-shadow:0 5px 0 #ddd2bd}
 .qst:active{transform:translateY(3px) scale(1);box-shadow:0 1px 0 #ddd2bd}
-.wchips .wch{min-width:52px;height:56px;box-shadow:none}
+.wchips .wch{min-width:52px;height:56px;box-shadow:0 4px 0 #ddd2bd}
 .wchips .wch:active{transform:translateY(3px)}
-.scchip,.scday,.tmgrid .tmmat,.edzoo .edan,.arkgrid .ak{box-shadow:none}
-.scchip:active,.scday:active,.tmmat:active,.edan:active,.ak:active{transform:translateY(3px);box-shadow:none}
+.scchip,.scday,.tmgrid .tmmat,.edzoo .edan,.arkgrid .ak{box-shadow:0 4px 0 #ddd2bd}
+.scchip:active,.scday:active,.tmmat:active,.edan:active,.ak:active{transform:translateY(3px);box-shadow:0 1px 0 #ddd2bd}
 .mapdot{width:36px;height:36px;font-size:15px}
 .seastep{width:44px;height:44px}
-.gamewrap .topbar .bt,.topbar.gamewrap .bt{padding:8px 4px;font-size:15px;box-shadow:none;border:none;font-weight:900;
-  background:transparent;color:var(--bordo)}
-.gamewrap .topbar .bt:active,.topbar.gamewrap .bt:active{transform:scale(.97);opacity:.85}
+.gamewrap .topbar .bt{padding:10px 18px;font-size:15px;box-shadow:0 4px 0 #ddd2bd;border:none;font-weight:900}
+.gamewrap .topbar .bt:active{transform:translateY(3px)}
 #cardview .lockbox .rbtns .bt{min-height:48px}
 #langs .lang.cur{min-height:40px;padding:8px 14px}
 .parentbtn{width:44px;height:44px}
@@ -911,7 +704,7 @@ main>*:nth-child(n+5){animation-delay:.18s}
 /* ── единое пустое состояние ── */
 .empty{text-align:center;padding:26px 10px;color:#5c5648;font-weight:800}
 .empty img{width:54px;height:54px;border-radius:50%;display:block;margin:0 auto 10px;
-  object-fit:cover;object-position:center;box-shadow:var(--card-sh)}
+  box-shadow:var(--card-sh)}
 
 /* ── карта дня, стрик, звание ── */
 .rankchip{display:inline-block;background:#fff;border-radius:999px;padding:7px 14px;
@@ -928,8 +721,8 @@ main>*:nth-child(n+5){animation-delay:.18s}
   padding:6px 12px;white-space:nowrap}
 
 /* ── «живые картины»: пульс-точка, искра, подпись ── */
-#cardview .faceimg{position:absolute;inset:0}
-#cardview .faceimg img{display:block;width:100%;height:100%;object-fit:cover;object-position:50% 0%}
+#cardview .faceimg{position:relative}
+#cardview .faceimg img{display:block}
 .livedot{position:absolute;transform:translate(-50%,-50%);width:26px;height:26px;border-radius:50%;
   border:3px solid #fff;background:rgba(255,209,102,.55);box-shadow:0 0 0 3px rgba(224,97,4,.5);
   padding:0;animation:livepulse 1.6s ease-in-out infinite}
@@ -953,10 +746,9 @@ main>*:nth-child(n+5){animation-delay:.18s}
 }
 
 /* ── слой навыков: скилл-точки, тренировка карты ── */
-.tskdots{position:absolute;left:6px;top:8px;display:flex;gap:3px;z-index:2}
-.tskdots i{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.55);display:block;
-  box-shadow:0 0 0 1px rgba(0,0,0,.25)}
-.tskdots i.on{background:#ffd166}
+.tskdots{position:absolute;left:6px;bottom:26px;display:flex;gap:3px}
+.tskdots i{width:7px;height:7px;border-radius:50%;background:rgba(0,0,0,.18);display:block}
+.tskdots i.on{background:var(--orange)}
 #cardview .cardsk{display:flex;align-items:center;gap:10px;margin:2px 0 8px;flex-wrap:wrap}
 .skdots{display:flex;gap:6px}
 .skdot{width:30px;height:30px;border-radius:50%;border:2px solid #d9cbb4;background:#fff;
@@ -966,7 +758,7 @@ main>*:nth-child(n+5){animation-delay:.18s}
 .skbadge{font-size:13px;font-weight:900;color:#5c5648}
 .skbadge.done{color:#2e7d32}
 .trainbtn{display:block;width:100%;border:none;border-radius:12px;background:#fff;
-  box-shadow:none;color:var(--bordo);font-weight:900;font-size:15px;padding:11px;
+  box-shadow:var(--card-sh);color:var(--bordo);font-weight:900;font-size:15px;padding:11px;
   margin-bottom:10px}
 .trainbtn:active{transform:translateY(3px)}
 .skdots.big{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin:6px 0 14px}
@@ -984,161 +776,25 @@ body.hasmenu{padding-bottom:calc(64px + env(safe-area-inset-bottom))}
 #botmenu .bm{flex:1 1 0;min-width:0;display:flex;flex-direction:column;align-items:center;gap:3px;
   text-decoration:none;color:#8a7a63;font-family:inherit;font-weight:800;font-size:10.5px;line-height:1;
   padding:3px 2px;border:none;background:none;cursor:pointer}
-#botmenu .bm img{width:26px;height:26px;border-radius:50%;object-fit:cover;object-position:center;opacity:.85}
+#botmenu .bm img{width:26px;height:26px;border-radius:50%;object-fit:cover;opacity:.85}
 #botmenu .bm span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
 #botmenu .bm:active{transform:scale(.94)}
-#botmenu .bm.on{color:var(--bordo,#b85a3a)}
-#botmenu .bm.on img{opacity:1;box-shadow:0 0 0 2px var(--bordo,#b85a3a),0 2px 6px #0004}
+#botmenu .bm.on{color:var(--bordo,#8a2230)}
+#botmenu .bm.on img{opacity:1;box-shadow:0 0 0 2px var(--bordo,#8a2230),0 2px 6px #0004}
 /* язык в родительской панели */
 .plangs{display:flex;flex-wrap:wrap;gap:8px;margin:4px 0 10px}
 .plangs .planglang{border:2px solid var(--line,#e2d8c6);background:#fff;color:var(--ink,#1d1d1b);
   font-family:inherit;font-weight:900;font-size:14px;border-radius:12px;padding:8px 14px;cursor:pointer}
-.plangs .planglang.on{background:var(--bordo,#b85a3a);border-color:var(--bordo,#b85a3a);color:#fff}
+.plangs .planglang.on{background:var(--bordo,#8a2230);border-color:var(--bordo,#8a2230);color:#fff}
 .plangs .planglang:active{transform:scale(.95)}
 
 /* ── «Стройка» без эмодзи: карточки с иллюстрацией постройки ── */
-.gamehub:has(.buildpick){grid-template-columns:1fr;gap:12px;
-  max-width:300px;margin-inline:auto}
-@media (min-width:560px){
-  .gamehub:has(.buildpick){grid-template-columns:repeat(2,minmax(0,1fr));max-width:640px}
-}
-.gamehub .gbtn.buildpick{padding:0;overflow:hidden;display:block;min-height:0;box-shadow:none}
-.gamehub .gbtn.buildpick:active,.gamehub .gbtn.buildpick:hover{box-shadow:none}
-.gamehub .gbtn.buildpick .gbtnimg{display:block;width:100%;aspect-ratio:2/3;object-fit:cover;object-position:center}
-.gamehub .gbtn.buildpick .nm{padding:8px 6px 10px;font-size:15px}
-/* картинка этапа стройки вне buildstage (квест-бонус) — ограничена по высоте */
+.gamehub .gbtn.buildpick{padding:0;overflow:hidden;display:block;min-height:0}
+.gamehub .gbtn.buildpick .gbtnimg{display:block;width:100%;aspect-ratio:3/2;object-fit:cover}
+.gamehub .gbtn.buildpick .nm{padding:10px 8px 12px}
+/* картинка этапа стройки — ниже, чтобы было видно подпись, кнопку и нижнее меню */
 .buildimg{max-height:44vh;width:auto!important;max-width:100%;object-fit:contain;
   display:block;margin:0 auto}
-.buildstage .buildimg,.buildmedia-frame .buildimg{max-height:none;width:100%!important;height:100%;
-  object-fit:cover;object-position:center}
 .buildcap{text-align:center}
 /* контент режимов не прячется под нижним меню */
 body.hasmenu main{padding-bottom:calc(74px + env(safe-area-inset-bottom))}
-
-/* ── тёмная тема (data-theme с оболочки / localStorage) ── */
-html[data-theme="dark"]{
-  --cream:#2a1a1c;--bordo:#d47855;--accent:#d47855;--accent-d:#f0d889;
-  --ink:#f5efe4;--muted:#cbb8a8;--orange:#E06104;
-  --card:rgba(255,255,255,.08);--panel:rgba(255,255,255,.06);
-  --ok-bg:rgba(62,142,77,.28);--no-bg:rgba(178,59,59,.28);
-  --line:rgba(245,239,228,.16);--card-sh:none;--soft-sh:0 6px 18px rgba(0,0,0,.35)}
-html[data-theme="dark"] body{background:var(--cream);color:var(--ink)}
-html[data-theme="dark"] .buildcap,
-html[data-theme="dark"] .gamewrap .topbar .sc,
-html[data-theme="dark"] .topbar.gamewrap .sc{color:var(--ink)}
-html[data-theme="dark"] .buildcount,
-html[data-theme="dark"] .hint{color:var(--muted)}
-html[data-theme="dark"] .gamehub .gbtn{
-  background:var(--card);color:var(--ink);box-shadow:none;border:1px solid var(--line)}
-html[data-theme="dark"] .gamehub .gbtn .nm{color:var(--ink)}
-html[data-theme="dark"] .gamehub .gbtn:active{box-shadow:none}
-html[data-theme="dark"] #bookview{background:var(--cream)}
-html[data-theme="dark"] #bookview .bar{background:var(--cream);border-bottom:1px solid var(--line);color:var(--ink)}
-html[data-theme="dark"] #bookview .bar .bt{background:var(--card);border-color:var(--line);color:var(--ink);box-shadow:none}
-html[data-theme="dark"] #bookview .bar .bttl{color:var(--ink)}
-/* словарик: без белых карточек и тёмного текста на тёмном холсте */
-html[data-theme="dark"] .gitem{
-  background:var(--card);border:1px solid var(--line);box-shadow:none;color:var(--ink)}
-html[data-theme="dark"] .gitem .w{color:var(--accent-d)}
-html[data-theme="dark"] .gitem .d{color:var(--muted)}
-html[data-theme="dark"] .gitem .refs .chip{
-  background:rgba(255,255,255,.08);color:var(--ink);border:1px solid var(--line);box-shadow:none}
-/* мини-игры: варианты, HUD, память, пазл, слово, сюжетные чипы */
-html[data-theme="dark"] .qopts .opt,
-html[data-theme="dark"] .artrow .opt,
-html[data-theme="dark"] .ordlist .opt{
-  background:var(--card);color:var(--ink);border:1px solid var(--line);box-shadow:none}
-html[data-theme="dark"] .artrow .opt .nm{
-  background:rgba(0,0,0,.25);color:var(--ink);border-top:1px solid var(--line)}
-html[data-theme="dark"] .qopts .opt.ok,
-html[data-theme="dark"] .ordlist .opt.placed{background:var(--ok-bg);color:var(--ink)}
-html[data-theme="dark"] .qopts .opt.no,
-html[data-theme="dark"] .ordlist .opt.shake{background:var(--no-bg);color:var(--ink)}
-html[data-theme="dark"] .qopts .opt.ok{box-shadow:0 0 0 2px #3e8e4d}
-html[data-theme="dark"] .qopts .opt.no{box-shadow:0 0 0 2px #b23b3b}
-html[data-theme="dark"] .ordlist .opt .num{background:var(--bordo);color:#fff}
-html[data-theme="dark"] .qbox,
-html[data-theme="dark"] .qdigit,
-html[data-theme="dark"] .qmapblurb,
-html[data-theme="dark"] .mapinfo{
-  background:var(--panel);color:var(--ink);border:1px solid var(--line);box-shadow:none}
-html[data-theme="dark"] .mapinfo .mi-open{background:var(--card);color:var(--ink);border:1px solid var(--line)}
-html[data-theme="dark"] .mapswitch .chip{background:var(--card);color:var(--bordo);border-color:var(--bordo)}
-html[data-theme="dark"] .mapdot{background:var(--card);color:var(--ink);border-color:var(--line)}
-html[data-theme="dark"] .wslots .ws,
-html[data-theme="dark"] .wchips .wch{
-  background:var(--card);color:var(--ink);border-color:var(--line);box-shadow:none}
-html[data-theme="dark"] .wslots .ws.on{background:var(--ok-bg)}
-html[data-theme="dark"] .wch.sel{outline-color:var(--accent-d)}
-html[data-theme="dark"] .pzgrid{
-  background:var(--panel);border:1px solid var(--line);box-shadow:none}
-html[data-theme="dark"] .pzgrid .pz{border-color:rgba(245,239,228,.2)}
-html[data-theme="dark"] .memcard{border-color:var(--line);background:#1a1012}
-html[data-theme="dark"] .memcard .inner{background:var(--card)}
-html[data-theme="dark"] .memcard .inner .nm{background:rgba(0,0,0,.45);color:var(--ink)}
-html[data-theme="dark"] .memcard.matched{border-color:#3e8e4d;box-shadow:0 0 0 2px #3e8e4d inset}
-html[data-theme="dark"] .scchip,
-html[data-theme="dark"] .scday,
-html[data-theme="dark"] .arkgrid .ak,
-html[data-theme="dark"] .tmgrid .tmmat,
-html[data-theme="dark"] .edzoo .edan,
-html[data-theme="dark"] .tbmarks .tbm{
-  background:var(--card);color:var(--ink);border:1px solid var(--line)!important;box-shadow:none}
-html[data-theme="dark"] .scday .dn,
-html[data-theme="dark"] .tmgrid .tmmat .nm,
-html[data-theme="dark"] .edzoo .edan .tag{color:var(--ink)}
-html[data-theme="dark"] .scchip.sel,
-html[data-theme="dark"] .arkgrid .ak.sel,
-html[data-theme="dark"] .edzoo .edan.sel{background:rgba(255,209,102,.28);color:var(--ink)}
-html[data-theme="dark"] .scday.on,
-html[data-theme="dark"] .tmgrid .tmmat.on,
-html[data-theme="dark"] .edzoo .edan.on,
-html[data-theme="dark"] .tbmarks .tbm.on,
-html[data-theme="dark"] .seastep.on{background:var(--ok-bg)}
-html[data-theme="dark"] .seastep{background:var(--card);color:var(--ink);border:1px solid var(--line)}
-html[data-theme="dark"] .mnfield{background:rgba(255,209,102,.12);border:1px solid var(--line)}
-html[data-theme="dark"] .mnfield .mn{background:var(--card);border-color:var(--line);box-shadow:inset -3px -4px 0 rgba(0,0,0,.25)}
-html[data-theme="dark"] .gamewrap .topbar .bt,
-html[data-theme="dark"] .topbar.gamewrap .bt{color:var(--accent-d);background:transparent}
-html[data-theme="dark"] .qstage .qq,
-html[data-theme="dark"] .qq,
-html[data-theme="dark"] .qbox .qq{color:var(--accent-d)}
-html[data-theme="dark"] .qst{background:var(--card);color:var(--ink);border:1px solid var(--line)!important;box-shadow:none}
-html[data-theme="dark"] .qst .nm,
-html[data-theme="dark"] .qst .pr{color:var(--ink)}
-html[data-theme="dark"] .qst.lock{background:rgba(255,255,255,.04);opacity:.7}
-html[data-theme="dark"] .qst.fin{background:var(--ok-bg)}
-html[data-theme="dark"] .qst.grand{background:rgba(255,209,102,.18)}
-html[data-theme="dark"] .qdots .qd{background:var(--card);border-color:var(--line)}
-html[data-theme="dark"] .empty{color:var(--muted)}
-html[data-theme="dark"] .arkcount,
-html[data-theme="dark"] .mncount,
-html[data-theme="dark"] .mnnote,
-html[data-theme="dark"] .s4note,
-html[data-theme="dark"] .dgrats{color:var(--ink)}
-html[data-theme="dark"] .echips .chip{background:var(--card);color:var(--ink);border-color:var(--line)}
-html[data-theme="dark"] .era .echips{background:transparent}
-html[data-theme="dark"] .era .ehead{color:var(--ink);border-bottom-color:var(--line)}
-html[data-theme="dark"] .ctstrips{border-color:var(--line)}
-html[data-theme="dark"] .ctstrips .ctstrip{background:var(--panel);border-right-color:var(--line)}
-html[data-theme="dark"] .jwall{background:rgba(232,217,184,.18);border-color:var(--line)}
-html[data-theme="dark"] .gq-opts button,
-html[data-theme="dark"] .trainbtn{background:var(--card);color:var(--ink)}
-html[data-theme="dark"] .skdot{background:var(--card);border-color:var(--line)}
-html[data-theme="dark"] .skbadge{color:var(--muted)}
-html[data-theme="dark"] .rankchip,
-html[data-theme="dark"] .daybar{background:var(--card);color:var(--ink);box-shadow:none;border:1px solid var(--line)}
-html[data-theme="dark"] .daybar .dstreak{background:rgba(255,255,255,.06);color:var(--ink)}
-html[data-theme="dark"] .livebubble{background:var(--card);color:var(--ink);border:1px solid var(--line)}
-html[data-theme="dark"] #cardview .lockbox{background:var(--panel);color:var(--ink);border:1px solid var(--line)}
-html[data-theme="dark"] #cardview .lockbox .rbtns .bt{background:var(--card);color:var(--ink);border-color:var(--line)}
-html[data-theme="dark"] .plockin{background:var(--card);color:var(--ink);border-color:var(--line)}
-html[data-theme="dark"] .pbar{background:var(--card);border-color:var(--line)}
-html[data-theme="dark"] .findbox .fhit{background:var(--ok-bg);border-color:#3e8e4d;color:#a8e0b0}
-html[data-theme="dark"] .findbox .fmiss{background:var(--no-bg);border-color:#b23b3b;color:#f0b0b0}
-html[data-theme="dark"] .buildmedia-frame{background:var(--panel);border-color:var(--line)}
-html[data-theme="dark"] .mapbox{background:var(--panel)}
-html[data-theme="dark"] main .sec{background:var(--card);border:1px solid var(--line);box-shadow:none;color:var(--ink)}
-html[data-theme="dark"] .wchips .wch{background:var(--panel)}
-html[data-theme="dark"] .bt{background:var(--card);color:var(--bordo);border-color:var(--line)}
-

@@ -19,6 +19,25 @@ var CFG=window.DECK_CONFIG||{};
    Определяется ДО разметки — T() используется уже в заставке. */
 var EN=(CFG.lang==='en');
 function T(ru,en){return EN?en:ru;}
+/* Значок динамика — свой SVG, не эмодзи 🔊 (решение владельца 05.08.2026:
+   «нам ни в коем случае не нужны никакие эмодзи в продукте» + 09.08.2026:
+   «значок динамика в разных местах нарисован по-разному… давай абсолютно
+   везде его рисовать одинаково»). Тот же путь, что в decks/slovar-na-stsenah/
+   content.js (единственный источник правды для этого рисунка на платформе) —
+   obводка currentColor, поэтому наследует цвет кнопки сама (здесь — белый на
+   бордовой .brepeat/.bstart). Строкой, а не DOM-узлом: разметка тут собирается
+   innerHTML-конкатенацией, не h(). */
+function iconSound(px){
+  var s=px||18;
+  return '<svg class="ic" viewBox="0 0 24 24" width="'+s+'" height="'+s+
+    '" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"'+
+    ' stroke-linejoin="round" aria-hidden="true" focusable="false">'+
+    '<path d="M4.5 9.5h3.2L12 5.8v12.4l-4.3-3.7H4.5z"/>'+
+    '<path d="M15.2 9.4a3.6 3.6 0 0 1 0 5.2M17.8 7.2a7 7 0 0 1 0 9.6"/></svg>';
+}
+/* EN-азбука: показываем пару «A a» — в книгах ребёнок встречает строчные,
+   учить только заглавные — ловушка (phonics-ревью). RU — как раньше. */
+function azDisp(l){return EN?l+' '+l.toLowerCase():l;}
 
 /* ── разметка приложения ── */
 document.body.innerHTML=
@@ -36,7 +55,7 @@ document.body.innerHTML=
       '<div class="logo">'+(CFG.logo||'🗣️')+'</div>'+
       '<div><b>'+(CFG.title||DATA.deck||'')+'</b><span>'+(CFG.subtitle||'')+'</span>'+
       '<span class="pcount" id="pcount"></span></div>'+
-      (CFG.docHref?'<a class="plink" href="'+CFG.docHref+'" aria-label="Методичка">📖</a>':'')+
+      (CFG.docHref?'<a class="plink" href="'+CFG.docHref+'" aria-label="'+T('Методичка','Guide')+'">📖</a>':'')+
       (CFG.printHref?'<a class="plink'+(CFG.docHref?' plink2':'')+'" href="'+CFG.printHref+'" aria-label="Print view">🖨</a>':'')+
     '</header>'+
     '<div class="chips" id="chips" hidden></div>'+
@@ -85,8 +104,41 @@ var LOGOPED=false,HAS_SOUND=false,RAZBOR=false,SLOGI=false,ISTORII=false,FRAZY=f
 })();
 /* цвета слогового режима */
 var SL_BLUE='#4A7BC8',SL_RED='#E05B5B',SL_GREEN='#5BAE6B';
+/* по методике: слоги/слова пишем ЧЁРНЫМ, цвет уходит в схему из квадратов
+   под ними (гласный красный / твёрдый согласный синий / мягкий зелёный). */
 function sylHtml(cons,vowel){
-  return '<span style="color:'+SL_BLUE+'">'+cons+'</span><span style="color:'+SL_RED+'">'+vowel+'</span>';
+  return cons+vowel;
+}
+var SL_VOW='АОУЫЭЯЁЮИЕ';       /* все гласные буквы */
+var SL_SOFTV='ЯЁЮИЕ';          /* смягчающие гласные */
+/* цвет квадрата согласной: зелёный (мягкая) / синий (твёрдая) */
+function slConsColor(cons,nextCh){
+  var c=(cons||'').charAt((cons||'').length-1);
+  if('ЧЩЙ'.indexOf(c)>=0)return 'green';   /* всегда мягкие */
+  if('ЖШЦ'.indexOf(c)>=0)return 'blue';    /* всегда твёрдые */
+  /* n==='' держим твёрдым: indexOf('')===0 красил зелёным ВСЕ согласные в
+     конце слова (автобус, топор, стол…) — баг, пойман методистами */
+  var n=(nextCh||'').charAt(0);
+  return (n!==''&&(SL_SOFTV.indexOf(n)>=0||n==='Ь'))?'green':'blue';
+}
+function slSqHtml(color){
+  var bg=color==='red'?SL_RED:color==='green'?SL_GREEN:SL_BLUE;
+  return '<span class="slsq" style="background:'+bg+'"></span>';
+}
+/* схема слога СГ: [цвет согласной][красный] */
+function slSchemeCV(cons,vowel){
+  return '<div class="slsch">'+slSqHtml(slConsColor(cons,vowel))+slSqHtml('red')+'</div>';
+}
+/* схема слова: по звукам (ь/ъ — без квадрата, мягкость уже в согласной) */
+function slSchemeWord(word){
+  var w=(word||'').toUpperCase().replace(/-/g,''),o='<div class="slsch">',i,ch,nx;
+  for(i=0;i<w.length;i++){
+    ch=w.charAt(i);
+    if(ch==='Ь'||ch==='Ъ')continue;
+    if(SL_VOW.indexOf(ch)>=0){o+=slSqHtml('red');continue;}
+    o+=slSqHtml(slConsColor(ch,w.charAt(i+1)));
+  }
+  return o+'</div>';
 }
 function diagMark(){
   return '<span class="dmark" style="background:linear-gradient(135deg,'+SL_BLUE+' 50%,'+SL_GREEN+' 50%)"></span>';
@@ -135,18 +187,52 @@ function burst(){
 var player=new Audio();
 var playingEl=null;
 var onEnded=null; /* хук режима «повтори за диктором» */
+/* кнопка ▶ показывает ⏸ во время звучания (правка методистов: пауза
+   должна быть очевидной — родитель останавливает и обсуждает).
+   Текстовые кнопки («▶ Послушай пример истории») на время звучания
+   становятся «⏸ Пауза», исходная подпись возвращается после остановки. */
+function playBtnFace(el,playing){
+  if(!el)return;
+  var t=el.textContent;
+  if(playing){
+    if(t.charAt(0)==='▶'){
+      el.setAttribute('data-lbl',t);
+      el.textContent=(t==='▶')?'⏸':T('⏸ Пауза','⏸ Pause');
+    }
+  }else if(t.charAt(0)==='⏸'){
+    var o=el.getAttribute('data-lbl');
+    el.textContent=(o&&o.charAt(0)==='▶')?o:'▶';
+  }
+}
+function releasePlaying(){
+  if(playingEl){
+    playBtnFace(playingEl,false);
+    playingEl.className=playingEl.className.replace(/ ?playing/,'');playingEl=null;
+  }
+}
 function stopAudio(){
   try{player.pause();}catch(e){}
   onEnded=null;
-  if(playingEl){playingEl.className=playingEl.className.replace(/ ?playing/,'');playingEl=null;}
+  releasePlaying();
 }
 player.addEventListener('ended',function(){
-  if(playingEl){playingEl.className=playingEl.className.replace(/ ?playing/,'');playingEl=null;}
+  releasePlaying();
   if(onEnded){var f=onEnded;onEnded=null;f();}
 });
+player.addEventListener('pause',function(){playBtnFace(playingEl,false);});
+player.addEventListener('play',function(){playBtnFace(playingEl,true);});
 var playRate=1; /* темп воспроизведения (Бормоталки: 🐢/▶/🚀) */
 function playClip(src,el,ended){
-  if(playingEl===el&&!ended){stopAudio();return;}
+  /* повторное нажатие — ПАУЗА с продолжением (правка методистов: родитель
+     останавливает рассказ, обсуждает с ребёнком и продолжает с места) */
+  /* Пауза-с-продолжением — про ПОВТОРНОЕ нажатие той же кнопки. Вызовы без
+     кнопки (el=null, автозапуск реплики экрана) под это правило не попадают:
+     иначе второй автозапуск подряд считал бы null===null «тем же элементом»
+     и ставил на паузу прежний клип вместо проигрывания нового. */
+  if(el&&playingEl===el&&!ended){
+    if(!player.paused){try{player.pause();}catch(e){}return;}
+    if(player.src){try{var rp=player.play();if(rp&&rp.catch)rp.catch(function(){});}catch(e){}return;}
+  }
   stopAudio();
   player.src=src;
   try{player.playbackRate=playRate;}catch(e){}
@@ -225,8 +311,44 @@ function progReset(){
 }
 
 /* ── подсветка целевой буквы (поле sound, цвет группы) ── */
-function hlVerse(text,sound,color){
-  if(!sound||!color)return text;
+function hlVerse(text,sound,color,hl){
+  if(!color)return text;
+  /* размеченные позиции из данных ([start,len]…) — приоритет над поиском по
+     букве: побуквенный поиск метил s внутри sh, немое r в car, w в ow
+     (внешнее phonics-ревью EN-линейки) */
+  if(hl&&hl.length){
+    var oo='',pp=0,k2;
+    for(k2=0;k2<hl.length;k2++){
+      var st=hl[k2][0],ln=hl[k2][1];
+      if(st<pp)continue;
+      oo+=text.slice(pp,st)+'<span class="hl" style="background:'+color+'">'+
+          text.slice(st,st+ln)+'</span>';
+      pp=st+ln;
+    }
+    return oo+text.slice(pp);
+  }
+  if(!sound)return text;
+  /* русские пометки «Сь», «Рь», «С-З»: мягкостный ь и пара через дефис —
+     свойства ЗВУКА, в тексте их искать нельзя (подстроки «сь» в чистоговорке
+     нет — подсветка молча пропадала на 9 картах Бормоталок и 6 Скороговорок).
+     Подсвечиваем сами буквы: каждую часть пары, без хвостового ь. */
+  if(sound.length>1&&/^[А-ЯЁа-яё]/.test(sound)){
+    var set={},parts=sound.split(/[-–]/),k3,bl;
+    for(k3=0;k3<parts.length;k3++){
+      bl=parts[k3].replace(/ь$/,'').charAt(0).toUpperCase();
+      if(bl)set[bl]=1;
+    }
+    var o2='',i2,ch2,seg2;
+    for(i2=0;i2<text.length;i2++){
+      ch2=text.charAt(i2);
+      if(set[ch2.toUpperCase()]){
+        seg2=ch2;
+        if(text.charCodeAt(i2+1)===0x0301){seg2+=text.charAt(i2+1);i2++;}
+        o2+='<span class="hl" style="background:'+color+'">'+seg2+'</span>';
+      }else o2+=ch2;
+    }
+    return o2;
+  }
   /* многобуквенный звук (TH, NG) — подсветка подстроки без учёта регистра */
   if(sound.length>1){
     var low=text.toLowerCase(),sl=sound.toLowerCase(),o='',j=0,idx;
@@ -255,6 +377,9 @@ function hlVerse(text,sound,color){
 /* ── фильтр по звуку/группе (поля group/color) ── */
 var fGroup=null,fSound=null;
 function sideMatches(s){
+  /* жи/ши/ча/ща/чу/щу (решение методистов): правилозависимые слоги не
+     показываем ни в одном разделе приложения — это школьный материал */
+  if(s&&s.cons&&spellRuleSyl(s))return false;
   if(!fGroup)return true;
   if(s.group!==fGroup)return false;
   if(fSound&&s.sound!==fSound)return false;
@@ -274,13 +399,16 @@ function buildChips(){
     c=DATA.cards[i];
     if(c.group&&!seen[c.group]){seen[c.group]=true;order.push(c.group);}
   }
-  var html='<button class="chip'+(fGroup?'':' on')+'" data-g="">'+T('Все','All')+'</button>';
+  /* ряд групп */
+  var grp='<button class="chip'+(fGroup?'':' on')+'" data-g="">'+T('Все','All')+'</button>';
   for(i=0;i<order.length;i++){
     var g=order[i];
-    html+='<button class="chip'+(fGroup===g?' on':'')+'" data-g="'+g+'">'+
+    grp+='<button class="chip'+(fGroup===g?' on':'')+'" data-g="'+g+'">'+
       '<span class="dot" style="background:'+(colors[g]||'#fff')+'"></span>'+(groups[g]||g)+'</button>';
   }
-  /* точечно по звуку — внутри выбранной группы */
+  /* отдельный ряд звуков — внутри выбранной группы (методисты: группы и
+     звуки на разных строках) */
+  var snd='';
   if(fGroup&&HAS_SOUND){
     var snds=[],sseen={};
     for(i=0;i<DATA.cards.length;i++){
@@ -288,8 +416,10 @@ function buildChips(){
       if(c.group===fGroup&&c.sound&&!sseen[c.sound]){sseen[c.sound]=true;snds.push(c.sound);}
     }
     for(i=0;i<snds.length;i++)
-      html+='<button class="chip'+(fSound===snds[i]?' on':'')+'" data-s="'+snds[i]+'">'+snds[i]+'</button>';
+      snd+='<button class="chip'+(fSound===snds[i]?' on':'')+'" data-s="'+snds[i]+'">'+snds[i]+'</button>';
   }
+  var html='<div class="chiprow">'+grp+'</div>';
+  if(snd)html+='<div class="chiprow chipsounds">'+snd+'</div>';
   chips.innerHTML=html;
   chips.onclick=function(e){
     var t=(e&&e.target)||window.event.srcElement;
@@ -316,8 +446,22 @@ function makeTile(card){
     html+='</div><div class="cap">'+a.title+'</div>';
   }else{
     var dot=(LOGOPED&&a.color)?'<span class="dot" style="background:'+a.color+'"></span>':'';
+    var cap=a.syllable;
+    if(DATA.skorogovorki){
+      /* метка звука: один раз строчной, пара через тире при дифференциации
+         (правка методистов: не «С-С-С», а «с» или «с – з») */
+      var sa=(card.sides.a&&card.sides.a.sound)||'',sb=(card.sides.b&&card.sides.b.sound)||'';
+      cap=sa.toLowerCase()+(sb&&sb!==sa?' – '+sb.toLowerCase():'');
+    }
+    if(DATA.chistogovorki&&card.sides.a&&card.sides.b){
+      /* бормоталки: в меню видны ОБА слога карточки — «са/со»
+         (правка методистов: иначе непонятно, что на обороте другой слог) */
+      var s1=(card.sides.a.syllable||'').split('-')[0].toLowerCase(),
+          s2=(card.sides.b.syllable||'').split('-')[0].toLowerCase();
+      cap=s1+(s2&&s2!==s1?'/'+s2:'');
+    }
     html='<img src="'+a.image+'" alt="" loading="lazy">'+
-         '<div class="cap">'+dot+a.syllable+'</div>';
+         '<div class="cap">'+dot+cap+'</div>';
   }
   t.innerHTML=html;
   tilePid(t,card.id);
@@ -359,7 +503,7 @@ function onboard(){
   var el=document.createElement('div');
   el.className='onboard';
   el.innerHTML=T('👆 Нажми на любую карточку — послушай и повтори за диктором',
-                 '👆 Tap any card — listen and say it after the narrator');
+                 '👆 Tap any card — listen and say it after me');
   document.body.appendChild(el);
   var killed=false;
   function kill(){
@@ -402,6 +546,16 @@ function buildGrid(){
       if(sfxItems().length>=4)
         grid.appendChild(modeBtn(T('🎵 Угадай звук','🎵 Guess the sound'),T('настоящие звуки предметов!','real sounds of real things!'),openGuess));
     }
+    /* Ритм по слогам — вне обеих веток: он нужен и логопедическим колодам
+       (чистоговорки, скороговорки), и звукоподражательным (Болталки: ПИ-ПИ-ПИ).
+       Условие одно — слоги в данных размечены дефисами. */
+    /* решение методистов 28.07: в русских колодах прохлопывание мешает
+       автоматизации звука (внимание уходит с артикуляции на моторику),
+       а многие чистоговорки не делятся на ровные доли. Выключается флагом. */
+    if(!CFG.noClap&&ritmSides().length)
+      grid.appendChild(modeBtn(T('👏 Отхлопай','👏 Clap it'),
+        T('слог за слогом под ровный счёт','part by part on a steady beat'),openRitm));
+    appendIdiomBtn();
     var hasDigB=false;
     for(i=0;i<CARDS.length;i++){
       var da=CARDS[i].sides.a||CARDS[i].sides.b;
@@ -563,7 +717,7 @@ function openEcho(){
     opts=shuffle(opts);
     mbody.innerHTML='<div class="ctorhead">'+T('Так звучит: ','This is the sound: ')+'<b>'+target.label+'</b></div>'+
       '<div class="echorow"><img class="echopic" src="'+target.image+'" alt="">'+
-      '<button class="btn bplay" id="bplay" aria-label="Слушай">▶</button></div>'+
+      '<button class="btn bplay" id="bplay" aria-label="'+T('Слушай','Listen')+'">▶</button></div>'+
       '<div class="hint">'+T('Что ЕЩЁ звучит так же? Нажми картинку!','What ELSE makes this sound? Tap the picture!')+'</div>'+
       '<div class="sgrid" id="egrid"></div>'+
       '<div class="fzresult" id="eres"></div>'+
@@ -637,7 +791,7 @@ function openGuess(){
       if(cand[i].label!==target.label&&cand[i].image!==target.image)opts.push(cand[i]);
     opts=shuffle(opts);
     mbody.innerHTML='<div class="ctorhead">'+T('Звук ','Sound ')+(gi+1)+T(' из ',' of ')+ROUNDS+'</div>'+
-      '<div class="brow"><button class="btn brepeat" id="bplaysfx">'+T('🔊 Слушай звук!','🔊 Hear the sound!')+'</button></div>'+
+      '<div class="brow"><button class="btn brepeat" id="bplaysfx">'+iconSound(18)+T('Слушай звук!','Hear the sound!')+'</button></div>'+
       '<div class="hint">'+T('Что так звучит по-настоящему? Нажми картинку!','What really makes this sound? Tap the picture!')+'</div>'+
       '<div class="sgrid" id="ggrid"></div>'+
       '<div class="fzresult" id="gres"></div>'+
@@ -661,7 +815,7 @@ function openGuess(){
             progMark(target.cid);
             playClip(target.audio,cell); /* награда — голос диктора */
           }else{
-            document.getElementById('gres').textContent=T('Не то! Нажми 🔊 и послушай ещё раз.','Not this one! Tap 🔊 and listen again.');
+            document.getElementById('gres').textContent=T('Не то! Нажми на кнопку и послушай ещё раз.','Not this one! Tap the button and listen again.');
           }
         };
         gg.appendChild(cell);
@@ -710,6 +864,174 @@ function bindTempoRow(){
   }
 }
 
+/* ── «Отхлопай» (Бормоталки/Скороговорки): слоговая структура под ровный счёт.
+   Слоги берём из уже размеченного поля syllable («БЫ-БЫ-БЫ»), поэтому режим
+   не требует ни нового контента, ни ассетов. Метроном отбивает долю, слог
+   загорается — ребёнок хлопает и проговаривает. Это стандартный логопедический
+   приём при нарушении слоговой структуры слова. ── */
+function ritmSides(){
+  var out=[],i,k,s;
+  for(i=0;i<CARDS.length;i++)for(k in CARDS[i].sides)if(CARDS[i].sides.hasOwnProperty(k)){
+    s=CARDS[i].sides[k];
+    if(s.syllable&&String(s.syllable).indexOf('-')>0&&sideMatches(s))out.push(s);
+  }
+  return out;
+}
+function openRitm(){
+  curCard=null;stopAudio();
+  mnum.textContent=T('Отхлопай','Clap it');
+  var pool=shuffle(ritmSides()).slice(0,5),ci=0,timer=null,ac=null;
+  function tick(strong){
+    try{
+      ac=ac||new (window.AudioContext||window.webkitAudioContext)();
+      var o=ac.createOscillator(),g=ac.createGain(),t=ac.currentTime;
+      o.frequency.value=strong?1400:900;
+      g.gain.setValueAtTime(0.0001,t);
+      g.gain.exponentialRampToValueAtTime(0.3,t+0.005);
+      g.gain.exponentialRampToValueAtTime(0.0001,t+0.09);
+      o.connect(g);g.connect(ac.destination);o.start(t);o.stop(t+0.1);
+    }catch(e){}
+  }
+  function stopBeat(){if(timer){clearInterval(timer);timer=null}}
+  function step(){
+    stopBeat();stopAudio();
+    if(ci>=pool.length){
+      mbody.innerHTML='<div class="ctorhead">'+T('👏 Отхлопал всё! Молодец!','👏 All clapped! Well done!')+'</div>'+
+        '<div class="brow"><button class="btn brepeat" id="bagain">'+T('Ещё раз','Again')+'</button></div>';
+      burst();
+      document.getElementById('bagain').onclick=openRitm;
+      return;
+    }
+    var s=pool[ci],parts=String(s.syllable).split('-'),html='',j;
+    for(j=0;j<parts.length;j++)html+='<span class="beatcell" data-i="'+j+'">'+parts[j]+'</span>';
+    mbody.innerHTML='<div class="ctorhead">'+T('Слог ','Part ')+(ci+1)+T(' из ',' of ')+pool.length+'</div>'+
+      (s.sound&&s.color?'<span class="soundtag" style="background:'+s.color+'">'+T('Звук ','Sound ')+s.sound+'</span>':'')+
+      '<div class="beatrow" id="beatrow">'+html+'</div>'+
+      '<div class="beathint">'+T('Хлопай на каждый слог','Clap on every part')+'</div>'+
+      '<div class="brow">'+
+        '<button class="btn bplay" id="bbeat">👏 '+T('Отхлопать','Clap')+'</button>'+
+        '<button class="btn bplay" id="bsay">▶ '+T('Послушать','Listen')+'</button>'+
+        '<button class="btn brepeat" id="bnext">'+T('Дальше','Next')+'</button>'+
+      '</div>'+
+      '<div class="verse">'+hlVerse(s.verse,s.sound,s.color,s.hl)+'</div>';
+    var cells=mbody.querySelectorAll('.beatcell');
+    document.getElementById('bbeat').onclick=function(){
+      stopBeat();
+      var n=0,i2;
+      for(i2=0;i2<cells.length;i2++)cells[i2].className='beatcell';
+      timer=setInterval(function(){
+        for(var q=0;q<cells.length;q++)cells[q].className='beatcell';
+        if(n>=cells.length){stopBeat();return}
+        cells[n].className='beatcell now';
+        tick(n===0);n++;
+      },600);
+    };
+    document.getElementById('bsay').onclick=function(){stopBeat();playClip(s.audio,this)};
+    document.getElementById('bnext').onclick=function(){ci++;step()};
+  }
+  step();
+  modal.className='modal on';
+  modal.scrollTop=0;
+}
+
+/* ── «Так не бывает!» (фразеологизмы): буквально ↔ на самом деле ──
+   Понимание переносного смысла — отдельная веха речи (6-8 лет), и она проседает
+   у детей с речевыми трудностями: ребёнок слышит «вешать лапшу на уши» и
+   представляет макароны. Поэтому контраст даётся ПАРОЙ картинок, а не словами:
+   сначала нелепая буквальная сцена (её видно и без чтения), потом настоящий
+   смысл. Режим включается наличием DATA.idioms — как и все остальные слои. */
+/* Кнопка режима нужна в двух ветках сетки (общей и «историях»), поэтому вынесена:
+   условие одно — в данных колоды есть пары картинок. */
+function appendIdiomBtn(){
+  if(idiomItems().length)
+    grid.appendChild(modeBtn(T('🙃 Так не бывает!','🙃 It just can\'t be!'),
+      T('что значат странные выражения','what odd sayings really mean'),openIdioms));
+}
+function idiomItems(){
+  var out=[],list=DATA.idioms||[],i;
+  for(i=0;i<list.length;i++)
+    if(list[i].pic_lit&&list[i].pic_real&&list[i].options)out.push(list[i]);
+  return out;
+}
+function openIdioms(){
+  curCard=null;stopAudio();
+  mnum.textContent=T('Так не бывает!','It just can\'t be!');
+  var pool=shuffle(idiomItems()),ii=0;
+  /* Режим для тех, кто ещё плохо читает, поэтому у каждой надписи своя ▶,
+     а главная реплика экрана проигрывается сразу при входе. */
+  function say(src){
+    return src?' <button class="btn idmsay" data-clip="'+src+'">\u25B6</button>':'';
+  }
+  function wireSay(){
+    var bs=mbody.querySelectorAll('.idmsay'),i;
+    for(i=0;i<bs.length;i++)bs[i].onclick=function(e){
+      if(e&&e.stopPropagation)e.stopPropagation();
+      playClip(this.getAttribute('data-clip'),this);
+    };
+  }
+  /* Реплику экрана проигрываем «через её кнопку» — тогда у ▶ подсвечивается
+     состояние звучания и повторное нажатие честно ставит на паузу. */
+  function autoplay(src){
+    if(!src)return;
+    var btn=mbody.querySelector('.idmsay[data-clip="'+src+'"]');
+    playClip(src,btn||null);
+  }
+  function done(){
+    mbody.innerHTML='<div class="ctorhead">'+T('🎉 Все разобрали! Молодец!','🎉 All sorted out! Well done!')+'</div>'+
+      '<div class="brow"><button class="btn brepeat" id="bagainid">'+T('Ещё раз','Again')+'</button></div>';
+    burst();
+    document.getElementById('bagainid').onclick=openIdioms;
+  }
+  function step(){
+    stopAudio();
+    if(ii>=pool.length){done();return;}
+    var it=pool[ii];
+    /* Шаг 1 — буквальная картинка. Смысл ещё не назван: ребёнок сначала видит
+       нелепость и сам понимает, что так не бывает. */
+    mbody.innerHTML='<div class="ctorhead">'+(ii+1)+T(' из ',' of ')+pool.length+'</div>'+
+      '<div class="idmphrase">'+it.phrase+say(it.audio)+'</div>'+
+      '<img class="idmpic" src="'+it.pic_lit+'" alt="">'+
+      '<div class="hint">'+it.lit+say(it.lit_audio)+'</div>'+
+      '<div class="brow"><button class="btn brepeat" id="bidask">'+T('А что это значит?','So what does it mean?')+'</button></div>';
+    wireSay();
+    autoplay(it.audio);
+    document.getElementById('bidask').onclick=ask;
+    function ask(){
+      var html='',j,oa=it.opt_audio||[];
+      for(j=0;j<it.options.length;j++)
+        html+='<div class="idmrow">'+say(oa[j])+
+          '<button class="btn idmopt" data-good="'+(it.options[j][1]?'1':'0')+'">'+it.options[j][0]+'</button></div>';
+      mbody.innerHTML='<div class="ctorhead">'+it.phrase+'</div>'+
+        (it.ask?'<div class="hint">'+it.ask+say(it.ask_audio)+'</div>':'')+
+        '<div class="hint">'+T('Нажми, что это значит на самом деле','Choose what it really means')+'</div>'+
+        '<div class="idmopts">'+html+'</div>'+
+        '<div class="fzresult" id="idmres"></div>';
+      wireSay();
+      autoplay(it.ask_audio);
+      var bs=mbody.querySelectorAll('.idmopt'),k;
+      for(k=0;k<bs.length;k++)bs[k].onclick=function(){
+        if(this.getAttribute('data-good')==='1')reveal();
+        else{this.className='btn idmopt bad';document.getElementById('idmres').textContent=T('Не то — попробуй ещё','Not that one — try again');}
+      };
+    }
+    /* Шаг 3 — настоящая картинка рядом с настоящим смыслом: пара замыкается. */
+    function reveal(){
+      mbody.innerHTML='<div class="ctorhead">'+it.phrase+'</div>'+
+        '<img class="idmpic" src="'+it.pic_real+'" alt="">'+
+        '<div class="fzresult">'+it.real+say(it.real_audio)+'</div>'+
+        '<div class="brow"><button class="btn brepeat" id="bidnext">'+
+          (ii+1>=pool.length?T('Готово!','Done!'):T('Дальше','Next'))+'</button></div>';
+      wireSay();
+      autoplay(it.real_audio);
+      burst();
+      document.getElementById('bidnext').onclick=function(){ii++;step();modal.scrollTop=0;};
+    }
+  }
+  step();
+  modal.className='modal on';
+  modal.scrollTop=0;
+}
+
 /* ── «Концерт» (Бормоталки): 5 случайных чистоговорок текущего фильтра ── */
 function openConcert(){
   curCard=null;
@@ -738,10 +1060,10 @@ function openConcert(){
     mbody.innerHTML='<div class="ctorhead">'+T('Номер ','Act ')+(ci+1)+T(' из ',' of ')+pool.length+'</div>'+
       (s.sound&&s.color?'<span class="soundtag" style="background:'+s.color+'">'+T('Звук ','Sound ')+s.sound+'</span>':'')+
       '<div class="syrow"><span class="syll">'+s.syllable+'</span>'+
-      '<button class="btn bplay" id="bplay" aria-label="Слушай">▶</button></div>'+
+      '<button class="btn bplay" id="bplay" aria-label="'+T('Слушай','Listen')+'">▶</button></div>'+
       tempoRowHtml()+
       '<img class="pic" src="'+s.image+'" alt="">'+
-      '<div class="verse">'+hlVerse(s.verse,s.sound,s.color)+'</div>'+
+      '<div class="verse">'+hlVerse(s.verse,s.sound,s.color,s.hl)+'</div>'+
       '<div class="turn" id="turn">'+T('🗣 Твоя очередь!','🗣 Your turn!')+'</div>'+
       '<div class="brow" id="cnn" hidden><button class="btn brepeat" id="bnextc">'+T('Дальше!','Next!')+'</button></div>';
     bindTempoRow();
@@ -765,6 +1087,12 @@ function openConcert(){
   modal.scrollTop=0;
 }
 
+/* слоги, зависящие от правил правописания (жи-ши, ча-ща, чу-щу), в
+   тренажёры чтения не даём — правка методистов */
+function spellRuleSyl(c){
+  var t=(c.cons||'')+(c.vowel||'');
+  return t==='ЖИ'||t==='ШИ'||t==='ЧА'||t==='ЩА'||t==='ЧУ'||t==='ЩУ'||t==='ЦИ';
+}
 /* ── «Прочитай сам» (Слоги): слог без звука → проверка озвучкой ── */
 function openReadSelf(){
   curCard=null;
@@ -773,7 +1101,7 @@ function openReadSelf(){
   var sylls=[],i,c;
   for(i=0;i<DATA.cards.length;i++){
     c=DATA.cards[i];
-    if(c.type==='syllable')sylls.push(c);
+    if(c.type==='syllable'&&!spellRuleSyl(c))sylls.push(c);
   }
   sylls=shuffle(sylls.slice());
   var si=0;
@@ -812,15 +1140,15 @@ function openWarehouses(){
   var i,c,consOrder=[],rows={},vset={};
   for(i=0;i<DATA.cards.length;i++){
     c=DATA.cards[i];
-    if(c.type!=='syllable')continue;
+    if(c.type!=='syllable'||spellRuleSyl(c))continue;
     if(!rows[c.cons]){rows[c.cons]={};consOrder.push(c.cons);}
     rows[c.cons][c.vowel]=c.audio; vset[c.vowel]=1;
   }
   if(!consOrder.length)return;
   var vcols=[]; for(i=0;i<VORD.length;i++)if(vset[VORD[i]])vcols.push(VORD[i]);
-  mnum.textContent=T('Спой склады','Sing the warehouses');
+  mnum.textContent=T('Спой склады','Sing the word blocks');
   mbody.innerHTML=
-    '<div class="hint">'+T('Нажми ▶ у ряда — склады пропоются по порядку. Пой вместе с диктором! Или нажми любой склад.','Tap ▶ on a row — the warehouses sing in order. Sing along! Or tap any warehouse.')+'</div>'+
+    '<div class="hint">'+T('Нажми ▶ у ряда — склады пропоются по порядку. Пой вместе с диктором! Или нажми любой склад.','Tap ▶ on a row — the word blocks sing in order. Sing along! Or tap any block.')+'</div>'+
     '<div class="brow"><button class="btn brepeat" id="whall">'+T('▶ Спеть всю таблицу','▶ Sing the whole table')+'</button></div>'+
     '<div class="whwrap"><div class="whtable" id="whtable"></div></div>';
   var tbl=document.getElementById('whtable');
@@ -884,7 +1212,7 @@ function buildSlogiGrid(){
     grid.appendChild(b);
   }
   grid.appendChild(modeBtn('📖 Прочитай сам','слог без подсказки — проверь себя озвучкой',openReadSelf));
-  grid.appendChild(modeBtn('🎧 Слоговый диктант','услышь слог — найди его среди написанных',openDictant));
+  grid.appendChild(modeBtn('🎧 Слоговой диктант','услышь слог — найди его среди написанных',openDictant));
   grid.appendChild(modeBtn('🎵 Спой склады','складовая таблица — пой склады рядами, как по нотам',openWarehouses));
   grid.appendChild(modeBtn('🎧 Слушать подряд','буквы, слоги и слова одной лентой',openSlogiPlaylist));
   grid.appendChild(slogiHead('Буквы'));
@@ -893,8 +1221,11 @@ function buildSlogiGrid(){
     if(c.type!=='letter')continue;
     t=document.createElement('button');
     t.className='tile';
+    /* карта может быть непарной (Ц) — тогда в подписи только одна буква,
+       иначе рендер грида падал и колода обрывалась после букв */
     t.innerHTML='<img src="'+c.sides.a.image+'" alt="" loading="lazy">'+
-      '<div class="cap">'+letterHtml(c.sides.a)+' · '+letterHtml(c.sides.b)+'</div>';
+      '<div class="cap">'+letterHtml(c.sides.a)+
+      (c.sides.b?' · '+letterHtml(c.sides.b):'')+'</div>';
     tilePid(t,c.id);
     (function(c){t.onclick=function(){openCard(c);};})(c);
     grid.appendChild(t);
@@ -906,7 +1237,7 @@ function buildSlogiGrid(){
     t=document.createElement('button');
     t.className='tile';
     t.innerHTML='<div class="wordface"><b>'+sylHtml(c.sides.a.cons,c.sides.a.vowel)+'</b>'+
-      '<span>'+sylHtml(c.sides.b.cons,c.sides.b.vowel)+' на обороте</span></div>';
+      (c.sides.b?'<span>'+sylHtml(c.sides.b.cons,c.sides.b.vowel)+' на обороте</span>':'')+'</div>';
     tilePid(t,c.id);
     (function(c){t.onclick=function(){openCard(c);};})(c);
     grid.appendChild(t);
@@ -935,7 +1266,7 @@ function buildSlogiGrid(){
       t=document.createElement('button');
       t.className='tile';
       t.innerHTML='<div class="wordface"><b>'+sylHtml(c.sides.a.cons,c.sides.a.vowel)+'</b>'+
-        '<span>'+sylHtml(c.sides.b.cons,c.sides.b.vowel)+' на обороте</span></div>';
+        (c.sides.b?'<span>'+sylHtml(c.sides.b.cons,c.sides.b.vowel)+' на обороте</span>':'')+'</div>';
       tilePid(t,c.id);
       digBadge(t);
       (function(c){t.onclick=function(){openCard(c);};})(c);
@@ -946,46 +1277,45 @@ function buildSlogiGrid(){
 
 /* ── «Живая азбука»: карта = буква; лицо — буква + слово-ассоциация,
    оборот — мнемоника + двустишие; игра «Найди букву» ── */
-function azColor(c){return c.vowel?SL_RED:SL_BLUE;}
+/* по методике буквы ВЕЗДЕ чёрным: согласные бывают и твёрдыми, и мягкими,
+   красить букву в один «класс» нельзя (правка методистов). */
 function openBukva(c){
   curCard=null;
   stopAudio();
   mnum.textContent=T('Буква ','Letter ')+c.letter;
   function face(){
-    mbody.innerHTML='<div class="azletter" style="color:'+azColor(c)+'">'+c.letter+'</div>'+
+    /* лицо: буква + слово + СТИХ (перенесён с оборота — стих про букву
+       логично читать там, где буква, а не где «на что похожа») */
+    mbody.innerHTML='<div class="azletter">'+azDisp(c.letter)+'</div>'+
       '<img class="fzpic" src="'+c.image+'" alt="">'+
-      '<div class="ctorhead">'+(c.tricky?hlWord(c.word,c.letter):c.word)+'</div>'+
+      '<div class="ctorhead">'+c.word+'</div>'+
+      (c.verse?'<div class="verse">'+c.verse+'</div>':'')+
       '<div class="brow"><button class="btn bplay" id="bplay" aria-label="'+T('Слушай','Listen')+'">▶</button>'+
+      (c.audio_verse?'<button class="btn brepeat" id="bpv">'+T('🎵 Стишок','🎵 Rhyme')+'</button>':'')+
       '<button class="btn brepeat" id="bflip">'+T('На что похожа? ›','What does it look like? ›')+'</button></div>';
     var bp=document.getElementById('bplay');
     bp.onclick=function(){playClip(c.audio,bp);progMark(c.id);};
+    var bv=document.getElementById('bpv');
+    if(bv)bv.onclick=function(){playClip(c.audio_verse,bv);};
     document.getElementById('bflip').onclick=function(){back();flipMbody();};
     playClip(c.audio,bp);
     progMark(c.id);
   }
   function back(){
     stopAudio();
-    mbody.innerHTML='<img class="fzpic" src="'+c.image_b+'" alt="">'+
+    /* буква повторяется и на обороте — иначе картинка подпрыгивает вверх на
+       высоту её блока, и переворот читается как скачок, а не как поворот
+       карты (правка владельца). Заодно буква остаётся перед глазами там,
+       где ребёнок ищет на неё похожий предмет. */
+    mbody.innerHTML='<div class="azletter">'+azDisp(c.letter)+'</div>'+
+      '<img class="fzpic" src="'+c.image_b+'" alt="">'+
       '<div class="ctorhead">'+c.mnemo+'</div>'+
-      '<div class="hint">'+c.verse+'</div>'+
-      '<div class="brow"><button class="btn bplay" id="bpv" aria-label="'+T('Слушай стишок','Listen to the rhyme')+'">▶</button>'+
-      '<button class="btn brepeat" id="bback">'+T('‹ Буква','‹ Letter')+'</button></div>';
-    var bp=document.getElementById('bpv');
-    bp.onclick=function(){playClip(c.audio_verse,bp);};
-    playClip(c.audio_verse,bp);
+      '<div class="brow"><button class="btn brepeat" id="bback">'+T('‹ Буква','‹ Letter')+'</button></div>';
     document.getElementById('bback').onclick=function(){face();flipMbody();};
   }
   face();
   modal.className='modal on';
   modal.scrollTop=0;
-}
-function hlWord(word,letter){
-  var out='',i,ch;
-  for(i=0;i<word.length;i++){
-    ch=word.charAt(i);
-    out+=(ch===letter)?'<span style="color:'+SL_RED+'">'+ch+'</span>':ch;
-  }
-  return out;
 }
 function openFindLetter(){
   curCard=null;
@@ -1002,14 +1332,16 @@ function openFindLetter(){
       return;
     }
     var t=order[qi%order.length],opts=[t],cand=shuffle(DATA.cards.slice()),i;
+    /* дистрактор не должен встречаться в целевом слове: для «СОЛНЦЕ»
+       нельзя предлагать и С, и Ц — ребёнок услышит обе (правка методистов) */
     for(i=0;i<cand.length&&opts.length<4;i++)
-      if(cand[i].letter!==t.letter)opts.push(cand[i]);
+      if(cand[i].letter!==t.letter&&t.word.indexOf(cand[i].letter)<0)opts.push(cand[i]);
     opts=shuffle(opts);
-    var h='<div class="ctorhead">'+T('Слушай и найди букву!','Listen and find the letter!')+' ('+(qi+1)+T(' из 10)',' of 10)')+'</div>'+
+    var h='<div class="ctorhead">'+T('Послушай букву, её звуки и слово. Найди карточку с этой буквой.','Listen and find the letter.')+' ('+(qi+1)+T(' из 10)',' of 10)')+'</div>'+
       '<div class="brow"><button class="btn bplay" id="bplay" aria-label="'+T('Слушай','Listen')+'">▶</button></div>'+
       '<div class="azrow">';
     for(i=0;i<opts.length;i++)
-      h+='<button class="btn azopt" data-l="'+opts[i].letter+'" style="color:'+azColor(opts[i])+'">'+opts[i].letter+'</button>';
+      h+='<button class="btn azopt" data-l="'+opts[i].letter+'">'+azDisp(opts[i].letter)+'</button>';
     h+='</div><div class="fzresult" id="fres"></div>';
     mbody.innerHTML=h;
     var bp=document.getElementById('bplay');
@@ -1033,15 +1365,28 @@ function openFindLetter(){
   modal.scrollTop=0;
 }
 function buildAzbukaGrid(){
-  grid.appendChild(modeBtn(T('🔎 Найди букву','🔎 Find the letter'),T('звучит звук — найди букву среди четырёх','hear the sound — find the letter among four'),openFindLetter));
-  grid.appendChild(modeBtn(T('🎧 Слушать подряд','🎧 Listen through'),T('весь алфавит: звук, слово и стишок','the whole alphabet: sound, word and rhyme'),function(){
+  grid.appendChild(modeBtn(T('🔎 Найди букву','🔎 Find the letter'),T('послушай букву и её звуки — найди её среди четырёх','hear the sound — find the letter among four'),openFindLetter));
+  grid.appendChild(modeBtn(T('🎧 Слушать подряд','🎧 Listen through'),T('послушай все буквы алфавита по порядку','the whole alphabet in order'),function(){
     var items=[],i,c;
     for(i=0;i<DATA.cards.length;i++){
       c=DATA.cards[i];
-      items.push({html:'<div class="azletter" style="color:'+azColor(c)+'">'+c.letter+'</div>'+
+      items.push({html:'<div class="azletter">'+azDisp(c.letter)+'</div>'+
         '<div class="ctorhead">'+c.word+'</div>',audio:c.audio,mark:c.id});
     }
     openPlaylist(T('Азбука','Alphabet'),items);
+  }));
+  /* EN: тот же алфавит в порядке обучения чтению (Jolly Phonics, только
+     одиночные буквы) — phonics-ревью: A–Z учит имена букв, а читать
+     начинают с s-a-t-i-p-n. RU-азбуке режим не нужен. */
+  if(EN)grid.appendChild(modeBtn('🧭 Phonics route','the same letters in reading-teaching order: s, a, t, i, p, n…',function(){
+    var ord='SATIPNCKEHRMDGOULFBJZWVYXQ',items=[],i,j,c;
+    for(i=0;i<ord.length;i++)for(j=0;j<DATA.cards.length;j++){
+      c=DATA.cards[j];
+      if(c.letter===ord.charAt(i))
+        items.push({html:'<div class="azletter">'+azDisp(c.letter)+'</div>'+
+          '<div class="ctorhead">'+c.word+'</div>',audio:c.audio,mark:c.id});
+    }
+    openPlaylist('Phonics route',items);
   }));
   var i,c,t;
   for(i=0;i<DATA.cards.length;i++){
@@ -1049,7 +1394,7 @@ function buildAzbukaGrid(){
     t=document.createElement('button');
     t.className='tile';
     t.innerHTML='<img src="'+c.image+'" alt="" loading="lazy">'+
-      '<div class="cap"><span style="color:'+azColor(c)+'">'+c.letter+'</span> · '+c.word+'</div>';
+      '<div class="cap">'+azDisp(c.letter)+' · '+c.word+'</div>';
     tilePid(t,c.id);
     (function(c){t.onclick=function(){openBukva(c);};})(c);
     grid.appendChild(t);
@@ -1057,20 +1402,40 @@ function buildAzbukaGrid(){
 }
 
 /* ── «Слышу звуки»: фонематический слух — позиции, обманки, сетки ── */
+/* цвет круга-места звука: зелёный у мягкого согласного, синий у твёрдого
+   (по букве-соседке в слове; правка методистов — место звука обозначаем
+   ПРЯМОУГОЛЬНИКОМ С КРУГОМ, а не квадратами звуковой схемы) */
+function posDotColor(c){
+  var w=(c.word||'').toUpperCase(),L=(c.sound||'').charAt(0),idx=-1;
+  if(c.pos===0)idx=w.indexOf(L);
+  else if(c.pos===2)idx=w.lastIndexOf(L);
+  else{idx=w.indexOf(L,1);if(idx<0)idx=w.indexOf(L);}
+  if(idx<0)return SL_BLUE;
+  /* мягкость/твёрдость — русская фонология; для EN не применяем (нет
+     палатализации), место звука рисуем нейтральным цветом */
+  if(EN)return SL_BLUE;
+  return slConsColor(L,w.charAt(idx+1))==='green'?SL_GREEN:SL_BLUE;
+}
+function posSchemeHtml(p,color){
+  var o='<span class="posrect">',k;
+  for(k=0;k<3;k++)
+    o+='<span class="posslot">'+(k===p?'<span class="posdot" style="background:'+color+'"></span>':'')+'</span>';
+  return o+'</span>';
+}
 function openPos(c){
   curCard=null;
   stopAudio();
   mnum.textContent=T('Где звук ','Where is the sound ')+c.sound+'?';
   var labels=[T('в начале','at the start'),T('в середине','in the middle'),T('в конце','at the end')];
+  var dot=posDotColor(c),h='',p;
+  for(p=0;p<3;p++)
+    h+='<button class="btn poswin" data-p="'+p+'">'+posSchemeHtml(p,dot)+'</button>';
   mbody.innerHTML='<img class="fzpic" src="'+c.image+'" alt="">'+
     '<div class="ctorhead">'+c.word+'</div>'+
-    '<div class="brow"><button class="btn bplay" id="bplay" aria-label="Слушай">▶</button></div>'+
-    '<div class="hint">'+T('Где в слове звук','Where in the word is the sound')+' <b>'+c.sound+'</b>? '+T('Нажми окошко!','Tap a window!')+'</div>'+
-    '<div class="azrow">'+
-      '<button class="btn azopt poswin" data-p="0">▮▯▯</button>'+
-      '<button class="btn azopt poswin" data-p="1">▯▮▯</button>'+
-      '<button class="btn azopt poswin" data-p="2">▯▯▮</button>'+
-    '</div><div class="fzresult" id="pres"></div>';
+    '<div class="brow"><button class="btn bplay" id="bplay" aria-label="'+T('Слушай','Listen')+'">▶</button></div>'+
+    '<div class="hint">'+T('Послушай слово. Определи, где находится звук <b>'+c.sound+'</b>: в начале, середине или конце слова. Выбери подходящую схему.',
+      'Listen to the word. Where is the sound <b>'+c.sound+'</b> — start, middle or end? Pick the matching scheme!')+'</div>'+
+    '<div class="azrow posrow">'+h+'</div><div class="fzresult" id="pres"></div>';
   var bp=document.getElementById('bplay');
   bp.onclick=function(){playClip(c.audio,bp);};
   playClip(c.audio,bp);
@@ -1091,12 +1456,12 @@ function openPair(c){
   curCard=null;
   stopAudio();
   mnum.textContent=T('Кто есть кто? · ','Who is who? · ')+c.contrast;
-  var target=Math.random()<0.5?'a':'b';
+  var target=Math.random()<0.5?'a':'b',done={};
   function round(){
     stopAudio();
     var audio=target==='a'?c.audio_a:c.audio_b;
-    mbody.innerHTML='<div class="ctorhead">'+T('Слушай и покажи, что назвал диктор!','Listen and point to what the narrator said!')+'</div>'+
-      '<div class="brow"><button class="btn bplay" id="bplay" aria-label="Слушай">▶</button></div>'+
+    mbody.innerHTML='<div class="ctorhead">'+T('Послушай слово и выбери то, что назвали.','Listen and tap the right picture.')+'</div>'+
+      '<div class="brow"><button class="btn bplay" id="bplay" aria-label="'+T('Слушай','Listen')+'">▶</button></div>'+
       '<div class="pairrow">'+
       '<button class="btn pairopt" data-s="a"><img src="'+c.image_a+'" alt=""></button>'+
       '<button class="btn pairopt" data-s="b"><img src="'+c.image_b+'" alt=""></button>'+
@@ -1108,13 +1473,24 @@ function openPair(c){
     for(j=0;j<bs.length;j++)bs[j].onclick=function(e){
       var el=e.currentTarget;
       if(el.getAttribute('data-s')===target){
+        progMark(c.id);
+        done[target]=1;
+        /* Раньше здесь target просто менялся на другой и раунд запускался
+           заново — без конца. Методисты: «пользователь не понимает, что
+           происходит». Игра кончается, когда угаданы ОБА слова пары. */
+        if(done.a&&done.b){
+          document.getElementById('qres').textContent=T('Молодец, правильно!','Well done!');
+          return;
+        }
         document.getElementById('qres').textContent=T('🎉 Да! Это ','🎉 Yes! That is ')+
           (target==='a'?c.word_a:c.word_b)+T('. А теперь другое слово!','. Now the other word!');
-        progMark(c.id);
         target=target==='a'?'b':'a';
         setTimeout(round,1100);
       }else{
-        document.getElementById('qres').textContent=T('Ушки на макушке — слушай ещё раз!','Ears wide open — listen again!');
+        /* Текст ошибки — дословно по правке методистов. */
+        document.getElementById('qres').textContent=
+          T('Попробуй ещё раз. Нажми круглую кнопку, послушай слово.',
+            'Try again. Tap the round button and listen to the word.');
       }
     };
   }
@@ -1126,8 +1502,8 @@ function openSluhGrid(c){
   curCard=null;
   stopAudio();
   mnum.textContent=T('Что начинается на ','What starts with ')+c.sound+'?';
-  var h='<div class="ctorhead">'+T('Что начинается на звук','Which one starts with the sound')+' <b>'+c.sound+'</b>?</div>'+
-    '<div class="brow"><button class="btn bplay" id="bplay" aria-label="Слушай">▶</button></div>'+
+  var h='<div class="ctorhead">'+T('Назови слова и выбери то, которое начинается на звук','Which one starts with the sound')+' <b>'+c.sound+'</b>.</div>'+
+    '<div class="brow"><button class="btn bplay" id="bplay" aria-label="'+T('Слушай','Listen')+'">▶</button></div>'+
     '<div class="sgrid">',i;
   for(i=0;i<c.items.length;i++)
     h+='<button class="btn gopt" data-i="'+i+'"><img src="'+c.items[i].image+'" alt=""></button>';
@@ -1139,14 +1515,256 @@ function openSluhGrid(c){
   var bs=mbody.querySelectorAll('.gopt'),j;
   for(j=0;j<bs.length;j++)bs[j].onclick=function(e){
     var el=e.currentTarget;
-    if(parseInt(el.getAttribute('data-i'),10)===c.right){
-      document.getElementById('gres').textContent='🎉 '+T('Точно! ','Spot on! ')+c.items[c.right].word+
+    var gi=parseInt(el.getAttribute('data-i'),10);
+    /* методисты: озвучены все картинки — ребёнок слышит правильное
+       произношение каждого слова по нажатию */
+    if(c.items[gi].audio)playClip(c.items[gi].audio,el);
+    if(gi===c.right){
+      document.getElementById('gres').textContent='🎉 '+T('Точно. ','Spot on! ')+c.items[c.right].word+
         T(' начинается на ',' starts with ')+c.sound+'.';
       progMark(c.id);
     }else{
-      document.getElementById('gres').textContent=T('Скажи слово вслух и послушай первый звук!','Say the word out loud and listen to its first sound!');
+      document.getElementById('gres').textContent=T('Скажи слово вслух и послушай первый звук.','Say the word out loud and listen to its first sound.');
     }
   };
+  modal.className='modal on';
+  modal.scrollTop=0;
+}
+/* ── «Один — много»: словоизменение по числу ──
+   В русском множественное нерегулярно (дом→дома́ со сдвигом ударения,
+   носок→носки с беглой гласной, окно́→о́кна), и это ядро логопедической работы,
+   а не разминка, как в английском с его «+s». Механика самопроверки — та же,
+   что в «Прочитай сам»: ребёнок СНАЧАЛА говорит сам, потом слушает диктора.
+   Приложение не слышит ребёнка и не делает вид, что слышит. */
+function openOneMany(){
+  curCard=null;
+  stopAudio();
+  var items=DATA.one_many||[];
+  if(!items.length)return;
+  var pool=shuffle(items.slice()),qi=0;
+  mnum.textContent=T('Один — много','One and many');
+  function step(){
+    stopAudio();
+    var it=pool[qi%pool.length];
+    mbody.innerHTML='<div class="ctorhead">'+T('Один — и много. Скажи сам, потом проверь себя.',
+      'One and many. Say it yourself, then check.')+'</div>'+
+      '<img class="fzpic" src="'+it.image+'" alt="">'+
+      '<div class="omword" id="omw1">'+it.one+'</div>'+
+      '<div class="brow"><button class="btn bplay" id="bp1" aria-label="'+T('Слушай','Listen')+'">▶</button></div>'+
+      '<div class="brow"><button class="btn brepeat" id="bmany">'+T('А если их много? ›','And if there are many? ›')+'</button></div>';
+    var bp=document.getElementById('bp1');
+    bp.onclick=function(){playClip(it.audio,bp);};
+    document.getElementById('bmany').onclick=function(){many(it);};
+  }
+  function many(it){
+    stopAudio();
+    mbody.innerHTML='<div class="ctorhead">'+T('Их стало много. Как их назвать?',
+      'Now there are many. What do we call them?')+'</div>'+
+      '<div class="omrow"><img src="'+it.image+'" alt=""><img src="'+it.image+'" alt=""><img src="'+it.image+'" alt=""></div>'+
+      '<div class="omask" id="omask">'+T('Скажи вслух — потом нажми «Проверить себя».',
+        'Say it out loud — then tap "Check myself".')+'</div>'+
+      '<div class="omword" id="omw2" hidden></div>'+
+      '<div class="brow"><button class="btn brepeat" id="bcheckom">'+T('▶ Проверить себя','▶ Check myself')+'</button>'+
+      '<button class="btn brepeat" id="bnextom">'+T('Дальше ›','Next ›')+'</button></div>';
+    var bc=document.getElementById('bcheckom');
+    bc.onclick=function(){
+      var w=document.getElementById('omw2');
+      w.textContent=it.many;
+      w.removeAttribute('hidden');
+      document.getElementById('omask').textContent=T('Один — '+it.one+'. Много — '+it.many+'.',
+        'One '+it.one+' — many '+it.many+'.');
+      playClip(it.audio_many,bc);
+      if(it.id)progMark(it.id);
+    };
+    document.getElementById('bnextom').onclick=function(){qi++;step();modal.scrollTop=0;};
+  }
+  step();
+  modal.className='modal on';
+  modal.scrollTop=0;
+}
+/* ── перетаскивание картинки в цель (ES5, свои обработчики касаний) ──
+   HTML5 drag-and-drop в WKWebView не работает, поэтому тащим сами: касание или
+   мышь, перенос через transform, попадание — пересечением с прямоугольником
+   цели. Скролл модалки во время переноса гасим preventDefault, иначе палец
+   уводит страницу вместо картинки. При промахе картинка возвращается на место,
+   и ход не считается — ребёнок пробует ещё раз. */
+function bindDrag(el,targets,onDrop){
+  if(!el)return;
+  var sx=0,sy=0,dragging=false,moved=false;
+  function pt(e){
+    var t=(e.touches&&e.touches[0])||(e.changedTouches&&e.changedTouches[0])||e;
+    return {x:t.clientX,y:t.clientY};
+  }
+  function hit(p){
+    var i,r;
+    for(i=0;i<targets.length;i++){
+      if(!targets[i])continue;
+      r=targets[i].getBoundingClientRect();
+      if(p.x>=r.left&&p.x<=r.right&&p.y>=r.top&&p.y<=r.bottom)return i;
+    }
+    return -1;
+  }
+  function mark(i){
+    var k;
+    for(k=0;k<targets.length;k++)
+      if(targets[k])targets[k].className=(k===i)?'house over':'house';
+  }
+  function start(e){
+    var p=pt(e);
+    sx=p.x;sy=p.y;dragging=true;moved=false;
+    el.className='fzpic dragpic dragging';
+  }
+  function move(e){
+    if(!dragging)return;
+    var p=pt(e),dx=p.x-sx,dy=p.y-sy;
+    if(Math.abs(dx)+Math.abs(dy)>6)moved=true;
+    if(moved&&e.preventDefault)e.preventDefault();
+    el.style.transform='translate('+dx+'px,'+dy+'px)';
+    mark(hit(p));
+  }
+  function end(e){
+    if(!dragging)return;
+    dragging=false;
+    var i=hit(pt(e));
+    el.className='fzpic dragpic';
+    el.style.transform='';
+    mark(-1);
+    if(moved&&i>=0)onDrop(i);
+  }
+  el.addEventListener('touchstart',start,false);
+  el.addEventListener('touchmove',move,{passive:false});
+  el.addEventListener('touchend',end,false);
+  el.addEventListener('touchcancel',end,false);
+  el.addEventListener('mousedown',function(e){
+    start(e);
+    function mm(ev){move(ev);}
+    function mu(ev){
+      end(ev);
+      document.removeEventListener('mousemove',mm,false);
+      document.removeEventListener('mouseup',mu,false);
+    }
+    document.addEventListener('mousemove',mm,false);
+    document.addEventListener('mouseup',mu,false);
+  },false);
+}
+/* ── «Разложи по звукам»: РАЗЛИЧЕНИЕ пары звуков ──
+   Не путать с «Что начинается на…»: там ребёнок выбирает одно верное слово из
+   четырёх (звук один), здесь звука ДВА и каждое слово надо отнести к своему —
+   с/ш, р/л, ж/ш. Это логопедическая дифференциация, а не узнавание.
+   Пары задаются данными (sort_pairs), слова/картинки/озвучка берутся из карт
+   блока pos — новых ассетов режим не требует.
+   Картинку ребёнок ПЕРЕТАСКИВАЕТ в домик (просьба методистов 30.07, решение
+   владельца). Тащим на своих обработчиках касаний, а не на HTML5 drag-and-drop:
+   в WKWebView его попросту нет. Нажатие по домику оставлено запасным путём —
+   если палец не тащит, игра всё равно проходится. */
+function openSortTwo(){
+  curCard=null;
+  stopAudio();
+  var pairs=DATA.sort_pairs||[];
+  var SA=DATA.sound_audio||null;      /* звук → клип «звук с-с-с» */
+  if(!pairs.length)return;
+  /* Новая сессия — НОВАЯ пара звуков. Раньше пара бралась случайно, и у
+     методистов подряд выпадали ч/ш и ж/ш: менялся один звук из двух, игра
+     читалась как та же самая. Прошлую пару помним в этой же вкладке. */
+  var prevPair=window.__sortPrevPair||-1,pi=Math.floor(Math.random()*pairs.length);
+  if(pairs.length>1&&pi===prevPair)pi=(pi+1+Math.floor(Math.random()*(pairs.length-1)))%pairs.length;
+  window.__sortPrevPair=pi;
+  var pr=pairs[pi];
+  var pool=[],i,c;
+  for(i=0;i<DATA.cards.length;i++){
+    c=DATA.cards[i];
+    if(c.block==='pos'&&(c.sound===pr[0]||c.sound===pr[1]))pool.push(c);
+  }
+  if(pool.length<2)return;
+  /* Отбор слов по требованию методистов (30.07): для 4–6 лет слово должно быть
+     коротким (3–4 звука, редко 5), без стечения согласных, а искомый звук —
+     лучше в начале или в конце, середина реже. Считаем по массиву phon,
+     который уже выверен логопедом, а не по буквам. */
+  function simple(c){
+    var ph=c.phon||[],k,a,b,cl=0,V='аоуыэиеёюя';
+    function vow(s){return V.indexOf(String(s).replace('ь',''))>=0;}
+    for(k=0;k+1<ph.length;k++){a=ph[k];b=ph[k+1];if(!vow(a)&&!vow(b))cl=1;}
+    return (cl?0:2)+(ph.length&&ph.length<=5?1:0)+(c.pos===1?0:1);
+  }
+  pool=shuffle(pool);
+  pool.sort(function(a,b){return simple(b)-simple(a);});
+  pool=pool.slice(0,4);
+  /* Четыре карточки за сессию, а не шесть — по разбору методистов 04.08:
+     шесть на пару звуков утомляют, а круг перестаёт быть выбором. Их же
+     ответ на наш вопрос Р-5 («хватит и 4») это подтверждает. */
+  var qi=0,score=0,answered=false;
+  mnum.textContent=T('Разложи по звукам','Sort by sound');
+  function fin(){
+    stopAudio();
+    mbody.innerHTML='<div class="ctorhead">'+
+      T('🎉 Разложено верно: '+score+' из '+pool.length+'!',
+        '🎉 Sorted right: '+score+' of '+pool.length+'!')+'</div>'+
+      '<div class="brow"><button class="btn brepeat" id="bagainst">'+T('Ещё пара звуков!','Another pair!')+'</button></div>';
+    burst();
+    document.getElementById('bagainst').onclick=openSortTwo;
+  }
+  function step(){
+    stopAudio();
+    if(qi>=pool.length){fin();return;}
+    var w=pool[qi];
+    answered=false;
+    /* Плашка БЕЗ буквы: в 4–6 лет ребёнок букв ещё не знает, и написанная
+       «С» превращала задание на слух в задание на чтение (правка методистов
+       31.07). Звук опознаётся только ухом — по кнопке ▶ на самой плашке. */
+    function houseHtml(k){
+      return '<div class="house" id="h'+k+'" data-snd="'+pr[k]+'">'+
+        (SA&&SA[pr[k]]?'<button class="btn idmsay" id="bh'+k+'" aria-label="'+
+          T('Слушай звук','Hear the sound')+'">▶</button>':
+          '<span class="housedot"></span>')+
+      '</div>';
+    }
+    mbody.innerHTML='<div class="ctorhead">'+
+      T('Назови то, что изображено на карточке. Выбери внизу звук, который есть в этом слове.',
+        'Say what is in the picture. Pick the sound below that you hear in the word.')+
+      ' ('+(qi+1)+T(' из ',' of ')+pool.length+')</div>'+
+      '<img class="fzpic dragpic" id="dragpic" src="'+w.image+'" alt="" draggable="false">'+
+      '<div class="brow"><button class="btn bplay" id="bplay" aria-label="'+T('Слушай','Listen')+'">▶</button></div>'+
+      '<div class="houserow">'+houseHtml(0)+houseHtml(1)+'</div>'+
+      '<div class="fzresult" id="sres"></div>';
+    var bp=document.getElementById('bplay');
+    bp.onclick=function(){playClip(w.audio,bp);};
+    playClip(w.audio,bp);
+    function answer(snd){
+      if(answered)return;
+      answered=true;
+      var ok=(snd===w.sound);
+      if(ok){score++;progMark(w.id);}
+      document.getElementById('sres').textContent=ok?
+        '🎉 '+T('Верно!','Right!'):
+        T('Послушай звуки ещё раз.','Listen to the sounds again.');
+      qi++;
+      setTimeout(step,1400);
+    }
+    var pic=document.getElementById('dragpic');
+    var houses=[document.getElementById('h0'),document.getElementById('h1')];
+    /* нажатие по домику — запасной путь: без него игра станет непроходимой
+       там, где перетаскивание не сработает */
+    var hk;
+    for(hk=0;hk<2;hk++)(function(k){
+      houses[k].onclick=function(){answer(pr[k]);};
+    })(hk);
+    /* «домики» звучат сами: ребёнок сначала слушает звук, потом решает
+       (просьба методистов 30.07). Нажатие по ▶ не должно засчитываться
+       как ответ — гасим всплытие. */
+    if(SA){
+      var b, bi;
+      for(bi=0;bi<2;bi++)(function(k){
+        b=document.getElementById('bh'+k);
+        if(!b||!SA[pr[k]])return;
+        b.onclick=function(e){
+          if(e&&e.stopPropagation)e.stopPropagation();
+          playClip(SA[pr[k]],document.getElementById('bh'+k));
+        };
+      })(bi);
+    }
+    bindDrag(pic,houses,function(k){answer(pr[k]);});
+  }
+  step();
   modal.className='modal on';
   modal.scrollTop=0;
 }
@@ -1169,15 +1787,21 @@ function openCatchSound(){
     }
     var w=seq[qi];
     answered=false;
-    mbody.innerHTML='<div class="ctorhead">'+T('Хлопни, если в слове есть звук','Clap if the word has the sound')+' <b>'+snd+'</b>! ('+(qi+1)+T(' из ',' of ')+seq.length+')</div>'+
-      '<div class="brow"><button class="btn bplay" id="bplay" aria-label="Слушай">▶</button></div>'+
-      '<div class="brow"><button class="btn brepeat" id="bcatch">'+T('👏 ЕСТЬ ЗВУК!','👏 IT IS THERE!')+'</button>'+
+    mbody.innerHTML='<div class="ctorhead">'+T('Выбери карточку с ладошками, если в слове есть звук','Clap if the word has the sound')+' <b>'+snd+'</b>. ('+(qi+1)+T(' из ',' of ')+seq.length+')</div>'+
+      '<div class="brow"><button class="btn bplay" id="bplay" aria-label="'+T('Слушай','Listen')+'">▶</button></div>'+
+      '<div class="brow"><button class="btn brepeat" id="bcatch">'+T('👏 ЕСТЬ ЗВУК!','👏 You heard it!')+'</button>'+
       '<button class="btn brepeat" id="bskip">'+T('Нет звука ›','No sound ›')+'</button></div>'+
       '<div class="fzresult" id="cres"></div>';
     var bp=document.getElementById('bplay');
     bp.onclick=function(){playClip(w.audio,bp);};
     playClip(w.audio,bp);
-    var has=w.sounds?w.sounds.indexOf(snd)>=0:w.word.indexOf(snd)>=0;
+    /* сверка по ФОНЕМАМ, не по буквам: МЯЧ [м'ач'] — звука [м] нет
+       (мягкий и твёрдый — разные звуки, правка логопед-ревью 23.07) */
+    /* EN: сверяем только по выверенному массиву фонем (sounds/phon); без него
+       буквенный поиск врёт на немых буквах и диграфах — не откатываемся
+       (phonics-ревью 24.07). RU сохраняет прежний фолбэк на букву. */
+    var has=w.phon?w.phon.indexOf(snd.toLowerCase())>=0:
+      (w.sounds?w.sounds.indexOf(snd)>=0:(EN?false:w.word.indexOf(snd)>=0));
     function answer(saidYes){
       if(answered)return;
       answered=true;
@@ -1197,6 +1821,13 @@ function openCatchSound(){
 }
 function buildSluhGrid(){
   grid.appendChild(modeBtn(T('👂 Поймай звук','👂 Catch the sound'),T('слова подряд — хлопни, когда услышишь звук','words one by one — clap when you hear the sound'),openCatchSound));
+  if((DATA.sort_pairs||[]).length)
+    grid.appendChild(modeBtn(T('🏠 Разложи по звукам','🏠 Sort by sound'),
+      T('два звука сразу — отнеси слово к своему','two sounds at once — send each word home'),openSortTwo));
+  if((DATA.one_many||[]).length)
+    grid.appendChild(modeBtn(T('1️⃣ Один — много','1️⃣ One and many'),
+      T('дом — дома, носок — носки: скажи сам и проверь себя',
+        'one cat — many cats: say it yourself, then check'),openOneMany));
   grid.appendChild(modeBtn(T('🎧 Слушать подряд','🎧 Listen through'),T('все слова коробки голосом диктора','every word in the box, read aloud'),function(){
     var items=[],i,c;
     for(i=0;i<DATA.cards.length;i++){
@@ -1269,7 +1900,10 @@ function cvcWords(){
   }
   return out;
 }
-function isVowel(ch){return 'aeiou'.indexOf(ch.toLowerCase())>=0;}
+/* гласная-диграф (ee/ie/oe/ey/ow) — по ПЕРВОМУ символу звуковой единицы,
+   иначе многобуквенные гласные красились согласным цветом (EN Sound Boxes:
+   bee/pie/toe/key/cow — правка phonics-ревью 24.07) */
+function isVowel(ch){return 'aeiou'.indexOf((ch||'').charAt(0).toLowerCase())>=0;}
 function cvcLetter(ch){
   return '<span style="color:'+(isVowel(ch)?SL_RED:SL_BLUE)+'">'+ch+'</span>';
 }
@@ -1405,7 +2039,7 @@ function buildCvcGrid(){
     T('собери из звуков — '+words.length+' слов!','make it from its sounds — '+words.length+' words!')+'</span>';
   b.onclick=openCvcBuild;
   grid.appendChild(b);
-  grid.appendChild(modeBtn(T('🔊 Читаем по звукам','🔊 Blend it'),T('звук за звуком — слей в слово','sound by sound — blend into a word'),openCvcBlend));
+  grid.appendChild(modeBtn(iconSound(18)+T('Читаем по звукам','Blend it'),T('звук за звуком — слей в слово','sound by sound — blend into a word'),openCvcBlend));
   grid.appendChild(modeBtn(T('🎧 Слушать подряд','🎧 Listen through'),T('все слова голосом диктора','every word read aloud'),function(){
     var items=[],i,w;
     for(i=0;i<words.length;i++){
@@ -1584,8 +2218,10 @@ function frazaHtml(c,big){
   for(wi=0;wi<c.words.length;wi++){
     w=c.words[wi];
     h+='<span class="fw'+(isSight(wi)?' sight':'')+'">';
+    /* слоговые дуги убраны по решению методистов (колода про
+       самостоятельное чтение — дуги остались этапом «Читаем по слогам») */
     for(si=0;si<w.length;si++)
-      h+='<span class="syl'+(w.length>1?' arc':'')+'">'+w[si]+'</span>';
+      h+='<span class="syl">'+w[si]+'</span>';
     if(wi===c.words.length-1){
       var tail=c.phrase.charAt(c.phrase.length-1);
       if(tail==='.'||tail==='!'||tail==='?')h+='<span class="syl">'+tail+'</span>';
@@ -1599,10 +2235,10 @@ function openFraza(c){
   stopAudio();
   mnum.textContent=T('Карта ','Card ')+pad(c.id);
   var h=frazaHtml(c,true)+
-    '<div class="hint">'+T('Прочитай вслух — не спеши, веди пальчиком по дугам!',SIGHT_HINT)+'</div>';
+    '<div class="hint">'+T('Прочитай вслух, не спеши. Представь то, о чём прочитал.',SIGHT_HINT)+'</div>';
   if(c.type==='tf'){
-    h+='<div class="brow"><button class="btn brepeat" id="btrue">'+T('✅ Правда','✅ True')+'</button>'+
-       '<button class="btn brepeat" id="bfun">'+T('😄 Смешно!','😄 Silly!')+'</button></div>';
+    h+='<div class="brow"><button class="btn brepeat" id="btrue">'+T('✅ Бывает','✅ True')+'</button>'+
+       '<button class="btn brepeat" id="bfun">'+T('🚫 Не бывает','😄 Silly!')+'</button></div>';
   }else if(c.type==='do'){
     h+='<div class="brow"><button class="btn brepeat" id="bdone">'+T('🙌 Сделал!','🙌 Done it!')+'</button></div>';
   }else{
@@ -1610,8 +2246,8 @@ function openFraza(c){
   }
   h+='<div id="freveal" hidden><img class="fzpic" src="'+c.image+'" alt="">'+
      '<div class="fzresult" id="fverdict"></div></div>'+
-     '<div class="brow"><button class="btn bplay" id="bplay" aria-label="Слушай">▶</button></div>'+
-     '<div class="hint">'+T('▶ — послушай, как читает диктор.','▶ — hear how the narrator reads it.')+'</div>';
+     '<div class="brow"><button class="btn bplay" id="bplay" aria-label="'+T('Слушай','Listen')+'">▶</button></div>'+
+     '<div class="hint">'+T('▶ — послушай, как читает диктор.','▶ — listen, then try it yourself.')+'</div>';
   mbody.innerHTML=h;
   var bp=document.getElementById('bplay');
   bp.onclick=function(){playClip(c.audio,bp);progMark(c.id);};
@@ -1623,14 +2259,14 @@ function openFraza(c){
   }
   if(c.type==='tf'){
     document.getElementById('btrue').onclick=function(){
-      reveal(c.truth?T('🎉 Верно, это правда!','🎉 Yes, it is true!'):T('Ой! Прочитай ещё раз — это же небылица! 😄','Oops! Read it again — it is a silly one! 😄'));
+      reveal(c.truth?T('🎉 Верно, так бывает!','🎉 Yes, it is true!'):T('Ой! Прочитай ещё раз — так не бывает! 😄','Oops! Read it again — it is a silly one! 😄'));
     };
     document.getElementById('bfun').onclick=function(){
-      reveal(c.truth?T('А вот и нет — это правда! Хитрая карточка. 🐭','Not quite — it is actually true! A tricky card. 🐭'):T('🎉 Конечно, смешно! Так не бывает.','🎉 Silly, of course! That cannot happen.'));
+      reveal(c.truth?T('А вот и нет — так бывает! Хитрая карточка. 🐭','Not quite — it is actually true! A tricky card. 🐭'):T('🎉 Верно, так не бывает!','🎉 Silly, of course! That cannot happen.'));
     };
   }else if(c.type==='do'){
     document.getElementById('bdone').onclick=function(){
-      reveal(T('🎉 Молодец! Прочитал и сделал.','🎉 Well done! Read it and did it.'));
+      reveal(T('🎉 Молодец! Прочитал и сделал.','🎉 You read it and did it!'));
     };
   }else{
     document.getElementById('bshow').onclick=function(){reveal('');};
@@ -1677,10 +2313,10 @@ function openSlogiPlaylist(){
     if(c.type==='letter')
       html='<div class="sylcard"><b>'+letterHtml(s)+'</b></div>';
     else if(c.type==='syllable')
-      html='<div class="sylcard"><b>'+sylHtml(s.cons,s.vowel)+'</b></div>';
+      html='<div class="sylcard"><b>'+sylHtml(s.cons,s.vowel)+'</b>'+slSchemeCV(s.cons,s.vowel)+'</div>';
     else
       html=(s.image?'<img class="fzpic" src="'+s.image+'" alt="">':'')+
-        '<div class="sylcard"><b>'+s.word+'</b></div>';
+        '<div class="sylcard"><b>'+s.word+'</b>'+slSchemeWord(s.word)+'</div>';
     items.push({html:html,audio:s.audio,mark:c.id});
   }
   var order=['letter','syllable','word'],t;
@@ -1708,7 +2344,7 @@ function storyFrames(key){
 function buildIstoriiGrid(){
   var list=DATA.stories_list||[],i;
   if(list.length>=2)
-    grid.appendChild(modeBtn(T('🔀 Перепутанные истории','🔀 Mixed-up stories'),T('кадры двух историй смешались — разбери!','frames from two stories got shuffled — sort them!'),openMixed));
+    grid.appendChild(modeBtn(T('🔀 Перепутанные истории','🔀 Mixed-up stories'),T('картинки двух историй смешались — разбери!','frames from two stories got shuffled — sort them!'),openMixed));
   grid.appendChild(modeBtn(T('🎧 Слушать рассказы','🎧 Listen to the stories'),T('выбери историю — или слушай все подряд','pick a story — or listen to them all'),function(){
     var items=[],j,st,fr;
     for(j=0;j<list.length;j++){
@@ -1722,6 +2358,7 @@ function buildIstoriiGrid(){
     }
     openStoryPicker(T('Слушаем рассказы','Listening'),items);
   }));
+  appendIdiomBtn();
   function tile(st){
     var frames=storyFrames(st.key);
     var t=document.createElement('button');
@@ -1744,7 +2381,7 @@ function buildIstoriiGrid(){
 function openStory(st,frames){
   curCard=null;
   stopAudio();
-  mnum.textContent=T('История · '+frames.length+' кадра','Story · '+frames.length+' frames');
+  mnum.textContent=T('История · '+frames.length+' картинки','Story · '+frames.length+' frames');
   var slots=[],pool,i;
   for(i=0;i<frames.length;i++)slots.push(null);
   pool=shuffle(frames.slice());
@@ -1754,12 +2391,12 @@ function openStory(st,frames){
   if(same)pool.reverse();
   mbody.innerHTML=
     '<div class="sthead"><span class="stbar" style="background:'+st.color+'"></span><b>'+st.title+'</b></div>'+
-    '<div class="hint">'+T('Разложи кадры по порядку: нажимай их один за другим!','Put the frames in order: tap them one by one!')+'</div>'+
+    '<div class="hint">'+T('Рассмотри картинки, определи, что было сначала, что — потом. Расставь картинки по порядку, для этого нажми на них.','Look at the pictures, work out what happened first and next. Put them in order — tap them.')+'</div>'+
     '<div class="stslots" id="stslots"></div>'+
     '<div class="stpool" id="stpool"></div>'+
     '<div class="fzresult" id="stres"></div>'+
     '<div class="stdone" id="stdone" hidden>'+
-      '<div class="brow"><button class="btn brepeat" id="bstory">'+T('▶ Послушай, как рассказал диктор','▶ Listen to the storyteller')+'</button></div>'+
+      '<div class="brow"><button class="btn brepeat" id="bstory">'+T('▶ Послушай пример истории','▶ Listen to the story example')+'</button></div>'+
       '<div class="kq" id="stkq"></div>'+
       '<div class="hint">'+T('Сначала расскажи сам — потом сравни с диктором! Читаешь? Следи за словами.','Tell the story yourself first — then compare! Reading already? Follow the words.')+'</div>'+
       '<div id="stqs"></div>'+
@@ -1830,7 +2467,7 @@ function openStory(st,frames){
       bs.onclick=function(){playClip(st.audio,bs);};
       if(st.karaoke)kqMount(document.getElementById('stkq'),st.karaoke,st.audio);
     }else{
-      res.textContent=T('Что-то перепуталось! Нажми кадр в ряду — он вернётся вниз.','Something got mixed up! Tap a frame in the row to send it back.');
+      res.textContent=T('Что-то перепуталось! Нажми картинку в ряду — она вернётся вниз.','Something got mixed up! Tap a frame in the row to send it back.');
     }
   }
   redraw();
@@ -1838,15 +2475,15 @@ function openStory(st,frames){
   modal.scrollTop=0;
 }
 
-/* ── «Слоговый диктант» (Слоги): слышу слог → выбираю из 4 написанных ── */
+/* ── «Слоговой диктант» (Слоги): слышу слог → выбираю из 4 написанных ── */
 function openDictant(){
   curCard=null;
   stopAudio();
-  mnum.textContent='Слоговый диктант';
+  mnum.textContent='Слоговой диктант';
   var sylls=[],i,c;
   for(i=0;i<DATA.cards.length;i++){
     c=DATA.cards[i];
-    if(c.type==='syllable')sylls.push(c);
+    if(c.type==='syllable'&&!spellRuleSyl(c))sylls.push(c);
   }
   var pool=shuffle(sylls.slice()),di=0,score=0;
   var ROUNDS=Math.min(10,pool.length);
@@ -1862,7 +2499,7 @@ function openDictant(){
       if(near[k]!==t&&opts.indexOf(near[k])<0)opts.push(near[k]);
     opts=shuffle(opts);
     mbody.innerHTML='<div class="ctorhead">Слог '+(di+1)+' из '+ROUNDS+'</div>'+
-      '<div class="brow"><button class="btn brepeat" id="bplayd">🔊 Слушай слог!</button></div>'+
+      '<div class="brow"><button class="btn brepeat" id="bplayd">'+iconSound(18)+'Слушай слог!</button></div>'+
       '<div class="hint">Какой слог ты услышал? Нажми его!</div>'+
       '<div class="poolrow" id="dgrid"></div>'+
       '<div class="fzresult" id="dres"></div>'+
@@ -1884,7 +2521,7 @@ function openDictant(){
             document.getElementById('dnext').hidden=false;
             progMark(t.id);
           }else{
-            document.getElementById('dres').textContent='Не тот! Нажми 🔊 и послушай ещё раз.';
+            document.getElementById('dres').textContent='Не тот! Нажми на кнопку и послушай ещё раз.';
           }
         };
         dg.appendChild(b);
@@ -1919,23 +2556,26 @@ function openMixed(){
   function round(){
     if(mi>=frames.length){fin();return;}
     var f=frames[mi];
-    mbody.innerHTML='<div class="ctorhead">'+T('Кадр ','Frame ')+(mi+1)+T(' из ',' of ')+frames.length+'</div>'+
+    mbody.innerHTML='<div class="ctorhead">'+T('Картинка ','Picture ')+(mi+1)+T(' из ',' of ')+frames.length+'</div>'+
       '<img class="pic" src="'+f.image+'" alt="">'+
-      '<div class="hint">Из какой это истории? Нажми название!</div>'+
+      '<div class="hint">'+T('Из какой это истории? Нажми название!',
+        'Which story is this picture from? Tap the title!')+'</div>'+
       '<div class="mixrow">'+
         '<button class="btn mixbtn" id="mixa"><span class="stbar" style="background:'+A.color+'"></span>'+A.title+'</button>'+
         '<button class="btn mixbtn" id="mixb"><span class="stbar" style="background:'+B.color+'"></span>'+B.title+'</button>'+
       '</div>'+
       '<div class="fzresult" id="mres"></div>'+
-      '<div class="brow" id="mnext" hidden><button class="btn brepeat" id="bnextm">Дальше!</button></div>';
+      '<div class="brow" id="mnext" hidden><button class="btn brepeat" id="bnextm">'+T('Дальше!','Next!')+'</button></div>';
     var solved=false;
     function pick(key){
       if(f.story===key){
         if(!solved){solved=true;score++;}
-        document.getElementById('mres').textContent='Верно! Это «'+(f.story===A.key?A.title:B.title)+'»!';
+        document.getElementById('mres').textContent=T('Верно! Это «'+(f.story===A.key?A.title:B.title)+'»!',
+          'Right! This is “'+(f.story===A.key?A.title:B.title)+'”!');
         document.getElementById('mnext').hidden=false;
       }else{
-        document.getElementById('mres').textContent='Посмотри внимательнее: кто герой этого кадра?';
+        document.getElementById('mres').textContent=T('Посмотри внимательнее: кто герой этой картинки?',
+          'Look again: who is in this picture?');
       }
     }
     document.getElementById('mixa').onclick=function(){pick(A.key);};
@@ -1948,7 +2588,7 @@ function openMixed(){
         '<button class="btn mixbtn" id="mixa"><span class="stbar" style="background:'+A.color+'"></span>'+A.title+'</button>'+
         '<button class="btn mixbtn" id="mixb"><span class="stbar" style="background:'+B.color+'"></span>'+B.title+'</button>'+
       '</div>'+
-      '<div class="brow"><button class="btn brepeat" id="bagain">Другие истории!</button></div>';
+      '<div class="brow"><button class="btn brepeat" id="bagain">'+T('Другие истории!','Other stories!')+'</button></div>';
     document.getElementById('mixa').onclick=function(){openStory(A,storyFrames(A.key));};
     document.getElementById('mixb').onclick=function(){openStory(B,storyFrames(B.key));};
     document.getElementById('bagain').onclick=openMixed;
@@ -1960,7 +2600,8 @@ function openMixed(){
 
 /* ── звуковой разбор (Фонетика): уровни — разделами, слово — карта ── */
 var LEVELS={1:'Уровень 1 · три звука',2:'Уровень 2 · четыре-пять звуков',
-            3:'Уровень 3 · мягкие звуки и Ь',4:'Уровень 4 · звуков не столько, сколько букв'};
+            3:'Уровень 3 · 3–4 звука, слова с мягкими звуками',
+            4:'Уровень 4 · 4–5 звуков, самые хитрые слова: букв больше или меньше, чем звуков'};
 function makeWordTile(w){
   var t=document.createElement('button');
   t.className='tile';
@@ -1976,19 +2617,9 @@ function makeWordTile(w){
 }
 function buildRazborGrid(){
   grid.appendChild(modeBtn('\ud83c\udfc1 Марафон','10 случайных слов — проверь себя!',openMarathon));
-  grid.appendChild(modeBtn('🎧 Слушать слова','все слова с чётким ударением',function(){
-    var items=[],i,w;
-    for(i=0;i<DATA.cards.length;i++){
-      w=DATA.cards[i];
-      if(!w.audio)continue;
-      items.push({html:(w.image?'<img class="fzpic" src="'+w.image+'" alt="">':'')+
-        '<div class="sylcard"><b>'+w.word+'</b></div>',audio:w.audio,mark:w.id});
-    }
-    openPlaylist('Слушаем слова',items);
-  }));
-  /* «Звуковые боксы» — цифровой близнец планшета «выложи слово фишками»:
-     простой вход в звуковой анализ перед полным разбором */
-  grid.appendChild(modeBtn('🧩 Выложи фишками','протолкни фишку в бокс за каждый звук',openFonBoxes));
+  /* «Слушать слова» и «Выложи фишками» убраны по методической правке:
+     прослушивание есть в самом разборе, а «выложи фишками» дублировал
+     сборку схемы (теперь ребёнок собирает схему из квадратов в разборе). */
   grid.appendChild(modeBtn('🔢 Сколько звуков?','послушай слово — посчитай звуки',openFonCount));
   /* раздел = уровень; внутри сначала печатные карты, затем цифровые слова */
   var lvl,i,w;
@@ -2004,75 +2635,14 @@ function buildRazborGrid(){
   }
 }
 
-/* ── «Звуковые боксы» (Фонетика): цифровой близнец печатного планшета
-   «выложи слово фишками» — сегментация на звуки. Простой вход перед полным
-   разбором: «выложи фишку за каждый звук» и «сколько звуков?». Фишки-ответы —
-   в школьных цветах схемы (гласный красный / твёрдый синий / мягкий зелёный). ── */
-function fonColor(c){return c==='red'?SL_RED:c==='green'?SL_GREEN:SL_BLUE;}
-function fonSoundText(s){return (s.S||'').replace(/[\[\]]/g,'');} /* «[к]» → «к» */
-function fonBoxReveal(w){
-  var o='',k,s;
-  for(k=0;k<w.sounds.length;k++){
-    s=w.sounds[k];
-    o+='<span class="sbbox on"><span class="sbg sbg-ru" style="color:'+fonColor(s.c)+'">'+
-       fonSoundText(s)+'</span></span>';
-  }
-  return o;
-}
+/* ── «Сколько звуков?» (Фонетика): слушаем слово (текст скрыт) — считаем
+   звуки, при верном ответе показываем схему-ответ из квадратов. ── */
 function fonCountOpts(){
   var set={},i,out=[],k;
   for(i=0;i<DATA.cards.length;i++)set[DATA.cards[i].sounds.length]=1;
   for(k in set)if(set.hasOwnProperty(k))out.push(parseInt(k,10));
   out.sort(function(a,b){return a-b;});
   return out;
-}
-/* «Выложи фишками»: слушаем слово, проталкиваем фишку в бокс за каждый звук */
-function openFonBoxes(){
-  curCard=null;stopAudio();
-  var words=shuffle(DATA.cards.slice()),qi=0;
-  function step(){
-    stopAudio();
-    if(qi>=words.length){closeCard();return;}
-    var w=words[qi],n=w.sounds.length,filled=0,done=false,justFilled=-1;
-    mnum.textContent='Выложи фишками · '+(qi+1)+' из '+words.length;
-    function draw(){
-      var boxes='',k,cls,inner;
-      for(k=0;k<n;k++){
-        cls='sbbox';inner='';
-        if(done){cls+=' on';inner='<span class="sbg sbg-ru" style="color:'+fonColor(w.sounds[k].c)+'">'+
-          fonSoundText(w.sounds[k])+'</span>';}
-        else if(k<filled){cls+=' on';inner='<span class="sbchip'+(k===justFilled?' drop':'')+'"></span>';}
-        else if(k===filled){cls+=' active';}
-        boxes+='<button class="'+cls+'" data-i="'+k+'">'+inner+'</button>';
-      }
-      justFilled=-1;
-      mbody.innerHTML=(w.image?'<img class="fzpic" src="'+w.image+'" alt="">':'')+
-        '<div class="brow"><button class="btn bplay" id="bplay" aria-label="Слушай">▶</button></div>'+
-        '<div class="hint">'+(done?('🎉 '+n+' '+plural(n,'звук','звука','звуков')+'!')
-          :'Скажи слово медленно и протолкни фишку за каждый звук.')+'</div>'+
-        '<div class="sbrow">'+boxes+'</div>'+
-        (done?'<div class="sbword">'+w.word+'</div>'+
-              '<div class="brow"><button class="btn brepeat" id="bnx">'+
-              (qi<words.length-1?'Дальше ›':'Готово!')+'</button></div>':'');
-      var bp=document.getElementById('bplay');
-      bp.onclick=function(){playClip(w.audio,bp);};
-      if(done){document.getElementById('bnx').onclick=function(){qi++;step();};return;}
-      var bs=mbody.querySelectorAll('.sbbox'),j;
-      for(j=0;j<bs.length;j++)bs[j].onclick=function(e){
-        var k=parseInt((e.currentTarget||e.target).getAttribute('data-i'),10);
-        if(k!==filled)return;
-        justFilled=filled;
-        filled++;
-        if(filled>=n){done=true;progMark(w.id);}
-        draw();
-        if(done)playClip(w.audio,document.getElementById('bplay'));
-      };
-    }
-    draw();
-    playClip(w.audio,document.getElementById('bplay'));
-  }
-  step();
-  modal.className='modal on';modal.scrollTop=0;
 }
 /* «Сколько звуков?»: слушаем слово (текст скрыт!) — считаем звуки */
 function openFonCount(){
@@ -2085,7 +2655,7 @@ function openFonCount(){
     mnum.textContent='Сколько звуков? · '+(qi+1)+' из '+words.length;
     for(i=0;i<opts.length;i++)ob+='<button class="btn sbnum" data-n="'+opts[i]+'">'+opts[i]+'</button>';
     mbody.innerHTML=(w.image?'<img class="fzpic" src="'+w.image+'" alt="">':'')+
-      '<div class="brow"><button class="btn bplay" id="bplay" aria-label="Слушай">▶</button></div>'+
+      '<div class="brow"><button class="btn bplay" id="bplay" aria-label="'+T('Слушай','Listen')+'">▶</button></div>'+
       '<div class="hint">Послушай слово. Сколько в нём звуков?</div>'+
       '<div class="sbnums">'+ob+'</div>'+
       '<div class="fzresult" id="res"></div>';
@@ -2097,11 +2667,21 @@ function openFonCount(){
       var self=e.currentTarget||e.target,pick=parseInt(self.getAttribute('data-n'),10);
       if(pick===n){
         progMark(w.id);self.className+=' ok';
+        var all=mbody.querySelectorAll('.sbnum'),m;
+        for(m=0;m<all.length;m++)all[m].disabled=true;
+        /* показываем правильную звуковую схему (квадраты, без слова) */
         var r=document.getElementById('res');
-        if(r)r.innerHTML='<div class="sbrow">'+fonBoxReveal(w)+'</div><div class="sbok">🎉 '+w.word+'</div>';
+        r.innerHTML='<div class="fzetlab">Схема-ответ</div>';
+        r.appendChild(window.RECH_SCHEMA.render(w.sounds,
+          {d:Math.min(52,Math.floor(300/n)),colors:DATA.colors}));
+        var nx=document.createElement('div');
+        nx.className='brow';
+        nx.innerHTML='<button class="btn brepeat" id="bnx">'+
+          (qi<words.length-1?'Дальше ›':'Готово!')+'</button>';
+        r.appendChild(nx);
         burst();
         playClip(w.audio,bp);
-        qi++;setTimeout(round,1600);
+        document.getElementById('bnx').onclick=function(){qi++;round();};
       }else{
         self.className+=' bad';
         setTimeout(function(){self.className=self.className.replace(' bad','');},550);
@@ -2112,34 +2692,66 @@ function openFonCount(){
   modal.className='modal on';modal.scrollTop=0;
 }
 
-/* карта разбора: слово + ▶ → пустые кружки (нажми — крась по кругу
-   красный/синий/зелёный; нажми над кружком — поставь ударение) →
-   «Проверить» → ✓/✗ по каждому звуку → эталонная схема.
+/* карта разбора (традиционная звуковая схема из квадратов): слово + ▶ →
+   палитра из 3 цветов (гласный красный / твёрдый согласный синий / мягкий
+   зелёный) + ластик → нажми цвет, затем квадрат → раскрась каждый звук →
+   «Проверить» → ✓/✗ по каждому квадрату → эталонная схема.
+   Без знака ударения и без подсчёта букв/звуков (по методике — школьный
+   материал). В марафоне слово не показываем: разбираем на слух.
    Чекбокс «показывать схему» — режим подсказки. */
-var COLOR_CYCLE=[null,'red','blue','green'];
+var PALETTE=[{c:'red',lab:'гласный'},{c:'blue',lab:'твёрдый согласный'},
+             {c:'green',lab:'мягкий согласный'}];
 function openRazbor(w,mar){
   curCard=null;
   stopAudio();
-  mnum.textContent=mar?('Марафон · слово '+mar.idx+' из '+mar.total)
+  mnum.textContent=mar?('Марафон · '+mar.idx+' из '+mar.total)
                       :('Слово '+pad(w.id)+' · уровень '+w.level);
   var state=[],i;
-  for(i=0;i<w.sounds.length;i++)state.push({color:null,stress:false});
-  var html='<div class="fzword"><b>'+w.word+'</b>'+
-           '<button class="btn bplay" id="bplay" aria-label="Слушай">▶</button></div>'+
+  for(i=0;i<w.sounds.length;i++)state.push({color:null});
+  var active={c:null};
+  var showWord=!mar; /* марафон — на слух, слово не пишем */
+  var html='<div class="fzword">'+(showWord?'<b>'+w.word+'</b>':'')+
+           '<button class="btn bplay" id="bplay" aria-label="'+T('Слушай','Listen')+'">▶</button></div>'+
            (w.image?'<img class="fzpic" src="'+w.image+'" alt="">':'')+
+           '<div class="fzpalette" id="fzpal"></div>'+
            '<div id="fzgrid"></div>'+
            '<div class="fzrow"><button class="btn brepeat" id="bcheck">Проверить</button></div>'+
            '<div class="fzresult" id="fzresult"></div>'+
            '<label class="fzhint"><input type="checkbox" id="fzshow"> показывать схему</label>'+
            '<div class="fzet" id="fzet" hidden><div class="fzetlab">Схема-ответ</div></div>'+
-           '<div class="hint">Нажми кружок — раскрась звук. Нажми над кружком — поставь ударение.</div>';
+           '<div class="hint">Нажми цвет, потом квадрат — раскрась каждый звук.</div>';
   mbody.innerHTML=html;
   var bp=document.getElementById('bplay');
   bp.onclick=function(){playClip(w.audio,bp);};
+  /* палитра: 3 цвета + ластик */
+  var pal=document.getElementById('fzpal'),sws=[];
+  function setActive(c,el){
+    active.c=c;var j;
+    for(j=0;j<sws.length;j++)sws[j].className=sws[j].className.replace(/ ?on/,'');
+    el.className+=' on';
+  }
+  (function(){
+    var j;
+    for(j=0;j<PALETTE.length;j++){
+      (function(j){
+        var sw=document.createElement('button');
+        sw.type='button';sw.className='fzsw';
+        sw.style.background=window.RECH_SCHEMA.colorOf(PALETTE[j].c,DATA.colors);
+        sw.setAttribute('aria-label',PALETTE[j].lab);
+        sw.onclick=function(){setActive(PALETTE[j].c,sw);};
+        pal.appendChild(sw);sws.push(sw);
+      })(j);
+    }
+    var er=document.createElement('button');
+    er.type='button';er.className='fzsw erase';er.textContent='⌫';
+    er.setAttribute('aria-label','стереть');
+    er.onclick=function(){setActive(null,er);};
+    pal.appendChild(er);sws.push(er);
+  })();
   var avail=Math.min(560,window.innerWidth)-28-12*w.sounds.length;
   var d=Math.min(56,Math.floor(avail/w.sounds.length));
   if(d<34)d=34;
-  /* пустая интерактивная схема */
+  /* пустая интерактивная схема из квадратов */
   var fz=document.getElementById('fzgrid');
   var cells=[];
   (function(){
@@ -2148,60 +2760,39 @@ function openRazbor(w,mar){
     for(k=0;k<toks.length;k++){
       (function(k,tok){
         tok.className+=' fzcell';
-        var circle=tok.getElementsByClassName('schc')[0];
-        circle.style.background='#fff';
-        circle.innerHTML='';
-        var stressEl=tok.getElementsByClassName('schstress')[0];
-        stressEl.textContent='´';
+        var sq=tok.getElementsByClassName('schc')[0];
+        sq.style.background='#fff';
+        sq.innerHTML='';
         var ver=document.createElement('div');
         ver.className='fzver';
         tok.appendChild(ver);
-        cells.push({tok:tok,circle:circle,stressEl:stressEl,ver:ver});
-        circle.onclick=function(){
-          var idx=(COLOR_CYCLE.indexOf(state[k].color)+1)%COLOR_CYCLE.length;
-          state[k].color=COLOR_CYCLE[idx];
-          circle.style.background=state[k].color?window.RECH_SCHEMA.colorOf(state[k].color,DATA.colors):'#fff';
+        cells.push({tok:tok,sq:sq,ver:ver});
+        sq.onclick=function(){
+          state[k].color=active.c;
+          sq.style.background=active.c?window.RECH_SCHEMA.colorOf(active.c,DATA.colors):'#fff';
           ver.textContent='';
-        };
-        stressEl.onclick=function(){
-          /* ударение одно на слово: ставим здесь — снимаем с остальных */
-          var was=state[k].stress,m;
-          for(m=0;m<state.length;m++){
-            state[m].stress=false;
-            cells[m].tok.className=cells[m].tok.className.replace(/ ?stressed/,'');
-            cells[m].ver.textContent='';
-          }
-          state[k].stress=!was;
-          if(state[k].stress)tok.className+=' stressed';
         };
       })(k,toks[k]);
     }
     fz.appendChild(sch);
   })();
-  /* эталон */
+  /* эталон — без подсчёта и без ударения */
   var et=document.getElementById('fzet');
-  et.appendChild(window.RECH_SCHEMA.render(w.sounds,{d:Math.round(d*0.86),colors:DATA.colors,
-    counts:{letters:w.letters_n,sounds:w.sounds_n}}));
+  et.appendChild(window.RECH_SCHEMA.render(w.sounds,{d:Math.round(d*0.86),colors:DATA.colors}));
   document.getElementById('fzshow').onchange=function(){et.hidden=!this.checked;};
-  /* проверка: кружки (цвета) и ударение — раздельно.
-     В односложном слове ударение не требуется (школьная норма). */
+  /* проверка: только цвета квадратов */
   document.getElementById('bcheck').onclick=function(){
-    var ok=0,k,expected=-1,user=-1,vowels=0;
+    var ok=0,k;
     for(k=0;k<w.sounds.length;k++){
-      if(w.sounds[k].c==='red')vowels++;
-      if(w.sounds[k].stress)expected=k;
-      if(state[k].stress)user=k;
       var good=(state[k].color===w.sounds[k].c);
       cells[k].ver.textContent=good?'✓':'✗';
       if(good)ok++;
     }
-    var stressOk=(user===expected)||(user===-1&&vowels<2);
-    var allOk=(ok===w.sounds.length&&stressOk);
+    var allOk=(ok===w.sounds.length);
     if(allOk)progMark(w.id);
     var res=document.getElementById('fzresult');
-    if(ok===w.sounds.length&&stressOk)res.textContent='Молодец! Всё верно!';
-    else if(ok===w.sounds.length)res.textContent='Кружки верные! Поставь ударение — нажми над ударным гласным.';
-    else res.textContent='Кружки: верно '+ok+' из '+w.sounds.length+' — попробуй ещё!';
+    res.textContent=allOk?'Молодец! Всё верно!'
+                         :('Верно '+ok+' из '+w.sounds.length+' — попробуй ещё!');
     et.hidden=false;
     document.getElementById('fzshow').checked=true;
     if(mar&&!mar.answered){
@@ -2249,17 +2840,19 @@ function renderSide(){
   mnum.textContent=T('Карта ','Card ')+pad(curCard.id)+T(' · сторона ',' · side ')+(curSide==='a'?'1':'2');
   if(curCard.type==='letter'){
     html='<div class="fzword"><b class="bigletter">'+letterHtml(s)+'</b>'+
-         '<button class="btn bplay" id="bplay" aria-label="Слушай">▶</button></div>'+
+         '<button class="btn bplay" id="bplay" aria-label="'+T('Слушай','Listen')+'">▶</button></div>'+
          '<img class="pic" src="'+s.image+'" alt="">'+
-         '<div class="hint">Нажми картинку — на обороте буква-сестра!</div>';
+         (curCard.sides[curSide==='a'?'b':'a']?
+           '<div class="hint">Нажми на картинку — на обороте другая буква.</div>':
+           '<div class="hint">Буква без пары.</div>');
     mbody.innerHTML=html;
     var bp1=document.getElementById('bplay');
     bp1.onclick=function(){playClip(s.audio,bp1);progMark(curCard.id);};
     return;
   }
   if(curCard.type==='syllable'){
-    html='<div class="sylcard"><b>'+sylHtml(s.cons,s.vowel)+'</b></div>'+
-         '<div class="brow"><button class="btn bplay" id="bplay" aria-label="Слушай">▶</button></div>'+
+    html='<div class="sylcard"><b>'+sylHtml(s.cons,s.vowel)+'</b>'+slSchemeCV(s.cons,s.vowel)+'</div>'+
+         '<div class="brow"><button class="btn bplay" id="bplay" aria-label="'+T('Слушай','Listen')+'">▶</button></div>'+
          '<div class="hint">Прочитай слитно! Нажми карту — другой слог.</div>';
     mbody.innerHTML=html;
     var bp2=document.getElementById('bplay');
@@ -2268,7 +2861,8 @@ function renderSide(){
   }
   if(curCard.type==='word'){
     html='<div class="fzword"><b>'+s.syllabified+'</b>'+
-         '<button class="btn bplay" id="bplay" aria-label="Слушай">▶</button></div>'+
+         '<button class="btn bplay" id="bplay" aria-label="'+T('Слушай','Listen')+'">▶</button></div>'+
+         slSchemeWord(s.word)+
          '<img class="pic" src="'+s.image+'" alt="">'+
          '<div class="hint">Прочитай по слогам, потом целиком — и проверь озвучкой!</div>';
     mbody.innerHTML=html;
@@ -2297,11 +2891,11 @@ function renderSide(){
     '<span class="soundtag" style="background:'+s.color+'">'+T('Звук ','Sound ')+s.sound+'</span>':'';
   html=tag+
     '<div class="syrow"><span class="syll">'+s.syllable+'</span>'+
-      '<button class="btn bplay" id="bplay" aria-label="Слушай">▶</button></div>'+
+      '<button class="btn bplay" id="bplay" aria-label="'+T('Слушай','Listen')+'">▶</button></div>'+
     (LOGOPED?tempoRowHtml():'')+
     '<img class="pic" src="'+s.image+'" alt="">'+
-    '<div class="verse">'+hlVerse(s.verse,s.sound,s.color)+'</div>'+
-    (LOGOPED?'<div class="brow"><button class="btn brepeat" id="brepeat">'+T('🗣 Повтори за диктором','🗣 Say it after the narrator')+'</button></div>':'')+
+    '<div class="verse">'+hlVerse(s.verse,s.sound,s.color,s.hl)+'</div>'+
+    (LOGOPED?'<div class="brow"><button class="btn brepeat" id="brepeat">'+T('🗣 Повтори за диктором','🗣 My turn — your turn!')+'</button></div>':'')+
     '<div class="turn" id="turn">'+T('🗣 Твоя очередь!','🗣 Your turn!')+'</div>'+
     '<div class="hint">'+T('Нажми картинку — переверни карту!','Tap the picture to flip the card!')+'</div>';
   mbody.innerHTML=html;
@@ -2327,7 +2921,9 @@ function renderSide(){
    картинке/слогу/тексту, у звуковой — по названию или фону
    (кнопки — ▶, «Повтори», ячейки звуков — переворот не вызывают) */
 function flipCard(){
-  curSide=(curSide==='a')?'b':'a';
+  var other=(curSide==='a')?'b':'a';
+  if(!curCard||!curCard.sides[other])return; /* непарная карта (буква Ц) */
+  curSide=other;
   renderSide();
   flipMbody();
   modal.scrollTop=0;

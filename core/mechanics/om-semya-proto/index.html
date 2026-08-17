@@ -256,7 +256,10 @@ h2{margin:8px 0 4px;font-size:20px}
   <div class="taskcard" id="tcF">
     <span class="kick">НОВАЯ МЕХАНИКА · «Чей голос?» (звуковая книжка)</span>
     <h2>Что так звучит?</h2>
-    <p class="instr">Послушай и нажми на отгадку. <button id="sndBtn" class="bigbtn">🔊 Послушать ещё раз</button></p>
+    <!-- Значок — свой SVG, не эмодзи (решение владельца 05.08.2026 + 09.08.2026:
+         «давай абсолютно везде рисовать значок динамика одинаково»); тот же
+         контур, что в decks/slovar-na-stsenah/content.js. -->
+    <p class="instr">Послушай и нажми на отгадку. <button id="sndBtn" class="bigbtn"><svg class="ic" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" style="vertical-align:-3px;margin-right:3px"><path d="M4.5 9.5h3.2L12 5.8v12.4l-4.3-3.7H4.5z"/><path d="M15.2 9.4a3.6 3.6 0 0 1 0 5.2M17.8 7.2a7 7 0 0 1 0 9.6"/></svg>Послушать ещё раз</button></p>
     <div class="snd-opts">
       <div class="sopt" data-id="car"><img src="car.webp"></div>
       <div class="sopt" data-id="plane"><img src="plane.webp"></div>
@@ -626,11 +629,11 @@ h2{margin:8px 0 4px;font-size:20px}
     <h2>Кто как говорит</h2>
     <p class="instr">Нажми на зверя или на кнопку — услышишь, как он говорит.</p>
     <div class="book" id="bookSound">
-      <div class="page on"><img class="pic-icon word" data-say="Мяу-мяу!" src="cat.webp"><div class="cap-big">Кот говорит: <span class="word" data-say="Мяу-мяу!">мяу! 🔊</span></div></div>
-      <div class="page"><img class="pic-icon word" data-say="Гав-гав!" src="dog.webp"><div class="cap-big">Пёс говорит: <span class="word" data-say="Гав-гав!">гав! 🔊</span></div></div>
-      <div class="page"><img class="pic-icon word" data-say="Му-у-у!" src="cow.webp"><div class="cap-big">Корова говорит: <span class="word" data-say="Му-у-у!">му! 🔊</span></div></div>
-      <div class="page"><img class="pic-icon word" data-say="Кря-кря!" src="duckling.webp"><div class="cap-big">Утёнок говорит: <span class="word" data-say="Кря-кря!">кря! 🔊</span></div></div>
-      <div class="page"><img class="pic-icon word" data-say="Ку-ка-ре-ку!" src="rooster.webp"><div class="cap-big">Петух поёт: <span class="word" data-say="Ку-ка-ре-ку!">ку-ка-ре-ку! 🔊</span></div></div>
+      <div class="page on"><img class="pic-icon word" data-say="Мяу-мяу!" src="cat.webp"><div class="cap-big">Кот говорит: <span class="word" data-say="Мяу-мяу!">мяу! <svg class="ic" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" style="vertical-align:-2px"><path d="M4.5 9.5h3.2L12 5.8v12.4l-4.3-3.7H4.5z"/><path d="M15.2 9.4a3.6 3.6 0 0 1 0 5.2M17.8 7.2a7 7 0 0 1 0 9.6"/></svg></span></div></div>
+      <div class="page"><img class="pic-icon word" data-say="Гав-гав!" src="dog.webp"><div class="cap-big">Пёс говорит: <span class="word" data-say="Гав-гав!">гав! <svg class="ic" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" style="vertical-align:-2px"><path d="M4.5 9.5h3.2L12 5.8v12.4l-4.3-3.7H4.5z"/><path d="M15.2 9.4a3.6 3.6 0 0 1 0 5.2M17.8 7.2a7 7 0 0 1 0 9.6"/></svg></span></div></div>
+      <div class="page"><img class="pic-icon word" data-say="Му-у-у!" src="cow.webp"><div class="cap-big">Корова говорит: <span class="word" data-say="Му-у-у!">му! <svg class="ic" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" style="vertical-align:-2px"><path d="M4.5 9.5h3.2L12 5.8v12.4l-4.3-3.7H4.5z"/><path d="M15.2 9.4a3.6 3.6 0 0 1 0 5.2M17.8 7.2a7 7 0 0 1 0 9.6"/></svg></span></div></div>
+      <div class="page"><img class="pic-icon word" data-say="Кря-кря!" src="duckling.webp"><div class="cap-big">Утёнок говорит: <span class="word" data-say="Кря-кря!">кря! <svg class="ic" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" style="vertical-align:-2px"><path d="M4.5 9.5h3.2L12 5.8v12.4l-4.3-3.7H4.5z"/><path d="M15.2 9.4a3.6 3.6 0 0 1 0 5.2M17.8 7.2a7 7 0 0 1 0 9.6"/></svg></span></div></div>
+      <div class="page"><img class="pic-icon word" data-say="Ку-ка-ре-ку!" src="rooster.webp"><div class="cap-big">Петух поёт: <span class="word" data-say="Ку-ка-ре-ку!">ку-ка-ре-ку! <svg class="ic" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" style="vertical-align:-2px"><path d="M4.5 9.5h3.2L12 5.8v12.4l-4.3-3.7H4.5z"/><path d="M15.2 9.4a3.6 3.6 0 0 1 0 5.2M17.8 7.2a7 7 0 0 1 0 9.6"/></svg></span></div></div>
     </div>
     <div class="booknav">
       <button id="bookSoundPrev" disabled>‹ Назад</button>

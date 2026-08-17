@@ -1,0 +1,78 @@
+/* Reading-apparatus engine — общий движок «лаборатории чтения».
+   Логика в reader.js, контент урока — в decks/<deck>/reading/data/<id>.json. */
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+:root{--cream:#FAF6EA;--ink:#1e2630;--mut:#5a6b78;--line:#e4dcca;--g:#2f7d3e;--b:#1f5fa8;--o:#e06104;--bd:#8a2230;--r:#c0392b}
+html,body{overflow-x:hidden}
+body{font-family:'Nunito',ui-rounded,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;color:var(--ink);
+  background:#eef2f0;padding:18px 14px 60px;display:flex;flex-direction:column;align-items:center}
+.wrap{width:100%;max-width:640px;min-width:0}
+img{max-width:100%}
+.topbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;gap:10px}
+.topbar a{color:var(--b);font-weight:800;font-size:13px;text-decoration:none;white-space:nowrap}
+h1{font-size:24px;font-weight:900}
+.lead{color:var(--mut);font-size:14px;margin:2px 0 18px;line-height:1.5}
+.sec{background:#fff;border:1px solid var(--line);border-radius:18px;padding:16px 16px 18px;margin-bottom:16px;box-shadow:0 8px 22px -18px rgba(30,40,60,.5)}
+.sec h2{font-size:17px;font-weight:900;display:flex;align-items:center;gap:9px;margin-bottom:3px}
+.sec h2 .tag{font-size:10px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;background:var(--bd);color:#fff;border-radius:8px;padding:3px 7px}
+.sec .hint{color:var(--mut);font-size:13px;margin:2px 0 12px;line-height:1.5}
+.skill{display:inline-block;font-size:11px;font-weight:800;color:var(--o);border:1.5px solid #f2c9a6;border-radius:20px;padding:2px 9px;margin-bottom:8px}
+.photogrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:10px;margin-bottom:12px}
+.photo{border:1.5px solid var(--line);border-radius:14px;overflow:hidden;background:#fff}
+.photo img{display:block;width:100%;aspect-ratio:1/1;object-fit:cover}
+.photo .cap{padding:6px 8px;text-align:center}
+.photo .cap b{font-weight:800;font-size:14px}
+.photo .cap small{display:block;color:var(--mut);font-weight:700;font-size:11px}
+.credits{color:#9aa3ab;font-size:10.5px;line-height:1.5;margin-top:10px;overflow-wrap:anywhere;word-break:break-word}
+.credits a{color:#9aa3ab}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{border:2px solid #cfe0ee;background:#f7fbff;border-radius:14px;padding:8px 12px;font-weight:800;font-size:14px;cursor:pointer;text-align:center}
+.chip small{display:block;color:var(--mut);font-weight:700;font-size:11px}
+.chip:active{transform:scale(.97)}
+.sortwords{display:flex;flex-wrap:wrap;gap:8px}
+.sw{border:2px solid var(--line);border-radius:20px;padding:7px 13px;font-weight:800;font-size:13.5px;cursor:pointer;background:#fff}
+.sw[data-b="0"]{border-color:#d6b3b8;background:#fbeef0}
+.sw[data-b="1"]{border-color:#e6cfa0;background:#fdf4e2}
+.sw[data-b="2"]{border-color:#b9dcc0;background:#eef8f0}
+.swlegend{display:flex;gap:14px;flex-wrap:wrap;font-size:12px;font-weight:800;color:var(--mut);margin-top:10px}
+.swlegend b{padding:2px 8px;border-radius:10px}
+.lg0{background:#fbeef0;color:#8a2230}.lg1{background:#fdf4e2;color:#8a5a12}.lg2{background:#eef8f0;color:#2f7d3e}
+table.pred{width:100%;border-collapse:collapse;font-size:13.5px}
+table.pred th,table.pred td{border:1px solid var(--line);padding:8px;text-align:left;vertical-align:middle}
+table.pred th{background:#f4ecd8;font-size:12px}
+.tf{display:inline-flex;gap:4px}
+.tf button{border:1.5px solid #cfd8df;background:#fff;border-radius:9px;padding:5px 9px;font-weight:800;font-size:12.5px;cursor:pointer;color:var(--ink)}
+.tf button.on{background:var(--b);border-color:var(--b);color:#fff}
+.ans{font-weight:900}.ans.t{color:var(--g)}.ans.f{color:var(--r)}.ans.hidden{color:#c3cdd6}
+.hitmark{font-weight:900;margin-left:4px}
+.wpm{display:flex;align-items:center;gap:10px;flex-wrap:wrap;background:#fff6ee;border:1.5px solid #f2c9a6;border-radius:14px;padding:10px 12px;margin-bottom:12px}
+.wpm button{border:none;border-radius:10px;padding:9px 14px;font-weight:800;font-size:14px;color:#fff;cursor:pointer;background:var(--o)}
+.wpm button.stop{background:var(--bd)}
+.wpm .res{font-weight:900;color:var(--ink);font-size:14px}
+.wpm .res small{color:var(--mut);font-weight:700}
+.passage{font-size:15.5px;line-height:1.72;color:#22303c}
+.passage p{margin:0 0 10px;position:relative;padding-left:26px}
+.passage p .ln{position:absolute;left:0;top:2px;font-size:11px;color:#b3a988;font-weight:800}
+.passage .ttl{font-family:'Nunito';font-weight:900;font-size:19px;color:var(--bd);padding-left:0;margin-bottom:10px}
+.gl{border-bottom:2px dotted var(--o);cursor:help;font-weight:700}
+.fun{background:#eef6fb;border-left:4px solid var(--b);border-radius:8px;padding:8px 11px;font-size:13.5px;color:#24475f;margin:4px 0 12px 26px;font-style:italic}
+.fun b{font-style:normal;color:var(--b)}
+.q{margin-bottom:11px}
+.q .qt{font-weight:700;font-size:14px;margin-bottom:6px}
+.opts label{display:block;font-size:14px;padding:7px 10px;border:1.5px solid var(--line);border-radius:11px;margin-bottom:6px;cursor:pointer;background:#fff}
+.opts input{margin-right:8px}
+.btn{border:none;border-radius:12px;padding:11px 16px;font-weight:800;font-size:14.5px;color:#fff;background:var(--bd);cursor:pointer;margin-top:6px}
+.btn.alt{background:var(--b)}
+.btn:disabled{opacity:.6}
+.score{font-weight:900;margin-left:10px}
+.field{display:flex;gap:8px;align-items:center;margin-bottom:8px;flex-wrap:wrap}
+.field input[type=text]{flex:1;min-width:160px;border:1.5px solid var(--line);border-radius:10px;padding:8px 10px;font-size:14px;font-family:inherit}
+.reveal{background:#f2f8f2;border:1.5px solid #b9dcc0;border-radius:10px;padding:9px 11px;font-size:13.5px;margin-top:8px;display:none}
+.reveal.show{display:block}
+.discuss li{margin:6px 0 0 18px;font-size:14px;line-height:1.5}
+.result{display:none;background:#fff6ee;border:2px solid var(--o);border-radius:14px;padding:14px;margin-top:10px;text-align:center}
+.result.show{display:block}
+.result .big{font-size:20px;font-weight:900;color:var(--bd)}
+.result .pts{font-size:14px;color:var(--mut);font-weight:800;margin-top:2px}
+.result .txt{font-size:14px;margin-top:6px;line-height:1.5}
+.err{background:#fff;border:1px solid var(--line);border-radius:16px;padding:20px;text-align:center;color:var(--mut)}
+@media print{body{background:#fff;padding:0}.topbar a,.wpm button,.btn{display:none}.sec{box-shadow:none;break-inside:avoid}}

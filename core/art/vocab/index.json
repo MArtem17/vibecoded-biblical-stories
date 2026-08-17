@@ -1,0 +1,9039 @@
+{
+ "note": "Собирает tools/node/build-vocab-art.js из decks/slovar-na-stsenah (слова, транскрипция, сцены с зонами), decks/illyustrirovannyy-slovar (предлоги места) и core/art/vocab-extra.json (фото, добранные из фотобанков). Руками не править.",
+ "words": {
+  "better": {
+   "img": "w/better.webp",
+   "ru": "лучше",
+   "ipa": "ˈbetər",
+   "pos": "adj"
+  },
+  "big": {
+   "img": "w/big.webp",
+   "ru": "большой",
+   "ipa": "bɪɡ",
+   "pos": "adj"
+  },
+  "broken": {
+   "img": "w/broken.webp",
+   "ru": "сломанный",
+   "ipa": "ˈbrəʊkən",
+   "pos": "adj"
+  },
+  "busy": {
+   "img": "w/busy.webp",
+   "ru": "оживлённый",
+   "ipa": "ˈbɪzi",
+   "pos": "adj"
+  },
+  "cheap": {
+   "img": "w/cheap.webp",
+   "ru": "дешёвый",
+   "ipa": "tʃiːp",
+   "pos": "adj"
+  },
+  "clean": {
+   "img": "w/clean.webp",
+   "ru": "чистый",
+   "ipa": "kliːn",
+   "pos": "adj"
+  },
+  "cold": {
+   "img": "w/cold.webp",
+   "ru": "холодный",
+   "ipa": "kəʊld",
+   "pos": "adj"
+  },
+  "dangerous": {
+   "img": "w/dangerous.webp",
+   "ru": "опасный",
+   "ipa": "ˈdeɪndʒərəs",
+   "pos": "adj"
+  },
+  "delicious": {
+   "img": "w/delicious.webp",
+   "ru": "вкусный",
+   "ipa": "dɪˈlɪʃəs",
+   "pos": "adj"
+  },
+  "dirty": {
+   "img": "w/dirty.webp",
+   "ru": "грязный",
+   "ipa": "ˈdɜːti",
+   "pos": "adj"
+  },
+  "early": {
+   "img": "w/early.webp",
+   "ru": "ранний",
+   "ipa": "ˈɜːli",
+   "pos": "adj"
+  },
+  "easy": {
+   "img": "w/easy.webp",
+   "ru": "лёгкий",
+   "ipa": "ˈiːzi",
+   "pos": "adj"
+  },
+  "fast": {
+   "img": "w/fast.webp",
+   "ru": "быстрый",
+   "ipa": "fɑːst",
+   "pos": "adj"
+  },
+  "fresh": {
+   "img": "w/fresh.webp",
+   "ru": "свежий",
+   "ipa": "freʃ",
+   "pos": "adj"
+  },
+  "green": {
+   "img": "w/green.webp",
+   "ru": "зелёный",
+   "ipa": "ɡriːn",
+   "pos": "adj"
+  },
+  "happy": {
+   "img": "w/happy.webp",
+   "ru": "радостный",
+   "ipa": "ˈhæpi",
+   "pos": "adj"
+  },
+  "hot": {
+   "img": "w/hot.webp",
+   "ru": "горячий",
+   "ipa": "hɒt",
+   "pos": "adj"
+  },
+  "hungry": {
+   "img": "w/hungry.webp",
+   "ru": "голодный",
+   "ipa": "ˈhʌŋɡri",
+   "pos": "adj"
+  },
+  "ill": {
+   "img": "w/ill.webp",
+   "ru": "болен",
+   "ipa": "ɪl",
+   "pos": "adj"
+  },
+  "late": {
+   "img": "w/late.webp",
+   "ru": "поздний",
+   "ipa": "leɪt",
+   "pos": "adj"
+  },
+  "loud": {
+   "img": "w/loud.webp",
+   "ru": "громкий",
+   "ipa": "laʊd",
+   "pos": "adj"
+  },
+  "new": {
+   "img": "w/new.webp",
+   "ru": "новый",
+   "ipa": "njuː",
+   "pos": "adj"
+  },
+  "old": {
+   "img": "w/old.webp",
+   "ru": "старый",
+   "ipa": "əʊld",
+   "pos": "adj"
+  },
+  "quiet": {
+   "img": "w/quiet.webp",
+   "ru": "тихий",
+   "ipa": "ˈkwaɪət",
+   "pos": "adj"
+  },
+  "slow": {
+   "img": "w/slow.webp",
+   "ru": "медленный",
+   "ipa": "sləʊ",
+   "pos": "adj"
+  },
+  "small": {
+   "img": "w/small.webp",
+   "ru": "маленький",
+   "ipa": "smɔːl",
+   "pos": "adj"
+  },
+  "strong": {
+   "img": "w/strong.webp",
+   "ru": "сильный",
+   "ipa": "strɒŋ",
+   "pos": "adj"
+  },
+  "sunny": {
+   "img": "w/sunny.webp",
+   "ru": "солнечный",
+   "ipa": "ˈsʌni",
+   "pos": "adj"
+  },
+  "sweet": {
+   "img": "w/sweet.webp",
+   "ru": "сладкий",
+   "ipa": "swiːt",
+   "pos": "adj"
+  },
+  "warm": {
+   "img": "w/warm.webp",
+   "ru": "тёплый",
+   "ipa": "wɔːm",
+   "pos": "adj"
+  },
+  "wet": {
+   "img": "w/wet.webp",
+   "ru": "мокрый",
+   "ipa": "wet",
+   "pos": "adj"
+  },
+  "wild": {
+   "img": "w/wild.webp",
+   "ru": "дикий",
+   "ipa": "waɪld",
+   "pos": "adj"
+  },
+  "windy": {
+   "img": "w/windy.webp",
+   "ru": "ветреный",
+   "ipa": "ˈwɪndi",
+   "pos": "adj"
+  },
+  "young": {
+   "img": "w/young.webp",
+   "ru": "молодой",
+   "ipa": "jʌŋ",
+   "pos": "adj"
+  },
+  "apple": {
+   "img": "w/apple.webp",
+   "ru": "яблоко",
+   "ipa": "ˈæpəl",
+   "pos": "noun"
+  },
+  "baby": {
+   "img": "w/baby.webp",
+   "ru": "малыш",
+   "ipa": "ˈbeɪbi",
+   "pos": "noun"
+  },
+  "bag": {
+   "img": "w/bag.webp",
+   "ru": "рюкзак",
+   "ipa": "bæɡ",
+   "pos": "noun"
+  },
+  "ball": {
+   "img": "w/ball.webp",
+   "ru": "мяч",
+   "ipa": "bɔːl",
+   "pos": "noun"
+  },
+  "balloon": {
+   "img": "w/balloon.webp",
+   "ru": "шарик",
+   "ipa": "bəˈluːn",
+   "pos": "noun"
+  },
+  "banana": {
+   "img": "w/banana.webp",
+   "ru": "банан",
+   "ipa": "bəˈnɑːnə",
+   "pos": "noun"
+  },
+  "bandage": {
+   "img": "w/bandage.webp",
+   "ru": "бинт",
+   "ipa": "ˈbændɪdʒ",
+   "pos": "noun"
+  },
+  "barn": {
+   "img": "w/barn.webp",
+   "ru": "сарай",
+   "ipa": "bɑːn",
+   "pos": "noun"
+  },
+  "basket": {
+   "img": "w/basket.webp",
+   "ru": "корзина",
+   "ipa": "ˈbɑːskɪt",
+   "pos": "noun"
+  },
+  "bath": {
+   "img": "w/bath.webp",
+   "ru": "ванна",
+   "ipa": "bɑːθ",
+   "pos": "noun"
+  },
+  "bathroom": {
+   "img": "w/bathroom.webp",
+   "ru": "ванная",
+   "ipa": "ˈbɑːθruːm",
+   "pos": "noun"
+  },
+  "beach": {
+   "img": "w/beach.webp",
+   "ru": "пляж",
+   "ipa": "biːtʃ",
+   "pos": "noun"
+  },
+  "bear": {
+   "img": "w/bear.webp",
+   "ru": "медведь",
+   "ipa": "beər",
+   "pos": "noun"
+  },
+  "bed": {
+   "img": "w/bed.webp",
+   "ru": "кровать",
+   "ipa": "bed",
+   "pos": "noun"
+  },
+  "bedroom": {
+   "img": "w/bedroom.webp",
+   "ru": "спальня",
+   "ipa": "ˈbedruːm",
+   "pos": "noun"
+  },
+  "bell": {
+   "img": "w/bell.webp",
+   "ru": "колокол",
+   "ipa": "bel",
+   "pos": "noun"
+  },
+  "bench": {
+   "img": "w/bench.webp",
+   "ru": "скамейка",
+   "ipa": "bentʃ",
+   "pos": "noun"
+  },
+  "bike": {
+   "img": "w/bike.webp",
+   "ru": "велосипед",
+   "ipa": "baɪk",
+   "pos": "noun"
+  },
+  "bin": {
+   "img": "w/bin.webp",
+   "ru": "урна",
+   "ipa": "bɪn",
+   "pos": "noun"
+  },
+  "bird": {
+   "img": "w/bird.webp",
+   "ru": "птица",
+   "ipa": "bɜːd",
+   "pos": "noun"
+  },
+  "board": {
+   "img": "w/board.webp",
+   "ru": "доска",
+   "ipa": "bɔːd",
+   "pos": "noun"
+  },
+  "boat": {
+   "img": "w/boat.webp",
+   "ru": "лодка",
+   "ipa": "bəʊt",
+   "pos": "noun"
+  },
+  "book": {
+   "img": "w/book.webp",
+   "ru": "книга",
+   "ipa": "bʊk",
+   "pos": "noun"
+  },
+  "boots": {
+   "img": "w/boots.webp",
+   "ru": "сапоги",
+   "ipa": "buːts",
+   "pos": "noun"
+  },
+  "box": {
+   "img": "w/box.webp",
+   "ru": "коробка",
+   "ipa": "bɒks",
+   "pos": "noun"
+  },
+  "bread": {
+   "img": "w/bread.webp",
+   "ru": "хлеб",
+   "ipa": "bred",
+   "pos": "noun"
+  },
+  "brick": {
+   "img": "w/brick.webp",
+   "ru": "кубик",
+   "ipa": "brɪk",
+   "pos": "noun"
+  },
+  "bridge": {
+   "img": "w/bridge.webp",
+   "ru": "мост",
+   "ipa": "brɪdʒ",
+   "pos": "noun"
+  },
+  "brother": {
+   "img": "w/brother.webp",
+   "ru": "брат",
+   "ipa": "ˈbrʌðər",
+   "pos": "noun"
+  },
+  "bucket": {
+   "img": "w/bucket.webp",
+   "ru": "ведёрко",
+   "ipa": "ˈbʌkɪt",
+   "pos": "noun"
+  },
+  "bus": {
+   "img": "w/bus.webp",
+   "ru": "автобус",
+   "ipa": "bʌs",
+   "pos": "noun"
+  },
+  "bus stop": {
+   "img": "w/bus_stop.webp",
+   "ru": "остановка",
+   "ipa": "ˈbʌs ˈstɒp",
+   "pos": "noun"
+  },
+  "cafe": {
+   "img": "w/cafe.webp",
+   "ru": "кафе",
+   "ipa": "ˈkæfei",
+   "pos": "noun"
+  },
+  "cage": {
+   "img": "w/cage.webp",
+   "ru": "клетка",
+   "ipa": "keɪdʒ",
+   "pos": "noun"
+  },
+  "cake": {
+   "img": "w/cake.webp",
+   "ru": "торт",
+   "ipa": "keɪk",
+   "pos": "noun"
+  },
+  "candle": {
+   "img": "w/candle.webp",
+   "ru": "свеча",
+   "ipa": "ˈkændəl",
+   "pos": "noun"
+  },
+  "car": {
+   "img": "w/car.webp",
+   "ru": "машина",
+   "ipa": "kɑː",
+   "pos": "noun"
+  },
+  "card": {
+   "img": "w/card.webp",
+   "ru": "открытка",
+   "ipa": "kɑːd",
+   "pos": "noun"
+  },
+  "carpet": {
+   "img": "w/carpet.webp",
+   "ru": "ковёр",
+   "ipa": "ˈkɑːpɪt",
+   "pos": "noun"
+  },
+  "cat": {
+   "img": "w/cat.webp",
+   "ru": "кот",
+   "ipa": "kæt",
+   "pos": "noun"
+  },
+  "chair": {
+   "img": "w/chair.webp",
+   "ru": "стул",
+   "ipa": "tʃeər",
+   "pos": "noun"
+  },
+  "cheese": {
+   "img": "w/cheese.webp",
+   "ru": "сыр",
+   "ipa": "tʃiːz",
+   "pos": "noun"
+  },
+  "clock": {
+   "img": "w/clock.webp",
+   "ru": "часы",
+   "ipa": "klɒk",
+   "pos": "noun"
+  },
+  "cloud": {
+   "img": "w/cloud.webp",
+   "ru": "облако",
+   "ipa": "klaʊd",
+   "pos": "noun"
+  },
+  "coat": {
+   "img": "w/coat.webp",
+   "ru": "пальто",
+   "ipa": "kəʊt",
+   "pos": "noun"
+  },
+  "coffee": {
+   "img": "w/coffee.webp",
+   "ru": "кофе",
+   "ipa": "ˈkɒfi",
+   "pos": "noun"
+  },
+  "comb": {
+   "img": "w/comb.webp",
+   "ru": "расчёска",
+   "ipa": "kəʊm",
+   "pos": "noun"
+  },
+  "cooker": {
+   "img": "w/cooker.webp",
+   "ru": "плита",
+   "ipa": "ˈkʊkər",
+   "pos": "noun"
+  },
+  "cow": {
+   "img": "w/cow.webp",
+   "ru": "корова",
+   "ipa": "kaʊ",
+   "pos": "noun"
+  },
+  "crossing": {
+   "img": "w/crossing.webp",
+   "ru": "переход",
+   "ipa": "ˈkrɒsɪŋ",
+   "pos": "noun"
+  },
+  "cup": {
+   "img": "w/cup.webp",
+   "ru": "чашка",
+   "ipa": "kʌp",
+   "pos": "noun"
+  },
+  "cushion": {
+   "img": "w/cushion.webp",
+   "ru": "диванная подушка",
+   "ipa": "ˈkʊʃən",
+   "pos": "noun"
+  },
+  "desk": {
+   "img": "w/desk.webp",
+   "ru": "парта",
+   "ipa": "desk",
+   "pos": "noun"
+  },
+  "dinner": {
+   "img": "w/dinner.webp",
+   "ru": "ужин",
+   "ipa": "ˈdɪnər",
+   "pos": "noun"
+  },
+  "doctor": {
+   "img": "w/doctor.webp",
+   "ru": "врач",
+   "ipa": "ˈdɒktər",
+   "pos": "noun"
+  },
+  "dog": {
+   "img": "w/dog.webp",
+   "ru": "собака",
+   "ipa": "dɒɡ",
+   "pos": "noun"
+  },
+  "doll": {
+   "img": "w/doll.webp",
+   "ru": "кукла",
+   "ipa": "dɒl",
+   "pos": "noun"
+  },
+  "door": {
+   "img": "w/door.webp",
+   "ru": "дверь",
+   "ipa": "dɔː",
+   "pos": "noun"
+  },
+  "driver": {
+   "img": "w/driver.webp",
+   "ru": "водитель",
+   "ipa": "ˈdraɪvər",
+   "pos": "noun"
+  },
+  "drum": {
+   "img": "w/drum.webp",
+   "ru": "барабан",
+   "ipa": "drʌm",
+   "pos": "noun"
+  },
+  "duck": {
+   "img": "w/duck.webp",
+   "ru": "утка",
+   "ipa": "dʌk",
+   "pos": "noun"
+  },
+  "egg": {
+   "img": "w/egg.webp",
+   "ru": "яйцо",
+   "ipa": "eɡ",
+   "pos": "noun"
+  },
+  "elephant": {
+   "img": "w/elephant.webp",
+   "ru": "слон",
+   "ipa": "ˈelɪfənt",
+   "pos": "noun"
+  },
+  "eye": {
+   "img": "w/eye.webp",
+   "ru": "глаз",
+   "ipa": "ˈai",
+   "pos": "noun"
+  },
+  "family": {
+   "img": "w/family.webp",
+   "ru": "семья",
+   "ipa": "ˈfæmɪli",
+   "pos": "noun"
+  },
+  "farm": {
+   "img": "w/farm.webp",
+   "ru": "ферма",
+   "ipa": "fɑːm",
+   "pos": "noun"
+  },
+  "farmer": {
+   "img": "w/farmer.webp",
+   "ru": "фермер",
+   "ipa": "ˈfɑːmər",
+   "pos": "noun"
+  },
+  "father": {
+   "img": "w/father.webp",
+   "ru": "папа",
+   "ipa": "ˈfɑːðər",
+   "pos": "noun"
+  },
+  "field": {
+   "img": "w/field.webp",
+   "ru": "поле",
+   "ipa": "fiːld",
+   "pos": "noun"
+  },
+  "flower": {
+   "img": "w/flower.webp",
+   "ru": "цветок",
+   "ipa": "ˈflaʊər",
+   "pos": "noun"
+  },
+  "fork": {
+   "img": "w/fork.webp",
+   "ru": "вилка",
+   "ipa": "fɔːk",
+   "pos": "noun"
+  },
+  "fridge": {
+   "img": "w/fridge.webp",
+   "ru": "холодильник",
+   "ipa": "frɪdʒ",
+   "pos": "noun"
+  },
+  "friend": {
+   "img": "w/friend.webp",
+   "ru": "друг",
+   "ipa": "frend",
+   "pos": "noun"
+  },
+  "garden": {
+   "img": "w/garden.webp",
+   "ru": "сад",
+   "ipa": "ˈɡɑːdən",
+   "pos": "noun"
+  },
+  "gate": {
+   "img": "w/gate.webp",
+   "ru": "ворота",
+   "ipa": "ɡeɪt",
+   "pos": "noun"
+  },
+  "giraffe": {
+   "img": "w/giraffe.webp",
+   "ru": "жираф",
+   "ipa": "dʒəˈrɑːf",
+   "pos": "noun"
+  },
+  "glass": {
+   "img": "w/glass.webp",
+   "ru": "стакан",
+   "ipa": "ɡlɑːs",
+   "pos": "noun"
+  },
+  "grandfather": {
+   "img": "w/grandfather.webp",
+   "ru": "дедушка",
+   "ipa": "ˈɡrændfɑːðər",
+   "pos": "noun"
+  },
+  "grandmother": {
+   "img": "w/grandmother.webp",
+   "ru": "бабушка",
+   "ipa": "ˈɡrændmʌðər",
+   "pos": "noun"
+  },
+  "grass": {
+   "img": "w/grass.webp",
+   "ru": "трава",
+   "ipa": "ɡrɑːs",
+   "pos": "noun"
+  },
+  "guest": {
+   "img": "w/guest.webp",
+   "ru": "гость",
+   "ipa": "ɡest",
+   "pos": "noun"
+  },
+  "hall": {
+   "img": "w/hall.webp",
+   "ru": "прихожая",
+   "ipa": "hɔːl",
+   "pos": "noun"
+  },
+  "hand": {
+   "img": "w/hand.webp",
+   "ru": "рука",
+   "ipa": "hænd",
+   "pos": "noun"
+  },
+  "hat": {
+   "img": "w/hat.webp",
+   "ru": "шапка",
+   "ipa": "hæt",
+   "pos": "noun"
+  },
+  "head": {
+   "img": "w/head.webp",
+   "ru": "голова",
+   "ipa": "hed",
+   "pos": "noun"
+  },
+  "hen": {
+   "img": "w/hen.webp",
+   "ru": "курица",
+   "ipa": "hen",
+   "pos": "noun"
+  },
+  "horse": {
+   "img": "w/horse.webp",
+   "ru": "лошадь",
+   "ipa": "hɔːs",
+   "pos": "noun"
+  },
+  "house": {
+   "img": "w/house.webp",
+   "ru": "дом",
+   "ipa": "haʊs",
+   "pos": "noun"
+  },
+  "juice": {
+   "img": "w/juice.webp",
+   "ru": "сок",
+   "ipa": "dʒuːs",
+   "pos": "noun"
+  },
+  "keeper": {
+   "img": "w/keeper.webp",
+   "ru": "смотритель",
+   "ipa": "ˈkiːpər",
+   "pos": "noun"
+  },
+  "kitchen": {
+   "img": "w/kitchen.webp",
+   "ru": "кухня",
+   "ipa": "ˈkɪtʃən",
+   "pos": "noun"
+  },
+  "kite": {
+   "img": "w/kite.webp",
+   "ru": "воздушный змей",
+   "ipa": "kaɪt",
+   "pos": "noun"
+  },
+  "lamp": {
+   "img": "w/lamp.webp",
+   "ru": "лампа",
+   "ipa": "læmp",
+   "pos": "noun"
+  },
+  "lamp post": {
+   "img": "w/lamp_post.webp",
+   "ru": "фонарь",
+   "ipa": "ˈlæmp ˈpəʊst",
+   "pos": "noun"
+  },
+  "leg": {
+   "img": "w/leg.webp",
+   "ru": "нога",
+   "ipa": "leɡ",
+   "pos": "noun"
+  },
+  "lion": {
+   "img": "w/lion.webp",
+   "ru": "лев",
+   "ipa": "ˈlaɪən",
+   "pos": "noun"
+  },
+  "living room": {
+   "img": "w/living_room.webp",
+   "ru": "гостиная",
+   "ipa": "ˈlɪvɪŋ ˈruːm",
+   "pos": "noun"
+  },
+  "map": {
+   "img": "w/map.webp",
+   "ru": "карта",
+   "ipa": "mæp",
+   "pos": "noun"
+  },
+  "medicine": {
+   "img": "w/medicine.webp",
+   "ru": "лекарство",
+   "ipa": "ˈmedsən",
+   "pos": "noun"
+  },
+  "menu": {
+   "img": "w/menu.webp",
+   "ru": "меню",
+   "ipa": "ˈmenjuː",
+   "pos": "noun"
+  },
+  "mirror": {
+   "img": "w/mirror.webp",
+   "ru": "зеркало",
+   "ipa": "ˈmɪrər",
+   "pos": "noun"
+  },
+  "money": {
+   "img": "w/money.webp",
+   "ru": "деньги",
+   "ipa": "ˈmʌni",
+   "pos": "noun"
+  },
+  "monkey": {
+   "img": "w/monkey.webp",
+   "ru": "обезьяна",
+   "ipa": "ˈmʌŋki",
+   "pos": "noun"
+  },
+  "mother": {
+   "img": "w/mother.webp",
+   "ru": "мама",
+   "ipa": "ˈmʌðər",
+   "pos": "noun"
+  },
+  "music": {
+   "img": "w/music.webp",
+   "ru": "музыка",
+   "ipa": "ˈmjuːzɪk",
+   "pos": "noun"
+  },
+  "notebook": {
+   "img": "w/notebook.webp",
+   "ru": "тетрадь",
+   "ipa": "ˈnəʊtbʊk",
+   "pos": "noun"
+  },
+  "nurse": {
+   "img": "w/nurse.webp",
+   "ru": "медсестра",
+   "ipa": "nɜːs",
+   "pos": "noun"
+  },
+  "pan": {
+   "img": "w/pan.webp",
+   "ru": "кастрюля",
+   "ipa": "pæn",
+   "pos": "noun"
+  },
+  "park": {
+   "img": "w/park.webp",
+   "ru": "парк",
+   "ipa": "pɑːk",
+   "pos": "noun"
+  },
+  "party": {
+   "img": "w/party.webp",
+   "ru": "праздник",
+   "ipa": "ˈpɑːti",
+   "pos": "noun"
+  },
+  "path": {
+   "img": "w/path.webp",
+   "ru": "дорожка",
+   "ipa": "pɑːθ",
+   "pos": "noun"
+  },
+  "pen": {
+   "img": "w/pen.webp",
+   "ru": "ручка",
+   "ipa": "pen",
+   "pos": "noun"
+  },
+  "pencil": {
+   "img": "w/pencil.webp",
+   "ru": "карандаш",
+   "ipa": "ˈpensəl",
+   "pos": "noun"
+  },
+  "phone": {
+   "img": "w/phone.webp",
+   "ru": "телефон",
+   "ipa": "fəʊn",
+   "pos": "noun"
+  },
+  "photo": {
+   "img": "w/photo.webp",
+   "ru": "фотография",
+   "ipa": "ˈfəʊtəʊ",
+   "pos": "noun"
+  },
+  "picture": {
+   "img": "w/picture.webp",
+   "ru": "картина",
+   "ipa": "ˈpɪktʃər",
+   "pos": "noun"
+  },
+  "pig": {
+   "img": "w/pig.webp",
+   "ru": "свинья",
+   "ipa": "pɪɡ",
+   "pos": "noun"
+  },
+  "pillow": {
+   "img": "w/pillow.webp",
+   "ru": "подушка",
+   "ipa": "ˈpɪləʊ",
+   "pos": "noun"
+  },
+  "plane": {
+   "img": "w/plane.webp",
+   "ru": "самолёт",
+   "ipa": "pleɪn",
+   "pos": "noun"
+  },
+  "plate": {
+   "img": "w/plate.webp",
+   "ru": "тарелка",
+   "ipa": "pleɪt",
+   "pos": "noun"
+  },
+  "platform": {
+   "img": "w/platform.webp",
+   "ru": "платформа",
+   "ipa": "ˈplætfɔːm",
+   "pos": "noun"
+  },
+  "playground": {
+   "img": "w/playground.webp",
+   "ru": "площадка",
+   "ipa": "ˈpleɪɡraʊnd",
+   "pos": "noun"
+  },
+  "pond": {
+   "img": "w/pond.webp",
+   "ru": "пруд",
+   "ipa": "pɒnd",
+   "pos": "noun"
+  },
+  "potato": {
+   "img": "w/potato.webp",
+   "ru": "картошка",
+   "ipa": "pəˈteɪtəʊ",
+   "pos": "noun"
+  },
+  "present": {
+   "img": "w/present.webp",
+   "ru": "подарок",
+   "ipa": "ˈprezənt",
+   "pos": "noun"
+  },
+  "puddle": {
+   "img": "w/puddle.webp",
+   "ru": "лужа",
+   "ipa": "ˈpʌdəl",
+   "pos": "noun"
+  },
+  "pupil": {
+   "img": "w/pupil.webp",
+   "ru": "ученик",
+   "ipa": "ˈpjuːpəl",
+   "pos": "noun"
+  },
+  "puzzle": {
+   "img": "w/puzzle.webp",
+   "ru": "пазл",
+   "ipa": "ˈpʌzəl",
+   "pos": "noun"
+  },
+  "roof": {
+   "img": "w/roof.webp",
+   "ru": "крыша",
+   "ipa": "ruːf",
+   "pos": "noun"
+  },
+  "rope": {
+   "img": "w/rope.webp",
+   "ru": "скакалка",
+   "ipa": "rəʊp",
+   "pos": "noun"
+  },
+  "rubber": {
+   "img": "w/rubber.webp",
+   "ru": "ластик",
+   "ipa": "ˈrʌbər",
+   "pos": "noun"
+  },
+  "ruler": {
+   "img": "w/ruler.webp",
+   "ru": "линейка",
+   "ipa": "ˈruːlər",
+   "pos": "noun"
+  },
+  "sand": {
+   "img": "w/sand.webp",
+   "ru": "песок",
+   "ipa": "sænd",
+   "pos": "noun"
+  },
+  "scarf": {
+   "img": "w/scarf.webp",
+   "ru": "шарф",
+   "ipa": "skɑːf",
+   "pos": "noun"
+  },
+  "sea": {
+   "img": "w/sea.webp",
+   "ru": "море",
+   "ipa": "siː",
+   "pos": "noun"
+  },
+  "sheep": {
+   "img": "w/sheep.webp",
+   "ru": "овца",
+   "ipa": "ʃiːp",
+   "pos": "noun"
+  },
+  "shelf": {
+   "img": "w/shelf.webp",
+   "ru": "полка",
+   "ipa": "ʃelf",
+   "pos": "noun"
+  },
+  "shell": {
+   "img": "w/shell.webp",
+   "ru": "ракушка",
+   "ipa": "ʃel",
+   "pos": "noun"
+  },
+  "shirt": {
+   "img": "w/shirt.webp",
+   "ru": "рубашка",
+   "ipa": "ʃɜːt",
+   "pos": "noun"
+  },
+  "shoes": {
+   "img": "w/shoes.webp",
+   "ru": "ботинки",
+   "ipa": "ʃuːz",
+   "pos": "noun"
+  },
+  "shop": {
+   "img": "w/shop.webp",
+   "ru": "магазин",
+   "ipa": "ʃɒp",
+   "pos": "noun"
+  },
+  "shop window": {
+   "img": "w/shop_window.webp",
+   "ru": "витрина",
+   "ipa": "ˈʃɒp ˈwɪndəʊ",
+   "pos": "noun"
+  },
+  "shower": {
+   "img": "w/shower.webp",
+   "ru": "душ",
+   "ipa": "ˈʃaʊər",
+   "pos": "noun"
+  },
+  "sign": {
+   "img": "w/sign.webp",
+   "ru": "знак",
+   "ipa": "saɪn",
+   "pos": "noun"
+  },
+  "sister": {
+   "img": "w/sister.webp",
+   "ru": "сестра",
+   "ipa": "ˈsɪstər",
+   "pos": "noun"
+  },
+  "slide": {
+   "img": "w/slide.webp",
+   "ru": "горка",
+   "ipa": "slaɪd",
+   "pos": "noun"
+  },
+  "snake": {
+   "img": "w/snake.webp",
+   "ru": "змея",
+   "ipa": "sneɪk",
+   "pos": "noun"
+  },
+  "soap": {
+   "img": "w/soap.webp",
+   "ru": "мыло",
+   "ipa": "səʊp",
+   "pos": "noun"
+  },
+  "sock": {
+   "img": "w/sock.webp",
+   "ru": "носок",
+   "ipa": "sɒk",
+   "pos": "noun"
+  },
+  "sofa": {
+   "img": "w/sofa.webp",
+   "ru": "диван",
+   "ipa": "ˈsəʊfə",
+   "pos": "noun"
+  },
+  "soup": {
+   "img": "w/soup.webp",
+   "ru": "суп",
+   "ipa": "suːp",
+   "pos": "noun"
+  },
+  "spade": {
+   "img": "w/spade.webp",
+   "ru": "лопатка",
+   "ipa": "speɪd",
+   "pos": "noun"
+  },
+  "spoon": {
+   "img": "w/spoon.webp",
+   "ru": "ложка",
+   "ipa": "spuːn",
+   "pos": "noun"
+  },
+  "stairs": {
+   "img": "w/stairs.webp",
+   "ru": "лестница",
+   "ipa": "steəz",
+   "pos": "noun"
+  },
+  "station": {
+   "img": "w/station.webp",
+   "ru": "вокзал",
+   "ipa": "ˈsteɪʃən",
+   "pos": "noun"
+  },
+  "street": {
+   "img": "w/street.webp",
+   "ru": "улица",
+   "ipa": "striːt",
+   "pos": "noun"
+  },
+  "suitcase": {
+   "img": "w/suitcase.webp",
+   "ru": "чемодан",
+   "ipa": "ˈsuːtkeɪs",
+   "pos": "noun"
+  },
+  "sun": {
+   "img": "w/sun.webp",
+   "ru": "солнце",
+   "ipa": "sʌn",
+   "pos": "noun"
+  },
+  "swing": {
+   "img": "w/swing.webp",
+   "ru": "качели",
+   "ipa": "swɪŋ",
+   "pos": "noun"
+  },
+  "table": {
+   "img": "w/table.webp",
+   "ru": "столик",
+   "ipa": "ˈteɪbəl",
+   "pos": "noun"
+  },
+  "tap": {
+   "img": "w/tap.webp",
+   "ru": "кран",
+   "ipa": "tæp",
+   "pos": "noun"
+  },
+  "taxi": {
+   "img": "w/taxi.webp",
+   "ru": "такси",
+   "ipa": "ˈtæksi",
+   "pos": "noun"
+  },
+  "tea": {
+   "img": "w/tea.webp",
+   "ru": "чай",
+   "ipa": "tiː",
+   "pos": "noun"
+  },
+  "teacher": {
+   "img": "w/teacher.webp",
+   "ru": "учитель",
+   "ipa": "ˈtiːtʃər",
+   "pos": "noun"
+  },
+  "teddy": {
+   "img": "w/teddy.webp",
+   "ru": "мишка",
+   "ipa": "ˈtedi",
+   "pos": "noun"
+  },
+  "television": {
+   "img": "w/television.webp",
+   "ru": "телевизор",
+   "ipa": "ˈtelɪˌvɪʒən",
+   "pos": "noun"
+  },
+  "ticket": {
+   "img": "w/ticket.webp",
+   "ru": "билет",
+   "ipa": "ˈtɪkɪt",
+   "pos": "noun"
+  },
+  "toilet": {
+   "img": "w/toilet.webp",
+   "ru": "туалет",
+   "ipa": "ˈtɔɪlɪt",
+   "pos": "noun"
+  },
+  "tomato": {
+   "img": "w/tomato.webp",
+   "ru": "помидор",
+   "ipa": "təˈmɑːtəʊ",
+   "pos": "noun"
+  },
+  "tooth": {
+   "img": "w/tooth.webp",
+   "ru": "зуб",
+   "ipa": "tuːθ",
+   "pos": "noun"
+  },
+  "toothbrush": {
+   "img": "w/toothbrush.webp",
+   "ru": "зубная щётка",
+   "ipa": "ˈtuːθbrʌʃ",
+   "pos": "noun"
+  },
+  "towel": {
+   "img": "w/towel.webp",
+   "ru": "полотенце",
+   "ipa": "ˈtaʊəl",
+   "pos": "noun"
+  },
+  "toy": {
+   "img": "w/toy.webp",
+   "ru": "игрушка",
+   "ipa": "ˈtɔi",
+   "pos": "noun"
+  },
+  "tractor": {
+   "img": "w/tractor.webp",
+   "ru": "трактор",
+   "ipa": "ˈtræktər",
+   "pos": "noun"
+  },
+  "traffic light": {
+   "img": "w/traffic_light.webp",
+   "ru": "светофор",
+   "ipa": "ˈtræfɪk ˈlaɪt",
+   "pos": "noun"
+  },
+  "train": {
+   "img": "w/train.webp",
+   "ru": "поезд",
+   "ipa": "treɪn",
+   "pos": "noun"
+  },
+  "train set": {
+   "img": "w/train_set.webp",
+   "ru": "железная дорога",
+   "ipa": "ˈtreɪn ˈset",
+   "pos": "noun"
+  },
+  "tree": {
+   "img": "w/tree.webp",
+   "ru": "дерево",
+   "ipa": "triː",
+   "pos": "noun"
+  },
+  "trousers": {
+   "img": "w/trousers.webp",
+   "ru": "брюки",
+   "ipa": "ˈtraʊsəz",
+   "pos": "noun"
+  },
+  "umbrella": {
+   "img": "w/umbrella.webp",
+   "ru": "зонт",
+   "ipa": "ʌmˈbrelə",
+   "pos": "noun"
+  },
+  "waiter": {
+   "img": "w/waiter.webp",
+   "ru": "официант",
+   "ipa": "ˈweɪtər",
+   "pos": "noun"
+  },
+  "wardrobe": {
+   "img": "w/wardrobe.webp",
+   "ru": "шкаф",
+   "ipa": "ˈwɔːdrəʊb",
+   "pos": "noun"
+  },
+  "water": {
+   "img": "w/water.webp",
+   "ru": "вода",
+   "ipa": "ˈwɔːtər",
+   "pos": "noun"
+  },
+  "wave": {
+   "img": "w/wave.webp",
+   "ru": "волна",
+   "ipa": "weɪv",
+   "pos": "noun"
+  },
+  "weather": {
+   "img": "w/weather.webp",
+   "ru": "погода",
+   "ipa": "ˈweðər",
+   "pos": "noun"
+  },
+  "wind": {
+   "img": "w/wind.webp",
+   "ru": "ветер",
+   "ipa": "wɪnd",
+   "pos": "noun"
+  },
+  "window": {
+   "img": "w/window.webp",
+   "ru": "окно",
+   "ipa": "ˈwɪndəʊ",
+   "pos": "noun"
+  },
+  "zoo": {
+   "img": "w/zoo.webp",
+   "ru": "зоопарк",
+   "ipa": "zuː",
+   "pos": "noun"
+  },
+  "arrive": {
+   "img": "w/arrive.webp",
+   "ru": "приезжать",
+   "ipa": "əˈraɪv",
+   "pos": "verb"
+  },
+  "ask": {
+   "img": "w/ask.webp",
+   "ru": "спрашивать",
+   "ipa": "ɑːsk",
+   "pos": "verb"
+  },
+  "blow": {
+   "img": "w/blow.webp",
+   "ru": "дуть",
+   "ipa": "bləʊ",
+   "pos": "verb"
+  },
+  "bring": {
+   "img": "w/bring.webp",
+   "ru": "приносить",
+   "ipa": "brɪŋ",
+   "pos": "verb"
+  },
+  "brush": {
+   "img": "w/brush.webp",
+   "ru": "чистить",
+   "ipa": "brʌʃ",
+   "pos": "verb"
+  },
+  "build": {
+   "img": "w/build.webp",
+   "ru": "строить",
+   "ipa": "bɪld",
+   "pos": "verb"
+  },
+  "buy": {
+   "img": "w/buy.webp",
+   "ru": "покупать",
+   "ipa": "ˈbai",
+   "pos": "verb"
+  },
+  "carry": {
+   "img": "w/carry.webp",
+   "ru": "нести",
+   "ipa": "ˈkæri",
+   "pos": "verb"
+  },
+  "catch": {
+   "img": "w/catch.webp",
+   "ru": "ловить",
+   "ipa": "kætʃ",
+   "pos": "verb"
+  },
+  "choose": {
+   "img": "w/choose.webp",
+   "ru": "выбирать",
+   "ipa": "tʃuːz",
+   "pos": "verb"
+  },
+  "climb": {
+   "img": "w/climb.webp",
+   "ru": "залезать",
+   "ipa": "klaɪm",
+   "pos": "verb"
+  },
+  "come in": {
+   "img": "w/come_in.webp",
+   "ru": "входить",
+   "ipa": "ˈkʌm ˈɪn",
+   "pos": "verb"
+  },
+  "cook": {
+   "img": "w/cook.webp",
+   "ru": "готовить",
+   "ipa": "kʊk",
+   "pos": "verb"
+  },
+  "cross": {
+   "img": "w/cross.webp",
+   "ru": "переходить",
+   "ipa": "krɒs",
+   "pos": "verb"
+  },
+  "dance": {
+   "img": "w/dance.webp",
+   "ru": "танцевать",
+   "ipa": "dɑːns",
+   "pos": "verb"
+  },
+  "dig": {
+   "img": "w/dig.webp",
+   "ru": "копать",
+   "ipa": "dɪɡ",
+   "pos": "verb"
+  },
+  "draw": {
+   "img": "w/draw.webp",
+   "ru": "рисовать",
+   "ipa": "drɔː",
+   "pos": "verb"
+  },
+  "drink": {
+   "img": "w/drink.webp",
+   "ru": "пить",
+   "ipa": "drɪŋk",
+   "pos": "verb"
+  },
+  "drive": {
+   "img": "w/drive.webp",
+   "ru": "вести машину",
+   "ipa": "draɪv",
+   "pos": "verb"
+  },
+  "dry": {
+   "img": "w/dry.webp",
+   "ru": "вытирать",
+   "ipa": "ˈdrai",
+   "pos": "verb"
+  },
+  "eat": {
+   "img": "w/eat.webp",
+   "ru": "есть",
+   "ipa": "iːt",
+   "pos": "verb"
+  },
+  "feed": {
+   "img": "w/feed.webp",
+   "ru": "кормить",
+   "ipa": "fiːd",
+   "pos": "verb"
+  },
+  "fly": {
+   "img": "w/fly.webp",
+   "ru": "запускать",
+   "ipa": "ˈflai",
+   "pos": "verb"
+  },
+  "get dressed": {
+   "img": "w/get_dressed.webp",
+   "ru": "одеваться",
+   "ipa": "ˈɡet ˈdrest",
+   "pos": "verb"
+  },
+  "give": {
+   "img": "w/give.webp",
+   "ru": "дарить",
+   "ipa": "ɡɪv",
+   "pos": "verb"
+  },
+  "go up": {
+   "img": "w/go_up.webp",
+   "ru": "подниматься",
+   "ipa": "ˈɡəʊ ˈʌp",
+   "pos": "verb"
+  },
+  "grow": {
+   "img": "w/grow.webp",
+   "ru": "выращивать",
+   "ipa": "ɡrəʊ",
+   "pos": "verb"
+  },
+  "help": {
+   "img": "w/help.webp",
+   "ru": "помогать",
+   "ipa": "help",
+   "pos": "verb"
+  },
+  "hurt": {
+   "img": "w/hurt.webp",
+   "ru": "болеть",
+   "ipa": "hɜːt",
+   "pos": "verb"
+  },
+  "jump": {
+   "img": "w/jump.webp",
+   "ru": "прыгать",
+   "ipa": "dʒʌmp",
+   "pos": "verb"
+  },
+  "laugh": {
+   "img": "w/laugh.webp",
+   "ru": "смеяться",
+   "ipa": "lɑːf",
+   "pos": "verb"
+  },
+  "leave": {
+   "img": "w/leave.webp",
+   "ru": "уезжать",
+   "ipa": "liːv",
+   "pos": "verb"
+  },
+  "listen": {
+   "img": "w/listen.webp",
+   "ru": "слушать",
+   "ipa": "ˈlɪsən",
+   "pos": "verb"
+  },
+  "live": {
+   "img": "w/live.webp",
+   "ru": "жить",
+   "ipa": "laɪv",
+   "pos": "verb"
+  },
+  "look at": {
+   "img": "w/look_at.webp",
+   "ru": "смотреть на",
+   "ipa": "ˈlʊk ˈæt",
+   "pos": "verb"
+  },
+  "milk": {
+   "img": "w/milk.webp",
+   "ru": "молоко",
+   "ipa": "mɪlk",
+   "pos": "noun"
+  },
+  "open": {
+   "img": "w/open.webp",
+   "ru": "открывать",
+   "ipa": "ˈəʊpən",
+   "pos": "verb"
+  },
+  "order": {
+   "img": "w/order.webp",
+   "ru": "заказывать",
+   "ipa": "ˈɔːdər",
+   "pos": "verb"
+  },
+  "pass": {
+   "img": "w/pass.webp",
+   "ru": "передавать",
+   "ipa": "pɑːs",
+   "pos": "verb"
+  },
+  "pay": {
+   "img": "w/pay.webp",
+   "ru": "платить",
+   "ipa": "ˈpei",
+   "pos": "verb"
+  },
+  "play": {
+   "img": "w/play.webp",
+   "ru": "играть",
+   "ipa": "ˈplei",
+   "pos": "verb"
+  },
+  "point": {
+   "img": "w/point.webp",
+   "ru": "показывать пальцем",
+   "ipa": "pɔɪnt",
+   "pos": "verb"
+  },
+  "put on": {
+   "img": "w/put_on.webp",
+   "ru": "надевать",
+   "ipa": "ˈpʊt ˈɒn",
+   "pos": "verb"
+  },
+  "rain": {
+   "img": "w/rain.webp",
+   "ru": "дождь",
+   "ipa": "reɪn",
+   "pos": "noun"
+  },
+  "read": {
+   "img": "w/read.webp",
+   "ru": "читать",
+   "ipa": "riːd",
+   "pos": "verb"
+  },
+  "rest": {
+   "img": "w/rest.webp",
+   "ru": "отдыхать",
+   "ipa": "rest",
+   "pos": "verb"
+  },
+  "roar": {
+   "img": "w/roar.webp",
+   "ru": "рычать",
+   "ipa": "rɔː",
+   "pos": "verb"
+  },
+  "run": {
+   "img": "w/run.webp",
+   "ru": "бежать",
+   "ipa": "rʌn",
+   "pos": "verb"
+  },
+  "share": {
+   "img": "w/share.webp",
+   "ru": "делиться",
+   "ipa": "ʃeər",
+   "pos": "verb"
+  },
+  "shine": {
+   "img": "w/shine.webp",
+   "ru": "светить",
+   "ipa": "ʃaɪn",
+   "pos": "verb"
+  },
+  "show": {
+   "img": "w/show.webp",
+   "ru": "показывать",
+   "ipa": "ʃəʊ",
+   "pos": "verb"
+  },
+  "sing": {
+   "img": "w/sing.webp",
+   "ru": "петь",
+   "ipa": "sɪŋ",
+   "pos": "verb"
+  },
+  "sit": {
+   "img": "w/sit.webp",
+   "ru": "сидеть",
+   "ipa": "sɪt",
+   "pos": "verb"
+  },
+  "sleep": {
+   "img": "w/sleep.webp",
+   "ru": "спать",
+   "ipa": "sliːp",
+   "pos": "verb"
+  },
+  "smile": {
+   "img": "w/smile.webp",
+   "ru": "улыбаться",
+   "ipa": "smaɪl",
+   "pos": "verb"
+  },
+  "snow": {
+   "img": "w/snow.webp",
+   "ru": "снег",
+   "ipa": "snəʊ",
+   "pos": "verb"
+  },
+  "splash": {
+   "img": "w/splash.webp",
+   "ru": "плескаться",
+   "ipa": "splæʃ",
+   "pos": "verb"
+  },
+  "stop": {
+   "img": "w/stop.webp",
+   "ru": "останавливаться",
+   "ipa": "stɒp",
+   "pos": "verb"
+  },
+  "swim": {
+   "img": "w/swim.webp",
+   "ru": "плавать",
+   "ipa": "swɪm",
+   "pos": "verb"
+  },
+  "talk": {
+   "img": "w/talk.webp",
+   "ru": "разговаривать",
+   "ipa": "tɔːk",
+   "pos": "verb"
+  },
+  "taste": {
+   "img": "w/taste.webp",
+   "ru": "пробовать",
+   "ipa": "teɪst",
+   "pos": "verb"
+  },
+  "throw": {
+   "img": "w/throw.webp",
+   "ru": "бросать",
+   "ipa": "θrəʊ",
+   "pos": "verb"
+  },
+  "tidy up": {
+   "img": "w/tidy_up.webp",
+   "ru": "убирать",
+   "ipa": "ˈtaɪdi ˈʌp",
+   "pos": "verb"
+  },
+  "travel": {
+   "img": "w/travel.webp",
+   "ru": "путешествовать",
+   "ipa": "ˈtrævəl",
+   "pos": "verb"
+  },
+  "wait": {
+   "img": "w/wait.webp",
+   "ru": "ждать",
+   "ipa": "weɪt",
+   "pos": "verb"
+  },
+  "wake up": {
+   "img": "w/wake_up.webp",
+   "ru": "просыпаться",
+   "ipa": "ˈweɪk ˈʌp",
+   "pos": "verb"
+  },
+  "walk": {
+   "img": "w/walk.webp",
+   "ru": "гулять",
+   "ipa": "wɔːk",
+   "pos": "verb"
+  },
+  "wash": {
+   "img": "w/wash.webp",
+   "ru": "мыть",
+   "ipa": "wɒʃ",
+   "pos": "verb"
+  },
+  "watch": {
+   "img": "w/watch.webp",
+   "ru": "смотреть",
+   "ipa": "wɒtʃ",
+   "pos": "verb"
+  },
+  "work": {
+   "img": "w/work.webp",
+   "ru": "работать",
+   "ipa": "wɜːk",
+   "pos": "verb"
+  },
+  "write": {
+   "img": "w/write.webp",
+   "ru": "писать",
+   "ipa": "raɪt",
+   "pos": "verb"
+  },
+  "hair": {
+   "img": "w/hair.webp",
+   "ru": "волосы",
+   "ipa": "heə",
+   "pos": "noun"
+  },
+  "ear": {
+   "img": "w/ear.webp",
+   "ru": "ухо",
+   "ipa": "ɪə",
+   "pos": "noun"
+  },
+  "nose": {
+   "img": "w/nose.webp",
+   "ru": "нос",
+   "ipa": "nəʊz",
+   "pos": "noun"
+  },
+  "mouth": {
+   "img": "w/mouth.webp",
+   "ru": "рот",
+   "ipa": "maʊθ",
+   "pos": "noun"
+  },
+  "face": {
+   "img": "w/face.webp",
+   "ru": "лицо",
+   "ipa": "feɪs",
+   "pos": "noun"
+  },
+  "thumb": {
+   "img": "w/thumb.webp",
+   "ru": "большой палец",
+   "ipa": "θʌm",
+   "pos": "noun"
+  },
+  "foot": {
+   "img": "w/foot.webp",
+   "ru": "ступня",
+   "ipa": "fʊt",
+   "pos": "noun"
+  },
+  "finger": {
+   "img": "w/finger.webp",
+   "ru": "палец",
+   "ipa": "ˈfɪŋɡə",
+   "pos": "noun"
+  },
+  "knee": {
+   "img": "w/knee.webp",
+   "ru": "колено",
+   "ipa": "niː",
+   "pos": "noun"
+  },
+  "back": {
+   "img": "w/back.webp",
+   "ru": "спина",
+   "ipa": "bæk",
+   "pos": "noun"
+  },
+  "stomach": {
+   "img": "w/stomach.webp",
+   "ru": "живот",
+   "ipa": "ˈstʌmək",
+   "pos": "noun"
+  },
+  "neck": {
+   "img": "w/neck.webp",
+   "ru": "шея",
+   "ipa": "nɛk",
+   "pos": "noun"
+  },
+  "shoulder": {
+   "img": "w/shoulder.webp",
+   "ru": "плечо",
+   "ipa": "ˈʃəʊldə",
+   "pos": "noun"
+  },
+  "elbow": {
+   "img": "w/elbow.webp",
+   "ru": "локоть",
+   "ipa": "ˈɛlbəʊ",
+   "pos": "noun"
+  },
+  "son": {
+   "img": "w/son.webp",
+   "ru": "сын",
+   "ipa": "sʌn",
+   "pos": "noun"
+  },
+  "daughter": {
+   "img": "w/daughter.webp",
+   "ru": "дочь",
+   "ipa": "ˈdɔːtə",
+   "pos": "noun"
+  },
+  "aunt": {
+   "img": "w/aunt.webp",
+   "ru": "тётя",
+   "ipa": "ɑːnt",
+   "pos": "noun"
+  },
+  "uncle": {
+   "img": "w/uncle.webp",
+   "ru": "дядя",
+   "ipa": "ˈʌŋkəl",
+   "pos": "noun"
+  },
+  "cousin": {
+   "img": "w/cousin.webp",
+   "ru": "двоюродный брат",
+   "ipa": "ˈkʌzən",
+   "pos": "noun"
+  },
+  "neighbour": {
+   "img": "w/neighbour.webp",
+   "ru": "сосед",
+   "ipa": "ˈneɪbə",
+   "pos": "noun"
+  },
+  "man": {
+   "img": "w/man.webp",
+   "ru": "мужчина",
+   "ipa": "mæn",
+   "pos": "noun"
+  },
+  "woman": {
+   "img": "w/woman.webp",
+   "ru": "женщина",
+   "ipa": "ˈwʊmən",
+   "pos": "noun"
+  },
+  "boy": {
+   "img": "w/boy.webp",
+   "ru": "мальчик",
+   "ipa": "bɔɪ",
+   "pos": "noun"
+  },
+  "girl": {
+   "img": "w/girl.webp",
+   "ru": "девочка",
+   "ipa": "ɡɜːl",
+   "pos": "noun"
+  },
+  "child": {
+   "img": "w/child.webp",
+   "ru": "ребёнок",
+   "ipa": "tʃaɪld",
+   "pos": "noun"
+  },
+  "parents": {
+   "img": "w/parents.webp",
+   "ru": "родители",
+   "ipa": "ˈpeərənts",
+   "pos": "noun"
+  },
+  "chef": {
+   "img": "w/chef.webp",
+   "ru": "шеф-повар",
+   "ipa": "ʃef",
+   "pos": "noun"
+  },
+  "police officer": {
+   "img": "w/police_officer.webp",
+   "ru": "полицейский",
+   "ipa": "pəˈliːs ˈɒfɪsə",
+   "pos": "noun"
+  },
+  "firefighter": {
+   "img": "w/firefighter.webp",
+   "ru": "пожарный",
+   "ipa": "ˈfaɪəfaɪtə",
+   "pos": "noun"
+  },
+  "pilot": {
+   "img": "w/pilot.webp",
+   "ru": "пилот",
+   "ipa": "ˈpaɪlət",
+   "pos": "noun"
+  },
+  "vet": {
+   "img": "w/vet.webp",
+   "ru": "ветеринар",
+   "ipa": "vɛt",
+   "pos": "noun"
+  },
+  "dentist": {
+   "img": "w/dentist.webp",
+   "ru": "стоматолог",
+   "ipa": "ˈdɛntɪst",
+   "pos": "noun"
+  },
+  "postman": {
+   "img": "w/postman.webp",
+   "ru": "почтальон",
+   "ipa": "ˈpəʊstmən",
+   "pos": "noun"
+  },
+  "hairdresser": {
+   "img": "w/hairdresser.webp",
+   "ru": "парикмахер",
+   "ipa": "ˈheədrɛsə",
+   "pos": "noun"
+  },
+  "builder": {
+   "img": "w/builder.webp",
+   "ru": "строитель",
+   "ipa": "ˈbɪldə",
+   "pos": "noun"
+  },
+  "artist": {
+   "img": "w/artist.webp",
+   "ru": "художник",
+   "ipa": "ˈɑːtɪst",
+   "pos": "noun"
+  },
+  "singer": {
+   "img": "w/singer.webp",
+   "ru": "певец",
+   "ipa": "ˈsɪŋə",
+   "pos": "noun"
+  },
+  "shop assistant": {
+   "img": "w/shop_assistant.webp",
+   "ru": "продавец",
+   "ipa": "ʃɒp əˈsɪstənt",
+   "pos": "noun"
+  },
+  "gardener": {
+   "img": "w/gardener.webp",
+   "ru": "садовник",
+   "ipa": "ˈgɑːdnə",
+   "pos": "noun"
+  },
+  "mechanic": {
+   "img": "w/mechanic.webp",
+   "ru": "механик",
+   "ipa": "mɪˈkænɪk",
+   "pos": "noun"
+  },
+  "school": {
+   "img": "w/school.webp",
+   "ru": "школа",
+   "ipa": "skuː",
+   "pos": "noun"
+  },
+  "hospital": {
+   "img": "w/hospital.webp",
+   "ru": "больница",
+   "ipa": "ˈhɒspɪtəl",
+   "pos": "noun"
+  },
+  "library": {
+   "img": "w/library.webp",
+   "ru": "библиотека",
+   "ipa": "ˈlaɪbrəri",
+   "pos": "noun"
+  },
+  "museum": {
+   "img": "w/museum.webp",
+   "ru": "музей",
+   "ipa": "mjuˈziːəm",
+   "pos": "noun"
+  },
+  "cinema": {
+   "img": "w/cinema.webp",
+   "ru": "кинотеатр",
+   "ipa": "ˈsɪnəmə",
+   "pos": "noun"
+  },
+  "bakery": {
+   "img": "w/bakery.webp",
+   "ru": "пекарня",
+   "ipa": "ˈbeɪkəri",
+   "pos": "noun"
+  },
+  "post office": {
+   "img": "w/post_office.webp",
+   "ru": "почта",
+   "ipa": "pəʊst ˈɒfɪs",
+   "pos": "noun"
+  },
+  "pharmacy": {
+   "img": "w/pharmacy.webp",
+   "ru": "аптека",
+   "ipa": "ˈfɑːməsi",
+   "pos": "noun"
+  },
+  "market": {
+   "img": "w/market.webp",
+   "ru": "рынок",
+   "ipa": "ˈmɑːkɪt",
+   "pos": "noun"
+  },
+  "supermarket": {
+   "img": "w/supermarket.webp",
+   "ru": "супермаркет",
+   "ipa": "ˈsuːpəmɑːkɪt",
+   "pos": "noun"
+  },
+  "restaurant": {
+   "img": "w/restaurant.webp",
+   "ru": "ресторан",
+   "ipa": "ˈrɛstərɒnt",
+   "pos": "noun"
+  },
+  "hotel": {
+   "img": "w/hotel.webp",
+   "ru": "гостиница",
+   "ipa": "həʊˈtɛl",
+   "pos": "noun"
+  },
+  "castle": {
+   "img": "w/castle.webp",
+   "ru": "замок",
+   "ipa": "ˈkɑːsəl",
+   "pos": "noun"
+  },
+  "city": {
+   "img": "w/city.webp",
+   "ru": "город",
+   "ipa": "ˈsɪti",
+   "pos": "noun"
+  },
+  "village": {
+   "img": "w/village.webp",
+   "ru": "деревня",
+   "ipa": "ˈvɪlɪdʒ",
+   "pos": "noun"
+  },
+  "pavement": {
+   "img": "w/pavement.webp",
+   "ru": "тротуар",
+   "ipa": "ˈpeɪvmənt",
+   "pos": "noun"
+  },
+  "airport": {
+   "img": "w/airport.webp",
+   "ru": "аэропорт",
+   "ipa": "ˈeəpɔːt",
+   "pos": "noun"
+  },
+  "square": {
+   "img": "w/square.webp",
+   "ru": "площадь",
+   "ipa": "skweə",
+   "pos": "noun"
+  },
+  "tram": {
+   "img": "w/tram.webp",
+   "ru": "трамвай",
+   "ipa": "træm",
+   "pos": "noun"
+  },
+  "tunnel": {
+   "img": "w/tunnel.webp",
+   "ru": "туннель",
+   "ipa": "ˈtʌnəl",
+   "pos": "noun"
+  },
+  "lorry": {
+   "img": "w/lorry.webp",
+   "ru": "грузовик",
+   "ipa": "ˈlɒri",
+   "pos": "noun"
+  },
+  "van": {
+   "img": "w/van.webp",
+   "ru": "фургон",
+   "ipa": "væn",
+   "pos": "noun"
+  },
+  "motorbike": {
+   "img": "w/motorbike.webp",
+   "ru": "мотоцикл",
+   "ipa": "ˈməʊtəbaɪk",
+   "pos": "noun"
+  },
+  "helicopter": {
+   "img": "w/helicopter.webp",
+   "ru": "вертолёт",
+   "ipa": "ˈhɛlɪkɒptə",
+   "pos": "noun"
+  },
+  "ambulance": {
+   "img": "w/ambulance.webp",
+   "ru": "скорая помощь",
+   "ipa": "ˈæmbjʊləns",
+   "pos": "noun"
+  },
+  "scooter": {
+   "img": "w/scooter.webp",
+   "ru": "самокат",
+   "ipa": "ˈskuːtə",
+   "pos": "noun"
+  },
+  "wheel": {
+   "img": "w/wheel.webp",
+   "ru": "колесо",
+   "ipa": "wiːl",
+   "pos": "noun"
+  },
+  "engine": {
+   "img": "w/engine.webp",
+   "ru": "двигатель",
+   "ipa": "ˈɛnʤɪn",
+   "pos": "noun"
+  },
+  "passenger": {
+   "img": "w/passenger.webp",
+   "ru": "пассажир",
+   "ipa": "ˈpæsɪndʒə",
+   "pos": "noun"
+  },
+  "journey": {
+   "img": "w/journey.webp",
+   "ru": "поездка",
+   "ipa": "ˈdʒɜːni",
+   "pos": "noun"
+  },
+  "breakfast": {
+   "img": "w/breakfast.webp",
+   "ru": "завтрак",
+   "ipa": "ˈbrɛkfəst",
+   "pos": "noun"
+  },
+  "lunch": {
+   "img": "w/lunch.webp",
+   "ru": "обед",
+   "ipa": "lʌntʃ",
+   "pos": "noun"
+  },
+  "rice": {
+   "img": "w/rice.webp",
+   "ru": "рис",
+   "ipa": "raɪs",
+   "pos": "noun"
+  },
+  "pasta": {
+   "img": "w/pasta.webp",
+   "ru": "макароны",
+   "ipa": "ˈpæstə",
+   "pos": "noun"
+  },
+  "meat": {
+   "img": "w/meat.webp",
+   "ru": "мясо",
+   "ipa": "miːt",
+   "pos": "noun"
+  },
+  "sausage": {
+   "img": "w/sausage.webp",
+   "ru": "сосиска",
+   "ipa": "ˈsɒsɪdʒ",
+   "pos": "noun"
+  },
+  "fish": {
+   "img": "w/fish.webp",
+   "ru": "рыба",
+   "ipa": "fɪʃ",
+   "pos": "noun"
+  },
+  "salad": {
+   "img": "w/salad.webp",
+   "ru": "салат",
+   "ipa": "ˈsæləd",
+   "pos": "noun"
+  },
+  "sandwich": {
+   "img": "w/sandwich.webp",
+   "ru": "бутерброд",
+   "ipa": "ˈsændwɪtʃ",
+   "pos": "noun"
+  },
+  "butter": {
+   "img": "w/butter.webp",
+   "ru": "масло",
+   "ipa": "ˈbʌtə",
+   "pos": "noun"
+  },
+  "sugar": {
+   "img": "w/sugar.webp",
+   "ru": "сахар",
+   "ipa": "ˈʃʊɡə",
+   "pos": "noun"
+  },
+  "salt": {
+   "img": "w/salt.webp",
+   "ru": "соль",
+   "ipa": "sɔːlt",
+   "pos": "noun"
+  },
+  "honey": {
+   "img": "w/honey.webp",
+   "ru": "мёд",
+   "ipa": "ˈhʌni",
+   "pos": "noun"
+  },
+  "jam": {
+   "img": "w/jam.webp",
+   "ru": "варенье",
+   "ipa": "dʒæm",
+   "pos": "noun"
+  },
+  "chocolate": {
+   "img": "w/chocolate.webp",
+   "ru": "шоколад",
+   "ipa": "ˈtʃɒklət",
+   "pos": "noun"
+  },
+  "ice cream": {
+   "img": "w/ice_cream.webp",
+   "ru": "мороженое",
+   "ipa": "aɪs kriːm",
+   "pos": "noun"
+  },
+  "biscuit": {
+   "img": "w/biscuit.webp",
+   "ru": "печенье",
+   "ipa": "ˈbɪskɪt",
+   "pos": "noun"
+  },
+  "orange": {
+   "img": "w/orange.webp",
+   "ru": "апельсин",
+   "ipa": "ˈɒrɪndʒ",
+   "pos": "noun"
+  },
+  "lemon": {
+   "img": "w/lemon.webp",
+   "ru": "лимон",
+   "ipa": "ˈlɛmən",
+   "pos": "noun"
+  },
+  "grapes": {
+   "img": "w/grapes.webp",
+   "ru": "виноград",
+   "ipa": "ɡreɪps",
+   "pos": "noun"
+  },
+  "strawberry": {
+   "img": "w/strawberry.webp",
+   "ru": "клубника",
+   "ipa": "ˈstrɔːbəri",
+   "pos": "noun"
+  },
+  "carrot": {
+   "img": "w/carrot.webp",
+   "ru": "морковь",
+   "ipa": "ˈkærət",
+   "pos": "noun"
+  },
+  "onion": {
+   "img": "w/onion.webp",
+   "ru": "лук",
+   "ipa": "ˈʌnjən",
+   "pos": "noun"
+  },
+  "cucumber": {
+   "img": "w/cucumber.webp",
+   "ru": "огурец",
+   "ipa": "ˈkjuːkʌmbə",
+   "pos": "noun"
+  },
+  "knife": {
+   "img": "w/knife.webp",
+   "ru": "нож",
+   "ipa": "naɪf",
+   "pos": "noun"
+  },
+  "bowl": {
+   "img": "w/bowl.webp",
+   "ru": "миска",
+   "ipa": "bəʊl",
+   "pos": "noun"
+  },
+  "bottle": {
+   "img": "w/bottle.webp",
+   "ru": "бутылка",
+   "ipa": "ˈbɒtəl",
+   "pos": "noun"
+  },
+  "kettle": {
+   "img": "w/kettle.webp",
+   "ru": "чайник",
+   "ipa": "ˈkɛtəl",
+   "pos": "noun"
+  },
+  "jacket": {
+   "img": "w/jacket.webp",
+   "ru": "куртка",
+   "ipa": "ˈdʒækɪt",
+   "pos": "noun"
+  },
+  "jeans": {
+   "img": "w/jeans.webp",
+   "ru": "джинсы",
+   "ipa": "dʒiːnz",
+   "pos": "noun"
+  },
+  "skirt": {
+   "img": "w/skirt.webp",
+   "ru": "юбка",
+   "ipa": "skɜːt",
+   "pos": "noun"
+  },
+  "dress": {
+   "img": "w/dress.webp",
+   "ru": "платье",
+   "ipa": "drɛs",
+   "pos": "noun"
+  },
+  "sweater": {
+   "img": "w/sweater.webp",
+   "ru": "свитер",
+   "ipa": "ˈswetə",
+   "pos": "noun"
+  },
+  "t-shirt": {
+   "img": "w/T-shirt.webp",
+   "ru": "футболка",
+   "ipa": "tiː ʃɜːt",
+   "pos": "noun"
+  },
+  "gloves": {
+   "img": "w/gloves.webp",
+   "ru": "перчатки",
+   "ipa": "ɡlʌvz",
+   "pos": "noun"
+  },
+  "sandals": {
+   "img": "w/sandals.webp",
+   "ru": "сандалии",
+   "ipa": "ˈsændəlz",
+   "pos": "noun"
+  },
+  "cap": {
+   "img": "w/cap.webp",
+   "ru": "кепка",
+   "ipa": "kæp",
+   "pos": "noun"
+  },
+  "belt": {
+   "img": "w/belt.webp",
+   "ru": "ремень",
+   "ipa": "bɛlt",
+   "pos": "noun"
+  },
+  "pocket": {
+   "img": "w/pocket.webp",
+   "ru": "карман",
+   "ipa": "ˈpɒkɪt",
+   "pos": "noun"
+  },
+  "button": {
+   "img": "w/button.webp",
+   "ru": "пуговица",
+   "ipa": "ˈbʌtən",
+   "pos": "noun"
+  },
+  "shorts": {
+   "img": "w/shorts.webp",
+   "ru": "шорты",
+   "ipa": "ʃɔːts",
+   "pos": "noun"
+  },
+  "glasses": {
+   "img": "w/glasses.webp",
+   "ru": "очки",
+   "ipa": "ˈɡlæsɪz",
+   "pos": "noun"
+  },
+  "pyjamas": {
+   "img": "w/pyjamas.webp",
+   "ru": "пижама",
+   "ipa": "pɪˈdʒɑːməz",
+   "pos": "noun"
+  },
+  "wall": {
+   "img": "w/wall.webp",
+   "ru": "стена",
+   "ipa": "wɔːl",
+   "pos": "noun"
+  },
+  "floor": {
+   "img": "w/floor.webp",
+   "ru": "пол",
+   "ipa": "flɔː",
+   "pos": "noun"
+  },
+  "ceiling": {
+   "img": "w/ceiling.webp",
+   "ru": "потолок",
+   "ipa": "ˈsiːlɪŋ",
+   "pos": "noun"
+  },
+  "key": {
+   "img": "w/key.webp",
+   "ru": "ключ",
+   "ipa": "kiː",
+   "pos": "noun"
+  },
+  "lock": {
+   "img": "w/lock.webp",
+   "ru": "замок на двери",
+   "ipa": "lɒk",
+   "pos": "noun"
+  },
+  "curtain": {
+   "img": "w/curtain.webp",
+   "ru": "штора",
+   "ipa": "ˈkɜːtən",
+   "pos": "noun"
+  },
+  "blanket": {
+   "img": "w/blanket.webp",
+   "ru": "одеяло",
+   "ipa": "ˈblæŋkɪt",
+   "pos": "noun"
+  },
+  "cupboard": {
+   "img": "w/cupboard.webp",
+   "ru": "шкафчик",
+   "ipa": "ˈkʌbəd",
+   "pos": "noun"
+  },
+  "sink": {
+   "img": "w/sink.webp",
+   "ru": "раковина",
+   "ipa": "sɪŋk",
+   "pos": "noun"
+  },
+  "armchair": {
+   "img": "w/armchair.webp",
+   "ru": "кресло",
+   "ipa": "ˈɑːmtʃeə",
+   "pos": "noun"
+  },
+  "garage": {
+   "img": "w/garage.webp",
+   "ru": "гараж",
+   "ipa": "ˈɡærɑːʒ",
+   "pos": "noun"
+  },
+  "fence": {
+   "img": "w/fence.webp",
+   "ru": "забор",
+   "ipa": "fɛns",
+   "pos": "noun"
+  },
+  "balcony": {
+   "img": "w/balcony.webp",
+   "ru": "балкон",
+   "ipa": "ˈbælkəni",
+   "pos": "noun"
+  },
+  "ladder": {
+   "img": "w/ladder.webp",
+   "ru": "лестница-стремянка",
+   "ipa": "ˈlædə",
+   "pos": "noun"
+  },
+  "homework": {
+   "img": "w/homework.webp",
+   "ru": "домашнее задание",
+   "ipa": "ˈhəʊmwɜːk",
+   "pos": "noun"
+  },
+  "lesson": {
+   "img": "w/lesson.webp",
+   "ru": "урок",
+   "ipa": "ˈlɛsən",
+   "pos": "noun"
+  },
+  "test": {
+   "img": "w/test.webp",
+   "ru": "контрольная",
+   "ipa": "tɛst",
+   "pos": "noun"
+  },
+  "pencil case": {
+   "img": "w/pencil_case.webp",
+   "ru": "пенал",
+   "ipa": "ˈpɛnsəl keɪs",
+   "pos": "noun"
+  },
+  "glue": {
+   "img": "w/glue.webp",
+   "ru": "клей",
+   "ipa": "ɡluː",
+   "pos": "noun"
+  },
+  "scissors": {
+   "img": "w/scissors.webp",
+   "ru": "ножницы",
+   "ipa": "ˈsɪzəz",
+   "pos": "noun"
+  },
+  "paint": {
+   "img": "w/paint.webp",
+   "ru": "краски",
+   "ipa": "peɪnt",
+   "pos": "noun"
+  },
+  "crayon": {
+   "img": "w/crayon.webp",
+   "ru": "восковой мелок",
+   "ipa": "ˈkreɪɒn",
+   "pos": "noun"
+  },
+  "chalk": {
+   "img": "w/chalk.webp",
+   "ru": "мел",
+   "ipa": "tʃɔːk",
+   "pos": "noun"
+  },
+  "letter": {
+   "img": "w/letter.webp",
+   "ru": "письмо",
+   "ipa": "ˈlɛtə",
+   "pos": "noun"
+  },
+  "number": {
+   "img": "w/number.webp",
+   "ru": "число",
+   "ipa": "ˈnʌmbə",
+   "pos": "noun"
+  },
+  "page": {
+   "img": "w/page.webp",
+   "ru": "страница",
+   "ipa": "peɪdʒ",
+   "pos": "noun"
+  },
+  "question": {
+   "img": "w/question.webp",
+   "ru": "вопрос",
+   "ipa": "ˈkwɛstʃən",
+   "pos": "noun"
+  },
+  "mistake": {
+   "img": "w/mistake.webp",
+   "ru": "ошибка",
+   "ipa": "mɪˈsteɪk",
+   "pos": "noun"
+  },
+  "mountain": {
+   "img": "w/mountain.webp",
+   "ru": "гора",
+   "ipa": "ˈmaʊntən",
+   "pos": "noun"
+  },
+  "river": {
+   "img": "w/river.webp",
+   "ru": "река",
+   "ipa": "ˈrɪvə",
+   "pos": "noun"
+  },
+  "lake": {
+   "img": "w/lake.webp",
+   "ru": "озеро",
+   "ipa": "leɪk",
+   "pos": "noun"
+  },
+  "forest": {
+   "img": "w/forest.webp",
+   "ru": "лес",
+   "ipa": "ˈfɒrɪst",
+   "pos": "noun"
+  },
+  "hill": {
+   "img": "w/hill.webp",
+   "ru": "холм",
+   "ipa": "hɪl",
+   "pos": "noun"
+  },
+  "island": {
+   "img": "w/island.webp",
+   "ru": "остров",
+   "ipa": "ˈaɪlənd",
+   "pos": "noun"
+  },
+  "star": {
+   "img": "w/star.webp",
+   "ru": "звезда",
+   "ipa": "stɑː",
+   "pos": "noun"
+  },
+  "moon": {
+   "img": "w/moon.webp",
+   "ru": "луна",
+   "ipa": "muːn",
+   "pos": "noun"
+  },
+  "sky": {
+   "img": "w/sky.webp",
+   "ru": "небо",
+   "ipa": "skaɪ",
+   "pos": "noun"
+  },
+  "stone": {
+   "img": "w/stone.webp",
+   "ru": "камень",
+   "ipa": "stəʊn",
+   "pos": "noun"
+  },
+  "leaf": {
+   "img": "w/leaf.webp",
+   "ru": "лист",
+   "ipa": "liːf",
+   "pos": "noun"
+  },
+  "branch": {
+   "img": "w/branch.webp",
+   "ru": "ветка",
+   "ipa": "brɑːntʃ",
+   "pos": "noun"
+  },
+  "ice": {
+   "img": "w/ice.webp",
+   "ru": "лёд",
+   "ipa": "aɪs",
+   "pos": "noun"
+  },
+  "fire": {
+   "img": "w/fire.webp",
+   "ru": "огонь",
+   "ipa": "ˈfaɪə",
+   "pos": "noun"
+  },
+  "rabbit": {
+   "img": "w/rabbit.webp",
+   "ru": "кролик",
+   "ipa": "ˈræbɪt",
+   "pos": "noun"
+  },
+  "mouse": {
+   "img": "w/mouse.webp",
+   "ru": "мышь",
+   "ipa": "maʊs",
+   "pos": "noun"
+  },
+  "fox": {
+   "img": "w/fox.webp",
+   "ru": "лиса",
+   "ipa": "fɒks",
+   "pos": "noun"
+  },
+  "wolf": {
+   "img": "w/wolf.webp",
+   "ru": "волк",
+   "ipa": "wʊlf",
+   "pos": "noun"
+  },
+  "frog": {
+   "img": "w/frog.webp",
+   "ru": "лягушка",
+   "ipa": "frɒg",
+   "pos": "noun"
+  },
+  "butterfly": {
+   "img": "w/butterfly.webp",
+   "ru": "бабочка",
+   "ipa": "ˈbʌtəflaɪ",
+   "pos": "noun"
+  },
+  "bee": {
+   "img": "w/bee.webp",
+   "ru": "пчела",
+   "ipa": "biː",
+   "pos": "noun"
+  },
+  "ant": {
+   "img": "w/ant.webp",
+   "ru": "муравей",
+   "ipa": "ænt",
+   "pos": "noun"
+  },
+  "spider": {
+   "img": "w/spider.webp",
+   "ru": "паук",
+   "ipa": "ˈspaɪdə",
+   "pos": "noun"
+  },
+  "goat": {
+   "img": "w/goat.webp",
+   "ru": "коза",
+   "ipa": "gəʊt",
+   "pos": "noun"
+  },
+  "penguin": {
+   "img": "w/penguin.webp",
+   "ru": "пингвин",
+   "ipa": "ˈpɛŋɡwɪn",
+   "pos": "noun"
+  },
+  "tiger": {
+   "img": "w/tiger.webp",
+   "ru": "тигр",
+   "ipa": "ˈtaɪɡə",
+   "pos": "noun"
+  },
+  "zebra": {
+   "img": "w/zebra.webp",
+   "ru": "зебра",
+   "ipa": "ˈzɛbrə",
+   "pos": "noun"
+  },
+  "turtle": {
+   "img": "w/turtle.webp",
+   "ru": "черепаха",
+   "ipa": "ˈtɜːtəl",
+   "pos": "noun"
+  },
+  "dolphin": {
+   "img": "w/dolphin.webp",
+   "ru": "дельфин",
+   "ipa": "ˈdɒlfɪn",
+   "pos": "noun"
+  },
+  "owl": {
+   "img": "w/owl.webp",
+   "ru": "сова",
+   "ipa": "aʊl",
+   "pos": "noun"
+  },
+  "morning": {
+   "img": "w/morning.webp",
+   "ru": "утро",
+   "ipa": "ˈmɔːnɪŋ",
+   "pos": "noun"
+  },
+  "afternoon": {
+   "img": "w/afternoon.webp",
+   "ru": "день",
+   "ipa": "ɑːftəˈnuːn",
+   "pos": "noun"
+  },
+  "evening": {
+   "img": "w/evening.webp",
+   "ru": "вечер",
+   "ipa": "ˈiːvnɪŋ",
+   "pos": "noun"
+  },
+  "night": {
+   "img": "w/night.webp",
+   "ru": "ночь",
+   "ipa": "naɪt",
+   "pos": "noun"
+  },
+  "week": {
+   "img": "w/week.webp",
+   "ru": "неделя",
+   "ipa": "wiːk",
+   "pos": "noun"
+  },
+  "month": {
+   "img": "w/month.webp",
+   "ru": "месяц",
+   "ipa": "mʌnθ",
+   "pos": "noun"
+  },
+  "year": {
+   "img": "w/year.webp",
+   "ru": "год",
+   "ipa": "jɪə",
+   "pos": "noun"
+  },
+  "hour": {
+   "img": "w/hour.webp",
+   "ru": "час",
+   "ipa": "aʊə",
+   "pos": "noun"
+  },
+  "minute": {
+   "img": "w/minute.webp",
+   "ru": "минута",
+   "ipa": "ˈmɪnɪt",
+   "pos": "noun"
+  },
+  "calendar": {
+   "img": "w/calendar.webp",
+   "ru": "календарь",
+   "ipa": "ˈkælɪndə",
+   "pos": "noun"
+  },
+  "weekend": {
+   "img": "w/weekend.webp",
+   "ru": "выходные",
+   "ipa": "wiːˈkɛnd",
+   "pos": "noun"
+  },
+  "holiday": {
+   "img": "w/holiday.webp",
+   "ru": "каникулы",
+   "ipa": "ˈhɒlɪdeɪ",
+   "pos": "noun"
+  },
+  "spring": {
+   "img": "w/spring.webp",
+   "ru": "весна",
+   "ipa": "sprɪŋ",
+   "pos": "noun"
+  },
+  "summer": {
+   "img": "w/summer.webp",
+   "ru": "лето",
+   "ipa": "ˈsʌmə",
+   "pos": "noun"
+  },
+  "autumn": {
+   "img": "w/autumn.webp",
+   "ru": "осень",
+   "ipa": "ˈɔːtəm",
+   "pos": "noun"
+  },
+  "winter": {
+   "img": "w/winter.webp",
+   "ru": "зима",
+   "ipa": "ˈwɪntə",
+   "pos": "noun"
+  },
+  "sad": {
+   "img": "w/sad.webp",
+   "ru": "грустный",
+   "ipa": "sæd",
+   "pos": "adj"
+  },
+  "angry": {
+   "img": "w/angry.webp",
+   "ru": "сердитый",
+   "ipa": "ˈæŋɡri",
+   "pos": "adj"
+  },
+  "tired": {
+   "img": "w/tired.webp",
+   "ru": "усталый",
+   "ipa": "ˈtaɪəd",
+   "pos": "adj"
+  },
+  "scared": {
+   "img": "w/scared.webp",
+   "ru": "испуганный",
+   "ipa": "skeəd",
+   "pos": "adj"
+  },
+  "surprised": {
+   "img": "w/surprised.webp",
+   "ru": "удивлённый",
+   "ipa": "səˈpraɪzd",
+   "pos": "adj"
+  },
+  "bored": {
+   "img": "w/bored.webp",
+   "ru": "скучающий",
+   "ipa": "bɔːd",
+   "pos": "adj"
+  },
+  "thirsty": {
+   "img": "w/thirsty.webp",
+   "ru": "жаждущий пить",
+   "ipa": "ˈθɜːsti",
+   "pos": "adj"
+  },
+  "kind": {
+   "img": "w/kind.webp",
+   "ru": "добрый",
+   "ipa": "kaɪnd",
+   "pos": "adj"
+  },
+  "funny": {
+   "img": "w/funny.webp",
+   "ru": "смешной",
+   "ipa": "ˈfʌni",
+   "pos": "adj"
+  },
+  "beautiful": {
+   "img": "w/beautiful.webp",
+   "ru": "красивый",
+   "ipa": "ˈbjuːtɪfəl",
+   "pos": "adj"
+  },
+  "heavy": {
+   "img": "w/heavy.webp",
+   "ru": "тяжёлый",
+   "ipa": "ˈhɛvi",
+   "pos": "adj"
+  },
+  "dark": {
+   "img": "w/dark.webp",
+   "ru": "тёмный",
+   "ipa": "dɑːk",
+   "pos": "adj"
+  },
+  "long": {
+   "img": "w/long.webp",
+   "ru": "длинный",
+   "ipa": "lɒŋ",
+   "pos": "adj"
+  },
+  "short": {
+   "img": "w/short.webp",
+   "ru": "короткий",
+   "ipa": "ʃɔːt",
+   "pos": "adj"
+  },
+  "tall": {
+   "img": "w/tall.webp",
+   "ru": "высокий",
+   "ipa": "tɔːl",
+   "pos": "adj"
+  },
+  "full": {
+   "img": "w/full.webp",
+   "ru": "полный",
+   "ipa": "fʊl",
+   "pos": "adj"
+  },
+  "empty": {
+   "img": "w/empty.webp",
+   "ru": "пустой",
+   "ipa": "ˈɛmpti",
+   "pos": "adj"
+  },
+  "soft": {
+   "img": "w/soft.webp",
+   "ru": "мягкий",
+   "ipa": "sɒft",
+   "pos": "adj"
+  },
+  "hard": {
+   "img": "w/hard.webp",
+   "ru": "твёрдый",
+   "ipa": "hɑːd",
+   "pos": "adj"
+  },
+  "brave": {
+   "img": "w/brave.webp",
+   "ru": "смелый",
+   "ipa": "breɪv",
+   "pos": "adj"
+  },
+  "answer": {
+   "img": "w/answer.webp",
+   "ru": "отвечать",
+   "ipa": "ˈɑːnsə",
+   "pos": "verb"
+  },
+  "begin": {
+   "img": "w/begin.webp",
+   "ru": "начинать",
+   "ipa": "bɪˈɡɪn",
+   "pos": "verb"
+  },
+  "break": {
+   "img": "w/break.webp",
+   "ru": "ломать",
+   "ipa": "breɪk",
+   "pos": "verb"
+  },
+  "call": {
+   "img": "w/call.webp",
+   "ru": "звать",
+   "ipa": "kɔːl",
+   "pos": "verb"
+  },
+  "change": {
+   "img": "w/change.webp",
+   "ru": "менять",
+   "ipa": "tʃeɪndʒ",
+   "pos": "verb"
+  },
+  "close": {
+   "img": "w/close.webp",
+   "ru": "закрывать",
+   "ipa": "kləʊz",
+   "pos": "verb"
+  },
+  "count": {
+   "img": "w/count.webp",
+   "ru": "считать",
+   "ipa": "kaʊnt",
+   "pos": "verb"
+  },
+  "cry": {
+   "img": "w/cry.webp",
+   "ru": "плакать",
+   "ipa": "kraɪ",
+   "pos": "verb"
+  },
+  "cut": {
+   "img": "w/cut.webp",
+   "ru": "резать",
+   "ipa": "kʌt",
+   "pos": "verb"
+  },
+  "fall": {
+   "img": "w/fall.webp",
+   "ru": "падать",
+   "ipa": "fɔːl",
+   "pos": "verb"
+  },
+  "find": {
+   "img": "w/find.webp",
+   "ru": "находить",
+   "ipa": "faɪnd",
+   "pos": "verb"
+  },
+  "finish": {
+   "img": "w/finish.webp",
+   "ru": "заканчивать",
+   "ipa": "ˈfɪnɪʃ",
+   "pos": "verb"
+  },
+  "hear": {
+   "img": "w/hear.webp",
+   "ru": "слышать",
+   "ipa": "hɪə",
+   "pos": "verb"
+  },
+  "hide": {
+   "img": "w/hide.webp",
+   "ru": "прятать",
+   "ipa": "haɪd",
+   "pos": "verb"
+  },
+  "hold": {
+   "img": "w/hold.webp",
+   "ru": "держать",
+   "ipa": "həʊld",
+   "pos": "verb"
+  },
+  "learn": {
+   "img": "w/learn.webp",
+   "ru": "учить",
+   "ipa": "lɜːn",
+   "pos": "verb"
+  },
+  "lose": {
+   "img": "w/lose.webp",
+   "ru": "терять",
+   "ipa": "luːz",
+   "pos": "verb"
+  },
+  "meet": {
+   "img": "w/meet.webp",
+   "ru": "встречать",
+   "ipa": "miːt",
+   "pos": "verb"
+  },
+  "move": {
+   "img": "w/move.webp",
+   "ru": "двигать",
+   "ipa": "muːv",
+   "pos": "verb"
+  },
+  "need": {
+   "img": "w/need.webp",
+   "ru": "нуждаться",
+   "ipa": "niːd",
+   "pos": "verb"
+  },
+  "pick": {
+   "img": "w/pick.webp",
+   "ru": "срывать",
+   "ipa": "pɪk",
+   "pos": "verb"
+  },
+  "plant": {
+   "img": "w/plant.webp",
+   "ru": "сажать",
+   "ipa": "plɑːnt",
+   "pos": "verb"
+  },
+  "pull": {
+   "img": "w/pull.webp",
+   "ru": "тянуть",
+   "ipa": "pʊl",
+   "pos": "verb"
+  },
+  "push": {
+   "img": "w/push.webp",
+   "ru": "толкать",
+   "ipa": "pʊʃ",
+   "pos": "verb"
+  },
+  "remember": {
+   "img": "w/remember.webp",
+   "ru": "помнить",
+   "ipa": "rɪˈmɛmbə",
+   "pos": "verb"
+  },
+  "ride": {
+   "img": "w/ride.webp",
+   "ru": "кататься",
+   "ipa": "raɪd",
+   "pos": "verb"
+  },
+  "send": {
+   "img": "w/send.webp",
+   "ru": "отправлять",
+   "ipa": "sɛnd",
+   "pos": "verb"
+  },
+  "shout": {
+   "img": "w/shout.webp",
+   "ru": "кричать",
+   "ipa": "ʃaʊt",
+   "pos": "verb"
+  },
+  "stand": {
+   "img": "w/stand.webp",
+   "ru": "стоять",
+   "ipa": "stænd",
+   "pos": "verb"
+  },
+  "take": {
+   "img": "w/take.webp",
+   "ru": "брать",
+   "ipa": "teɪk",
+   "pos": "verb"
+  },
+  "teach": {
+   "img": "w/teach.webp",
+   "ru": "преподавать",
+   "ipa": "tiːtʃ",
+   "pos": "verb"
+  },
+  "tell": {
+   "img": "w/tell.webp",
+   "ru": "рассказывать",
+   "ipa": "tɛl",
+   "pos": "verb"
+  },
+  "think": {
+   "img": "w/think.webp",
+   "ru": "думать",
+   "ipa": "θɪŋk",
+   "pos": "verb"
+  },
+  "touch": {
+   "img": "w/touch.webp",
+   "ru": "трогать",
+   "ipa": "tʌtʃ",
+   "pos": "verb"
+  },
+  "turn": {
+   "img": "w/turn.webp",
+   "ru": "поворачивать",
+   "ipa": "tɜːn",
+   "pos": "verb"
+  },
+  "understand": {
+   "img": "w/understand.webp",
+   "ru": "понимать",
+   "ipa": "ʌndəˈstænd",
+   "pos": "verb"
+  },
+  "use": {
+   "img": "w/use.webp",
+   "ru": "использовать",
+   "ipa": "juːz",
+   "pos": "verb"
+  },
+  "visit": {
+   "img": "w/visit.webp",
+   "ru": "навещать",
+   "ipa": "ˈvɪzɪt",
+   "pos": "verb"
+  },
+  "want": {
+   "img": "w/want.webp",
+   "ru": "хотеть",
+   "ipa": "wɒnt",
+   "pos": "verb"
+  },
+  "wear": {
+   "img": "w/wear.webp",
+   "ru": "носить одежду",
+   "ipa": "weə",
+   "pos": "verb"
+  },
+  "win": {
+   "img": "w/win.webp",
+   "ru": "побеждать",
+   "ipa": "wɪn",
+   "pos": "verb"
+  },
+  "hello": {
+   "img": "w/hello.webp",
+   "ru": "здравствуйте",
+   "ipa": "həˈləʊ",
+   "pos": "phrase"
+  },
+  "goodbye": {
+   "img": "w/goodbye.webp",
+   "ru": "до свидания",
+   "ipa": "ɡʊdˈbaɪ",
+   "pos": "phrase"
+  },
+  "good morning": {
+   "img": "w/good_morning.webp",
+   "ru": "доброе утро",
+   "ipa": "gʊd ˈmɔːnɪŋ",
+   "pos": "phrase"
+  },
+  "good evening": {
+   "img": "w/good_evening.webp",
+   "ru": "добрый вечер",
+   "ipa": "gʊd ˈiːvnɪŋ",
+   "pos": "phrase"
+  },
+  "good night": {
+   "img": "w/good_night.webp",
+   "ru": "спокойной ночи",
+   "ipa": "gʊd naɪt",
+   "pos": "phrase"
+  },
+  "see you tomorrow": {
+   "img": "w/see_you_tomorrow.webp",
+   "ru": "до завтра",
+   "ipa": "siː juː təˈmɒrəʊ",
+   "pos": "phrase"
+  },
+  "nice to meet you": {
+   "img": "w/nice_to_meet_you.webp",
+   "ru": "приятно познакомиться",
+   "ipa": "naɪs tə miːt juː",
+   "pos": "phrase"
+  },
+  "please": {
+   "img": "w/please.webp",
+   "ru": "пожалуйста",
+   "ipa": "pliːz",
+   "pos": "phrase"
+  },
+  "thank you": {
+   "img": "w/thank_you.webp",
+   "ru": "спасибо",
+   "ipa": "θæŋk juː",
+   "pos": "phrase"
+  },
+  "you are welcome": {
+   "img": "w/you_are_welcome.webp",
+   "ru": "не за что",
+   "ipa": "juː ɑː ˈwɛlkəm",
+   "pos": "phrase"
+  },
+  "sorry": {
+   "img": "w/sorry.webp",
+   "ru": "извини",
+   "ipa": "ˈsɒri",
+   "pos": "phrase"
+  },
+  "excuse me": {
+   "img": "w/excuse_me.webp",
+   "ru": "простите",
+   "ipa": "ɪkˈskjuːz miː",
+   "pos": "phrase"
+  },
+  "of course": {
+   "img": "w/of_course.webp",
+   "ru": "конечно",
+   "ipa": "əv kɔːs",
+   "pos": "phrase"
+  },
+  "well done": {
+   "img": "w/well_done.webp",
+   "ru": "молодец",
+   "ipa": "wɛl dʌn",
+   "pos": "phrase"
+  },
+  "good luck": {
+   "img": "w/good_luck.webp",
+   "ru": "удачи",
+   "ipa": "gʊd lʌk",
+   "pos": "phrase"
+  },
+  "happy birthday": {
+   "img": "w/happy_birthday.webp",
+   "ru": "с днём рождения",
+   "ipa": "ˈhæpi ˈbɜːθdeɪ",
+   "pos": "phrase"
+  },
+  "my name is": {
+   "img": "w/my_name_is.webp",
+   "ru": "меня зовут",
+   "ipa": "maɪ neɪm ɪz",
+   "pos": "phrase"
+  },
+  "what is your name": {
+   "img": "w/what_is_your_name.webp",
+   "ru": "как тебя зовут",
+   "ipa": "wɒt ɪz jɔː neɪm",
+   "pos": "phrase"
+  },
+  "how are you": {
+   "img": "w/how_are_you.webp",
+   "ru": "как дела",
+   "ipa": "haʊ ɑː juː",
+   "pos": "phrase"
+  },
+  "i am fine": {
+   "img": "w/I_am_fine.webp",
+   "ru": "у меня всё хорошо",
+   "ipa": "aɪ æm faɪn",
+   "pos": "phrase"
+  },
+  "how old are you": {
+   "img": "w/how_old_are_you.webp",
+   "ru": "сколько тебе лет",
+   "ipa": "haʊ əʊld ɑː juː",
+   "pos": "phrase"
+  },
+  "i am eight years old": {
+   "img": "w/I_am_eight_years_old.webp",
+   "ru": "мне восемь лет",
+   "ipa": "aɪ æm eɪt jɪəz əʊld",
+   "pos": "phrase"
+  },
+  "i live in": {
+   "img": "w/I_live_in.webp",
+   "ru": "я живу в",
+   "ipa": "aɪ lɪv ɪn",
+   "pos": "phrase"
+  },
+  "i have a sister": {
+   "img": "w/I_have_a_sister.webp",
+   "ru": "у меня есть сестра",
+   "ipa": "aɪ hæv ə ˈsɪstə",
+   "pos": "phrase"
+  },
+  "i like ice cream": {
+   "img": "w/I_like_ice_cream.webp",
+   "ru": "я люблю мороженое",
+   "ipa": "aɪ laɪk aɪs kriːm",
+   "pos": "phrase"
+  },
+  "i do not like rain": {
+   "img": "w/I_do_not_like_rain.webp",
+   "ru": "я не люблю дождь",
+   "ipa": "aɪ duː nɒt laɪk reɪn",
+   "pos": "phrase"
+  },
+  "i do not understand": {
+   "img": "w/I_do_not_understand.webp",
+   "ru": "я не понимаю",
+   "ipa": "aɪ duː nɒt ʌndəˈstænd",
+   "pos": "phrase"
+  },
+  "can you repeat": {
+   "img": "w/can_you_repeat.webp",
+   "ru": "можешь повторить",
+   "ipa": "kæn juː rɪˈpiːt",
+   "pos": "phrase"
+  },
+  "where is the toilet": {
+   "img": "w/where_is_the_toilet.webp",
+   "ru": "где туалет",
+   "ipa": "weə ɪz ðə ˈtɔɪlət",
+   "pos": "phrase"
+  },
+  "how much is it": {
+   "img": "w/how_much_is_it.webp",
+   "ru": "сколько это стоит",
+   "ipa": "haʊ mʌtʃ ɪz ɪt",
+   "pos": "phrase"
+  },
+  "what time is it": {
+   "img": "w/what_time_is_it.webp",
+   "ru": "который час",
+   "ipa": "wɒt taɪm ɪz ɪt",
+   "pos": "phrase"
+  },
+  "can you help me": {
+   "img": "w/can_you_help_me.webp",
+   "ru": "можешь мне помочь",
+   "ipa": "kæn juː hɛlp miː",
+   "pos": "phrase"
+  },
+  "i do not know": {
+   "img": "w/I_do_not_know.webp",
+   "ru": "я не знаю",
+   "ipa": "aɪ duː nɒt nəʊ",
+   "pos": "phrase"
+  },
+  "do you speak english": {
+   "img": "w/do_you_speak_English.webp",
+   "ru": "ты говоришь по-английски",
+   "ipa": "duː juː spiːk ˈɪŋɡlɪʃ",
+   "pos": "phrase"
+  },
+  "i am lost": {
+   "img": "w/I_am_lost.webp",
+   "ru": "я потерялся",
+   "ipa": "aɪ æm lɒst",
+   "pos": "phrase"
+  },
+  "call the doctor": {
+   "img": "w/call_the_doctor.webp",
+   "ru": "позовите врача",
+   "ipa": "kɔːl ðə ˈdɒktə",
+   "pos": "phrase"
+  },
+  "let us go": {
+   "img": "w/let_us_go.webp",
+   "ru": "пойдём",
+   "ipa": "lɛt ʌs ɡəʊ",
+   "pos": "phrase"
+  },
+  "come here": {
+   "img": "w/come_here.webp",
+   "ru": "иди сюда",
+   "ipa": "kʌm hɪə",
+   "pos": "phrase"
+  },
+  "look at this": {
+   "img": "w/look_at_this.webp",
+   "ru": "посмотри на это",
+   "ipa": "lʊk æt ðɪs",
+   "pos": "phrase"
+  },
+  "listen to me": {
+   "img": "w/listen_to_me.webp",
+   "ru": "послушай меня",
+   "ipa": "ˈlɪsən tə miː",
+   "pos": "phrase"
+  },
+  "be careful": {
+   "img": "w/be_careful.webp",
+   "ru": "будь осторожен",
+   "ipa": "biː ˈkeəfəl",
+   "pos": "phrase"
+  },
+  "sit down please": {
+   "img": "w/sit_down_please.webp",
+   "ru": "сядь, пожалуйста",
+   "ipa": "sɪt daʊn pliːz",
+   "pos": "phrase"
+  },
+  "open your book": {
+   "img": "w/open_your_book.webp",
+   "ru": "открой книгу",
+   "ipa": "ˈəʊpən jɔː bʊk",
+   "pos": "phrase"
+  },
+  "i am hungry": {
+   "img": "w/I_am_hungry.webp",
+   "ru": "я хочу есть",
+   "ipa": "aɪ æm ˈhʌŋɡri",
+   "pos": "phrase"
+  },
+  "i am cold": {
+   "img": "w/I_am_cold.webp",
+   "ru": "мне холодно",
+   "ipa": "aɪ æm kəʊld",
+   "pos": "phrase"
+  },
+  "it is my turn": {
+   "img": "w/it_is_my_turn.webp",
+   "ru": "моя очередь",
+   "ipa": "ɪt ɪz maɪ tɜːn",
+   "pos": "phrase"
+  },
+  "one": {
+   "img": "w/one.webp",
+   "ru": "один",
+   "ipa": "wʌn",
+   "pos": "num"
+  },
+  "two": {
+   "img": "w/two.webp",
+   "ru": "два",
+   "ipa": "tuː",
+   "pos": "num"
+  },
+  "three": {
+   "img": "w/three.webp",
+   "ru": "три",
+   "ipa": "θriː",
+   "pos": "num"
+  },
+  "four": {
+   "img": "w/four.webp",
+   "ru": "четыре",
+   "ipa": "fɔː",
+   "pos": "num"
+  },
+  "five": {
+   "img": "w/five.webp",
+   "ru": "пять",
+   "ipa": "faɪv",
+   "pos": "num"
+  },
+  "six": {
+   "img": "w/six.webp",
+   "ru": "шесть",
+   "ipa": "sɪks",
+   "pos": "num"
+  },
+  "seven": {
+   "img": "w/seven.webp",
+   "ru": "семь",
+   "ipa": "ˈsɛvən",
+   "pos": "num"
+  },
+  "eight": {
+   "img": "w/eight.webp",
+   "ru": "восемь",
+   "ipa": "eɪt",
+   "pos": "num"
+  },
+  "nine": {
+   "img": "w/nine.webp",
+   "ru": "девять",
+   "ipa": "naɪn",
+   "pos": "num"
+  },
+  "ten": {
+   "img": "w/ten.webp",
+   "ru": "десять",
+   "ipa": "tɛn",
+   "pos": "num"
+  },
+  "eleven": {
+   "img": "w/eleven.webp",
+   "ru": "одиннадцать",
+   "ipa": "ɪˈlɛvən",
+   "pos": "num"
+  },
+  "twelve": {
+   "img": "w/twelve.webp",
+   "ru": "двенадцать",
+   "ipa": "twɛlv",
+   "pos": "num"
+  },
+  "twenty": {
+   "img": "w/twenty.webp",
+   "ru": "двадцать",
+   "ipa": "ˈtwɛnti",
+   "pos": "num"
+  },
+  "thirty": {
+   "img": "w/thirty.webp",
+   "ru": "тридцать",
+   "ipa": "ˈθɜːti",
+   "pos": "num"
+  },
+  "forty": {
+   "img": "w/forty.webp",
+   "ru": "сорок",
+   "ipa": "ˈfɔːti",
+   "pos": "num"
+  },
+  "fifty": {
+   "img": "w/fifty.webp",
+   "ru": "пятьдесят",
+   "ipa": "ˈfɪfti",
+   "pos": "num"
+  },
+  "hundred": {
+   "img": "w/hundred.webp",
+   "ru": "сто",
+   "ipa": "ˈhʌndrəd",
+   "pos": "num"
+  },
+  "bottle of water": {
+   "img": "w/bottle_of_water.webp",
+   "ru": "бутылка воды",
+   "ipa": "ˈbɒtəl əv ˈwɔːtə",
+   "pos": "noun"
+  },
+  "glass of milk": {
+   "img": "w/glass_of_milk.webp",
+   "ru": "стакан молока",
+   "ipa": "ɡlɑːs əv mɪlk",
+   "pos": "noun"
+  },
+  "cup of tea": {
+   "img": "w/cup_of_tea.webp",
+   "ru": "чашка чая",
+   "ipa": "kʌp əv tiː",
+   "pos": "noun"
+  },
+  "bowl of soup": {
+   "img": "w/bowl_of_soup.webp",
+   "ru": "тарелка супа",
+   "ipa": "bəʊl əv suːp",
+   "pos": "noun"
+  },
+  "bar of chocolate": {
+   "img": "w/bar_of_chocolate.webp",
+   "ru": "плитка шоколада",
+   "ipa": "bɑː əv ˈtʃɒklət",
+   "pos": "noun"
+  },
+  "jar of jam": {
+   "img": "w/jar_of_jam.webp",
+   "ru": "банка варенья",
+   "ipa": "dʒɑː əv dʒæm",
+   "pos": "noun"
+  },
+  "bag of potatoes": {
+   "img": "w/bag_of_potatoes.webp",
+   "ru": "пакет картошки",
+   "ipa": "bæg əv pəˈteɪtəʊz",
+   "pos": "noun"
+  },
+  "piece of cake": {
+   "img": "w/piece_of_cake.webp",
+   "ru": "кусок торта",
+   "ipa": "piːs əv keɪk",
+   "pos": "noun"
+  },
+  "slice of bread": {
+   "img": "w/slice_of_bread.webp",
+   "ru": "ломтик хлеба",
+   "ipa": "slaɪs əv brɛd",
+   "pos": "noun"
+  },
+  "bunch of bananas": {
+   "img": "w/bunch_of_bananas.webp",
+   "ru": "связка бананов",
+   "ipa": "bʌntʃ əv bəˈnɑːnəz",
+   "pos": "noun"
+  },
+  "carton of juice": {
+   "img": "w/carton_of_juice.webp",
+   "ru": "пакет сока",
+   "ipa": "ˈkɑːtən əv dʒuːs",
+   "pos": "noun"
+  },
+  "packet of biscuits": {
+   "img": "w/packet_of_biscuits.webp",
+   "ru": "пачка печенья",
+   "ipa": "ˈpækɪt əv ˈbɪskɪts",
+   "pos": "noun"
+  },
+  "black": {
+   "img": "w/black.webp",
+   "ru": "чёрный",
+   "ipa": "blæk",
+   "pos": "adj"
+  },
+  "blue": {
+   "img": "w/blue.webp",
+   "ru": "синий",
+   "ipa": "bluː",
+   "pos": "adj"
+  },
+  "bright": {
+   "img": "w/bright.webp",
+   "ru": "яркий",
+   "ipa": "braɪt",
+   "pos": "adj"
+  },
+  "brown": {
+   "img": "w/brown.webp",
+   "ru": "коричневый",
+   "ipa": "braʊn",
+   "pos": "adj"
+  },
+  "checkered": {
+   "img": "w/checkered.webp",
+   "ru": "клетчатый",
+   "ipa": "ˈtʃɛkəd",
+   "pos": "adj"
+  },
+  "closed": {
+   "img": "w/closed.webp",
+   "ru": "закрытый",
+   "ipa": "kləʊzd",
+   "pos": "adj"
+  },
+  "colorful": {
+   "img": "w/colorful.webp",
+   "ru": "разноцветный",
+   "ipa": "ˈkʌləfəl",
+   "pos": "adj"
+  },
+  "metal": {
+   "img": "w/metal.webp",
+   "ru": "металлический",
+   "ipa": "ˈmɛtəl",
+   "pos": "adj"
+  },
+  "pink": {
+   "img": "w/pink.webp",
+   "ru": "розовый",
+   "ipa": "pɪŋk",
+   "pos": "adj"
+  },
+  "plastic": {
+   "img": "w/plastic.webp",
+   "ru": "пластиковый",
+   "ipa": "ˈplæstɪk",
+   "pos": "adj"
+  },
+  "purple": {
+   "img": "w/purple.webp",
+   "ru": "фиолетовый",
+   "ipa": "ˈpɜːpəl",
+   "pos": "adj"
+  },
+  "red": {
+   "img": "w/red.webp",
+   "ru": "красный",
+   "ipa": "rɛd",
+   "pos": "adj"
+  },
+  "round": {
+   "img": "w/round.webp",
+   "ru": "круглый",
+   "ipa": "raʊnd",
+   "pos": "adj"
+  },
+  "spotted": {
+   "img": "w/spotted.webp",
+   "ru": "пятнистый",
+   "ipa": "ˈspɒtɪd",
+   "pos": "adj"
+  },
+  "striped": {
+   "img": "w/striped.webp",
+   "ru": "полосатый",
+   "ipa": "straɪpt",
+   "pos": "adj"
+  },
+  "tidy": {
+   "img": "w/tidy.webp",
+   "ru": "убранный",
+   "ipa": "ˈtaɪdi",
+   "pos": "adj"
+  },
+  "white": {
+   "img": "w/white.webp",
+   "ru": "белый",
+   "ipa": "waɪt",
+   "pos": "adj"
+  },
+  "wide": {
+   "img": "w/wide.webp",
+   "ru": "широкий",
+   "ipa": "waɪd",
+   "pos": "adj"
+  },
+  "wooden": {
+   "img": "w/wooden.webp",
+   "ru": "деревянный",
+   "ipa": "ˈwʊdən",
+   "pos": "adj"
+  },
+  "yellow": {
+   "img": "w/yellow.webp",
+   "ru": "жёлтый",
+   "ipa": "ˈjɛləʊ",
+   "pos": "adj"
+  },
+  "circle": {
+   "img": "w/circle.webp",
+   "ru": "круг",
+   "ipa": "ˈsɜːkəl",
+   "pos": "noun"
+  },
+  "triangle": {
+   "img": "w/triangle.webp",
+   "ru": "треугольник",
+   "ipa": "ˈtraɪæŋɡəl",
+   "pos": "noun"
+  },
+  "burn": {
+   "img": "w/burn.webp",
+   "ru": "гореть",
+   "ipa": "bɜːn",
+   "pos": "verb"
+  },
+  "check": {
+   "img": "w/check.webp",
+   "ru": "проверять",
+   "ipa": "tʃɛk",
+   "pos": "verb"
+  },
+  "clap": {
+   "img": "w/clap.webp",
+   "ru": "хлопать",
+   "ipa": "klæp",
+   "pos": "verb"
+  },
+  "exercise": {
+   "img": "w/exercise.webp",
+   "ru": "тренироваться",
+   "ipa": "ˈɛksəsaɪz",
+   "pos": "verb"
+  },
+  "fold": {
+   "img": "w/fold.webp",
+   "ru": "складывать",
+   "ipa": "fəʊld",
+   "pos": "verb"
+  },
+  "hang": {
+   "img": "w/hang.webp",
+   "ru": "вешать",
+   "ipa": "hæŋ",
+   "pos": "verb"
+  },
+  "lie": {
+   "img": "w/lie.webp",
+   "ru": "лежать",
+   "ipa": "laɪ",
+   "pos": "verb"
+  },
+  "pet": {
+   "img": "w/pet.webp",
+   "ru": "гладить",
+   "ipa": "pɛt",
+   "pos": "verb"
+  },
+  "put": {
+   "img": "w/put.webp",
+   "ru": "класть",
+   "ipa": "pʊt",
+   "pos": "verb"
+  },
+  "reach": {
+   "img": "w/reach.webp",
+   "ru": "тянуться",
+   "ipa": "riːtʃ",
+   "pos": "verb"
+  },
+  "wrap": {
+   "img": "w/wrap.webp",
+   "ru": "заворачивать",
+   "ipa": "ræp",
+   "pos": "verb"
+  },
+  "pear": {
+   "img": "w/pear.webp",
+   "ru": "груша",
+   "ipa": "peə",
+   "pos": "noun"
+  },
+  "watermelon": {
+   "img": "w/watermelon.webp",
+   "ru": "арбуз",
+   "ipa": "ˈwɔːtəmelən",
+   "pos": "noun"
+  },
+  "pineapple": {
+   "img": "w/pineapple.webp",
+   "ru": "ананас",
+   "ipa": "ˈpaɪnæpəl",
+   "pos": "noun"
+  },
+  "donkey": {
+   "img": "w/donkey.webp",
+   "ru": "осёл",
+   "ipa": "ˈdɒŋki",
+   "pos": "noun"
+  },
+  "chicken": {
+   "img": "w/chicken.webp",
+   "ru": "курочка",
+   "ipa": "ˈtʃɪkɪn",
+   "pos": "noun"
+  },
+  "in": {
+   "ru": "",
+   "ipa": "",
+   "pos": "prep",
+   "img": "w/prep-in.webp"
+  },
+  "on": {
+   "ru": "",
+   "ipa": "",
+   "pos": "prep",
+   "img": "w/prep-on.webp"
+  },
+  "under": {
+   "ru": "",
+   "ipa": "",
+   "pos": "prep",
+   "img": "w/prep-under.webp"
+  },
+  "behind": {
+   "ru": "",
+   "ipa": "",
+   "pos": "prep",
+   "img": "w/prep-behind.webp"
+  },
+  "in front of": {
+   "ru": "",
+   "ipa": "",
+   "pos": "prep",
+   "img": "w/prep-in-front-of.webp"
+  },
+  "between": {
+   "ru": "",
+   "ipa": "",
+   "pos": "prep",
+   "img": "w/prep-between.webp"
+  },
+  "next to": {
+   "ru": "",
+   "ipa": "",
+   "pos": "prep",
+   "img": "w/prep-next-to.webp"
+  },
+  "birthday": {
+   "img": "w-extra/birthday.webp",
+   "ru": "день рождения",
+   "ipa": "",
+   "pos": ""
+  },
+  "carnival": {
+   "img": "w-extra/carnival.webp",
+   "ru": "карнавал",
+   "ipa": "",
+   "pos": ""
+  },
+  "carols": {
+   "img": "w-extra/carols.webp",
+   "ru": "рождественские песни",
+   "ipa": "",
+   "pos": ""
+  },
+  "celebration": {
+   "img": "w-extra/celebration.webp",
+   "ru": "празднование",
+   "ipa": "",
+   "pos": ""
+  },
+  "corner": {
+   "img": "w-extra/corner.webp",
+   "ru": "угол",
+   "ipa": "",
+   "pos": ""
+  },
+  "costume": {
+   "img": "w-extra/costume.webp",
+   "ru": "костюм",
+   "ipa": "",
+   "pos": ""
+  },
+  "cross the road": {
+   "img": "w-extra/cross_the_road.webp",
+   "ru": "",
+   "ipa": "",
+   "pos": ""
+  },
+  "crossroads": {
+   "img": "w-extra/crossroads.webp",
+   "ru": "перекрёсток",
+   "ipa": "",
+   "pos": ""
+  },
+  "decorate": {
+   "img": "w-extra/decorate.webp",
+   "ru": "украшать",
+   "ipa": "",
+   "pos": ""
+  },
+  "dining room": {
+   "img": "w-extra/dining_room.webp",
+   "ru": "столовая",
+   "ipa": "",
+   "pos": ""
+  },
+  "dragon": {
+   "img": "w-extra/dragon.webp",
+   "ru": "дракон",
+   "ipa": "",
+   "pos": ""
+  },
+  "dust": {
+   "img": "w-extra/dust.webp",
+   "ru": "вытирать пыль",
+   "ipa": "",
+   "pos": ""
+  },
+  "feast": {
+   "img": "w-extra/feast.webp",
+   "ru": "праздник",
+   "ipa": "",
+   "pos": ""
+  },
+  "fireworks": {
+   "img": "w-extra/fireworks.webp",
+   "ru": "фейерверк",
+   "ipa": "",
+   "pos": ""
+  },
+  "flat": {
+   "img": "w-extra/flat.webp",
+   "ru": "квартира",
+   "ipa": "",
+   "pos": ""
+  },
+  "furniture": {
+   "img": "w-extra/furniture.webp",
+   "ru": "мебель",
+   "ipa": "",
+   "pos": ""
+  },
+  "ghost": {
+   "img": "w-extra/ghost.webp",
+   "ru": "привидение",
+   "ipa": "",
+   "pos": ""
+  },
+  "go straight on": {
+   "img": "w-extra/go_straight_on.webp",
+   "ru": "",
+   "ipa": "",
+   "pos": ""
+  },
+  "invitation": {
+   "img": "w-extra/invitation.webp",
+   "ru": "приглашение",
+   "ipa": "",
+   "pos": ""
+  },
+  "iron": {
+   "img": "w-extra/iron.webp",
+   "ru": "гладить",
+   "ipa": "",
+   "pos": ""
+  },
+  "magic": {
+   "img": "w-extra/magic.webp",
+   "ru": "волшебство",
+   "ipa": "",
+   "pos": ""
+  },
+  "make the bed": {
+   "img": "w-extra/make_the_bed.webp",
+   "ru": "заправлять постель",
+   "ipa": "",
+   "pos": ""
+  },
+  "parade": {
+   "img": "w-extra/parade.webp",
+   "ru": "парад",
+   "ipa": "",
+   "pos": ""
+  },
+  "presents": {
+   "img": "w-extra/presents.webp",
+   "ru": "подарки",
+   "ipa": "",
+   "pos": ""
+  },
+  "prince": {
+   "img": "w-extra/prince.webp",
+   "ru": "принц",
+   "ipa": "",
+   "pos": ""
+  },
+  "roundabout": {
+   "img": "w-extra/roundabout.webp",
+   "ru": "",
+   "ipa": "",
+   "pos": ""
+  },
+  "ship": {
+   "img": "w-extra/ship.webp",
+   "ru": "корабль",
+   "ipa": "",
+   "pos": ""
+  },
+  "sweep": {
+   "img": "w-extra/sweep.webp",
+   "ru": "подметать",
+   "ipa": "",
+   "pos": ""
+  },
+  "sweets": {
+   "img": "w-extra/sweets.webp",
+   "ru": "сладости",
+   "ipa": "",
+   "pos": ""
+  },
+  "sword": {
+   "img": "w-extra/sword.webp",
+   "ru": "меч",
+   "ipa": "",
+   "pos": ""
+  },
+  "take the rubbish out": {
+   "img": "w-extra/take_the_rubbish_out.webp",
+   "ru": "выносить мусор",
+   "ipa": "",
+   "pos": ""
+  },
+  "traffic": {
+   "img": "w-extra/traffic.webp",
+   "ru": "движение (машин)",
+   "ipa": "",
+   "pos": ""
+  },
+  "traffic lights": {
+   "img": "w-extra/traffic_lights.webp",
+   "ru": "",
+   "ipa": "",
+   "pos": ""
+  },
+  "transport": {
+   "img": "w-extra/transport.webp",
+   "ru": "транспорт",
+   "ipa": "",
+   "pos": ""
+  },
+  "treasure": {
+   "img": "w-extra/treasure.webp",
+   "ru": "сокровище",
+   "ipa": "",
+   "pos": ""
+  },
+  "turn left": {
+   "img": "w-extra/turn_left.webp",
+   "ru": "",
+   "ipa": "",
+   "pos": ""
+  },
+  "turn right": {
+   "img": "w-extra/turn_right.webp",
+   "ru": "",
+   "ipa": "",
+   "pos": ""
+  },
+  "underground": {
+   "img": "w-extra/underground.webp",
+   "ru": "метро",
+   "ipa": "",
+   "pos": ""
+  },
+  "vacuum": {
+   "img": "w-extra/vacuum.webp",
+   "ru": "пылесосить",
+   "ipa": "",
+   "pos": ""
+  },
+  "witch": {
+   "img": "w-extra/witch.webp",
+   "ru": "ведьма",
+   "ipa": "",
+   "pos": ""
+  },
+  "wizard": {
+   "img": "w-extra/wizard.webp",
+   "ru": "волшебник",
+   "ipa": "",
+   "pos": ""
+  }
+ },
+ "scenes": [
+  {
+   "id": "p_house",
+   "title": "Дом · жильцы",
+   "img": "scenes/p_house.webp",
+   "w": 820,
+   "h": 547,
+   "zones": [
+    {
+     "en": "kitchen",
+     "ru": "кухня",
+     "px": 69.39,
+     "py": 78.61,
+     "lx": 58.05,
+     "ly": 88.67
+    },
+    {
+     "en": "bedroom",
+     "ru": "спальня",
+     "px": 15.49,
+     "py": 29.43,
+     "lx": 0.49,
+     "ly": 15.36
+    },
+    {
+     "en": "bathroom",
+     "ru": "ванная",
+     "px": 43.05,
+     "py": 32.36,
+     "lx": 31.71,
+     "ly": 39.31
+    },
+    {
+     "en": "living room",
+     "ru": "гостиная",
+     "px": 25.49,
+     "py": 76.97,
+     "lx": 4.27,
+     "ly": 61.79
+    },
+    {
+     "en": "hall",
+     "ru": "прихожая",
+     "px": 46.59,
+     "py": 75.32,
+     "lx": 30,
+     "ly": 86.11
+    },
+    {
+     "en": "study",
+     "ru": "детская",
+     "px": 62.93,
+     "py": 29.98,
+     "lx": 57.56,
+     "ly": 3.84
+    },
+    {
+     "en": "balcony",
+     "ru": "балкон",
+     "px": 93.54,
+     "py": 41.86,
+     "lx": 73.41,
+     "ly": 21.02
+    },
+    {
+     "en": "stairs",
+     "ru": "лестница",
+     "px": 55.85,
+     "py": 69.47,
+     "lx": 52.2,
+     "ly": 49.36
+    },
+    {
+     "en": "roof",
+     "ru": "крыша",
+     "px": 52.68,
+     "py": 10.97,
+     "lx": 28.17,
+     "ly": 2.01
+    },
+    {
+     "en": "garden",
+     "ru": "сад",
+     "px": 97.44,
+     "py": 70.57,
+     "lx": 73.29,
+     "ly": 76.78
+    },
+    {
+     "en": "read",
+     "ru": "читать",
+     "px": 22.93,
+     "py": 68.92,
+     "lx": 19.39,
+     "ly": 55.76
+    },
+    {
+     "en": "study",
+     "ru": "учиться",
+     "px": 70.73,
+     "py": 39.31,
+     "lx": 70.37,
+     "ly": 26.69
+    },
+    {
+     "en": "cook",
+     "ru": "готовить",
+     "px": 84.15,
+     "py": 67.64,
+     "lx": 75.98,
+     "ly": 79.71
+    },
+    {
+     "en": "walk",
+     "ru": "гулять",
+     "px": 42.07,
+     "py": 71.3,
+     "lx": 32.44,
+     "ly": 83.36
+    },
+    {
+     "en": "open",
+     "ru": "открывать",
+     "px": 42.68,
+     "py": 58.5,
+     "lx": 24.02,
+     "ly": 45.34
+    },
+    {
+     "en": "yellow",
+     "ru": "жёлтый",
+     "px": 65.12,
+     "py": 38.76,
+     "lx": 58.66,
+     "ly": 14.08
+    },
+    {
+     "en": "old",
+     "ru": "старая",
+     "px": 18.29,
+     "py": 32.91,
+     "lx": 3.29,
+     "ly": 14.26
+    },
+    {
+     "en": "black",
+     "ru": "чёрный",
+     "px": 30,
+     "py": 9.51,
+     "lx": 25.85,
+     "ly": 14.44
+    },
+    {
+     "en": "bright",
+     "ru": "яркий",
+     "px": 7.32,
+     "py": 67.64,
+     "lx": 5,
+     "ly": 85.92
+    },
+    {
+     "en": "wooden",
+     "ru": "деревянный",
+     "px": 56.1,
+     "py": 69.47,
+     "lx": 51.71,
+     "ly": 50.27
+    }
+   ]
+  },
+  {
+   "id": "bedroom",
+   "title": "Спальня · утро",
+   "img": "scenes/bedroom.webp",
+   "w": 820,
+   "h": 547,
+   "zones": [
+    {
+     "en": "bed",
+     "ru": "кровать",
+     "px": 29.27,
+     "py": 60.33,
+     "lx": 20.37,
+     "ly": 86.47
+    },
+    {
+     "en": "pillow",
+     "ru": "подушка",
+     "px": 35.37,
+     "py": 47.9,
+     "lx": 28.54,
+     "ly": 28.34
+    },
+    {
+     "en": "lamp",
+     "ru": "лампа",
+     "px": 25,
+     "py": 40.22,
+     "lx": 16.95,
+     "ly": 14.63
+    },
+    {
+     "en": "wardrobe",
+     "ru": "шкаф",
+     "px": 74.63,
+     "py": 21.94,
+     "lx": 50.49,
+     "ly": 7.86
+    },
+    {
+     "en": "shirt",
+     "ru": "рубашка",
+     "px": 85.73,
+     "py": 27.42,
+     "lx": 58.54,
+     "ly": 29.07
+    },
+    {
+     "en": "trousers",
+     "ru": "брюки",
+     "px": 63.41,
+     "py": 58.14,
+     "lx": 42.93,
+     "ly": 44.06
+    },
+    {
+     "en": "shoes",
+     "ru": "ботинки",
+     "px": 10.98,
+     "py": 83.73,
+     "lx": 2.32,
+     "ly": 62.52
+    },
+    {
+     "en": "sock",
+     "ru": "носок",
+     "px": 46.59,
+     "py": 84.1,
+     "lx": 30.12,
+     "ly": 70.02
+    },
+    {
+     "en": "coat",
+     "ru": "пальто",
+     "px": 10.98,
+     "py": 31.99,
+     "lx": 3.54,
+     "ly": 47.53
+    },
+    {
+     "en": "hat",
+     "ru": "шапка",
+     "px": 96.59,
+     "py": 46.07,
+     "lx": 78.29,
+     "ly": 53.02
+    },
+    {
+     "en": "hang",
+     "ru": "вешать",
+     "px": 15.37,
+     "py": 27.42,
+     "lx": 3.05,
+     "ly": 6.58
+    },
+    {
+     "en": "dress",
+     "ru": "одеваться",
+     "px": 39.02,
+     "py": 46.98,
+     "lx": 31.46,
+     "ly": 24.5
+    },
+    {
+     "en": "fold",
+     "ru": "складывать",
+     "px": 61.59,
+     "py": 38.39,
+     "lx": 44.15,
+     "ly": 13.71
+    },
+    {
+     "en": "sleep",
+     "ru": "спать",
+     "px": 80.49,
+     "py": 84.1,
+     "lx": 57.93,
+     "ly": 90.68
+    },
+    {
+     "en": "tall",
+     "ru": "высокий",
+     "px": 84.15,
+     "py": 18.28,
+     "lx": 69.02,
+     "ly": 3.11
+    },
+    {
+     "en": "warm",
+     "ru": "тёплый",
+     "px": 34.15,
+     "py": 58.5,
+     "lx": 35.61,
+     "ly": 54.48
+    },
+    {
+     "en": "bright",
+     "ru": "яркий",
+     "px": 25,
+     "py": 36.56,
+     "lx": 6.95,
+     "ly": 50.82
+    },
+    {
+     "en": "long",
+     "ru": "длинный",
+     "px": 61.59,
+     "py": 39.31,
+     "lx": 67.07,
+     "ly": 41.86
+    },
+    {
+     "en": "dark",
+     "ru": "тёмный",
+     "px": 12.2,
+     "py": 85.01,
+     "lx": 2.2,
+     "ly": 64.17
+    },
+    {
+     "en": "round",
+     "ru": "круглый",
+     "px": 81.1,
+     "py": 85.01,
+     "lx": 66.1,
+     "ly": 69.84
+    }
+   ]
+  },
+  {
+   "id": "bathroom",
+   "title": "Ванная · утро",
+   "img": "scenes/bathroom.webp",
+   "w": 820,
+   "h": 547,
+   "zones": [
+    {
+     "en": "bath",
+     "ru": "ванна",
+     "px": 4.88,
+     "py": 78.61,
+     "lx": 8.54,
+     "ly": 89.4
+    },
+    {
+     "en": "water",
+     "ru": "вода",
+     "px": 8.9,
+     "py": 57.95,
+     "lx": 0.73,
+     "ly": 36.38
+    },
+    {
+     "en": "towel",
+     "ru": "полотенце",
+     "px": 16.71,
+     "py": 29.25,
+     "lx": 2.68,
+     "ly": 8.41
+    },
+    {
+     "en": "soap",
+     "ru": "мыло",
+     "px": 36.83,
+     "py": 33.82,
+     "lx": 21.34,
+     "ly": 18.65
+    },
+    {
+     "en": "toothbrush",
+     "ru": "зубная щётка",
+     "px": 65.37,
+     "py": 36.2,
+     "lx": 50.49,
+     "ly": 43.14
+    },
+    {
+     "en": "mirror",
+     "ru": "зеркало",
+     "px": 47.56,
+     "py": 16.45,
+     "lx": 40.24,
+     "ly": 1.28
+    },
+    {
+     "en": "tap",
+     "ru": "кран",
+     "px": 49.88,
+     "py": 38.39,
+     "lx": 37.56,
+     "ly": 54.84
+    },
+    {
+     "en": "comb",
+     "ru": "расчёска",
+     "px": 73.17,
+     "py": 74.04,
+     "lx": 54.39,
+     "ly": 85.92
+    },
+    {
+     "en": "shower",
+     "ru": "душ",
+     "px": 83.9,
+     "py": 34.73,
+     "lx": 75.73,
+     "ly": 2.74
+    },
+    {
+     "en": "toilet",
+     "ru": "туалет",
+     "px": 91.46,
+     "py": 60.33,
+     "lx": 76.83,
+     "ly": 83.18
+    },
+    {
+     "en": "dry",
+     "ru": "вытираться",
+     "px": 27.44,
+     "py": 36.56,
+     "lx": 6.22,
+     "ly": 7.31
+    },
+    {
+     "en": "brush",
+     "ru": "чистить",
+     "px": 39.02,
+     "py": 32.91,
+     "lx": 33.9,
+     "ly": 47.17
+    },
+    {
+     "en": "wash",
+     "ru": "мыть",
+     "px": 56.1,
+     "py": 42.05,
+     "lx": 48.41,
+     "ly": 21.76
+    },
+    {
+     "en": "comb",
+     "ru": "расчёсывать",
+     "px": 75.61,
+     "py": 20.11,
+     "lx": 55.37,
+     "ly": 1.46
+    },
+    {
+     "en": "big",
+     "ru": "большой",
+     "px": 12.2,
+     "py": 65.81,
+     "lx": 8.41,
+     "ly": 68.19
+    },
+    {
+     "en": "clean",
+     "ru": "чистый",
+     "px": 48.29,
+     "py": 44.24,
+     "lx": 33.41,
+     "ly": 70.2
+    },
+    {
+     "en": "warm",
+     "ru": "тёплый",
+     "px": 17.68,
+     "py": 28.34,
+     "lx": 0.85,
+     "ly": 42.6
+    },
+    {
+     "en": "empty",
+     "ru": "пустой",
+     "px": 39.02,
+     "py": 62.16,
+     "lx": 34.39,
+     "ly": 83.18
+    },
+    {
+     "en": "closed",
+     "ru": "закрытый",
+     "px": 76.83,
+     "py": 84.1,
+     "lx": 56.1,
+     "ly": 61.61
+    },
+    {
+     "en": "dark",
+     "ru": "тёмный",
+     "px": 75.61,
+     "py": 40.22,
+     "lx": 76.95,
+     "ly": 36.2
+    }
+   ]
+  },
+  {
+   "id": "p_lr2",
+   "title": "Гостиная · после",
+   "img": "scenes/p_lr2.webp",
+   "w": 820,
+   "h": 547,
+   "zones": [
+    {
+     "en": "sofa",
+     "ru": "диван",
+     "px": 52.07,
+     "py": 38.94,
+     "lx": 38.17,
+     "ly": 17.18
+    },
+    {
+     "en": "television",
+     "ru": "телевизор",
+     "px": 5.49,
+     "py": 31.26,
+     "lx": 5.61,
+     "ly": 15.54
+    },
+    {
+     "en": "table",
+     "ru": "столик",
+     "px": 57.93,
+     "py": 57.59,
+     "lx": 59.88,
+     "ly": 42.78
+    },
+    {
+     "en": "armchair",
+     "ru": "кресло",
+     "px": 93.05,
+     "py": 50.82,
+     "lx": 73.05,
+     "ly": 57.22
+    },
+    {
+     "en": "lamp",
+     "ru": "торшер",
+     "px": 90.49,
+     "py": 12.8,
+     "lx": 71.34,
+     "ly": 27.06
+    },
+    {
+     "en": "carpet",
+     "ru": "ковёр",
+     "px": 68.9,
+     "py": 86.29,
+     "lx": 71.59,
+     "ly": 85.01
+    },
+    {
+     "en": "picture",
+     "ru": "картина",
+     "px": 51.34,
+     "py": 11.7,
+     "lx": 21.83,
+     "ly": 1.65
+    },
+    {
+     "en": "clock",
+     "ru": "часы",
+     "px": 78.78,
+     "py": 10.24,
+     "lx": 64.63,
+     "ly": 15.36
+    },
+    {
+     "en": "box",
+     "ru": "коробка",
+     "px": 26.95,
+     "py": 67.28,
+     "lx": 8.9,
+     "ly": 79.16
+    },
+    {
+     "en": "cat",
+     "ru": "кот",
+     "px": 57.32,
+     "py": 72.21,
+     "lx": 40.49,
+     "ly": 82.08
+    },
+    {
+     "en": "lie",
+     "ru": "лежать",
+     "px": 59.27,
+     "py": 74.22,
+     "lx": 73.54,
+     "ly": 88.12
+    },
+    {
+     "en": "green",
+     "ru": "зелёный",
+     "px": 43.9,
+     "py": 31.44,
+     "lx": 31.34,
+     "ly": 6.58
+    },
+    {
+     "en": "tidy",
+     "ru": "убранный",
+     "px": 62.8,
+     "py": 43.88,
+     "lx": 73.29,
+     "ly": 67.64
+    },
+    {
+     "en": "purple",
+     "ru": "фиолетовый",
+     "px": 26.34,
+     "py": 60.69,
+     "lx": 8.9,
+     "ly": 84.83
+    },
+    {
+     "en": "new",
+     "ru": "новый",
+     "px": 7.56,
+     "py": 30.35,
+     "lx": 0.49,
+     "ly": 6.95
+    },
+    {
+     "en": "soft",
+     "ru": "мягкий",
+     "px": 23.78,
+     "py": 47.53,
+     "lx": 7.32,
+     "ly": 61.79
+    },
+    {
+     "en": "happy",
+     "ru": "счастливый",
+     "px": 24.51,
+     "py": 30.71,
+     "lx": 0.49,
+     "ly": 44.06
+    },
+    {
+     "en": "round",
+     "ru": "круглый",
+     "px": 77.07,
+     "py": 9.51,
+     "lx": 49.15,
+     "ly": 21.21
+    },
+    {
+     "en": "long",
+     "ru": "длинный",
+     "px": 50.49,
+     "py": 59.23,
+     "lx": 43.29,
+     "ly": 83
+    },
+    {
+     "en": "bright",
+     "ru": "яркий",
+     "px": 92.93,
+     "py": 23.03,
+     "lx": 77.56,
+     "ly": 40.95
+    }
+   ]
+  },
+  {
+   "id": "p_lr1",
+   "title": "Гостиная · до",
+   "img": "scenes/p_lr1.webp",
+   "w": 820,
+   "h": 547,
+   "zones": [
+    {
+     "en": "sofa",
+     "ru": "диван",
+     "px": 40.98,
+     "py": 33.82,
+     "lx": 44.39,
+     "ly": 27.06
+    },
+    {
+     "en": "television",
+     "ru": "телевизор",
+     "px": 5.49,
+     "py": 29.25,
+     "lx": 9.51,
+     "ly": 12.25
+    },
+    {
+     "en": "table",
+     "ru": "столик",
+     "px": 58.66,
+     "py": 55.58,
+     "lx": 41.34,
+     "ly": 59.05
+    },
+    {
+     "en": "armchair",
+     "ru": "кресло",
+     "px": 93.05,
+     "py": 48.81,
+     "lx": 73.05,
+     "ly": 57.22
+    },
+    {
+     "en": "lamp",
+     "ru": "торшер",
+     "px": 90.49,
+     "py": 12.8,
+     "lx": 71.34,
+     "ly": 27.06
+    },
+    {
+     "en": "carpet",
+     "ru": "ковёр",
+     "px": 45,
+     "py": 76.05,
+     "lx": 52.93,
+     "ly": 84.64
+    },
+    {
+     "en": "picture",
+     "ru": "картина",
+     "px": 51.34,
+     "py": 11.7,
+     "lx": 24.76,
+     "ly": 0.73
+    },
+    {
+     "en": "clock",
+     "ru": "часы",
+     "px": 78.78,
+     "py": 10.24,
+     "lx": 64.63,
+     "ly": 15.36
+    },
+    {
+     "en": "toy",
+     "ru": "игрушка",
+     "px": 65.12,
+     "py": 75.14,
+     "lx": 66.83,
+     "ly": 71.3
+    },
+    {
+     "en": "book",
+     "ru": "книга",
+     "px": 28.05,
+     "py": 90.68,
+     "lx": 30.61,
+     "ly": 89.58
+    },
+    {
+     "en": "play",
+     "ru": "играть",
+     "px": 30.73,
+     "py": 69.29,
+     "lx": 3.41,
+     "ly": 80.8
+    },
+    {
+     "en": "build",
+     "ru": "строить",
+     "px": 35.37,
+     "py": 70.38,
+     "lx": 12.44,
+     "ly": 34.55
+    },
+    {
+     "en": "lie",
+     "ru": "лежать",
+     "px": 60.37,
+     "py": 40.22,
+     "lx": 20.98,
+     "ly": 11.88
+    },
+    {
+     "en": "pink",
+     "ru": "розовый",
+     "px": 15.98,
+     "py": 69.47,
+     "lx": 2.07,
+     "ly": 49.18
+    },
+    {
+     "en": "soft",
+     "ru": "мягкий",
+     "px": 42.07,
+     "py": 36.56,
+     "lx": 31.83,
+     "ly": 45.34
+    },
+    {
+     "en": "tall",
+     "ru": "высокий",
+     "px": 91.34,
+     "py": 20.66,
+     "lx": 68.29,
+     "ly": 27.24
+    },
+    {
+     "en": "empty",
+     "ru": "пустой",
+     "px": 91.46,
+     "py": 49.36,
+     "lx": 80.12,
+     "ly": 57.59
+    },
+    {
+     "en": "round",
+     "ru": "круглый",
+     "px": 69.51,
+     "py": 50.82,
+     "lx": 73.41,
+     "ly": 68.74
+    },
+    {
+     "en": "long",
+     "ru": "длинный",
+     "px": 59.15,
+     "py": 56.67,
+     "lx": 70.85,
+     "ly": 87.02
+    },
+    {
+     "en": "colorful",
+     "ru": "разноцветный",
+     "px": 31.22,
+     "py": 72.39,
+     "lx": 35.98,
+     "ly": 86.65
+    }
+   ]
+  },
+  {
+   "id": "p_yard",
+   "title": "Двор",
+   "img": "scenes/p_yard.webp",
+   "w": 820,
+   "h": 547,
+   "zones": [
+    {
+     "en": "tree",
+     "ru": "дерево",
+     "px": 9.63,
+     "py": 6.4,
+     "lx": 3.9,
+     "ly": 13.35
+    },
+    {
+     "en": "bench",
+     "ru": "скамейка",
+     "px": 4.88,
+     "py": 64.53,
+     "lx": 1.22,
+     "ly": 72.39
+    },
+    {
+     "en": "gate",
+     "ru": "ворота",
+     "px": 47.93,
+     "py": 35.83,
+     "lx": 32.2,
+     "ly": 1.65
+    },
+    {
+     "en": "swing",
+     "ru": "качели",
+     "px": 90.12,
+     "py": 40.95,
+     "lx": 72.93,
+     "ly": 11.7
+    },
+    {
+     "en": "slide",
+     "ru": "горка",
+     "px": 71.34,
+     "py": 35.83,
+     "lx": 54.15,
+     "ly": 1.65
+    },
+    {
+     "en": "bell",
+     "ru": "колокол",
+     "px": 53.29,
+     "py": 31.63,
+     "lx": 35.98,
+     "ly": 12.07
+    },
+    {
+     "en": "friend",
+     "ru": "друг",
+     "px": 16.71,
+     "py": 52.1,
+     "lx": 2.68,
+     "ly": 30.9
+    },
+    {
+     "en": "sandpit",
+     "ru": "песочница",
+     "px": 83.54,
+     "py": 74.22,
+     "lx": 68.29,
+     "ly": 82.08
+    },
+    {
+     "en": "ball",
+     "ru": "мяч",
+     "px": 80.12,
+     "py": 47.9,
+     "lx": 41.46,
+     "ly": 86.84
+    },
+    {
+     "en": "rope",
+     "ru": "скакалка",
+     "px": 45.49,
+     "py": 64.17,
+     "lx": 35.49,
+     "ly": 72.03
+    },
+    {
+     "en": "run",
+     "ru": "бежать",
+     "px": 15,
+     "py": 57.22,
+     "lx": 0.98,
+     "ly": 77.88
+    },
+    {
+     "en": "jump",
+     "ru": "прыгать",
+     "px": 40.98,
+     "py": 45.89,
+     "lx": 7.2,
+     "ly": 36.75
+    },
+    {
+     "en": "climb",
+     "ru": "залезать",
+     "px": 66.22,
+     "py": 37.29,
+     "lx": 2.56,
+     "ly": 0.73
+    },
+    {
+     "en": "throw",
+     "ru": "бросать",
+     "px": 57.44,
+     "py": 64.35,
+     "lx": 22.68,
+     "ly": 81.54
+    },
+    {
+     "en": "catch",
+     "ru": "ловить",
+     "px": 90.49,
+     "py": 58.68,
+     "lx": 61.95,
+     "ly": 3.11
+    },
+    {
+     "en": "stand",
+     "ru": "стоять",
+     "px": 61.22,
+     "py": 58.5,
+     "lx": 46.46,
+     "ly": 76.23
+    },
+    {
+     "en": "play",
+     "ru": "играть",
+     "px": 75.85,
+     "py": 63.25,
+     "lx": 77.93,
+     "ly": 84.46
+    },
+    {
+     "en": "look",
+     "ru": "смотреть",
+     "px": 67.07,
+     "py": 28.34,
+     "lx": 34.15,
+     "ly": 2.93
+    },
+    {
+     "en": "smile",
+     "ru": "улыбаться",
+     "px": 89.88,
+     "py": 48.99,
+     "lx": 74.39,
+     "ly": 13.35
+    },
+    {
+     "en": "happy",
+     "ru": "счастливый",
+     "px": 42.2,
+     "py": 42.41,
+     "lx": 11.46,
+     "ly": 21.39
+    }
+   ]
+  },
+  {
+   "id": "k2",
+   "title": "Кухня · семья",
+   "img": "scenes/k2.webp",
+   "w": 820,
+   "h": 547,
+   "zones": [
+    {
+     "en": "window",
+     "ru": "окно",
+     "px": 6.22,
+     "py": 17.73,
+     "lx": 19.15,
+     "ly": 0.91
+    },
+    {
+     "en": "cooker",
+     "ru": "плита",
+     "px": 25.98,
+     "py": 45.89,
+     "lx": 2.2,
+     "ly": 56.86
+    },
+    {
+     "en": "pan",
+     "ru": "кастрюля",
+     "px": 22.44,
+     "py": 38.76,
+     "lx": 16.34,
+     "ly": 22.85
+    },
+    {
+     "en": "milk",
+     "ru": "молоко",
+     "px": 54.15,
+     "py": 44.42,
+     "lx": 42.56,
+     "ly": 18.46
+    },
+    {
+     "en": "bread",
+     "ru": "хлеб",
+     "px": 58.17,
+     "py": 50.27,
+     "lx": 63.29,
+     "ly": 52.83
+    },
+    {
+     "en": "plate",
+     "ru": "тарелка",
+     "px": 43.17,
+     "py": 52.1,
+     "lx": 33.66,
+     "ly": 56.67
+    },
+    {
+     "en": "table",
+     "ru": "стол",
+     "px": 55.24,
+     "py": 59.05,
+     "lx": 63.29,
+     "ly": 70.38
+    },
+    {
+     "en": "chair",
+     "ru": "стул",
+     "px": 30.73,
+     "py": 72.58,
+     "lx": 7.68,
+     "ly": 80.62
+    },
+    {
+     "en": "cat",
+     "ru": "кот",
+     "px": 53.41,
+     "py": 80.07,
+     "lx": 61.22,
+     "ly": 86.65
+    },
+    {
+     "en": "fridge",
+     "ru": "холодильник",
+     "px": 81.59,
+     "py": 25.23,
+     "lx": 61.34,
+     "ly": 2.56
+    },
+    {
+     "en": "cook",
+     "ru": "готовить",
+     "px": 26.83,
+     "py": 33.09,
+     "lx": 15,
+     "ly": 54.66
+    },
+    {
+     "en": "hot",
+     "ru": "горячий",
+     "px": 23.05,
+     "py": 38.57,
+     "lx": 0.98,
+     "ly": 69.47
+    },
+    {
+     "en": "drink",
+     "ru": "пить",
+     "px": 44.15,
+     "py": 43.33,
+     "lx": 25.49,
+     "ly": 82.63
+    },
+    {
+     "en": "sit",
+     "ru": "сидеть",
+     "px": 65.24,
+     "py": 43.33,
+     "lx": 70,
+     "ly": 34.73
+    },
+    {
+     "en": "open",
+     "ru": "открывать",
+     "px": 92.68,
+     "py": 42.96,
+     "lx": 74.15,
+     "ly": 77.51
+    },
+    {
+     "en": "eat",
+     "ru": "есть",
+     "px": 65.37,
+     "py": 46.07,
+     "lx": 65.49,
+     "ly": 65.45
+    },
+    {
+     "en": "fresh",
+     "ru": "свежий",
+     "px": 58.54,
+     "py": 52.1,
+     "lx": 43.41,
+     "ly": 17.92
+    },
+    {
+     "en": "wait",
+     "ru": "ждать",
+     "px": 53.05,
+     "py": 82.27,
+     "lx": 62.2,
+     "ly": 91.04
+    },
+    {
+     "en": "full",
+     "ru": "полный",
+     "px": 83.9,
+     "py": 24.68,
+     "lx": 64.02,
+     "ly": 7.13
+    },
+    {
+     "en": "wooden",
+     "ru": "деревянный",
+     "px": 21.34,
+     "py": 7.31,
+     "lx": 26.83,
+     "ly": 0.73
+    }
+   ]
+  },
+  {
+   "id": "shop",
+   "title": "Магазин · семья",
+   "img": "scenes/shop.webp",
+   "w": 820,
+   "h": 547,
+   "zones": [
+    {
+     "en": "tomatoes",
+     "ru": "помидоры",
+     "px": 6.22,
+     "py": 33.27,
+     "lx": 0.98,
+     "ly": 3.47
+    },
+    {
+     "en": "bananas",
+     "ru": "бананы",
+     "px": 7.8,
+     "py": 49.73,
+     "lx": 24.63,
+     "ly": 61.61
+    },
+    {
+     "en": "potatoes",
+     "ru": "картофель",
+     "px": 9.76,
+     "py": 65.81,
+     "lx": 29.51,
+     "ly": 79.52
+    },
+    {
+     "en": "carrots",
+     "ru": "морковь",
+     "px": 10.73,
+     "py": 83,
+     "lx": 0.98,
+     "ly": 89.21
+    },
+    {
+     "en": "milk",
+     "ru": "молоко",
+     "px": 40.37,
+     "py": 23.95,
+     "lx": 42.44,
+     "ly": 1.1
+    },
+    {
+     "en": "cheese",
+     "ru": "сыр",
+     "px": 36.83,
+     "py": 39.67,
+     "lx": 42.44,
+     "ly": 40.77
+    },
+    {
+     "en": "bread",
+     "ru": "хлеб",
+     "px": 88.78,
+     "py": 21.94,
+     "lx": 66.71,
+     "ly": 1.28
+    },
+    {
+     "en": "eggs",
+     "ru": "яйца",
+     "px": 96.95,
+     "py": 77.88,
+     "lx": 66.59,
+     "ly": 89.21
+    },
+    {
+     "en": "basket",
+     "ru": "корзина",
+     "px": 28.05,
+     "py": 46.8,
+     "lx": 16.22,
+     "ly": 28.15
+    },
+    {
+     "en": "trolley",
+     "ru": "тележка",
+     "px": 52.93,
+     "py": 60.15,
+     "lx": 55.61,
+     "ly": 66.36
+    },
+    {
+     "en": "choose",
+     "ru": "выбирать",
+     "px": 18.54,
+     "py": 47.35,
+     "lx": 2.2,
+     "ly": 18.1
+    },
+    {
+     "en": "carry",
+     "ru": "нести",
+     "px": 26.83,
+     "py": 45.7,
+     "lx": 30.24,
+     "ly": 47.17
+    },
+    {
+     "en": "pay",
+     "ru": "платить",
+     "px": 63.41,
+     "py": 29.25,
+     "lx": 56.34,
+     "ly": 45.7
+    },
+    {
+     "en": "take",
+     "ru": "брать",
+     "px": 81.71,
+     "py": 45.7,
+     "lx": 63.41,
+     "ly": 35.28
+    },
+    {
+     "en": "red",
+     "ru": "красный",
+     "px": 4.27,
+     "py": 35.65,
+     "lx": 3.54,
+     "ly": 4.57
+    },
+    {
+     "en": "fresh",
+     "ru": "свежий",
+     "px": 5.12,
+     "py": 40.95,
+     "lx": 11.95,
+     "ly": 84.64
+    },
+    {
+     "en": "reach",
+     "ru": "тянуться",
+     "px": 87.2,
+     "py": 28.7,
+     "lx": 67.32,
+     "ly": 2.93
+    },
+    {
+     "en": "empty",
+     "ru": "пустой",
+     "px": 45.73,
+     "py": 60.33,
+     "lx": 44.02,
+     "ly": 62.71
+    },
+    {
+     "en": "white",
+     "ru": "белый",
+     "px": 37.32,
+     "py": 26.51,
+     "lx": 43.41,
+     "ly": 35.47
+    },
+    {
+     "en": "clean",
+     "ru": "чистый",
+     "px": 66.83,
+     "py": 15.9,
+     "lx": 46.46,
+     "ly": 7.5
+    }
+   ]
+  },
+  {
+   "id": "park",
+   "title": "Парк · семья",
+   "img": "scenes/park.webp",
+   "w": 820,
+   "h": 547,
+   "zones": [
+    {
+     "en": "path",
+     "ru": "дорожка",
+     "px": 48.78,
+     "py": 85.01,
+     "lx": 47.93,
+     "ly": 88.48
+    },
+    {
+     "en": "bench",
+     "ru": "скамейка",
+     "px": 23.9,
+     "py": 48.26,
+     "lx": 2.2,
+     "ly": 28.15
+    },
+    {
+     "en": "bin",
+     "ru": "урна",
+     "px": 40,
+     "py": 49.73,
+     "lx": 9.88,
+     "ly": 2.56
+    },
+    {
+     "en": "lamp post",
+     "ru": "фонарь",
+     "px": 58.9,
+     "py": 29.25,
+     "lx": 17.56,
+     "ly": 14.81
+    },
+    {
+     "en": "pond",
+     "ru": "пруд",
+     "px": 6.22,
+     "py": 91.59,
+     "lx": 4.88,
+     "ly": 59.6
+    },
+    {
+     "en": "duck",
+     "ru": "утка",
+     "px": 11.1,
+     "py": 78.06,
+     "lx": 20.37,
+     "ly": 88.67
+    },
+    {
+     "en": "dog",
+     "ru": "собака",
+     "px": 60.49,
+     "py": 67.28,
+     "lx": 52.93,
+     "ly": 74.59
+    },
+    {
+     "en": "swings",
+     "ru": "качели",
+     "px": 74.88,
+     "py": 37.11,
+     "lx": 63.41,
+     "ly": 19.74
+    },
+    {
+     "en": "slide",
+     "ru": "горка",
+     "px": 65.73,
+     "py": 39.12,
+     "lx": 53.9,
+     "ly": 46.98
+    },
+    {
+     "en": "bicycle",
+     "ru": "велосипед",
+     "px": 85.85,
+     "py": 68.37,
+     "lx": 73.9,
+     "ly": 80.26
+    },
+    {
+     "en": "sit",
+     "ru": "сидеть",
+     "px": 26.83,
+     "py": 43.88,
+     "lx": 15.61,
+     "ly": 12.98
+    },
+    {
+     "en": "feed",
+     "ru": "кормить",
+     "px": 27.07,
+     "py": 72.76,
+     "lx": 55.73,
+     "ly": 83.73
+    },
+    {
+     "en": "walk",
+     "ru": "гулять",
+     "px": 48.78,
+     "py": 53.02,
+     "lx": 50.37,
+     "ly": 48.08
+    },
+    {
+     "en": "swim",
+     "ru": "плавать",
+     "px": 19.51,
+     "py": 83.18,
+     "lx": 2.44,
+     "ly": 57.59
+    },
+    {
+     "en": "hold",
+     "ru": "держать",
+     "px": 82.32,
+     "py": 52.1,
+     "lx": 77.44,
+     "ly": 38.94
+    },
+    {
+     "en": "small",
+     "ru": "маленький",
+     "px": 21.34,
+     "py": 84.1,
+     "lx": 8.29,
+     "ly": 24.86
+    },
+    {
+     "en": "metal",
+     "ru": "металлический",
+     "px": 59.15,
+     "py": 23.77,
+     "lx": 39.27,
+     "ly": 3.47
+    },
+    {
+     "en": "new",
+     "ru": "новый",
+     "px": 82.93,
+     "py": 58.5,
+     "lx": 66.59,
+     "ly": 60.88
+    },
+    {
+     "en": "colorful",
+     "ru": "разноцветный",
+     "px": 68.29,
+     "py": 38.39,
+     "lx": 64.15,
+     "ly": 15.9
+    }
+   ]
+  },
+  {
+   "id": "classroom",
+   "title": "Класс · урок",
+   "img": "scenes/classroom.webp",
+   "w": 820,
+   "h": 547,
+   "zones": [
+    {
+     "en": "board",
+     "ru": "доска",
+     "px": 68.29,
+     "py": 18.28,
+     "lx": 78.17,
+     "ly": 5.48
+    },
+    {
+     "en": "teacher",
+     "ru": "учитель",
+     "px": 24.39,
+     "py": 23.77,
+     "lx": 32.2,
+     "ly": 1.83
+    },
+    {
+     "en": "pupil",
+     "ru": "ученик",
+     "px": 50.61,
+     "py": 48.45,
+     "lx": 33.29,
+     "ly": 29.8
+    },
+    {
+     "en": "desk",
+     "ru": "парта",
+     "px": 42.68,
+     "py": 62.16,
+     "lx": 27.07,
+     "ly": 90.68
+    },
+    {
+     "en": "pen",
+     "ru": "ручка",
+     "px": 61.83,
+     "py": 59.6,
+     "lx": 48.54,
+     "ly": 76.05
+    },
+    {
+     "en": "rubber",
+     "ru": "ластик",
+     "px": 39.63,
+     "py": 55.94,
+     "lx": 15,
+     "ly": 39.85
+    },
+    {
+     "en": "notebook",
+     "ru": "тетрадь",
+     "px": 75.61,
+     "py": 53.38,
+     "lx": 57.8,
+     "ly": 40.22
+    },
+    {
+     "en": "pencil",
+     "ru": "карандаш",
+     "px": 26.71,
+     "py": 56.31,
+     "lx": 5.73,
+     "ly": 71.12
+    },
+    {
+     "en": "ruler",
+     "ru": "линейка",
+     "px": 6.34,
+     "py": 36.56,
+     "lx": 1.83,
+     "ly": 23.4
+    },
+    {
+     "en": "bag",
+     "ru": "рюкзак",
+     "px": 69.51,
+     "py": 85.92,
+     "lx": 64.63,
+     "ly": 64.35
+    },
+    {
+     "en": "circle",
+     "ru": "круг",
+     "px": 40.24,
+     "py": 17.37,
+     "lx": 35,
+     "ly": 24.31
+    },
+    {
+     "en": "square",
+     "ru": "квадрат",
+     "px": 50,
+     "py": 17.92,
+     "lx": 28.9,
+     "ly": 36.2
+    },
+    {
+     "en": "triangle",
+     "ru": "треугольник",
+     "px": 59.15,
+     "py": 18.28,
+     "lx": 58.17,
+     "ly": 24.86
+    },
+    {
+     "en": "orange",
+     "ru": "оранжевый",
+     "px": 13.41,
+     "py": 47.53,
+     "lx": 8.05,
+     "ly": 90.31
+    },
+    {
+     "en": "green",
+     "ru": "зелёный",
+     "px": 42.07,
+     "py": 54.84,
+     "lx": 46.1,
+     "ly": 63.8
+    },
+    {
+     "en": "purple",
+     "ru": "фиолетовый",
+     "px": 79.27,
+     "py": 56.67,
+     "lx": 59.02,
+     "ly": 38.03
+    },
+    {
+     "en": "point",
+     "ru": "указывать",
+     "px": 35.98,
+     "py": 17.92,
+     "lx": 31.34,
+     "ly": 1.83
+    },
+    {
+     "en": "stand",
+     "ru": "стоять",
+     "px": 23.78,
+     "py": 42.05,
+     "lx": 9.63,
+     "ly": 63.99
+    },
+    {
+     "en": "smile",
+     "ru": "улыбаться",
+     "px": 23.78,
+     "py": 5.48,
+     "lx": 6.95,
+     "ly": 12.43
+    },
+    {
+     "en": "sit",
+     "ru": "сидеть",
+     "px": 42.07,
+     "py": 69.47,
+     "lx": 30.85,
+     "ly": 78.24
+    }
+   ]
+  },
+  {
+   "id": "cafe",
+   "title": "Кафе · терраса",
+   "img": "scenes/cafe.webp",
+   "w": 820,
+   "h": 547,
+   "zones": [
+    {
+     "en": "cafe",
+     "ru": "кафе",
+     "px": 75.61,
+     "py": 6.95,
+     "lx": 50.12,
+     "ly": 1.46
+    },
+    {
+     "en": "waiter",
+     "ru": "официант",
+     "px": 71.34,
+     "py": 34.73,
+     "lx": 27.44,
+     "ly": 25.05
+    },
+    {
+     "en": "menu",
+     "ru": "меню",
+     "px": 14.63,
+     "py": 57.04,
+     "lx": 17.93,
+     "ly": 12.07
+    },
+    {
+     "en": "soup",
+     "ru": "суп",
+     "px": 50,
+     "py": 61.61,
+     "lx": 43.66,
+     "ly": 88.3
+    },
+    {
+     "en": "cake",
+     "ru": "торт",
+     "px": 40.24,
+     "py": 61.79,
+     "lx": 34.39,
+     "ly": 43.14
+    },
+    {
+     "en": "fork",
+     "ru": "вилка",
+     "px": 34.39,
+     "py": 66.73,
+     "lx": 15.37,
+     "ly": 85.56
+    },
+    {
+     "en": "spoon",
+     "ru": "ложка",
+     "px": 54.51,
+     "py": 68.92,
+     "lx": 58.9,
+     "ly": 74.59
+    },
+    {
+     "en": "tea",
+     "ru": "чай",
+     "px": 78.9,
+     "py": 60.33,
+     "lx": 78.17,
+     "ly": 83.73
+    },
+    {
+     "en": "coffee",
+     "ru": "кофе",
+     "px": 86.83,
+     "py": 64.9,
+     "lx": 73.29,
+     "ly": 44.61
+    },
+    {
+     "en": "cup",
+     "ru": "чашка",
+     "px": 4.02,
+     "py": 62.16,
+     "lx": 1.71,
+     "ly": 70.02
+    },
+    {
+     "en": "read",
+     "ru": "читать",
+     "px": 13.41,
+     "py": 55.76,
+     "lx": 0.98,
+     "ly": 35.47
+    },
+    {
+     "en": "carry",
+     "ru": "нести",
+     "px": 74.39,
+     "py": 36.56,
+     "lx": 58.17,
+     "ly": 23.4
+    },
+    {
+     "en": "drink",
+     "ru": "пить",
+     "px": 78.9,
+     "py": 65.81,
+     "lx": 64.63,
+     "ly": 83.55
+    },
+    {
+     "en": "white",
+     "ru": "белый",
+     "px": 12.2,
+     "py": 68.56,
+     "lx": 3.78,
+     "ly": 82.63
+    },
+    {
+     "en": "hot",
+     "ru": "горячий",
+     "px": 49.39,
+     "py": 62.16,
+     "lx": 43.41,
+     "ly": 83.18
+    },
+    {
+     "en": "old",
+     "ru": "старая",
+     "px": 89.02,
+     "py": 51.19,
+     "lx": 80.85,
+     "ly": 14.44
+    },
+    {
+     "en": "sweet",
+     "ru": "сладкий",
+     "px": 40.24,
+     "py": 60.33,
+     "lx": 19.63,
+     "ly": 72.03
+    },
+    {
+     "en": "striped",
+     "ru": "полосатый",
+     "px": 67.07,
+     "py": 6.4,
+     "lx": 20.98,
+     "ly": 4.57
+    },
+    {
+     "en": "cold",
+     "ru": "холодный",
+     "px": 85.37,
+     "py": 49.36,
+     "lx": 65.73,
+     "ly": 38.94
+    },
+    {
+     "en": "laugh",
+     "ru": "смеяться",
+     "px": 36.59,
+     "py": 47.35,
+     "lx": 8.54,
+     "ly": 17
+    }
+   ]
+  },
+  {
+   "id": "street",
+   "title": "Улица · утро",
+   "img": "scenes/street.webp",
+   "w": 820,
+   "h": 547,
+   "zones": [
+    {
+     "en": "street",
+     "ru": "улица",
+     "px": 36.59,
+     "py": 87.75,
+     "lx": 18.54,
+     "ly": 90.13
+    },
+    {
+     "en": "crossing",
+     "ru": "переход",
+     "px": 36.59,
+     "py": 67.64,
+     "lx": 0.49,
+     "ly": 74.22
+    },
+    {
+     "en": "traffic light",
+     "ru": "светофор",
+     "px": 15.85,
+     "py": 25.23,
+     "lx": 38.78,
+     "ly": 3.29
+    },
+    {
+     "en": "sign",
+     "ru": "знак",
+     "px": 29.51,
+     "py": 30.16,
+     "lx": 45,
+     "ly": 14.44
+    },
+    {
+     "en": "car",
+     "ru": "машина",
+     "px": 50,
+     "py": 49.36,
+     "lx": 42.93,
+     "ly": 79.52
+    },
+    {
+     "en": "bus",
+     "ru": "автобус",
+     "px": 67.68,
+     "py": 42.05,
+     "lx": 55.37,
+     "ly": 55.21
+    },
+    {
+     "en": "bus stop",
+     "ru": "остановка",
+     "px": 90.24,
+     "py": 29.25,
+     "lx": 66.95,
+     "ly": 6.95
+    },
+    {
+     "en": "shop window",
+     "ru": "витрина",
+     "px": 5.49,
+     "py": 36.56,
+     "lx": 0.49,
+     "ly": 3.47
+    },
+    {
+     "en": "bike",
+     "ru": "велосипед",
+     "px": 79.51,
+     "py": 73.13,
+     "lx": 71.71,
+     "ly": 88.67
+    },
+    {
+     "en": "bridge",
+     "ru": "мост",
+     "px": 32.32,
+     "py": 41.13,
+     "lx": 38.17,
+     "ly": 27.61
+    },
+    {
+     "en": "wait",
+     "ru": "ждать",
+     "px": 87.8,
+     "py": 51.19,
+     "lx": 74.39,
+     "ly": 34.73
+    },
+    {
+     "en": "ride",
+     "ru": "кататься",
+     "px": 78.66,
+     "py": 66.73,
+     "lx": 59.76,
+     "ly": 50.64
+    },
+    {
+     "en": "drive",
+     "ru": "водить",
+     "px": 71.95,
+     "py": 39.31,
+     "lx": 66.1,
+     "ly": 10.05
+    },
+    {
+     "en": "hold",
+     "ru": "держать",
+     "px": 18.05,
+     "py": 55.76,
+     "lx": 14.63,
+     "ly": 58.14
+    },
+    {
+     "en": "red",
+     "ru": "красный",
+     "px": 16.71,
+     "py": 17.37,
+     "lx": 1.22,
+     "ly": 2.19
+    },
+    {
+     "en": "cross",
+     "ru": "переходить",
+     "px": 42.68,
+     "py": 71.3,
+     "lx": 36.34,
+     "ly": 73.67
+    },
+    {
+     "en": "stop",
+     "ru": "останавливаться",
+     "px": 16.1,
+     "py": 17.37,
+     "lx": 21.95,
+     "ly": 13.35
+    },
+    {
+     "en": "busy",
+     "ru": "оживлённый",
+     "px": 57.32,
+     "py": 45.7,
+     "lx": 39.51,
+     "ly": 25.41
+    },
+    {
+     "en": "early",
+     "ru": "ранний",
+     "px": 82.93,
+     "py": 7.31,
+     "lx": 39.15,
+     "ly": 3.29
+    }
+   ]
+  },
+  {
+   "id": "station",
+   "title": "Вокзал · отъезд",
+   "img": "scenes/station.webp",
+   "w": 820,
+   "h": 547,
+   "zones": [
+    {
+     "en": "station",
+     "ru": "вокзал",
+     "px": 18.29,
+     "py": 20.11,
+     "lx": 0.49,
+     "ly": 25.96
+    },
+    {
+     "en": "train",
+     "ru": "поезд",
+     "px": 85.37,
+     "py": 27.42,
+     "lx": 76.95,
+     "ly": 35.65
+    },
+    {
+     "en": "platform",
+     "ru": "платформа",
+     "px": 39.02,
+     "py": 92.32,
+     "lx": 54.02,
+     "ly": 91.04
+    },
+    {
+     "en": "ticket",
+     "ru": "билет",
+     "px": 13.78,
+     "py": 79.89,
+     "lx": 0.49,
+     "ly": 90.86
+    },
+    {
+     "en": "plane",
+     "ru": "самолёт",
+     "px": 58.54,
+     "py": 6.95,
+     "lx": 72.93,
+     "ly": 0.91
+    },
+    {
+     "en": "boat",
+     "ru": "лодка",
+     "px": 33.17,
+     "py": 46.44,
+     "lx": 40.73,
+     "ly": 19.01
+    },
+    {
+     "en": "taxi",
+     "ru": "такси",
+     "px": 9.15,
+     "py": 46.62,
+     "lx": 0.49,
+     "ly": 57.95
+    },
+    {
+     "en": "suitcase",
+     "ru": "чемодан",
+     "px": 36.59,
+     "py": 74.04,
+     "lx": 41.71,
+     "ly": 74.22
+    },
+    {
+     "en": "driver",
+     "ru": "водитель",
+     "px": 20.12,
+     "py": 44.24,
+     "lx": 24.27,
+     "ly": 5.67
+    },
+    {
+     "en": "map",
+     "ru": "карта",
+     "px": 47.56,
+     "py": 49.36,
+     "lx": 49.27,
+     "ly": 54.84
+    },
+    {
+     "en": "read",
+     "ru": "читать",
+     "px": 47.56,
+     "py": 46.62,
+     "lx": 43.66,
+     "ly": 57.04
+    },
+    {
+     "en": "look",
+     "ru": "смотреть",
+     "px": 74.39,
+     "py": 45.7,
+     "lx": 70.49,
+     "ly": 48.08
+    },
+    {
+     "en": "yellow",
+     "ru": "жёлтый",
+     "px": 6.71,
+     "py": 48.45,
+     "lx": 0.85,
+     "ly": 55.39
+    },
+    {
+     "en": "blue",
+     "ru": "синий",
+     "px": 82.93,
+     "py": 36.56,
+     "lx": 78.17,
+     "ly": 11.88
+    },
+    {
+     "en": "tall",
+     "ru": "высокий",
+     "px": 14.02,
+     "py": 18.28,
+     "lx": 11.1,
+     "ly": 2.19
+    },
+    {
+     "en": "fast",
+     "ru": "быстрый",
+     "px": 59.76,
+     "py": 6.4,
+     "lx": 52.93,
+     "ly": 13.35
+    },
+    {
+     "en": "cold",
+     "ru": "холодный",
+     "px": 43.9,
+     "py": 38.39,
+     "lx": 16.71,
+     "ly": 21.39
+    },
+    {
+     "en": "dark",
+     "ru": "тёмный",
+     "px": 15.24,
+     "py": 73.13,
+     "lx": 8.17,
+     "ly": 85.19
+    },
+    {
+     "en": "checkered",
+     "ru": "клетчатый",
+     "px": 36.59,
+     "py": 72.21,
+     "lx": 44.63,
+     "ly": 68.19
+    },
+    {
+     "en": "metal",
+     "ru": "металлический",
+     "px": 45.12,
+     "py": 30.16,
+     "lx": 48.9,
+     "ly": 26.14
+    }
+   ]
+  },
+  {
+   "id": "farm",
+   "title": "Ферма · утро",
+   "img": "scenes/farm.webp",
+   "w": 820,
+   "h": 547,
+   "zones": [
+    {
+     "en": "farm",
+     "ru": "ферма",
+     "px": 10.98,
+     "py": 21.94,
+     "lx": 2.44,
+     "ly": 3.29
+    },
+    {
+     "en": "barn",
+     "ru": "сарай",
+     "px": 84.15,
+     "py": 20.11,
+     "lx": 69.76,
+     "ly": 3.66
+    },
+    {
+     "en": "field",
+     "ru": "поле",
+     "px": 57.32,
+     "py": 42.05,
+     "lx": 38.05,
+     "ly": 29.62
+    },
+    {
+     "en": "cow",
+     "ru": "корова",
+     "px": 13.41,
+     "py": 73.13,
+     "lx": 1.95,
+     "ly": 56.67
+    },
+    {
+     "en": "horse",
+     "ru": "лошадь",
+     "px": 70.12,
+     "py": 45.7,
+     "lx": 50.24,
+     "ly": 50.09
+    },
+    {
+     "en": "sheep",
+     "ru": "овца",
+     "px": 37.8,
+     "py": 80.44,
+     "lx": 23.41,
+     "ly": 65.27
+    },
+    {
+     "en": "pig",
+     "ru": "свинья",
+     "px": 87.8,
+     "py": 76.78,
+     "lx": 70.98,
+     "ly": 61.61
+    },
+    {
+     "en": "hen",
+     "ru": "курица",
+     "px": 71.34,
+     "py": 80.44,
+     "lx": 65.73,
+     "ly": 87.39
+    },
+    {
+     "en": "tractor",
+     "ru": "трактор",
+     "px": 79.88,
+     "py": 46.62,
+     "lx": 59.88,
+     "ly": 20.11
+    },
+    {
+     "en": "farmer",
+     "ru": "фермер",
+     "px": 95.73,
+     "py": 51.19,
+     "lx": 73.41,
+     "ly": 31.99
+    },
+    {
+     "en": "feed",
+     "ru": "кормить",
+     "px": 67.68,
+     "py": 73.13,
+     "lx": 49.27,
+     "ly": 87.39
+    },
+    {
+     "en": "point",
+     "ru": "показывать пальцем",
+     "px": 45.73,
+     "py": 42.96,
+     "lx": 25.73,
+     "ly": 51.19
+    },
+    {
+     "en": "carry",
+     "ru": "нести",
+     "px": 6.71,
+     "py": 54.84,
+     "lx": 1.22,
+     "ly": 35.65
+    },
+    {
+     "en": "metal",
+     "ru": "металлический",
+     "px": 82.32,
+     "py": 47.53,
+     "lx": 48.05,
+     "ly": 17.55
+    },
+    {
+     "en": "pet",
+     "ru": "гладить",
+     "px": 73.17,
+     "py": 42.05,
+     "lx": 54.15,
+     "ly": 28.88
+    },
+    {
+     "en": "spotted",
+     "ru": "пятнистый",
+     "px": 13.41,
+     "py": 80.44,
+     "lx": 8.05,
+     "ly": 82.82
+    },
+    {
+     "en": "soft",
+     "ru": "мягкий",
+     "px": 38.41,
+     "py": 84.1,
+     "lx": 22.56,
+     "ly": 65.45
+    },
+    {
+     "en": "pink",
+     "ru": "розовый",
+     "px": 88.41,
+     "py": 80.44,
+     "lx": 75.24,
+     "ly": 88.67
+    },
+    {
+     "en": "wooden",
+     "ru": "деревянный",
+     "px": 86.59,
+     "py": 31.08,
+     "lx": 67.68,
+     "ly": 1.83
+    },
+    {
+     "en": "wave",
+     "ru": "махать",
+     "px": 93.9,
+     "py": 49.36,
+     "lx": 78.29,
+     "ly": 59.78
+    }
+   ]
+  },
+  {
+   "id": "zoo",
+   "title": "Зоопарк · аллея",
+   "img": "scenes/zoo.webp",
+   "w": 820,
+   "h": 547,
+   "zones": [
+    {
+     "en": "zoo",
+     "ru": "зоопарк",
+     "px": 26.83,
+     "py": 18.28,
+     "lx": 14.15,
+     "ly": 26.33
+    },
+    {
+     "en": "cage",
+     "ru": "клетка",
+     "px": 6.71,
+     "py": 22.85,
+     "lx": 2.68,
+     "ly": 4.2
+    },
+    {
+     "en": "lion",
+     "ru": "лев",
+     "px": 5.49,
+     "py": 45.7,
+     "lx": 1.22,
+     "ly": 62.34
+    },
+    {
+     "en": "bird",
+     "ru": "птица",
+     "px": 19.63,
+     "py": 78.61,
+     "lx": 13.29,
+     "ly": 91.04
+    },
+    {
+     "en": "keeper",
+     "ru": "смотритель",
+     "px": 32.93,
+     "py": 45.7,
+     "lx": 27.8,
+     "ly": 77.7
+    },
+    {
+     "en": "elephant",
+     "ru": "слон",
+     "px": 50,
+     "py": 35.65,
+     "lx": 40.98,
+     "ly": 19.2
+    },
+    {
+     "en": "giraffe",
+     "ru": "жираф",
+     "px": 70.12,
+     "py": 18.28,
+     "lx": 42.68,
+     "ly": 7.5
+    },
+    {
+     "en": "monkey",
+     "ru": "обезьяна",
+     "px": 93.9,
+     "py": 13.71,
+     "lx": 65.61,
+     "ly": 0.73
+    },
+    {
+     "en": "bear",
+     "ru": "медведь",
+     "px": 76.22,
+     "py": 43.88,
+     "lx": 71.34,
+     "ly": 27.06
+    },
+    {
+     "en": "snake",
+     "ru": "змея",
+     "px": 92.68,
+     "py": 56.67,
+     "lx": 68.29,
+     "ly": 90.13
+    },
+    {
+     "en": "walk",
+     "ru": "гулять",
+     "px": 31.1,
+     "py": 51.19,
+     "lx": 32.68,
+     "ly": 47.17
+    },
+    {
+     "en": "look",
+     "ru": "смотреть",
+     "px": 82.32,
+     "py": 51.19,
+     "lx": 74.76,
+     "ly": 26.51
+    },
+    {
+     "en": "stand",
+     "ru": "стоять",
+     "px": 66.46,
+     "py": 63.99,
+     "lx": 56.71,
+     "ly": 85.01
+    },
+    {
+     "en": "brown",
+     "ru": "коричневый",
+     "px": 73.17,
+     "py": 43.88,
+     "lx": 34.27,
+     "ly": 61.06
+    },
+    {
+     "en": "blue",
+     "ru": "синий",
+     "px": 25.61,
+     "py": 76.78,
+     "lx": 11.22,
+     "ly": 63.62
+    },
+    {
+     "en": "big",
+     "ru": "большой",
+     "px": 48.78,
+     "py": 38.39,
+     "lx": 29.63,
+     "ly": 22.3
+    },
+    {
+     "en": "small",
+     "ru": "маленький",
+     "px": 91.46,
+     "py": 12.8,
+     "lx": 37.07,
+     "ly": 8.78
+    },
+    {
+     "en": "black",
+     "ru": "чёрный",
+     "px": 8.54,
+     "py": 18.28,
+     "lx": 2.68,
+     "ly": 3.11
+    },
+    {
+     "en": "lie",
+     "ru": "лежать",
+     "px": 8.54,
+     "py": 51.19,
+     "lx": 4.39,
+     "ly": 28.7
+    },
+    {
+     "en": "clean",
+     "ru": "чистый",
+     "px": 89.63,
+     "py": 46.62,
+     "lx": 80.12,
+     "ly": 63.8
+    }
+   ]
+  },
+  {
+   "id": "doctor",
+   "title": "У доктора · приём",
+   "img": "scenes/doctor.webp",
+   "w": 820,
+   "h": 547,
+   "zones": [
+    {
+     "en": "doctor",
+     "ru": "врач",
+     "px": 66.46,
+     "py": 42.05,
+     "lx": 71.59,
+     "ly": 16.45
+    },
+    {
+     "en": "nurse",
+     "ru": "медсестра",
+     "px": 32.32,
+     "py": 38.39,
+     "lx": 26.83,
+     "ly": 4.2
+    },
+    {
+     "en": "bed",
+     "ru": "кровать",
+     "px": 6.46,
+     "py": 72.21,
+     "lx": 0.49,
+     "ly": 87.39
+    },
+    {
+     "en": "head",
+     "ru": "голова",
+     "px": 89.02,
+     "py": 37.48,
+     "lx": 80.12,
+     "ly": 0.73
+    },
+    {
+     "en": "eye",
+     "ru": "глаз",
+     "px": 12.8,
+     "py": 37.11,
+     "lx": 0.49,
+     "ly": 49.36
+    },
+    {
+     "en": "leg",
+     "ru": "нога",
+     "px": 24.15,
+     "py": 64.72,
+     "lx": 27.32,
+     "ly": 77.15
+    },
+    {
+     "en": "hand",
+     "ru": "рука",
+     "px": 59.15,
+     "py": 39.31,
+     "lx": 40.24,
+     "ly": 56.12
+    },
+    {
+     "en": "tooth",
+     "ru": "зуб",
+     "px": 67.68,
+     "py": 74.04,
+     "lx": 35.49,
+     "ly": 89.95
+    },
+    {
+     "en": "medicine",
+     "ru": "лекарство",
+     "px": 77.44,
+     "py": 78.61,
+     "lx": 55.85,
+     "ly": 89.58
+    },
+    {
+     "en": "bandage",
+     "ru": "бинт",
+     "px": 89.02,
+     "py": 85.37,
+     "lx": 66.22,
+     "ly": 54.3
+    },
+    {
+     "en": "help",
+     "ru": "помогать",
+     "px": 27.44,
+     "py": 54.84,
+     "lx": 33.29,
+     "ly": 50.82
+    },
+    {
+     "en": "show",
+     "ru": "показывать",
+     "px": 61.59,
+     "py": 33.82,
+     "lx": 55.73,
+     "ly": 17.73
+    },
+    {
+     "en": "ill",
+     "ru": "болен",
+     "px": 85.98,
+     "py": 44.79,
+     "lx": 78.66,
+     "ly": 56.86
+    },
+    {
+     "en": "check",
+     "ru": "проверять",
+     "px": 29.27,
+     "py": 46.62,
+     "lx": 7.93,
+     "ly": 20.11
+    },
+    {
+     "en": "wrap",
+     "ru": "заворачивать",
+     "px": 89.02,
+     "py": 83.18,
+     "lx": 45.98,
+     "ly": 90.13
+    },
+    {
+     "en": "test",
+     "ru": "тестировать",
+     "px": 54.88,
+     "py": 16.45,
+     "lx": 28.54,
+     "ly": 1.83
+    },
+    {
+     "en": "wait",
+     "ru": "ждать",
+     "px": 51.83,
+     "py": 45.7,
+     "lx": 36.95,
+     "ly": 62.16
+    },
+    {
+     "en": "listen",
+     "ru": "слушать",
+     "px": 64.63,
+     "py": 36.56,
+     "lx": 64.15,
+     "ly": 5.48
+    },
+    {
+     "en": "give",
+     "ru": "давать",
+     "px": 76.83,
+     "py": 77.7,
+     "lx": 43.29,
+     "ly": 73.67
+    }
+   ]
+  },
+  {
+   "id": "birthday",
+   "title": "День рождения",
+   "img": "scenes/birthday.webp",
+   "w": 820,
+   "h": 547,
+   "zones": [
+    {
+     "en": "party",
+     "ru": "праздник",
+     "px": 67.07,
+     "py": 3.66,
+     "lx": 64.02,
+     "ly": 5.85
+    },
+    {
+     "en": "cake",
+     "ru": "торт",
+     "px": 31.95,
+     "py": 59.41,
+     "lx": 26.83,
+     "ly": 90.68
+    },
+    {
+     "en": "candle",
+     "ru": "свеча",
+     "px": 27.44,
+     "py": 18.28,
+     "lx": 0.73,
+     "ly": 56.31
+    },
+    {
+     "en": "present",
+     "ru": "подарок",
+     "px": 53.29,
+     "py": 56.67,
+     "lx": 60.37,
+     "ly": 52.65
+    },
+    {
+     "en": "balloon",
+     "ru": "шарик",
+     "px": 18.29,
+     "py": 16.45,
+     "lx": 4.27,
+     "ly": 67.64
+    },
+    {
+     "en": "card",
+     "ru": "открытка",
+     "px": 57.56,
+     "py": 69.1,
+     "lx": 45,
+     "ly": 79.52
+    },
+    {
+     "en": "guest",
+     "ru": "гость",
+     "px": 69.39,
+     "py": 48.99,
+     "lx": 57.32,
+     "ly": 32.18
+    },
+    {
+     "en": "music",
+     "ru": "музыка",
+     "px": 29.88,
+     "py": 33.82,
+     "lx": 32.2,
+     "ly": 11.33
+    },
+    {
+     "en": "hat",
+     "ru": "колпак",
+     "px": 53.9,
+     "py": 31.44,
+     "lx": 54.02,
+     "ly": 16.64
+    },
+    {
+     "en": "photo",
+     "ru": "фотография",
+     "px": 24.39,
+     "py": 33.27,
+     "lx": 11.22,
+     "ly": 77.88
+    },
+    {
+     "en": "dance",
+     "ru": "танцевать",
+     "px": 11.59,
+     "py": 47.53,
+     "lx": 5.61,
+     "ly": 78.79
+    },
+    {
+     "en": "open",
+     "ru": "открывать",
+     "px": 52.44,
+     "py": 72.21,
+     "lx": 44.02,
+     "ly": 79.16
+    },
+    {
+     "en": "smile",
+     "ru": "улыбаться",
+     "px": 38.41,
+     "py": 34.73,
+     "lx": 11.71,
+     "ly": 67.28
+    },
+    {
+     "en": "purple",
+     "ru": "фиолетовый",
+     "px": 15.85,
+     "py": 12.8,
+     "lx": 33.66,
+     "ly": 8.78
+    },
+    {
+     "en": "hang",
+     "ru": "висеть",
+     "px": 59.76,
+     "py": 3.66,
+     "lx": 64.27,
+     "ly": 6.22
+    },
+    {
+     "en": "burn",
+     "ru": "гореть",
+     "px": 27.68,
+     "py": 17.37,
+     "lx": 1.34,
+     "ly": 55.39
+    },
+    {
+     "en": "sweet",
+     "ru": "сладкий",
+     "px": 32.32,
+     "py": 58.5,
+     "lx": 28.05,
+     "ly": 89.76
+    },
+    {
+     "en": "take",
+     "ru": "брать",
+     "px": 88.41,
+     "py": 27.42,
+     "lx": 77.56,
+     "ly": 49.36
+    },
+    {
+     "en": "clap",
+     "ru": "хлопать",
+     "px": 39.02,
+     "py": 42.05,
+     "lx": 59.15,
+     "ly": 38.03
+    },
+    {
+     "en": "wear",
+     "ru": "носить",
+     "px": 52.44,
+     "py": 33.82,
+     "lx": 57.8,
+     "ly": 23.03
+    }
+   ]
+  },
+  {
+   "id": "beach",
+   "title": "Пляж",
+   "img": "scenes/beach.webp",
+   "w": 820,
+   "h": 547,
+   "zones": [
+    {
+     "en": "beach",
+     "ru": "пляж",
+     "px": 38.17,
+     "py": 91.59,
+     "lx": 45.37,
+     "ly": 87.39
+    },
+    {
+     "en": "sea",
+     "ru": "море",
+     "px": 44.27,
+     "py": 39.85,
+     "lx": 28.05,
+     "ly": 21.57
+    },
+    {
+     "en": "sand",
+     "ru": "песок",
+     "px": 38.9,
+     "py": 81.17,
+     "lx": 4.76,
+     "ly": 90.13
+    },
+    {
+     "en": "shell",
+     "ru": "ракушка",
+     "px": 49.39,
+     "py": 43.33,
+     "lx": 47.44,
+     "ly": 14.81
+    },
+    {
+     "en": "bucket",
+     "ru": "ведёрко",
+     "px": 12.8,
+     "py": 70.2,
+     "lx": 0.49,
+     "ly": 52.65
+    },
+    {
+     "en": "spade",
+     "ru": "лопатка",
+     "px": 38.78,
+     "py": 69.65,
+     "lx": 7.93,
+     "ly": 77.51
+    },
+    {
+     "en": "umbrella",
+     "ru": "зонт",
+     "px": 85.37,
+     "py": 13.71,
+     "lx": 53.54,
+     "ly": 2.01
+    },
+    {
+     "en": "towel",
+     "ru": "полотенце",
+     "px": 88.17,
+     "py": 77.7,
+     "lx": 67.93,
+     "ly": 88.67
+    },
+    {
+     "en": "wave",
+     "ru": "волна",
+     "px": 24.76,
+     "py": 52.47,
+     "lx": 25.73,
+     "ly": 36.93
+    },
+    {
+     "en": "sun",
+     "ru": "солнце",
+     "px": 6.95,
+     "py": 7.13,
+     "lx": 4.39,
+     "ly": 20.84
+    },
+    {
+     "en": "splash",
+     "ru": "плескаться",
+     "px": 16.1,
+     "py": 55.76,
+     "lx": 2.93,
+     "ly": 77.7
+    },
+    {
+     "en": "dig",
+     "ru": "копать",
+     "px": 45.73,
+     "py": 72.21,
+     "lx": 52.93,
+     "ly": 61.43
+    },
+    {
+     "en": "build",
+     "ru": "строить",
+     "px": 35.85,
+     "py": 66,
+     "lx": 7.93,
+     "ly": 87.75
+    },
+    {
+     "en": "striped",
+     "ru": "полосатый",
+     "px": 87.2,
+     "py": 23.77,
+     "lx": 60.24,
+     "ly": 19.74
+    },
+    {
+     "en": "rest",
+     "ru": "отдыхать",
+     "px": 87.2,
+     "py": 45.7,
+     "lx": 60,
+     "ly": 31.08
+    },
+    {
+     "en": "sleep",
+     "ru": "спать",
+     "px": 83.54,
+     "py": 65.81,
+     "lx": 65.24,
+     "ly": 73.67
+    },
+    {
+     "en": "plastic",
+     "ru": "пластиковый",
+     "px": 12.2,
+     "py": 69.84,
+     "lx": 4.51,
+     "ly": 24.68
+    },
+    {
+     "en": "shine",
+     "ru": "сиять",
+     "px": 6.1,
+     "py": 8.23,
+     "lx": 11.83,
+     "ly": 4.2
+    },
+    {
+     "en": "find",
+     "ru": "находить",
+     "px": 49.39,
+     "py": 43.33,
+     "lx": 45.85,
+     "ly": 51.19
+    },
+    {
+     "en": "wet",
+     "ru": "мокрый",
+     "px": 24.39,
+     "py": 41.13,
+     "lx": 22.44,
+     "ly": 14.63
+    }
+   ]
+  },
+  {
+   "id": "toys",
+   "title": "Игрушки",
+   "img": "scenes/toys.webp",
+   "w": 820,
+   "h": 547,
+   "zones": [
+    {
+     "en": "toy",
+     "ru": "игрушка",
+     "px": 67.8,
+     "py": 24.31,
+     "lx": 48.41,
+     "ly": 10.79
+    },
+    {
+     "en": "doll",
+     "ru": "кукла",
+     "px": 75.85,
+     "py": 20.66,
+     "lx": 72.32,
+     "ly": 1.1
+    },
+    {
+     "en": "teddy",
+     "ru": "мишка",
+     "px": 39.63,
+     "py": 50.82,
+     "lx": 21.71,
+     "ly": 8.23
+    },
+    {
+     "en": "car",
+     "ru": "машинка",
+     "px": 42.93,
+     "py": 91.04,
+     "lx": 26.83,
+     "ly": 75.87
+    },
+    {
+     "en": "brick",
+     "ru": "кубик",
+     "px": 76.46,
+     "py": 63.07,
+     "lx": 43.9,
+     "ly": 67.09
+    },
+    {
+     "en": "puzzle",
+     "ru": "пазл",
+     "px": 63.9,
+     "py": 79.71,
+     "lx": 47.68,
+     "ly": 87.93
+    },
+    {
+     "en": "box",
+     "ru": "коробка",
+     "px": 90.49,
+     "py": 77.7,
+     "lx": 69.02,
+     "ly": 76.6
+    },
+    {
+     "en": "shelf",
+     "ru": "полка",
+     "px": 69.88,
+     "py": 37.29,
+     "lx": 39.15,
+     "ly": 27.06
+    },
+    {
+     "en": "drum",
+     "ru": "барабан",
+     "px": 13.54,
+     "py": 42.96,
+     "lx": 10.49,
+     "ly": 25.23
+    },
+    {
+     "en": "train set",
+     "ru": "железная дорога",
+     "px": 17.07,
+     "py": 85.92,
+     "lx": 0.85,
+     "ly": 61.24
+    },
+    {
+     "en": "play",
+     "ru": "играть",
+     "px": 7.32,
+     "py": 46.62,
+     "lx": 0.85,
+     "ly": 26.33
+    },
+    {
+     "en": "build",
+     "ru": "строить",
+     "px": 82.93,
+     "py": 56.67,
+     "lx": 75.12,
+     "ly": 36.38
+    },
+    {
+     "en": "put",
+     "ru": "класть",
+     "px": 56.1,
+     "py": 31.08,
+     "lx": 38.9,
+     "ly": 20.66
+    },
+    {
+     "en": "brown",
+     "ru": "коричневый",
+     "px": 38.41,
+     "py": 51.19,
+     "lx": 21.1,
+     "ly": 30.9
+    },
+    {
+     "en": "full",
+     "ru": "полный",
+     "px": 79.27,
+     "py": 27.42,
+     "lx": 46.22,
+     "ly": 57.77
+    },
+    {
+     "en": "pink",
+     "ru": "розовый",
+     "px": 71.95,
+     "py": 25.59,
+     "lx": 53.9,
+     "ly": 3.11
+    },
+    {
+     "en": "colorful",
+     "ru": "разноцветный",
+     "px": 89.02,
+     "py": 60.33,
+     "lx": 62.32,
+     "ly": 83.18
+    },
+    {
+     "en": "new",
+     "ru": "новый",
+     "px": 45.73,
+     "py": 91.41,
+     "lx": 31.22,
+     "ly": 72.76
+    }
+   ]
+  },
+  {
+   "id": "family",
+   "title": "Семья за столом",
+   "img": "scenes/family.webp",
+   "w": 820,
+   "h": 547,
+   "zones": [
+    {
+     "en": "family",
+     "ru": "семья",
+     "px": 59.76,
+     "py": 14.26,
+     "lx": 53.05,
+     "ly": 21.21
+    },
+    {
+     "en": "mother",
+     "ru": "мама",
+     "px": 48.17,
+     "py": 45.7,
+     "lx": 38.9,
+     "ly": 55.94
+    },
+    {
+     "en": "father",
+     "ru": "папа",
+     "px": 44.27,
+     "py": 42.78,
+     "lx": 34.39,
+     "ly": 8.04
+    },
+    {
+     "en": "sister",
+     "ru": "сестра",
+     "px": 94.39,
+     "py": 59.23,
+     "lx": 71.71,
+     "ly": 12.43
+    },
+    {
+     "en": "brother",
+     "ru": "брат",
+     "px": 77.32,
+     "py": 51.55,
+     "lx": 76.59,
+     "ly": 69.84
+    },
+    {
+     "en": "grandmother",
+     "ru": "бабушка",
+     "px": 17.32,
+     "py": 44.79,
+     "lx": 11.46,
+     "ly": 21.76
+    },
+    {
+     "en": "grandfather",
+     "ru": "дедушка",
+     "px": 7.44,
+     "py": 55.76,
+     "lx": 1.95,
+     "ly": 8.23
+    },
+    {
+     "en": "baby",
+     "ru": "малыш",
+     "px": 62.2,
+     "py": 49.36,
+     "lx": 42.44,
+     "ly": 85.56
+    },
+    {
+     "en": "dinner",
+     "ru": "ужин",
+     "px": 39.02,
+     "py": 71.3,
+     "lx": 4.39,
+     "ly": 86.29
+    },
+    {
+     "en": "glass",
+     "ru": "стакан",
+     "px": 72.2,
+     "py": 63.07,
+     "lx": 71.22,
+     "ly": 90.49
+    },
+    {
+     "en": "laugh",
+     "ru": "смеяться",
+     "px": 5.49,
+     "py": 32.91,
+     "lx": 1.71,
+     "ly": 22.3
+    },
+    {
+     "en": "clap",
+     "ru": "хлопать",
+     "px": 17.07,
+     "py": 52.1,
+     "lx": 10.73,
+     "ly": 57.04
+    },
+    {
+     "en": "give",
+     "ru": "давать",
+     "px": 57.32,
+     "py": 52.1,
+     "lx": 35.85,
+     "ly": 16.27
+    },
+    {
+     "en": "eat",
+     "ru": "есть",
+     "px": 75.61,
+     "py": 47.53,
+     "lx": 60,
+     "ly": 18.28
+    },
+    {
+     "en": "take",
+     "ru": "брать",
+     "px": 88.41,
+     "py": 54.84,
+     "lx": 77.56,
+     "ly": 38.03
+    },
+    {
+     "en": "blue",
+     "ru": "синий",
+     "px": 32.32,
+     "py": 36.56,
+     "lx": 23.9,
+     "ly": 1.46
+    },
+    {
+     "en": "orange",
+     "ru": "оранжевый",
+     "px": 54.27,
+     "py": 69.47,
+     "lx": 44.88,
+     "ly": 76.42
+    },
+    {
+     "en": "happy",
+     "ru": "счастливый",
+     "px": 65.24,
+     "py": 51.19,
+     "lx": 48.66,
+     "ly": 30.9
+    },
+    {
+     "en": "hot",
+     "ru": "горячий",
+     "px": 42.68,
+     "py": 71.3,
+     "lx": 22.44,
+     "ly": 75.69
+    },
+    {
+     "en": "old",
+     "ru": "старая",
+     "px": 17.07,
+     "py": 40.22,
+     "lx": 3.29,
+     "ly": 10.97
+    }
+   ]
+  },
+  {
+   "id": "weather",
+   "title": "Погода и времена года",
+   "img": "scenes/weather.webp",
+   "w": 820,
+   "h": 547,
+   "zones": [
+    {
+     "en": "weather",
+     "ru": "погода",
+     "px": 36.22,
+     "py": 32.54,
+     "lx": 32.07,
+     "ly": 39.49
+    },
+    {
+     "en": "rain",
+     "ru": "дождь",
+     "px": 27.44,
+     "py": 18.28,
+     "lx": 41.34,
+     "ly": 1.46
+    },
+    {
+     "en": "snow",
+     "ru": "снег",
+     "px": 47.56,
+     "py": 16.45,
+     "lx": 50.49,
+     "ly": 18.46
+    },
+    {
+     "en": "wind",
+     "ru": "ветер",
+     "px": 73.78,
+     "py": 35.65,
+     "lx": 49.76,
+     "ly": 89.03
+    },
+    {
+     "en": "cloud",
+     "ru": "облако",
+     "px": 78.66,
+     "py": 19.2,
+     "lx": 78.66,
+     "ly": 28.15
+    },
+    {
+     "en": "sun",
+     "ru": "солнце",
+     "px": 71.95,
+     "py": 13.71,
+     "lx": 74.63,
+     "ly": 0.73
+    },
+    {
+     "en": "umbrella",
+     "ru": "зонт",
+     "px": 7.8,
+     "py": 20.66,
+     "lx": 1.83,
+     "ly": 0.73
+    },
+    {
+     "en": "scarf",
+     "ru": "шарф",
+     "px": 32.93,
+     "py": 68.56,
+     "lx": 29.88,
+     "ly": 76.42
+    },
+    {
+     "en": "boots",
+     "ru": "сапоги",
+     "px": 22.56,
+     "py": 81.35,
+     "lx": 2.2,
+     "ly": 90.49
+    },
+    {
+     "en": "puddle",
+     "ru": "лужа",
+     "px": 27.44,
+     "py": 51.19,
+     "lx": 39.88,
+     "ly": 58.14
+    },
+    {
+     "en": "hold",
+     "ru": "держать",
+     "px": 8.54,
+     "py": 20.11,
+     "lx": 1.95,
+     "ly": 4.94
+    },
+    {
+     "en": "point",
+     "ru": "указывать",
+     "px": 56.1,
+     "py": 32.91,
+     "lx": 47.8,
+     "ly": 39.85
+    },
+    {
+     "en": "dress",
+     "ru": "одевать",
+     "px": 34.15,
+     "py": 63.99,
+     "lx": 41.34,
+     "ly": 75.5
+    },
+    {
+     "en": "green",
+     "ru": "зелёный",
+     "px": 42.68,
+     "py": 62.16,
+     "lx": 45.98,
+     "ly": 58.14
+    },
+    {
+     "en": "yellow",
+     "ru": "жёлтый",
+     "px": 29.88,
+     "py": 69.47,
+     "lx": 5.98,
+     "ly": 59.78
+    },
+    {
+     "en": "red",
+     "ru": "красный",
+     "px": 27.44,
+     "py": 84.1,
+     "lx": 28.54,
+     "ly": 90.68
+    },
+    {
+     "en": "cold",
+     "ru": "холодный",
+     "px": 51.83,
+     "py": 32.91,
+     "lx": 46.95,
+     "ly": 22.3
+    },
+    {
+     "en": "warm",
+     "ru": "тёплый",
+     "px": 82.32,
+     "py": 62.16,
+     "lx": 78.54,
+     "ly": 67.09
+    },
+    {
+     "en": "full",
+     "ru": "полный",
+     "px": 91.46,
+     "py": 53.02,
+     "lx": 77.2,
+     "ly": 37.84
+    },
+    {
+     "en": "wet",
+     "ru": "мокрый",
+     "px": 18.29,
+     "py": 29.25,
+     "lx": 3.41,
+     "ly": 36.2
+    }
+   ]
+  },
+  {
+   "id": "sport",
+   "title": "Спортивная площадка",
+   "img": "scenes/sport.webp",
+   "w": 820,
+   "h": 547,
+   "zones": [
+    {
+     "en": "ride",
+     "ru": "кататься",
+     "px": 11.59,
+     "py": 54.84,
+     "lx": 0.73,
+     "ly": 81.9
+    },
+    {
+     "en": "swing",
+     "ru": "качаться",
+     "px": 32.93,
+     "py": 45.7,
+     "lx": 15,
+     "ly": 30.53
+    },
+    {
+     "en": "throw",
+     "ru": "бросать",
+     "px": 58.54,
+     "py": 47.53,
+     "lx": 44.02,
+     "ly": 32.36
+    },
+    {
+     "en": "exercise",
+     "ru": "тренироваться",
+     "px": 76.83,
+     "py": 45.7,
+     "lx": 60.24,
+     "ly": 54.48
+    },
+    {
+     "en": "clap",
+     "ru": "хлопать",
+     "px": 90.85,
+     "py": 47.53,
+     "lx": 72.93,
+     "ly": 28.88
+    },
+    {
+     "en": "fast",
+     "ru": "быстрый",
+     "px": 13.41,
+     "py": 54.84,
+     "lx": 5.98,
+     "ly": 71.3
+    },
+    {
+     "en": "laugh",
+     "ru": "смеяться",
+     "px": 32.93,
+     "py": 45.7,
+     "lx": 24.63,
+     "ly": 57.77
+    },
+    {
+     "en": "reach",
+     "ru": "тянуться",
+     "px": 76.83,
+     "py": 27.42,
+     "lx": 56.59,
+     "ly": 14.26
+    },
+    {
+     "en": "wide",
+     "ru": "широкий",
+     "px": 48.78,
+     "py": 85.92,
+     "lx": 30.12,
+     "ly": 75.5
+    }
+   ]
+  },
+  {
+   "id": "lesnye-zhivotnye",
+   "title": "Дикие животные (лес)",
+   "img": "scenes/lesnye-zhivotnye.webp",
+   "w": 820,
+   "h": 547,
+   "zones": [
+    {
+     "en": "wolf",
+     "ru": "волк",
+     "px": 79.88,
+     "py": 54.84,
+     "lx": 59.76,
+     "ly": 45.52
+    },
+    {
+     "en": "fox",
+     "ru": "лиса",
+     "px": 6.1,
+     "py": 52.1,
+     "lx": 1.71,
+     "ly": 32.54
+    },
+    {
+     "en": "owl",
+     "ru": "сова",
+     "px": 84.15,
+     "py": 10.05,
+     "lx": 61.46,
+     "ly": 5.12
+    },
+    {
+     "en": "frog",
+     "ru": "лягушка",
+     "px": 64.02,
+     "py": 83.18,
+     "lx": 49.02,
+     "ly": 67.09
+    },
+    {
+     "en": "spider",
+     "ru": "паук",
+     "px": 81.46,
+     "py": 41.13,
+     "lx": 64.63,
+     "ly": 27.06
+    },
+    {
+     "en": "bee",
+     "ru": "пчела",
+     "px": 89.02,
+     "py": 81.35,
+     "lx": 75.12,
+     "ly": 65.27
+    },
+    {
+     "en": "butterfly",
+     "ru": "бабочка",
+     "px": 13.41,
+     "py": 19.2,
+     "lx": 4.02,
+     "ly": 2.19
+    },
+    {
+     "en": "forest",
+     "ru": "лес",
+     "px": 45.73,
+     "py": 7.31,
+     "lx": 37.8,
+     "ly": 14.63
+    },
+    {
+     "en": "branch",
+     "ru": "ветка",
+     "px": 64.63,
+     "py": 19.2,
+     "lx": 46.46,
+     "ly": 29.25
+    },
+    {
+     "en": "leaf",
+     "ru": "лист",
+     "px": 6.71,
+     "py": 82.27,
+     "lx": 1.46,
+     "ly": 66.18
+    }
+   ]
+  },
+  {
+   "id": "priroda",
+   "title": "Природа",
+   "img": "scenes/priroda.webp",
+   "w": 820,
+   "h": 547,
+   "zones": [
+    {
+     "en": "mountain",
+     "ru": "гора",
+     "px": 45.12,
+     "py": 23.77,
+     "lx": 28.29,
+     "ly": 7.68
+    },
+    {
+     "en": "river",
+     "ru": "река",
+     "px": 90.24,
+     "py": 32.91,
+     "lx": 75,
+     "ly": 42.41
+    },
+    {
+     "en": "lake",
+     "ru": "озеро",
+     "px": 57.32,
+     "py": 40.22,
+     "lx": 49.15,
+     "ly": 22.49
+    },
+    {
+     "en": "island",
+     "ru": "остров",
+     "px": 45.12,
+     "py": 37.48,
+     "lx": 42.2,
+     "ly": 41.5
+    },
+    {
+     "en": "hill",
+     "ru": "холм",
+     "px": 91.46,
+     "py": 27.42,
+     "lx": 71.46,
+     "ly": 14.08
+    },
+    {
+     "en": "sky",
+     "ru": "небо",
+     "px": 18.29,
+     "py": 6.4,
+     "lx": 2.2,
+     "ly": 12.43
+    },
+    {
+     "en": "stone",
+     "ru": "камень",
+     "px": 19.51,
+     "py": 56.67,
+     "lx": 4.02,
+     "ly": 42.6
+    },
+    {
+     "en": "grass",
+     "ru": "трава",
+     "px": 25.61,
+     "py": 78.61,
+     "lx": 18.54,
+     "ly": 61.24
+    },
+    {
+     "en": "fire",
+     "ru": "огонь",
+     "px": 72.56,
+     "py": 74.95,
+     "lx": 64.63,
+     "ly": 82.27
+    },
+    {
+     "en": "ice",
+     "ru": "лёд",
+     "px": 64.63,
+     "py": 49.36,
+     "lx": 58.66,
+     "ly": 55.39
+    }
+   ]
+  },
+  {
+   "id": "vremena-goda",
+   "title": "Времена года и время суток",
+   "img": "scenes/vremena-goda.webp",
+   "w": 820,
+   "h": 547,
+   "zones": [
+    {
+     "en": "spring",
+     "ru": "весна",
+     "px": 25,
+     "py": 22.85,
+     "lx": 12.44,
+     "ly": 5.12
+    },
+    {
+     "en": "summer",
+     "ru": "лето",
+     "px": 42.68,
+     "py": 22.85,
+     "lx": 40.37,
+     "ly": 2.74
+    },
+    {
+     "en": "autumn",
+     "ru": "осень",
+     "px": 60.98,
+     "py": 22.85,
+     "lx": 60,
+     "ly": 32.91
+    },
+    {
+     "en": "winter",
+     "ru": "зима",
+     "px": 79.27,
+     "py": 22.85,
+     "lx": 68.05,
+     "ly": 5.12
+    },
+    {
+     "en": "morning",
+     "ru": "утро",
+     "px": 25,
+     "py": 51.19,
+     "lx": 21.22,
+     "ly": 58.14
+    },
+    {
+     "en": "afternoon",
+     "ru": "день",
+     "px": 42.68,
+     "py": 51.19,
+     "lx": 27.56,
+     "ly": 33.46
+    },
+    {
+     "en": "evening",
+     "ru": "вечер",
+     "px": 60.98,
+     "py": 51.19,
+     "lx": 52.2,
+     "ly": 60.69
+    },
+    {
+     "en": "night",
+     "ru": "ночь",
+     "px": 79.27,
+     "py": 51.19,
+     "lx": 74.63,
+     "ly": 76.23
+    }
+   ]
+  },
+  {
+   "id": "professii",
+   "title": "Профессии",
+   "img": "scenes/professii.webp",
+   "w": 820,
+   "h": 547,
+   "zones": [
+    {
+     "en": "vet",
+     "ru": "ветеринар",
+     "px": 3.05,
+     "py": 48.45,
+     "lx": 2.2,
+     "ly": 11.7
+    },
+    {
+     "en": "mechanic",
+     "ru": "механик",
+     "px": 21.95,
+     "py": 50.27,
+     "lx": 9.76,
+     "ly": 29.07
+    },
+    {
+     "en": "hairdresser",
+     "ru": "парикмахер",
+     "px": 36.59,
+     "py": 50.27,
+     "lx": 15.49,
+     "ly": 63.62
+    },
+    {
+     "en": "gardener",
+     "ru": "садовник",
+     "px": 48.17,
+     "py": 49.36,
+     "lx": 30.24,
+     "ly": 14.26
+    },
+    {
+     "en": "pilot",
+     "ru": "пилот",
+     "px": 53.05,
+     "py": 49.36,
+     "lx": 50.24,
+     "ly": 79.71
+    },
+    {
+     "en": "firefighter",
+     "ru": "пожарный",
+     "px": 63.41,
+     "py": 53.02,
+     "lx": 46.95,
+     "ly": 64.17
+    },
+    {
+     "en": "dentist",
+     "ru": "стоматолог",
+     "px": 76.22,
+     "py": 47.53,
+     "lx": 59.02,
+     "ly": 17.37
+    },
+    {
+     "en": "builder",
+     "ru": "строитель",
+     "px": 83.54,
+     "py": 53.02,
+     "lx": 61.22,
+     "ly": 29.62
+    },
+    {
+     "en": "chef",
+     "ru": "шеф-повар",
+     "px": 92.68,
+     "py": 49.36,
+     "lx": 73.17,
+     "ly": 3.29
+    },
+    {
+     "en": "artist",
+     "ru": "художник",
+     "px": 97.2,
+     "py": 51.19,
+     "lx": 72.56,
+     "ly": 77.88
+    }
+   ]
+  },
+  {
+   "id": "v-gorode",
+   "title": "В городе",
+   "img": "scenes/v-gorode.webp",
+   "w": 820,
+   "h": 547,
+   "zones": [
+    {
+     "en": "pharmacy",
+     "ru": "аптека",
+     "px": 4.27,
+     "py": 26.51,
+     "lx": 1.71,
+     "ly": 81.54
+    },
+    {
+     "en": "library",
+     "ru": "библиотека",
+     "px": 23.78,
+     "py": 32.91,
+     "lx": 2.68,
+     "ly": 68.92
+    },
+    {
+     "en": "hospital",
+     "ru": "больница",
+     "px": 45.12,
+     "py": 25.59,
+     "lx": 22.56,
+     "ly": 11.52
+    },
+    {
+     "en": "supermarket",
+     "ru": "супермаркет",
+     "px": 59.15,
+     "py": 40.22,
+     "lx": 19.39,
+     "ly": 44.61
+    },
+    {
+     "en": "restaurant",
+     "ru": "ресторан",
+     "px": 73.17,
+     "py": 65.81,
+     "lx": 55.37,
+     "ly": 44.61
+    },
+    {
+     "en": "bakery",
+     "ru": "пекарня",
+     "px": 84.15,
+     "py": 58.5,
+     "lx": 39.51,
+     "ly": 81.17
+    },
+    {
+     "en": "post office",
+     "ru": "почта",
+     "px": 92.68,
+     "py": 67.64,
+     "lx": 57.32,
+     "ly": 20.48
+    },
+    {
+     "en": "police officer",
+     "ru": "полицейский",
+     "px": 62.8,
+     "py": 73.13,
+     "lx": 32.32,
+     "ly": 61.43
+    },
+    {
+     "en": "postman",
+     "ru": "почтальон",
+     "px": 95.73,
+     "py": 63.99,
+     "lx": 66.46,
+     "ly": 80.99
+    },
+    {
+     "en": "airport",
+     "ru": "аэропорт",
+     "px": 92.07,
+     "py": 34.73,
+     "lx": 69.51,
+     "ly": 7.31
+    }
+   ]
+  },
+  {
+   "id": "telo",
+   "title": "Тело",
+   "img": "scenes/telo.webp",
+   "w": 820,
+   "h": 547,
+   "zones": [
+    {
+     "en": "hair",
+     "ru": "волосы",
+     "px": 31.71,
+     "py": 37.48,
+     "lx": 26.71,
+     "ly": 8.23
+    },
+    {
+     "en": "knee",
+     "ru": "колено",
+     "px": 32.32,
+     "py": 72.21,
+     "lx": 15.24,
+     "ly": 53.56
+    },
+    {
+     "en": "nose",
+     "ru": "нос",
+     "px": 55.73,
+     "py": 40.22,
+     "lx": 50.85,
+     "ly": 25.05
+    },
+    {
+     "en": "neck",
+     "ru": "шея",
+     "px": 43.29,
+     "py": 33.82,
+     "lx": 28.9,
+     "ly": 18.65
+    },
+    {
+     "en": "shoulder",
+     "ru": "плечо",
+     "px": 73.17,
+     "py": 29.25,
+     "lx": 56.83,
+     "ly": 14.08
+    },
+    {
+     "en": "stomach",
+     "ru": "живот",
+     "px": 73.17,
+     "py": 53.02,
+     "lx": 60.49,
+     "ly": 36.56
+    },
+    {
+     "en": "ear",
+     "ru": "ухо",
+     "px": 6.34,
+     "py": 31.99,
+     "lx": 3.9,
+     "ly": 68.92
+    },
+    {
+     "en": "mouth",
+     "ru": "рот",
+     "px": 12.2,
+     "py": 35.65,
+     "lx": 6.46,
+     "ly": 42.6
+    },
+    {
+     "en": "face",
+     "ru": "лицо",
+     "px": 14.63,
+     "py": 26.51,
+     "lx": 0.73,
+     "ly": 10.05
+    },
+    {
+     "en": "foot",
+     "ru": "ступня",
+     "px": 25.61,
+     "py": 86.84,
+     "lx": 3.54,
+     "ly": 88.3
+    }
+   ]
+  },
+  {
+   "id": "odezhda",
+   "title": "Одежда",
+   "img": "scenes/odezhda.webp",
+   "w": 820,
+   "h": 547,
+   "zones": [
+    {
+     "en": "jeans",
+     "ru": "джинсы",
+     "px": 70.73,
+     "py": 71.3,
+     "lx": 58.29,
+     "ly": 81.72
+    },
+    {
+     "en": "jacket",
+     "ru": "куртка",
+     "px": 41.46,
+     "py": 38.39,
+     "lx": 24.39,
+     "ly": 4.2
+    },
+    {
+     "en": "sweater",
+     "ru": "свитер",
+     "px": 49.39,
+     "py": 36.56,
+     "lx": 34.15,
+     "ly": 16.27
+    },
+    {
+     "en": "shorts",
+     "ru": "шорты",
+     "px": 50,
+     "py": 74.95,
+     "lx": 36.59,
+     "ly": 52.47
+    },
+    {
+     "en": "skirt",
+     "ru": "юбка",
+     "px": 17.07,
+     "py": 44.79,
+     "lx": 7.8,
+     "ly": 57.59
+    },
+    {
+     "en": "pyjamas",
+     "ru": "пижама",
+     "px": 29.27,
+     "py": 56.67,
+     "lx": 9.02,
+     "ly": 27.42
+    },
+    {
+     "en": "cap",
+     "ru": "кепка",
+     "px": 91.1,
+     "py": 46.07,
+     "lx": 73.29,
+     "ly": 27.42
+    },
+    {
+     "en": "sandals",
+     "ru": "сандалии",
+     "px": 34.76,
+     "py": 89.58,
+     "lx": 17.44,
+     "ly": 74.41
+    },
+    {
+     "en": "gloves",
+     "ru": "перчатки",
+     "px": 7.07,
+     "py": 74.04,
+     "lx": 0.98,
+     "ly": 16.64
+    },
+    {
+     "en": "belt",
+     "ru": "ремень",
+     "px": 77.44,
+     "py": 42.96,
+     "lx": 61.95,
+     "ly": 13.71
+    }
+   ]
+  },
+  {
+   "id": "rodnya-i-sosedi",
+   "title": "Родня и соседи",
+   "img": "scenes/rodnya-i-sosedi.webp",
+   "w": 820,
+   "h": 547,
+   "zones": [
+    {
+     "en": "aunt",
+     "ru": "тётя",
+     "px": 21.34,
+     "py": 27.42,
+     "lx": 18.78,
+     "ly": 41.68
+    },
+    {
+     "en": "uncle",
+     "ru": "дядя",
+     "px": 10.37,
+     "py": 27.42,
+     "lx": 3.9,
+     "ly": 2.74
+    },
+    {
+     "en": "cousin",
+     "ru": "двоюродный брат",
+     "px": 79.88,
+     "py": 63.99,
+     "lx": 55.49,
+     "ly": 50.82
+    },
+    {
+     "en": "neighbour",
+     "ru": "сосед",
+     "px": 89.02,
+     "py": 25.59,
+     "lx": 74.39,
+     "ly": 9.14
+    },
+    {
+     "en": "boy",
+     "ru": "мальчик",
+     "px": 50,
+     "py": 60.33,
+     "lx": 46.59,
+     "ly": 62.71
+    },
+    {
+     "en": "girl",
+     "ru": "девочка",
+     "px": 40.85,
+     "py": 42.05,
+     "lx": 20.37,
+     "ly": 31.63
+    },
+    {
+     "en": "man",
+     "ru": "мужчина",
+     "px": 57.32,
+     "py": 27.42,
+     "lx": 39.39,
+     "ly": 17
+    },
+    {
+     "en": "woman",
+     "ru": "женщина",
+     "px": 31.1,
+     "py": 27.42,
+     "lx": 13.41,
+     "ly": 17
+    },
+    {
+     "en": "son",
+     "ru": "сын",
+     "px": 50,
+     "py": 85.92,
+     "lx": 33.05,
+     "ly": 75.5
+    },
+    {
+     "en": "daughter",
+     "ru": "дочь",
+     "px": 40.85,
+     "py": 67.64,
+     "lx": 19.76,
+     "ly": 55.21
+    }
+   ]
+  },
+  {
+   "id": "zavtrak",
+   "title": "Завтрак",
+   "img": "scenes/zavtrak.webp",
+   "w": 820,
+   "h": 547,
+   "zones": [
+    {
+     "en": "butter",
+     "ru": "масло",
+     "px": 30.49,
+     "py": 65.81,
+     "lx": 26.71,
+     "ly": 88.67
+    },
+    {
+     "en": "egg",
+     "ru": "яйцо",
+     "px": 42.07,
+     "py": 45.34,
+     "lx": 26.71,
+     "ly": 5.85
+    },
+    {
+     "en": "honey",
+     "ru": "мёд",
+     "px": 39.02,
+     "py": 61.24,
+     "lx": 21.34,
+     "ly": 16.09
+    },
+    {
+     "en": "jam",
+     "ru": "варенье",
+     "px": 46.34,
+     "py": 62.16,
+     "lx": 28.05,
+     "ly": 78.61
+    },
+    {
+     "en": "juice",
+     "ru": "сок",
+     "px": 52.44,
+     "py": 56.67,
+     "lx": 3.78,
+     "ly": 68.56
+    },
+    {
+     "en": "kettle",
+     "ru": "чайник",
+     "px": 76.83,
+     "py": 33.82,
+     "lx": 57.07,
+     "ly": 17.37
+    },
+    {
+     "en": "glass of milk",
+     "ru": "стакан молока",
+     "px": 16.46,
+     "py": 47.53,
+     "lx": 3.41,
+     "ly": 28.88
+    },
+    {
+     "en": "cup of tea",
+     "ru": "чашка чая",
+     "px": 82.32,
+     "py": 54.84,
+     "lx": 58.54,
+     "ly": 75.87
+    },
+    {
+     "en": "sandwich",
+     "ru": "бутерброд",
+     "px": 80.49,
+     "py": 65.81,
+     "lx": 66.1,
+     "ly": 87.75
+    },
+    {
+     "en": "sausage",
+     "ru": "сосиска",
+     "px": 66.46,
+     "py": 61.24,
+     "lx": 44.27,
+     "ly": 30.16
+    }
+   ]
+  },
+  {
+   "id": "transport",
+   "title": "Транспорт",
+   "img": "scenes/transport.webp",
+   "w": 820,
+   "h": 547,
+   "zones": [
+    {
+     "en": "ambulance",
+     "ru": "скорая помощь",
+     "px": 23.78,
+     "py": 19.2,
+     "lx": 34.02,
+     "ly": 15.17
+    },
+    {
+     "en": "helicopter",
+     "ru": "вертолёт",
+     "px": 31.71,
+     "py": 9.14,
+     "lx": 38.78,
+     "ly": 5.12
+    },
+    {
+     "en": "lorry",
+     "ru": "грузовик",
+     "px": 47.56,
+     "py": 35.65,
+     "lx": 50.24,
+     "ly": 31.63
+    },
+    {
+     "en": "motorbike",
+     "ru": "мотоцикл",
+     "px": 81.1,
+     "py": 60.33,
+     "lx": 70,
+     "ly": 43.88
+    },
+    {
+     "en": "scooter",
+     "ru": "самокат",
+     "px": 25,
+     "py": 80.44,
+     "lx": 30.61,
+     "ly": 68.37
+    },
+    {
+     "en": "tram",
+     "ru": "трамвай",
+     "px": 21.34,
+     "py": 43.88,
+     "lx": 8.05,
+     "ly": 55.94
+    },
+    {
+     "en": "van",
+     "ru": "фургон",
+     "px": 6.1,
+     "py": 42.05,
+     "lx": 8.54,
+     "ly": 85.74
+    },
+    {
+     "en": "tunnel",
+     "ru": "туннель",
+     "px": 34.76,
+     "py": 45.7,
+     "lx": 5.85,
+     "ly": 26.14
+    },
+    {
+     "en": "wheel",
+     "ru": "колесо",
+     "px": 93.9,
+     "py": 69.47,
+     "lx": 81.46,
+     "ly": 85.92
+    },
+    {
+     "en": "engine",
+     "ru": "двигатель",
+     "px": 61.59,
+     "py": 54.84,
+     "lx": 62.8,
+     "ly": 69.1
+    }
+   ]
+  },
+  {
+   "id": "ovoshchi-i-frukty",
+   "title": "Овощи и фрукты",
+   "img": "scenes/ovoshchi-i-frukty.webp",
+   "w": 820,
+   "h": 547,
+   "zones": [
+    {
+     "en": "apple",
+     "ru": "яблоко",
+     "px": 14.02,
+     "py": 35.65,
+     "lx": 6.71,
+     "ly": 42.6
+    },
+    {
+     "en": "banana",
+     "ru": "банан",
+     "px": 65.85,
+     "py": 41.13,
+     "lx": 54.51,
+     "ly": 20.29
+    },
+    {
+     "en": "carrot",
+     "ru": "морковь",
+     "px": 6.71,
+     "py": 70.38,
+     "lx": 2.44,
+     "ly": 54.3
+    },
+    {
+     "en": "cucumber",
+     "ru": "огурец",
+     "px": 23.17,
+     "py": 71.3,
+     "lx": 13.05,
+     "ly": 80.07
+    },
+    {
+     "en": "grapes",
+     "ru": "виноград",
+     "px": 35.98,
+     "py": 41.13,
+     "lx": 19.88,
+     "ly": 24.31
+    },
+    {
+     "en": "lemon",
+     "ru": "лимон",
+     "px": 40.85,
+     "py": 71.3,
+     "lx": 35.85,
+     "ly": 76.23
+    },
+    {
+     "en": "onion",
+     "ru": "лук",
+     "px": 57.32,
+     "py": 71.3,
+     "lx": 37.68,
+     "ly": 55.21
+    },
+    {
+     "en": "potato",
+     "ru": "картошка",
+     "px": 79.27,
+     "py": 50.27,
+     "lx": 72.32,
+     "ly": 31.63
+    },
+    {
+     "en": "strawberry",
+     "ru": "клубника",
+     "px": 73.17,
+     "py": 71.3,
+     "lx": 66.46,
+     "ly": 76.23
+    },
+    {
+     "en": "tomato",
+     "ru": "помидор",
+     "px": 89.63,
+     "py": 71.3,
+     "lx": 65.24,
+     "ly": 56.67
+    }
+   ]
+  },
+  {
+   "id": "chasti-doma",
+   "title": "Части дома",
+   "img": "scenes/chasti-doma.webp",
+   "w": 820,
+   "h": 547,
+   "zones": [
+    {
+     "en": "door",
+     "ru": "дверь",
+     "px": 18.29,
+     "py": 32.91,
+     "lx": 20,
+     "ly": 28.88
+    },
+    {
+     "en": "wall",
+     "ru": "стена",
+     "px": 93.9,
+     "py": 28.34,
+     "lx": 76.83,
+     "ly": 5.85
+    },
+    {
+     "en": "floor",
+     "ru": "пол",
+     "px": 35.37,
+     "py": 89.58,
+     "lx": 5.61,
+     "ly": 85.56
+    },
+    {
+     "en": "ceiling",
+     "ru": "потолок",
+     "px": 48.78,
+     "py": 4.57,
+     "lx": 11.1,
+     "ly": 18.65
+    },
+    {
+     "en": "curtain",
+     "ru": "штора",
+     "px": 69.15,
+     "py": 36.56,
+     "lx": 71.71,
+     "ly": 45.52
+    },
+    {
+     "en": "cupboard",
+     "ru": "шкафчик",
+     "px": 35.98,
+     "py": 60.33,
+     "lx": 9.76,
+     "ly": 56.31
+    },
+    {
+     "en": "cushion",
+     "ru": "диванная подушка",
+     "px": 86.59,
+     "py": 61.24,
+     "lx": 59.51,
+     "ly": 69.1
+    },
+    {
+     "en": "key",
+     "ru": "ключ",
+     "px": 49.02,
+     "py": 24.68,
+     "lx": 11.22,
+     "ly": 41.86
+    },
+    {
+     "en": "lock",
+     "ru": "замок на двери",
+     "px": 42.32,
+     "py": 44.24,
+     "lx": 26.46,
+     "ly": 71.3
+    },
+    {
+     "en": "fence",
+     "ru": "забор",
+     "px": 64.02,
+     "py": 54.84,
+     "lx": 51.46,
+     "ly": 81.9
+    }
+   ]
+  },
+  {
+   "id": "eshche-zhivotnye",
+   "title": "Ещё животные",
+   "img": "scenes/eshche-zhivotnye.webp",
+   "w": 820,
+   "h": 547,
+   "zones": [
+    {
+     "en": "dolphin",
+     "ru": "дельфин",
+     "px": 19.51,
+     "py": 21.02,
+     "lx": 1.71,
+     "ly": 10.6
+    },
+    {
+     "en": "fish",
+     "ru": "рыба",
+     "px": 28.29,
+     "py": 42.96,
+     "lx": 13.05,
+     "ly": 27.79
+    },
+    {
+     "en": "goat",
+     "ru": "коза",
+     "px": 46.34,
+     "py": 47.53,
+     "lx": 53.54,
+     "ly": 50.09
+    },
+    {
+     "en": "mouse",
+     "ru": "мышь",
+     "px": 27.44,
+     "py": 81.35,
+     "lx": 24.02,
+     "ly": 86.29
+    },
+    {
+     "en": "penguin",
+     "ru": "пингвин",
+     "px": 57.32,
+     "py": 40.22,
+     "lx": 40,
+     "ly": 21.57
+    },
+    {
+     "en": "rabbit",
+     "ru": "кролик",
+     "px": 35.98,
+     "py": 57.59,
+     "lx": 25.98,
+     "ly": 64.53
+    },
+    {
+     "en": "tiger",
+     "ru": "тигр",
+     "px": 90.24,
+     "py": 49.36,
+     "lx": 74.63,
+     "ly": 36.2
+    },
+    {
+     "en": "turtle",
+     "ru": "черепаха",
+     "px": 91.46,
+     "py": 78.61,
+     "lx": 68.78,
+     "ly": 62.52
+    },
+    {
+     "en": "zebra",
+     "ru": "зебра",
+     "px": 88.41,
+     "py": 28.34,
+     "lx": 72.2,
+     "ly": 15.17
+    },
+    {
+     "en": "ant",
+     "ru": "муравей",
+     "px": 74.39,
+     "py": 84.1,
+     "lx": 72.8,
+     "ly": 88.48
+    }
+   ]
+  },
+  {
+   "id": "shkolnye-prinadlezhnosti",
+   "title": "Школьные принадлежности",
+   "img": "scenes/shkolnye-prinadlezhnosti.webp",
+   "w": 820,
+   "h": 547,
+   "zones": [
+    {
+     "en": "chalk",
+     "ru": "мел",
+     "px": 42.93,
+     "py": 20.48,
+     "lx": 38.54,
+     "ly": 25.41
+    },
+    {
+     "en": "crayon",
+     "ru": "восковой мелок",
+     "px": 19.51,
+     "py": 84.46,
+     "lx": 1.71,
+     "ly": 38.03
+    },
+    {
+     "en": "glue",
+     "ru": "клей",
+     "px": 41.1,
+     "py": 76.78,
+     "lx": 36.1,
+     "ly": 50.27
+    },
+    {
+     "en": "homework",
+     "ru": "домашнее задание",
+     "px": 8.54,
+     "py": 76.78,
+     "lx": 6.95,
+     "ly": 88.3
+    },
+    {
+     "en": "lesson",
+     "ru": "урок",
+     "px": 28.05,
+     "py": 12.8,
+     "lx": 14.88,
+     "ly": 2.19
+    },
+    {
+     "en": "mistake",
+     "ru": "ошибка",
+     "px": 29.51,
+     "py": 74.41,
+     "lx": 39.02,
+     "ly": 40.22
+    },
+    {
+     "en": "page",
+     "ru": "страница",
+     "px": 59.76,
+     "py": 78.61,
+     "lx": 55.61,
+     "ly": 83.55
+    },
+    {
+     "en": "pencil case",
+     "ru": "пенал",
+     "px": 87.2,
+     "py": 77.7,
+     "lx": 60,
+     "ly": 61.61
+    },
+    {
+     "en": "question",
+     "ru": "вопрос",
+     "px": 75.61,
+     "py": 16.45,
+     "lx": 63.66,
+     "ly": 29.25
+    },
+    {
+     "en": "scissors",
+     "ru": "ножницы",
+     "px": 26.22,
+     "py": 59.41,
+     "lx": 10.12,
+     "ly": 25.23
+    }
+   ]
+  }
+ ]
+}

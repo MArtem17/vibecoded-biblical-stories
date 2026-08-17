@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="ru"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Библейские истории</title>
+<meta name="theme-color" content="#b85a3a">
+<script>
+(function(){try{localStorage.setItem("bible_theme","light");}catch(e){}
+document.documentElement.setAttribute("data-theme","light");})();
+/* Без /index.html путь /decks/biblejskie-istorii ломает относительные URL. */
+(function () {
+  var p = location.pathname || "";
+  if (/\/biblejskie-istorii\/?$/i.test(p)) {
+    var base = p.replace(/\/?$/, "/");
+    location.replace(base + "index.html" + (location.search || "") + (location.hash || ""));
+  }
+})();
+</script>
+<link rel="stylesheet" href="../../core/fonts/fonts.css">
+<link rel="stylesheet" href="scrollbars.css">
+<link rel="stylesheet" href="shell.css">
+</head><body class="mode-splash">
+
+<!-- Заставка -->
+<div id="pgSplash" class="on">
+  <div class="splash">
+    <img class="splash-bg" src="img/splash_hero.webp" alt="" width="1536" height="1024" decoding="async" fetchpriority="high">
+    <div class="splash-veil" aria-hidden="true"></div>
+    <button type="button" class="splash-settings" id="settingsBtn" aria-label="Настройки" title="Настройки" data-i18n-aria="settings" data-i18n-title="settings">
+      <img src="img/icons/settings.svg" width="44" height="44" alt="">
+    </button>
+    <div class="splash-inner">
+      <p class="splash-brand" data-i18n="brand">Библейские истории</p>
+      <h1 class="splash-title" data-i18n="splashTitle">Великие истории Библии — для маленьких исследователей</h1>
+      <p class="splash-lead" data-i18n="splashLead">Лента эпох, альбом карт, книги и стройки</p>
+      <div class="splash-cta">
+        <button type="button" class="splash-go" data-go="feed" data-i18n="goFeed">В путь</button>
+        <div class="splash-nav" role="navigation" aria-label="Разделы" data-i18n-aria="sections">
+          <button type="button" data-go="hub" data-hub-tab="cards" data-i18n="cards">Карты</button>
+          <button type="button" data-go="hub" data-hub-tab="books" data-i18n="books">Книги</button>
+          <button type="button" data-go="hub" data-hub-tab="build" data-i18n="build">Стройка</button>
+          <button type="button" data-go="games" data-i18n="games">Игры</button>
+          <button type="button" data-go="hub" data-hub-tab="glossary" data-i18n="glossary">Словарик</button>
+          <button type="button" data-go="parent" data-i18n="parents">Родителям</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="sheet" id="shSettings">
+  <div class="panel">
+    <div class="grab"></div>
+    <div class="ph"><div><h3 data-i18n="settings">Настройки</h3></div>
+      <button class="xclose" data-close="shSettings" type="button">&#x2715;</button></div>
+    <div class="set-block">
+      <span class="set-lab" id="langLab" data-i18n="language">Язык</span>
+      <div class="set-langs" id="langsel" role="tablist" aria-label="Язык / Language"></div>
+    </div>
+  </div>
+</div>
+
+<!-- Лента (iframe) -->
+<div id="pgFeed"></div>
+
+<!-- как у птиц / «Страны мира»: одна шторка, сначала пример, потом раздел -->
+<div class="sheet" id="shParent">
+  <div class="panel parent-panel">
+    <div class="grab"></div>
+    <div class="ph parent-sheet-hd">
+      <span class="gate-badge" data-i18n="parents">Родителям</span>
+      <div>
+        <h3 data-i18n="parents">Родителям</h3>
+        <p data-i18n="parentSheetSub">Успехи ребёнка и настройки</p>
+      </div>
+      <button class="xclose" data-close="shParent" type="button" data-i18n-aria="close" aria-label="Закрыть">&#x2715;</button>
+    </div>
+    <div id="pGate">
+      <div class="parent-gate">
+        <p data-i18n="parentAdult">Раздел для взрослых</p>
+        <p class="gate-need" data-i18n="gateNeed">Чтобы войти, реши пример</p>
+        <div class="gq" id="gQ">7 × 8 = ?</div>
+        <input class="gin" id="gIn" type="text" inputmode="numeric" pattern="[0-9]*" autocomplete="off" data-i18n="gateAns" placeholder="Ответ">
+        <button class="gate-go" type="button" id="gGo"><b data-i18n="parentOpen">Открыть</b></button>
+        <p class="gate-err" id="gErr"></p>
+      </div>
+    </div>
+    <div id="pBody" style="display:none">
+      <div id="parentBox">
+        <div class="parent-box"><h4 data-i18n="stats">Статистика</h4><ul id="pStats"></ul></div>
+        <div class="parent-box"><h4 data-i18n="bktTitle">Граф знаний (BKT)</h4><div id="pBkt"></div></div>
+        <div class="parent-box"><h4 data-i18n="progress">Прогресс</h4>
+          <button class="parent-act" type="button" id="resetFeed" data-i18n="resetFeed">Сбросить позицию ленты</button>
+          <button class="parent-act" type="button" id="resetBkt" data-i18n="resetBkt">Сбросить знания BKT</button>
+          <p class="set-note" data-i18n="resetNote">Сброс ленты не трогает звёзды и BKT — как в «Странах мира».</p>
+        </div>
+        <button class="parent-act" type="button" id="openGraph" data-i18n="openGraph">Открыть карту знаний</button>
+        <button class="parent-act parent-go" type="button" id="contFeed" data-i18n="contFeed">Продолжить путь</button>
+        <button class="parent-act" type="button" id="openHub" data-i18n="openHub">Открыть альбом</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Хаб: шапка + вкладки + iframe hub.html -->
+<header id="appHeader">
+  <div class="hrow">
+    <button class="enc-back" id="encBack" type="button" data-i18n="menu">← Меню</button>
+    <div class="brand">
+      <div class="mark"><img src="img/icons/scroll-mark.webp" alt=""></div>
+      <div><b id="appTitle">Библейские истории</b><span class="sub" id="appSub">Библия: великие истории</span></div>
+    </div>
+  </div>
+  <div class="tabs" id="tabs" role="tablist"></div>
+</header>
+<main>
+  <section class="view on" id="v-hub"></section>
+</main>
+
+<div class="sheet" id="shHub">
+  <div class="panel">
+    <div class="grab"></div>
+    <div class="ph"><div><h3 data-i18n="hub">Альбом</h3><p data-i18n="hubLook">Карты, книги, стройка и словарик</p></div>
+      <button class="xclose" data-close="shHub" type="button">&#x2715;</button></div>
+    <div class="encgrid">
+      <button class="enctile" type="button" data-enc="cards"><img src="img/icons/cards-mark.webp" alt=""><span data-i18n="cards">Карты</span></button>
+      <button class="enctile" type="button" data-enc="books"><img src="img/icons/scroll-mark.webp" alt=""><span data-i18n="books">Книги</span></button>
+      <button class="enctile" type="button" data-enc="build"><img src="img/icons/puzzle-mark.webp" alt=""><span data-i18n="build">Стройка</span></button>
+      <button class="enctile" type="button" data-enc="glossary"><img src="img/icons/magnifier-mark.webp" alt=""><span data-i18n="glossary">Словарик</span></button>
+    </div>
+  </div>
+</div>
+
+<nav id="bnav">
+  <button data-nav="feed" class="on" type="button">
+    <img class="navico" src="img/icons/scroll-mark.webp" alt="">
+    <small data-i18n="goFeed">В путь</small>
+  </button>
+  <button data-nav="hub" type="button">
+    <img class="navico" src="img/icons/cards-mark.webp" alt="">
+    <small data-i18n="hub">Альбом</small>
+  </button>
+  <button data-nav="games" type="button">
+    <img class="navico" src="img/icons/puzzle-mark.webp" alt="">
+    <small data-i18n="games">Игры</small>
+  </button>
+  <button data-nav="parent" type="button">
+    <img class="navico" src="img/icons/family-mark.webp" alt="">
+    <small data-i18n="parents">Родителям</small>
+  </button>
+</nav>
+
+<script src="data/volume.js"></script>
+<script src="feed/graph.js"></script>
+<script src="../../core/components/gate/gate.js"></script>
+<script src="nav.js"></script>
+<script src="ui.i18n.js"></script>
+<script src="i18n-runtime.js"></script>
+<script src="app.js"></script>
+<script>if (window.BibleI18nRuntime) BibleI18nRuntime.boot();</script>
+</body></html>

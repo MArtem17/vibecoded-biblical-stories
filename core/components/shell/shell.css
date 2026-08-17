@@ -1,0 +1,59 @@
+/* core/components/shell — вид общей оболочки. Цвета берём из переменных
+   страницы (--ink/--line/--green/--muted/--soft): оболочка одна, а колоды
+   разного цвета, и зашивать сюда палитру значило бы форкать файл под каждую. */
+
+/* Колонок столько, сколько вкладок: было жёстко четыре, и пятая вкладка ушла
+   бы на второй ряд. Автоколонки решают это без счёта в коде. */
+.shell-nav{position:fixed;left:0;right:0;bottom:0;z-index:20;display:grid;
+  grid-auto-flow:column;grid-auto-columns:1fr;background:#fff;border-top:1px solid var(--line,#E3E2DD);
+  padding-bottom:env(safe-area-inset-bottom)}
+.shell-tab{border:0;background:none;font:inherit;cursor:pointer;text-decoration:none;
+  padding:7px 2px 5px;text-align:center;color:var(--muted,#5b5a55);font-size:10.5px;font-weight:700;
+  display:block}
+.shell-tab .shell-ic{display:block;font-size:19px;line-height:1.25}
+/* Своя иконка-рисунок вместо символа: высоту задаёт сам svg, а цвет он берёт
+   у текста вкладки — активная вкладка зеленеет вместе с подписью. */
+.shell-tab .shell-ic svg{display:block;margin:0 auto;width:23px;height:23px}
+/* Только цвет как признак активной вкладки не читался (жалоба владельца
+   08.08.2026: «не видно, в каком пункте я нахожусь») — --green и --muted
+   почти совпадают по светлоте на площадке 23px, разница тонет в один
+   взгляд. Заливка добавляет признак, не зависящий от оттенка вообще. */
+.shell-tab.on{color:var(--green,#4C5C39);background:var(--soft,#EEF1E7)}
+.shell-tab:focus-visible{outline:3px solid var(--signal,#B8560F);outline-offset:-3px}
+
+/* Счётчик звёзд — его подсвечивает прилетевшая звезда, поэтому у него своя
+   анимация «пух». */
+.shell-stars{font-size:13px;font-weight:800;color:#B8860B;white-space:nowrap}
+.shell-stars.pop{animation:shellpop .42s}
+@keyframes shellpop{0%{transform:scale(1)}40%{transform:scale(1.35)}100%{transform:scale(1)}}
+.shell-flystar{position:fixed;z-index:400;font-size:34px;color:#E8B22A;pointer-events:none;
+  transform:translate(-50%,-50%);transition:left .6s cubic-bezier(.4,0,.2,1),
+  top .6s cubic-bezier(.4,0,.2,1),transform .6s,opacity .6s}
+
+/* Родительский раздел — лист поверх всего экрана. */
+.shell-sheet{position:fixed;inset:0;z-index:40;background:rgba(20,20,15,.45);
+  display:flex;align-items:flex-end;justify-content:center}
+.shell-sheet[hidden]{display:none}
+.shell-panel{width:100%;max-width:560px;max-height:88vh;overflow-y:auto;background:#fff;
+  border-radius:20px 20px 0 0;padding:16px 16px calc(16px + env(safe-area-inset-bottom))}
+.shell-ph{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.shell-ph h3{margin:0;font-size:19px;font-weight:800;flex:1}
+.shell-x{border:0;background:none;font:inherit;font-size:19px;color:var(--muted,#5b5a55);cursor:pointer;padding:4px 8px}
+.shell-gate{text-align:center;padding:8px 0 4px}
+.shell-gk{font-size:14px;color:var(--muted,#5b5a55)}
+.shell-gq{font-size:27px;font-weight:800;margin:10px 0}
+.shell-gin{font:inherit;font-size:19px;text-align:center;width:130px;padding:9px;
+  border:1.5px solid var(--line,#E3E2DD);border-radius:11px}
+.shell-gbtn{display:block;width:100%;margin-top:12px;padding:14px;border:0;border-radius:13px;
+  background:var(--ink,#111110);color:#fff;font:inherit;font-size:16px;font-weight:700;cursor:pointer}
+.shell-gerr{min-height:16px;font-size:13px;color:#C9302C;margin:8px 0 0}
+
+/* Строка статистики — колода наполняет её сама, вид задаём здесь, чтобы
+   родительский отчёт выглядел одинаково во всех колодах. */
+.shell-line{display:flex;justify-content:space-between;align-items:baseline;padding:9px 0;
+  border-bottom:1px solid var(--line,#E3E2DD);font-size:14px;color:var(--muted,#5b5a55)}
+.shell-line b{font-size:17px;color:var(--ink,#111110)}
+.shell-rank{display:flex;gap:10px;align-items:center;border:1.5px solid var(--green,#4C5C39);
+  background:var(--soft,#EEF1E7);border-radius:13px;padding:10px 12px;margin-bottom:10px}
+.shell-rank b{font-size:16px;color:var(--green,#4C5C39);display:block}
+.shell-rank i{font-style:normal;font-size:12.5px;color:var(--muted,#5b5a55)}

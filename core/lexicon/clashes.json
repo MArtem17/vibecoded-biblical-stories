@@ -1,0 +1,124 @@
+{
+ "note": "Сшибки общего ядра: одно русское слово стоит у двух РАЗНЫХ английских из разных продуктов. Ни один банк в одиночку такого не видит. Это рабочий лист методиста: рядом с каждым словом улики — что говорят остальные пять языков и есть ли слово на сцене. Решение пишется в поле decision и ПЕРЕЖИВАЕТ пересборку. Сам перевод правится В БАНКЕ КОЛОДЫ, ядро пересобирается из банков.",
+ "clashes": [
+  {
+   "ru": "вкусный",
+   "decision": "Синонимы. Решение владельца 07.08.2026 («сделай единообразно, какая разница bike или bicycle»): смысл один — общий перевод не дефект, а язык. Не правим.",
+   "words": [
+    {
+     "en": "delicious",
+     "src": "slovar-na-stsenah",
+     "de": "lecker",
+     "it": "delizioso",
+     "es": "delicioso",
+     "pt": "delicioso"
+    },
+    {
+     "en": "tasty",
+     "src": "angliyskiy-5-9"
+    }
+   ]
+  },
+  {
+   "ru": "рюкзак",
+   "decision": "bag остаётся. Решение владельца 07.08.2026: «рюкзак такой носят и в школу» — school bag покрывает нарисованное, английский верен. backpack кабинета тоже остаётся: это то же самое слово курса. Сшибка признана не дефектом.",
+   "words": [
+    {
+     "en": "bag",
+     "src": "slovar-na-stsenah",
+     "de": "der Rucksack",
+     "it": "lo zaino",
+     "es": "la mochila",
+     "pt": "a mochila",
+     "scene": "classroom"
+    },
+    {
+     "en": "backpack",
+     "src": "angliyskiy-5-9"
+    }
+   ]
+  },
+  {
+   "ru": "велосипед",
+   "decision": "Синонимы. То же решение: bike и bicycle — одно и то же, общий перевод верен. Не правим.",
+   "words": [
+    {
+     "en": "bike",
+     "src": "slovar-na-stsenah + angliyskiy-5-9",
+     "de": "das Fahrrad",
+     "it": "la bicicletta",
+     "es": "la bicicleta",
+     "pt": "a bicicleta",
+     "scene": "street"
+    },
+    {
+     "en": "bicycle",
+     "src": "angliyskiy-5-9",
+     "scene": "park"
+    }
+   ]
+  },
+  {
+   "ru": "ботинки",
+   "decision": "Синонимы одного поля (обувь). После склейки shoes «обувь; ботинки», boots «ботинки; сапоги» — оба несут по два слова, и на сценах картинка разводит их без подписи. Не правим.",
+   "words": [
+    {
+     "en": "boots",
+     "src": "slovar-na-stsenah + angliyskiy-5-9",
+     "de": "die Stiefel",
+     "it": "gli stivali",
+     "es": "las botas",
+     "pt": "as botas",
+     "scene": "weather"
+    },
+    {
+     "en": "shoes",
+     "src": "slovar-na-stsenah + angliyskiy-5-9",
+     "de": "die Schuhe",
+     "it": "le scarpe",
+     "es": "los zapatos",
+     "pt": "os sapatos",
+     "scene": "bedroom"
+    }
+   ]
+  },
+  {
+   "ru": "праздник",
+   "decision": "Синонимы одного поля. party и feast оба про праздник; у кабинета party уже склеен «вечеринка; праздник». Не правим.",
+   "words": [
+    {
+     "en": "party",
+     "src": "slovar-na-stsenah + angliyskiy-5-9",
+     "de": "die Party",
+     "it": "la festa",
+     "es": "la fiesta",
+     "pt": "a festa",
+     "scene": "birthday"
+    },
+    {
+     "en": "feast",
+     "src": "angliyskiy-5-9"
+    }
+   ]
+  },
+  {
+   "ru": "отдыхать",
+   "decision": "Синонимы. rest и relax в детской речи об одном; общий перевод верен. Не правим.",
+   "words": [
+    {
+     "en": "rest",
+     "src": "slovar-na-stsenah + angliyskiy-5-9",
+     "de": "ausruhen",
+     "it": "riposare",
+     "es": "descansar",
+     "pt": "descansar",
+     "scene": "beach"
+    },
+    {
+     "en": "relax",
+     "src": "angliyskiy-5-9"
+    }
+   ]
+  }
+ ]
+}

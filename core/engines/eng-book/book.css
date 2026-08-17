@@ -1,0 +1,630 @@
+:root{
+  --ink:#191C26; --paper:#FFFFFF;
+  --desk1:#DFE6F0; --desk2:#CBD6E6;
+  --coral:#E8555A; --blue:#2F6BDB; --green:#2E9E57;
+  --yellow:#F5B72F; --purple:#7A4FBF; --orange:#F08A24;
+  --pinkbg:#FDEEEF; --bluebg:#EBF1FD; --line:#E4E7EE;
+  --ok:#2E9E57; --bad:#E23B3B; --r:14px;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;padding:0}
+body{
+  touch-action:manipulation;
+  font-family:'Golos Text',system-ui,sans-serif;color:var(--ink);
+  background:
+    radial-gradient(1200px 600px at 70% -10%, #ffffff66, transparent 60%),
+    linear-gradient(160deg,var(--desk1),var(--desk2));
+  min-height:100vh;
+}
+.tocov{position:fixed;inset:0;background:#1A1D29CC;z-index:200;display:none;align-items:flex-start;justify-content:center;padding:20px 12px;overflow:auto}
+.tocov.open{display:flex}
+.tocpanel{background:#fff;border-radius:20px;max-width:520px;width:100%;padding:18px 18px 22px;box-shadow:0 30px 60px -20px rgba(10,15,30,.5)}
+.tocpanel h2{margin:0 0 4px;font-family:'Rubik';font-weight:800;font-size:19px}
+.tocboard{float:right;font-size:12.5px;font-weight:600;color:#B4530A;text-decoration:none;border:1.5px solid #E8D9C4;border-radius:9px;padding:2px 8px;margin-left:8px}
+.tocboard:active{transform:scale(.97)}
+.tocunit{font-family:'Rubik';font-weight:800;font-size:15px;color:var(--coral);margin:16px 0 6px}
+.tocitem{display:flex;align-items:center;gap:10px;padding:9px 10px;border-radius:12px;cursor:pointer;font-size:14.5px}
+.tocitem:active,.tocitem.cur{background:var(--bluebg)}
+.tocitem b{font-family:'Rubik';font-weight:700;color:var(--blue);min-width:56px}
+.tocitem.plan{opacity:.5;cursor:default}
+.tocclose{margin-top:14px}
+.topbar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 18px;max-width:860px;margin:0 auto}
+.brand{display:flex;flex-direction:column;line-height:1.15}
+.brand b{font-family:'Rubik';font-weight:800;font-size:18px;letter-spacing:.2px}
+.brand span{font-size:13px;color:#4A5163}
+.pagenav{display:flex;align-items:center;gap:8px}
+.pbtn{border:2px solid var(--ink);background:var(--paper);color:var(--ink);border-radius:12px;font-family:'Rubik';font-weight:600;font-size:14px;padding:9px 14px;cursor:pointer;box-shadow:0 2px 0 var(--ink);transition:transform .1s}
+.pbtn:active{transform:translateY(2px);box-shadow:none}
+.pbtn[disabled]{opacity:.35;pointer-events:none}
+.pdots{font-family:'Rubik';font-weight:600;font-size:14px;color:#4A5163;min-width:84px;text-align:center}
+.viewport{max-width:860px;margin:0 auto 40px;overflow:hidden;padding:0 10px 30px}
+.rail{display:flex;gap:20px;align-items:flex-start;transition:transform .5s cubic-bezier(.6,0,.2,1)}
+.sheet{flex:0 0 100%;background:var(--paper);border-radius:20px;box-shadow:0 24px 50px -20px rgba(30,40,70,.45);padding:26px 22px 70px;position:relative;min-width:0}
+.pagenum{position:absolute;bottom:0;font-family:'Rubik';font-weight:800;font-size:15px;background:var(--orange);color:#fff;padding:8px 18px}
+.pagenum.left{left:0;border-radius:0 14px 0 20px}
+.pagenum.right{right:0;border-radius:14px 0 20px 0}
+.unitname{position:absolute;bottom:9px;font-family:'Rubik';font-weight:600;font-size:14px;color:#4A5163}
+.unitname.left{left:74px}.unitname.right{right:74px}
+.vocab{display:flex;align-items:center;gap:12px;margin:2px 0 18px}
+.vocab::before,.vocab::after{content:"";height:5px;background:var(--coral);border-radius:3px;flex:1}
+.vocab::before{max-width:26px}
+/* Заголовок раздела ПЕРЕНОСИТСЯ, а не вылезает. Раньше стоял white-space:nowrap:
+   «Real World Profile · David Attenborough» на телефоне уходил за край листа и
+   обрезался на середине фамилии (лист режет по overflow:hidden, поэтому пропажу
+   даже не видно как ошибку — просто нет половины слова). Полоски-украшения
+   по краям при переносе не ломаются: левая фиксированной длины, правая
+   дотягивает остаток строки. */
+.vocab b{font-family:'Rubik';font-weight:800;font-size:22px;color:var(--coral);white-space:normal;min-width:0}
+.vocab::after{min-width:14px}
+@media (max-width:560px){
+  /* на узком экране длинные имена в заголовке — обычное дело, чуть уменьшаем */
+  .vocab b{font-size:19px;line-height:1.25}
+}
+.vocab.bluev::before,.vocab.bluev::after{background:var(--blue)}
+.vocab.bluev b{color:var(--blue)}
+.vocab.orangev::before,.vocab.orangev::after{background:var(--orange)}
+.vocab.orangev b{color:var(--orange)}
+.vocab.greenv::before,.vocab.greenv::after{background:var(--green)}
+.vocab.greenv b{color:var(--green)}
+.subhead{font-family:'Rubik';font-weight:800;font-size:17px;margin:20px 0 8px;color:var(--coral)}
+.subhead.b{color:var(--blue)}
+.ex{border:2px solid var(--line);border-radius:var(--r);padding:14px 14px 16px;margin:18px 0;position:relative;transition:border-color .2s, box-shadow .2s}
+.ex.active-ex{border-color:var(--blue);box-shadow:0 0 0 4px #2F6BDB1A}
+.ex-tag{position:absolute;top:-13px;left:12px;display:flex;align-items:center;gap:7px;background:var(--paper);padding:0 8px}
+.ex-num{font-family:'Rubik';font-weight:800;font-size:15px;color:#fff;background:var(--coral);border-radius:9px;padding:3px 9px}
+.ex-num.b{background:var(--blue)}
+.ex-hand svg{width:14px;height:14px;fill:var(--blue)}
+.ex-hand img{width:17px;height:17px;border-radius:4px}
+.objicon img{width:36px;height:36px;object-fit:contain}
+.objcard img.icimg{width:58px;height:58px;object-fit:contain}
+.mark img{width:22px;height:22px;vertical-align:middle}
+.citygrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:10px}
+.citycard{border:2px solid var(--line);border-radius:14px;padding:10px;display:flex;flex-direction:column;align-items:center;gap:8px}
+.citycard b{font-family:'Rubik';font-weight:800;font-size:15px}
+.lcd{font-family:'Rubik';font-weight:800;font-size:19px;letter-spacing:2px;background:#20232B;color:#9BE8AE;border-radius:8px;padding:5px 12px}
+.phonegrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:10px}
+.chip.phone{display:flex;flex-direction:column;align-items:center;gap:5px;border-radius:16px;padding:12px 8px;background:#252A38;color:#fff;border-color:#11141D;box-shadow:0 3px 0 #11141D}
+.chip.phone .ptime{font-family:'Rubik';font-weight:800;font-size:22px}
+.chip.phone .pdate{font-size:12.5px;color:#B9C2D8}
+.chip.phone .ptag{font-family:'Rubik';font-weight:800;background:#fff;color:var(--ink);border-radius:7px;padding:1px 8px;font-size:13px}
+.chip.phone.on{background:var(--blue);border-color:#1E4CA8;box-shadow:0 3px 0 #1E4CA8}
+.calbox{border:2px solid #C7D6F5;border-radius:14px;overflow:hidden;margin:10px 0}
+.calbox h5{margin:0;background:var(--blue);color:#fff;font-family:'Rubik';font-weight:700;font-size:14px;padding:8px 12px;text-align:center}
+.calgrid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));}
+.calgrid span{padding:6px 2px;text-align:center;font-size:12.5px;border-top:1px solid #EEF1F7}
+.calgrid span.hd{font-family:'Rubik';font-weight:700;color:var(--blue);background:#F3F7FE;font-size:11.5px}
+.calgrid span.hl{background:var(--yellow);border-radius:6px;font-weight:700}
+.culture{border:2.5px solid var(--purple);border-radius:16px;overflow:hidden;margin:16px 0}
+.culture h4{margin:0;background:linear-gradient(90deg,var(--purple),#B04FA0);color:#fff;font-family:'Rubik';font-weight:800;font-size:15px;padding:9px 14px}
+.culture p{margin:0;padding:12px 14px;font-size:14px;line-height:1.5}
+.ex-hand{width:26px;height:26px;border-radius:50%;background:var(--bluebg);border:2px solid var(--blue);display:grid;place-items:center;font-size:13px}
+.ex-title{font-weight:600;font-size:15px;margin:6px 0 12px;line-height:1.35}
+.ex-title em{font-style:normal;color:#4A5163;font-weight:400;font-size:13.5px;display:block;margin-top:2px}
+.pool{display:flex;flex-wrap:wrap;gap:8px;background:var(--pinkbg);border:1.5px dashed #E8555A66;border-radius:12px;padding:10px;min-height:52px;margin:8px 0}
+.pool.blue{background:var(--bluebg);border-color:#2F6BDB55}
+.chip,.litem,.ritem{-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
+.ritem.dragging{opacity:.25;border-style:dashed}
+.chip{font-family:'Rubik';font-weight:600;font-size:14.5px;color:var(--ink);background:#fff;border:2px solid var(--ink);border-radius:999px;padding:7px 14px;cursor:grab;user-select:none;touch-action:none;box-shadow:0 2px 0 var(--ink);position:relative;line-height:1}
+.chip:active{cursor:grabbing}
+.chip.letter{padding:7px 11px;min-width:36px;text-align:center}
+.chip.selected{border-color:var(--blue);color:var(--blue);box-shadow:0 2px 0 var(--blue);transform:translateY(-2px)}
+.chip.ghost{opacity:.35}
+.chip.flying{position:fixed;z-index:99;pointer-events:none;transform:rotate(-4deg) scale(1.06);box-shadow:0 10px 24px rgba(20,30,60,.35)}
+.chip.locked{cursor:default;box-shadow:none;border-color:#B9BFCC;color:#6A7182}
+.cdot{display:inline-block;width:11px;height:11px;border-radius:50%;margin-right:7px;vertical-align:-1px;border:1px solid #00000022}
+.chip.toggle{cursor:pointer}
+.chip.toggle.on{background:var(--ink);color:#fff;box-shadow:0 2px 0 #000}
+.chip.radio{cursor:pointer}
+.chip.radio.on{background:var(--blue);border-color:var(--blue);color:#fff;box-shadow:0 2px 0 #1E4CA8}
+.slot{display:inline-flex;align-items:center;justify-content:center;min-width:104px;min-height:38px;border:2px dashed #A9B2C4;border-radius:999px;background:#F7F9FC;vertical-align:middle;padding:2px;transition:all .15s}
+.slot.sm{min-width:46px}
+.slot.wide{min-width:210px}
+.slot.hover{border-color:var(--blue);background:var(--bluebg);transform:scale(1.04)}
+.slot .chip{margin:0}
+.slot.ok{border:2.5px solid var(--ok);background:#EAF7EF}
+.slot.bad{border:2.5px solid var(--bad);background:#FDEDED;animation:shake .3s}
+.slot.ok::after{content:"✓";font-weight:800;color:var(--ok);margin:0 6px 0 2px}
+.slot.bad::after{content:"✗";font-weight:800;color:var(--bad);margin:0 6px 0 2px}
+.slot.sm.ok::after,.slot.sm.bad::after{margin:0 3px 0 1px}
+@keyframes shake{25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}
+.cols.three{grid-template-columns:repeat(3,minmax(0,1fr))}
+.bucket{border:2px solid var(--line);border-radius:12px;overflow:hidden;transition:all .15s}
+.bucket h4{margin:0;font-family:'Rubik';font-weight:600;font-size:14px;color:#fff;padding:8px 12px;background:var(--coral);display:flex;align-items:center;justify-content:space-between;gap:6px}
+.bucket.b-blue h4{background:var(--blue)}
+.bucket.b-green h4{background:var(--green)}
+.bucket.b-purple h4{background:var(--purple)}
+.bucket.b-grey h4{background:#8B93A5}
+.bucket .bin{display:flex;flex-wrap:wrap;gap:8px;padding:12px;min-height:80px;align-content:flex-start}
+.bucket.hover{border-color:var(--blue);box-shadow:0 0 0 4px #2F6BDB1A}
+.chip.ok-chip{border-color:var(--ok);color:var(--ok);box-shadow:0 2px 0 var(--ok)}
+.chip.radio.on.ok-chip{background:var(--ok);border-color:var(--ok);color:#fff;box-shadow:0 2px 0 #1E7A40}
+.chip.radio.on.bad-chip{background:var(--bad);border-color:var(--bad);color:#fff;box-shadow:0 2px 0 #A82222}
+.chip.bad-chip{border-color:var(--bad);color:var(--bad);box-shadow:0 2px 0 var(--bad);animation:shake .3s}
+.wheelwrap{display:flex;justify-content:center;margin:6px 0 2px}
+.wheel{position:relative;width:min(320px,86vw);aspect-ratio:1;border-radius:50%;
+  background:conic-gradient(var(--purple) 0 60deg,var(--orange) 60deg 120deg,var(--yellow) 120deg 180deg,var(--green) 180deg 240deg,var(--blue) 240deg 300deg,var(--coral) 300deg 360deg);
+  box-shadow:0 10px 26px -10px rgba(30,40,70,.4)}
+.wheel::after{content:"";position:absolute;inset:31%;background:var(--paper);border-radius:50%;box-shadow:inset 0 2px 8px rgba(0,0,0,.12)}
+.wslot{position:absolute;transform:translate(-50%,-50%);z-index:2}
+.wslot .tag{position:absolute;top:-11px;left:-9px;z-index:3;width:22px;height:22px;border-radius:7px;background:#fff;border:2px solid var(--ink);font-family:'Rubik';font-weight:800;font-size:13px;display:grid;place-items:center}
+.wslot .slot{min-width:92px;background:#ffffffF2}
+.objrow{display:flex;align-items:center;gap:10px;margin:9px 0;flex-wrap:wrap}
+.objicon{width:46px;height:46px;border-radius:12px;display:grid;place-items:center;font-size:24px;border:2px solid #00000018;flex:0 0 auto}
+.objtext{font-size:15px;font-weight:500}
+.daterow{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:10px 0;font-size:15px}
+.datenum{font-family:'Rubik';font-weight:800;background:var(--bluebg);border:2px solid var(--blue);color:var(--blue);border-radius:10px;padding:6px 10px;font-size:15px}
+.hand{font-family:'Caveat';font-size:20px;color:var(--blue)}
+.photo{width:100%;border-radius:14px;display:block;box-shadow:0 8px 22px -10px rgba(30,40,70,.35)}
+.photo.spot{width:min(300px,70vw);margin:8px auto;display:block}
+/* Две картинки к тексту стоят РЯДОМ, в том числе на телефоне. Раньше в
+   медиазапросе для узких экранов стоял flex-direction:column, и он перебивал
+   инлайновый nowrap рендерера: картинки вставали друг под друга, каждая в
+   половину ширины, а справа оставалась пустота. Решение владельца: рядом. */
+.photorow{display:flex;flex-direction:row;gap:12px;align-items:flex-start}
+.photorow .photo{min-width:0}
+.controls{display:flex;align-items:center;gap:8px;margin-top:14px;flex-wrap:wrap}
+.btn{font-family:'Rubik';font-weight:600;font-size:14px;border-radius:12px;cursor:pointer;padding:9px 16px;border:2px solid var(--ink);box-shadow:0 2px 0 var(--ink);transition:transform .1s;background:#fff}
+.btn:active{transform:translateY(2px);box-shadow:none}
+.btn.check{background:var(--green);border-color:#1E7A40;box-shadow:0 2px 0 #1E7A40;color:#fff}
+.btn.reset{background:transparent;border-color:#A9B2C4;box-shadow:0 2px 0 #A9B2C4;color:#5A6275}
+.btn.say{background:var(--bluebg);border-color:var(--blue);box-shadow:0 2px 0 var(--blue);color:var(--blue)}
+.btn.say.small{padding:6px 10px;font-size:13px}
+.score{font-family:'Rubik';font-weight:800;font-size:14px;border-radius:999px;padding:8px 14px;display:none}
+.score.show{display:inline-block}
+.score.good{background:#EAF7EF;color:var(--ok);border:2px solid var(--ok)}
+.score.mid{background:#FEF6E7;color:#B47B00;border:2px solid var(--yellow)}
+.score.low{background:#FDEDED;color:var(--bad);border:2px solid var(--bad)}
+.stamp{position:absolute;right:14px;top:8px;font-family:'Caveat';font-weight:600;font-size:26px;color:var(--ok);border:3px solid var(--ok);border-radius:12px;padding:0 12px;transform:rotate(-8deg);display:none;background:#fff;z-index:5}
+.stamp.show{display:block;animation:pop .35s}
+@keyframes pop{from{transform:rotate(-8deg) scale(.4);opacity:0}}
+.radiorow{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:10px 0}
+/* Короткие варианты — в одной строке с вопросом: текст сжимается и переносится
+   внутри своей колонки, а варианты стоят справа. Перенос строки РАЗРЕШЁН
+   (не nowrap): если варианты всё-таки не влезли, они уходят под вопрос сами,
+   а не выдавливают текст в колонку по одному слову. */
+.radiorow.tight{flex-wrap:wrap;align-items:flex-start}
+/* Базис вопроса нарочно маленький: флекс решает про перенос по БАЗИСУ, а не
+   по тому, насколько текст мог бы сжаться. При 45% строка «He is … years old.»
+   с вариантами «one hundred / fifty» уходила на перенос, хотя места хватало.
+   С 30% варианты встают рядом, а вопрос потом дорастает до остатка строки. */
+.radiorow.tight .objtext{flex:1 1 30%}
+/* варианты — одним блоком, чтобы при переносе не разъезжались по строкам */
+.radiorow.tight .opts{display:flex;gap:8px;flex:0 1 auto;flex-wrap:nowrap;align-items:center}
+.radiorow.tight .chip.radio{flex:none}
+.mark{font-size:18px;font-weight:800;width:26px;text-align:center}
+.clockgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:10px}
+.clockcell{display:flex;flex-direction:column;align-items:center;gap:8px}
+.clock{width:104px;height:104px;border-radius:50%;background:#fff;border:5px solid var(--ink);position:relative;box-shadow:0 6px 14px -6px rgba(30,40,70,.4)}
+.clock i{position:absolute;left:50%;bottom:50%;transform-origin:50% 100%;background:var(--ink);border-radius:4px}
+.clock i.h{width:6px;height:28px;margin-left:-3px;transform:rotate(var(--h))}
+.clock i.m{width:4px;height:40px;margin-left:-2px;transform:rotate(var(--m));background:var(--coral)}
+.clock::after{content:"";position:absolute;left:50%;top:50%;width:10px;height:10px;background:var(--ink);border-radius:50%;transform:translate(-50%,-50%)}
+.clock b{position:absolute;font-family:'Rubik';font-size:12px;color:#7A8194}
+.clock b.n12{top:4px;left:50%;transform:translateX(-50%)}
+.clock b.n3{right:6px;top:50%;transform:translateY(-50%)}
+.clock b.n6{bottom:4px;left:50%;transform:translateX(-50%)}
+.clock b.n9{left:6px;top:50%;transform:translateY(-50%)}
+.refpanel{background:#EBF1FD;border:2px solid #C7D6F5;border-radius:16px;padding:14px 16px;margin:14px 0 20px}
+.refpanel h3{margin:0 0 10px;font-family:'Rubik';font-weight:800;font-size:16px;color:var(--blue)}
+.refpanel table{border-collapse:collapse;width:100%;margin:6px 0 10px;background:#fff;border-radius:10px;overflow:hidden}
+.refpanel td{padding:7px 10px;font-size:14px;border-bottom:1px solid #E4E7EE}
+.refpanel td.k{font-family:'Rubik';font-weight:600;color:var(--blue);background:#F3F7FE;width:96px}
+.refpanel p{margin:6px 0;font-size:14px}
+.refpanel .ex-it{font-family:'Caveat';font-size:19px;color:var(--blue)}
+.snake{font-family:'Rubik';font-weight:700;font-size:17px;letter-spacing:2.5px;background:var(--pinkbg);border:1.5px dashed #E8555A66;border-radius:12px;padding:12px;text-align:center;word-break:break-all;margin:8px 0}
+.tinrow{display:flex;align-items:center;gap:8px;margin:9px 0}
+.tinput{font-family:'Rubik';font-weight:600;font-size:16px;color:var(--ink);border:2px dashed #A9B2C4;border-radius:12px;background:#F7F9FC;padding:9px 12px;width:170px;outline:none}
+.tinput:focus{border-color:var(--blue);border-style:solid;background:var(--bluebg)}
+.tinput.ok{border:2.5px solid var(--ok);background:#EAF7EF}
+.tinput.bad{border:2.5px solid var(--bad);background:#FDEDED;animation:shake .3s}
+.tree{display:flex;flex-direction:column;align-items:center;gap:16px;margin:10px 0}
+.trow{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.tnode{border:2.5px solid var(--blue);border-radius:14px;padding:9px 10px;display:flex;flex-direction:column;align-items:center;gap:7px;min-width:112px;background:#FBFCFE}
+.tnode.f{border-color:#F286B0}
+.tnode img.tav{width:56px;height:56px;border-radius:50%;object-fit:cover;border:2px solid #00000015}
+.mcard img{width:44px;height:44px}
+.tnode b{font-family:'Rubik';font-weight:800;font-size:14px}
+.tnode small{color:#5A6275;font-size:12px}
+.readcard{border:2px solid var(--line);border-left:6px solid var(--coral);border-radius:14px;padding:14px 16px;font-size:15px;line-height:1.7;background:#FFFDF9;margin:10px 0}
+/* Key words: список слов, которым учит текст. Стоит сразу под карточкой
+   чтения и визуально к ней прижат — это часть текста, а не отдельный блок. */
+.keybox{margin:-4px 0 10px;padding:8px 14px;border:2px dashed var(--line);border-radius:12px;background:#F7FAFF}
+.keybox b{font-family:'Rubik';font-weight:800;font-size:12.5px;color:var(--blue);text-transform:uppercase;letter-spacing:.4px}
+.keylist{display:flex;flex-wrap:wrap;gap:6px;margin-top:5px}
+.keyword{font-family:'Rubik';font-weight:600;font-size:14px;background:#fff;border:1.5px solid var(--line);border-radius:8px;padding:2px 9px}
+/* Заголовки к абзацам */
+.parablock{margin:10px 0}
+.pararow{display:flex;align-items:center;gap:8px;margin-bottom:4px}
+.paratext{font-size:15px;line-height:1.65;border-left:3px solid var(--line);padding:2px 0 2px 12px;margin-left:6px}
+/* Лучшее краткое содержание: варианты — целые предложения, им нужна вся ширина */
+.gistrow{margin:6px 0}
+.chip.gistopt{flex:1 1 100%;text-align:left;white-space:normal;line-height:1.5;padding:9px 13px}
+/* Слово по скелету: часть букв открыта, остальные вписать */
+.skelrow{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:10px 0}
+.skelmask{display:inline-flex;gap:3px}
+.skelch{font-family:'Rubik';font-weight:800;font-size:17px;width:17px;text-align:center}
+.skelch.gap{border-bottom:2.5px solid var(--blue)}
+/* «Осторожно!»: объяснение скрыто до проверки */
+.watchitem{margin:12px 0;padding:10px 12px;border:2px solid #F5D9A8;border-radius:12px;background:#FFFBF3}
+.watchru{font-size:14.5px;color:#4A5163;margin-bottom:6px}
+.watchwhy{display:none;margin-top:7px;font-size:14px;line-height:1.55;color:#1e2630;border-left:4px solid var(--orange);padding-left:10px}
+.watchwhy.show{display:block}
+/* Диалог-конструктор: сменные слова подчёркнуты, чтобы было видно, что их можно трогать */
+.swrow{display:flex;gap:10px;align-items:baseline;margin:8px 0}
+.swwho{font-family:'Rubik';font-weight:800;font-size:15px;color:var(--blue);min-width:64px;flex:none}
+.swsay{font-size:15.5px;line-height:2}
+.swchip{font:inherit;font-weight:800;color:var(--orange);background:#FFF6EC;border:none;
+  border-bottom:2.5px dashed var(--orange);border-radius:6px;padding:1px 6px;cursor:pointer}
+.swchip:active{transform:translateY(1px)}
+.swchip.used{background:#FFEBD6}
+.swhint{margin-top:10px;font-size:14px;color:#4A5163;background:#F3F7FE;border-radius:10px;padding:8px 12px}
+/* Правило собирает ученик */
+.disclead{font-family:'Rubik';font-weight:700;font-size:14.5px;color:var(--blue);margin:10px 0 2px}
+/* Три параллельных текста */
+.whocard{margin:10px 0}
+.whoname{font-family:'Rubik';font-weight:800;font-size:16px;color:var(--blue);margin-bottom:2px}
+.whoname span{font-weight:600;font-size:14px;color:#4A5163}
+.gtable{border-collapse:collapse;width:100%;margin:8px 0;background:#fff;border-radius:12px;overflow:hidden;border:2px solid var(--line)}
+.gtable td{padding:8px 10px;font-size:14.5px;border-bottom:1px solid #EEF1F7}
+.gtable td.k{font-family:'Rubik';font-weight:700;color:var(--blue);background:#F3F7FE;width:110px}
+.gaptext{font-size:15px;line-height:2.3;border:2px solid var(--line);border-radius:14px;padding:14px 16px;background:#FBFCFE;margin:10px 0}
+.formrow{display:flex;align-items:center;gap:10px;margin:9px 0}
+.formrow label{font-family:'Rubik';font-weight:600;font-size:14px;min-width:130px}
+/* верёвочки */
+.linesbox{position:relative;display:flex;justify-content:space-between;gap:56px;margin:12px 0}
+.lsvg{position:absolute;inset:0;width:100%;height:100%;z-index:1;pointer-events:none}
+/* Столбцы верёвочек занимают одну высоту. Слева обычно описания в две-три
+   строки, справа слова в одну, поэтому правый столбец вдвое короче. Сначала я
+   его отцентрировал, но плотный сгусток коротких плашек посреди длинного
+   левого столбца — это по-прежнему перекос. Поэтому space-between: короткий
+   столбец РАЗРЕЖИВАЕТСЯ, расстояния между плашками растут, и оба столбца
+   начинаются и заканчиваются на одной высоте. Длинному столбцу правило
+   ничего не меняет: свободного места в нём нет. */
+.lcol{display:flex;flex-direction:column;justify-content:space-between;gap:12px;flex:1;z-index:2;min-width:0}
+.litem{position:relative;border:2px solid var(--ink);border-radius:12px;padding:9px 12px;font-family:'Rubik';font-weight:600;font-size:14.5px;background:#fff;cursor:pointer;box-shadow:0 2px 0 var(--ink);user-select:none}
+.litem .dotp{position:absolute;top:50%;width:12px;height:12px;border-radius:50%;background:#A9B2C4;border:2px solid #fff;transform:translateY(-50%)}
+.lcol.left .dotp{right:-8px}
+.lcol.right .dotp{left:-8px}
+.litem.sel{border-color:var(--blue);color:var(--blue);box-shadow:0 2px 0 var(--blue)}
+.litem.linked .dotp{background:var(--blue)}
+.litem.ok{border-color:var(--ok)}
+.litem.bad{border-color:var(--bad);animation:shake .3s}
+/* пересортировка списка */
+.rlist{counter-reset:ri;display:flex;flex-direction:column;gap:9px;margin:12px 0;touch-action:none}
+.ritem{counter-increment:ri;display:flex;align-items:center;gap:10px;border:2px solid var(--ink);border-radius:12px;padding:9px 12px;background:#fff;font-family:'Rubik';font-weight:600;font-size:14.5px;box-shadow:0 2px 0 var(--ink);cursor:grab;touch-action:none;user-select:none}
+.ritem::before{content:counter(ri);font-family:'Rubik';font-weight:800;color:#fff;background:var(--blue);border-radius:8px;padding:2px 9px;font-size:13px}
+/* «расставь сцены»: строки с картинками-панелями комикса */
+/* ПАНЕЛЬ КОМИКСА. Было 76×76 — в такой квадратик не влезает ни реплика в
+   облачке, ни лица, и рисунок читался как цветное пятно. Стало 116×116, а по
+   нажатию панель открывается на весь экран (см. лупу и лайтбокс в engine.js).
+   pointer-events убраны НЕ были случайно: без них нельзя отличить нажатие на
+   картинку от нажатия на строку, а строку надо оставить перетаскиваемой —
+   поэтому события картинке вернули, а тап по ней разбирается в rowReorder. */
+.rlist.pics .ritem img{width:116px;height:116px;border-radius:10px;object-fit:cover;flex:none;cursor:zoom-in}
+.rlist.pics .ritem{position:relative}
+/* Лупа-подсказка: без неё не догадаться, что панель увеличивается. Стоит в
+   НИЖНЕМ углу панели — в верхнем она садилась ровно на облачко с репликой и
+   закрывала те самые слова, которые надо прочитать. */
+.rlist.pics .ritem::after{content:'🔍';position:absolute;left:100px;bottom:13px;font-size:12px;
+  background:rgba(255,255,255,.92);border-radius:6px;padding:0 2px;line-height:1.35;
+  box-shadow:0 1px 3px rgba(0,0,0,.3);pointer-events:none}
+/* Лайтбокс: панель во весь экран, тап в любом месте закрывает */
+.lbox{position:fixed;inset:0;z-index:200;background:rgba(16,20,30,.88);display:flex;align-items:center;
+  justify-content:center;padding:18px;cursor:zoom-out}
+.lbox img{max-width:100%;max-height:82vh;border-radius:16px;box-shadow:0 20px 50px rgba(0,0,0,.5)}
+.lbox .lcap{position:absolute;left:0;right:0;bottom:22px;text-align:center;color:#fff;
+  font-family:'Rubik';font-weight:700;font-size:16px;padding:0 20px;line-height:1.4}
+.rlist.pics .ritem span{flex:1}
+/* шёпот-перевод: русская подпись под репликой/предложением, по кнопке;
+   показывается, когда у любого предка есть класс .showtr */
+.rtrans{display:none;font-family:'Golos Text',system-ui,sans-serif;font-weight:400;font-size:12.5px;color:var(--muted,#6B6557);margin-top:4px;line-height:1.3}
+.showtr .rtrans{display:block}
+.tellstory{margin-top:12px;padding:10px 14px;border:1.5px dashed var(--accent,#A16207);border-radius:12px;
+  background:color-mix(in srgb,var(--accent,#A16207) 7%,#fff);font-size:14px;line-height:1.4;color:var(--ink,#191C26)}
+.tellstory b{color:var(--accent,#A16207)}
+.bwline{margin:12px 0}
+.bwline .bwrow{margin:0}
+.ritem::after{content:"⠿";margin-left:auto;color:#A9B2C4;font-size:17px}
+.ritem.sel{border-color:var(--blue);color:var(--blue);box-shadow:0 2px 0 var(--blue)}
+.ritem.dragging{opacity:.35}
+.ritem.ok{border-color:var(--ok)}
+.ritem.ok::before{background:var(--ok)}
+.ritem.bad{border-color:var(--bad);animation:shake .3s}
+.ritem.bad::before{background:var(--bad)}
+.wsgrid{display:grid;gap:3px;max-width:350px;margin:12px auto}
+.wcell{aspect-ratio:1;display:grid;place-items:center;font-family:'Rubik';font-weight:700;font-size:15px;background:#F7F9FC;border:1.5px solid #E4E7EE;border-radius:7px;cursor:pointer;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
+.wcell.wsel{background:var(--bluebg);border-color:var(--blue);transform:scale(1.06)}
+.wcell.wfound{background:var(--yellow);border-color:#D99B12}
+.wcell.wbad{animation:shake .3s;background:#FDEDED;border-color:var(--bad)}
+.wswords{display:flex;flex-wrap:wrap;gap:6px 14px;justify-content:center;font-family:'Rubik';font-weight:600;font-size:14.5px;margin-top:4px}
+.wsWord.done{text-decoration:line-through;color:var(--ok)}
+.mgrid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:9px;margin:12px 0}
+.mcard{aspect-ratio:5/4;min-width:0;display:grid;place-items:center;border:2px solid var(--ink);border-radius:12px;background:var(--blue);color:#fff;font-family:'Rubik';font-weight:800;font-size:22px;cursor:pointer;box-shadow:0 2px 0 var(--ink);-webkit-user-select:none;user-select:none;-webkit-touch-callout:none;padding:4px;text-align:center}
+.mcard span{display:none;font-size:13.5px;line-height:1.2;color:var(--ink);font-weight:700;overflow-wrap:anywhere;max-width:100%}
+.mcard::before{content:"?"}
+.mcard.open,.mcard.mfound{background:#fff}
+.mcard.open::before,.mcard.mfound::before{content:none}
+.mcard.open span,.mcard.mfound span{display:block}
+.mcard.mfound{border-color:var(--ok);box-shadow:0 2px 0 var(--ok)}
+.mcard.mfound span{color:var(--ok)}
+.hotwrap{position:relative;margin:10px 0}
+.hotwrap img{width:100%;border-radius:14px;display:block}
+.hltext{font-size:15.5px;line-height:2.1;border:2px solid var(--line);border-radius:14px;padding:14px 16px;background:#FBFCFE;margin:10px 0}
+.hword{cursor:pointer;border-radius:6px;padding:1px 4px;-webkit-user-select:none;user-select:none}
+.hword.on{background:var(--bluebg);box-shadow:0 0 0 2px var(--blue)}
+.hword.okw{background:#EAF7EF;box-shadow:0 0 0 2px var(--ok)}
+.hword.badw{background:#FDEDED;box-shadow:0 0 0 2px var(--bad);animation:shake .3s}
+@media (max-width:420px){.mgrid{grid-template-columns:repeat(4,minmax(0,1fr))}.mcard{font-size:19px}.mcard span{font-size:11.5px}}
+/* диалог-симулятор */
+.dlg{display:flex;flex-direction:column;gap:10px;margin:12px 0}
+.dbub{max-width:82%;padding:9px 13px;border-radius:16px;font-size:14.5px;line-height:1.4}
+.dbot{align-self:flex-start;background:var(--bluebg);border:2px solid #C7D6F5;border-bottom-left-radius:4px}
+.duser{align-self:flex-end;background:#EAF7EF;border:2px solid #BFE3CC;border-bottom-right-radius:4px}
+.duser.wrong{background:#FDEDED;border-color:#F2C6C6;text-decoration:line-through}
+.dopts{display:flex;flex-wrap:wrap;gap:8px;align-self:flex-end;justify-content:flex-end}
+/* кроссворд */
+.cwgrid{display:grid;gap:3px;margin:12px auto;max-width:360px}
+.cwcellwrap{position:relative;aspect-ratio:1}
+.cwcell{width:100%;height:100%;text-align:center;font-family:'Rubik';font-weight:700;font-size:16px;text-transform:uppercase;border:2px solid var(--ink);border-radius:7px;background:#fff;padding:0;outline:none}
+.cwcell:focus{border-color:var(--blue);background:var(--bluebg)}
+.cwcell.ok{border-color:var(--ok);background:#EAF7EF}
+.cwcell.bad{border-color:var(--bad);background:#FDEDED}
+.cwnum{position:absolute;top:1px;left:3px;font-size:10px;font-family:'Rubik';font-weight:800;color:var(--blue);z-index:2;pointer-events:none}
+.cwclues{font-size:14px;line-height:1.6;margin-top:8px}
+.cwclues b{font-family:'Rubik';color:var(--blue)}
+/* флеш-карточки */
+.fwrap{display:flex;flex-direction:column;align-items:center;gap:12px;margin:12px 0}
+.fcard{width:min(300px,80vw);height:150px;border:3px solid var(--blue);border-radius:18px;display:grid;place-items:center;font-family:'Rubik';font-weight:800;font-size:24px;background:#fff;cursor:pointer;box-shadow:0 8px 20px -8px rgba(30,40,70,.35);text-align:center;padding:10px;-webkit-user-select:none;user-select:none}
+.fcard.back{background:var(--bluebg);font-size:20px}
+.fcard.done{border-color:var(--ok);font-size:17px;color:var(--ok)}
+.fprog{font-family:'Rubik';font-weight:600;font-size:13px;color:#5A6275}
+/* говорение */
+.spkrow{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:10px 0}
+.spkrow .phrase{font-family:'Rubik';font-weight:700;font-size:15px;flex-basis:100%}
+.spkstat{font-family:'Rubik';font-weight:700;font-size:13px}
+.spkstat.ok{color:var(--ok)}
+.spkstat.bad{color:var(--bad)}
+/* симулятор часов */
+.clock.setable{cursor:grab;touch-action:none;-webkit-user-select:none;user-select:none;width:128px;height:128px}
+.clock.setable i.h{height:34px}
+.clock.setable i.m{height:50px}
+.clock.setable .tick{position:absolute;left:50%;top:2px;width:2px;height:6px;background:#C9CFDB;margin-left:-1px;transform-origin:50% 62px}
+.clockcell.ok .clock{border-color:var(--ok)}
+.clockcell.bad .clock{border-color:var(--bad);animation:shake .3s}
+.clocktask{font-family:'Rubik';font-weight:700;font-size:15px;text-align:center}
+.clockread{font-family:'Rubik';font-weight:600;font-size:13px;color:#5A6275}
+/* симулятор кафе */
+.shopwrap{display:flex;flex-direction:column;gap:10px;margin:10px 0}
+.shoptask{border:2px solid var(--line);border-left:6px solid var(--yellow);border-radius:12px;padding:10px 12px;font-size:14.5px;background:#FFFDF5}
+.menu{display:flex;flex-direction:column;gap:6px}
+.menuitem{display:flex;align-items:center;gap:10px;border:2px solid var(--ink);border-radius:12px;padding:9px 12px;background:#fff;cursor:pointer;font-family:'Rubik';font-weight:600;font-size:14.5px;box-shadow:0 2px 0 var(--ink);-webkit-user-select:none;user-select:none}
+.menuitem .price{margin-left:auto;color:var(--blue)}
+.menuitem.inbasket{background:var(--bluebg);border-color:var(--blue)}
+.menuitem.ok-chip{border-color:var(--ok);background:#EAF7EF}
+.menuitem.bad-chip{border-color:var(--bad);background:#FDEDED}
+.basket{border:2.5px dashed #C9CFDB;border-radius:12px;padding:10px 12px;background:#FBFCFE;font-size:14.5px;min-height:44px}
+.basket b{font-family:'Rubik'}
+.basketline{display:flex;gap:8px}
+.basketline span:last-child{margin-left:auto;font-family:'Rubik';font-weight:600}
+.shoptotal{display:flex;align-items:center;gap:10px;font-family:'Rubik';font-weight:800;font-size:16px;border-top:2px solid var(--line);padding-top:8px;margin-top:4px}
+.shoptotal .sum{margin-left:auto;color:var(--blue)}
+/* одень по погоде */
+.dsswrap{display:flex;flex-direction:column;gap:12px;margin:10px 0}
+.dssslider{display:flex;align-items:center;gap:10px}
+.dssslider input{flex:1;accent-color:var(--blue);height:28px}
+.dsstemp{font-family:'Rubik';font-weight:800;font-size:17px;min-width:64px;text-align:center}
+.dssscene{border:2px solid var(--line);border-radius:14px;padding:12px;display:flex;gap:12px;align-items:center;background:#FBFCFE;transition:background .3s}
+.dssscene.cold{background:#EDF4FC;border-color:#BBD3EE}
+.dssscene.warm{background:#FFF7E8;border-color:#F0DBA8}
+.dssscene.hot{background:#FFF1E4;border-color:#F3C79A}
+.dssfig{width:74px;height:110px;flex:none;position:relative;border-radius:10px;background:#EFF2F7;display:grid;place-items:center;font-size:11px;color:#8A93A6;text-align:center;font-family:'Rubik'}
+.dssworn{display:flex;flex-wrap:wrap;gap:5px;flex:1}
+.dssworn:empty::after{content:"Пока ничего не надето";font-size:13px;color:#8A93A6}
+.dssdesc{font-family:'Rubik';font-weight:700;font-size:14.5px}
+/* карта города */
+.mapwrap{display:flex;flex-direction:column;gap:10px;margin:10px 0}
+.mapgrid{display:grid;gap:3px;background:#E7EBF2;border:2px solid var(--line);border-radius:14px;padding:6px;max-width:340px;margin:0 auto;width:100%}
+.mapcell{aspect-ratio:1;border-radius:7px;background:#fff;position:relative;display:grid;place-items:center;font-size:10px;font-family:'Rubik';font-weight:700;color:#7A8194;text-align:center;line-height:1.05;padding:2px}
+.mapcell.bld{background:var(--bluebg);color:var(--blue)}
+.mapcell.bld.target{background:#FFF3D6;color:#9A6C05;box-shadow:inset 0 0 0 2px var(--yellow)}
+.pawn{position:absolute;width:66%;height:66%;border-radius:50%;background:var(--coral);display:grid;place-items:center;color:#fff;font-size:15px;transition:transform .25s}
+.mapcmds{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
+.mapseq{display:flex;flex-wrap:wrap;gap:6px;border:2.5px dashed #C9CFDB;border-radius:12px;padding:9px;min-height:46px;background:#FBFCFE}
+.mapseq:empty::after{content:"Собери маршрут: нажимай команды ниже";font-size:13px;color:#8A93A6}
+.seqchip{background:var(--blue);color:#fff;border-radius:9px;padding:5px 9px;font-family:'Rubik';font-weight:600;font-size:13px;cursor:pointer}
+.mapstatus{font-family:'Rubik';font-weight:700;font-size:14px;text-align:center}
+.mapstatus.ok{color:var(--ok)}
+.mapstatus.bad{color:var(--bad)}
+/* слоёный разбор */
+.dsroles{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:8px}
+.dsrole{border:2px solid var(--ink);border-radius:10px;padding:6px 11px;font-family:'Rubik';font-weight:700;font-size:13.5px;cursor:pointer;background:#fff;box-shadow:0 2px 0 var(--ink)}
+.dsrole.on{color:#fff}
+.dssent{display:flex;flex-wrap:wrap;gap:7px;border:2px solid var(--line);border-radius:14px;padding:12px;background:#FBFCFE;font-size:15.5px}
+.dsword{border-radius:9px;padding:5px 9px;font-family:'Rubik';font-weight:600;cursor:pointer;border:2px solid #E2E6EE;background:#fff;-webkit-user-select:none;user-select:none}
+.dsword.tagged{color:#fff;border-color:transparent}
+.dsword.okw{box-shadow:0 0 0 3px #2E9E5766}
+.dsword.badw{box-shadow:0 0 0 3px #E23B3B66;animation:shake .3s}
+/* шкала дня */
+.tlrow{display:flex;flex-direction:column;gap:5px;border:2px solid var(--line);border-radius:12px;padding:10px 12px;margin:9px 0;background:#FBFCFE}
+.tlrow.ok{border-color:var(--ok);background:#F3FBF6}
+.tlrow.bad{border-color:var(--bad);background:#FEF6F6;animation:shake .3s}
+.tlask{font-family:'Rubik';font-weight:700;font-size:14.5px}
+.tlline{display:flex;align-items:center;gap:9px}
+.tlline input{flex:1;accent-color:var(--blue);height:26px}
+.tlclock{font-family:'Rubik';font-weight:800;font-size:15px;color:var(--blue);min-width:56px;text-align:center}
+.tlsent{font-size:14px;color:#41485A;min-height:20px}
+/* цепочка симуляций */
+.chainbox{border:2.5px solid var(--purple);border-radius:18px;padding:14px 12px;margin:14px 0;background:#FCFAFF}
+.chaintitle{font-family:'Rubik';font-weight:800;font-size:16.5px;color:var(--purple)}
+.chainintro{font-size:14.5px;line-height:1.5;margin:6px 0 4px}
+.chainbox .ex{border-style:solid;border-color:#E3D8F5}
+.chainstep.locked{display:none}
+.chainfoot{display:flex;align-items:center;gap:10px;border-top:2px dashed #DCCFF2;padding-top:10px;margin-top:6px;font-family:'Rubik';font-weight:700;font-size:14.5px;color:var(--purple)}
+.chainoutro{font-size:14.5px;line-height:1.5;margin-top:6px;color:#41485A}
+.totalbar{border:2.5px solid var(--orange);border-radius:16px;background:#FFF6EA;padding:14px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:22px 0 4px}
+.totalbar b{font-family:'Rubik';font-weight:800;font-size:17px;color:#B36A00}
+.picon{width:13px;height:13px;fill:var(--coral);display:inline-block;vertical-align:-1px;margin-right:3px}
+.picon.w{fill:#fff}
+/* audio word box */
+.wordbox{border:2px solid var(--coral);border-radius:14px;overflow:hidden;margin:8px 0 12px}
+.wb-head{display:flex;align-items:center;gap:9px;padding:6px 10px;background:var(--pinkbg)}
+.wb-head b{font-family:'Rubik';font-weight:800;color:var(--coral);font-size:15px;flex:1}
+.wb-ic img{width:22px;height:22px;border-radius:6px;display:block}
+.wb-badge{font-family:'Rubik';font-weight:700;font-size:13px;color:#fff;background:var(--coral);border-radius:999px;padding:4px 10px}
+.wb-list{display:flex;flex-wrap:wrap;gap:3px 4px;padding:7px 9px}
+.wb-word{padding:3px 8px;border-radius:7px;font-size:14px;font-weight:500;cursor:pointer;transition:background .15s}
+.wb-word:active{background:var(--bluebg)}
+.wb-word.playing{background:var(--yellow);font-weight:600}
+/* object cards (page 1) */
+.objgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:12px;margin-top:8px}
+.objcard{border:2px solid var(--line);border-radius:14px;padding:10px;display:flex;flex-direction:column;align-items:center;gap:8px;position:relative}
+.objcard .big{font-size:40px;line-height:1}
+.objcard .tag{position:absolute;top:-10px;left:-8px;width:24px;height:24px;border-radius:8px;background:#fff;border:2px solid var(--ink);font-family:'Rubik';font-weight:800;font-size:13px;display:grid;place-items:center}
+/* alphabet grid */
+.abcgrid{display:flex;flex-wrap:wrap;gap:7px;margin-top:8px}
+.speechrow{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:10px 0}
+.bubble{border:2px solid var(--blue);border-radius:14px 14px 14px 2px;background:var(--bluebg);padding:8px 12px;font-size:14.5px;font-weight:500}
+@media (max-width:560px){
+  .cols,.cols.three{grid-template-columns:1fr}
+  .brand b{font-size:16px}
+  .sheet{padding:22px 14px 66px}
+  /* верхняя панель на телефоне не помещалась — навигация вылезала за экран
+     и появлялся горизонтальный скролл. Ужимаем и разрешаем названию сжиматься. */
+  .topbar{padding:12px 10px;gap:8px}
+  .brand{min-width:0}
+  .brand b{font-size:14px}
+  .brand b,.brand span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
+  .pagenav{gap:5px;flex:none}
+  .pbtn{padding:8px 9px;font-size:13px}
+  .pdots{min-width:0;font-size:12.5px;white-space:nowrap}
+}
+/* страховка инварианта: страница целиком не должна прокручиваться вбок
+   (нужный горизонтальный скролл живёт внутри .viewport с overflow:hidden) */
+html,body{overflow-x:hidden}
+/* === ПЛАТФОРМА: build — слова переставляются прямо в строке === */
+.bwrow{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:12px 0;touch-action:none}
+.bword{font-family:'Rubik';font-weight:600;font-size:15px;color:var(--ink);background:#fff;border:2px solid var(--ink);border-radius:999px;padding:8px 14px;cursor:grab;user-select:none;-webkit-user-select:none;-webkit-touch-callout:none;touch-action:none;box-shadow:0 2px 0 var(--ink);line-height:1}
+.bword:active{cursor:grabbing}
+.bword.sel{border-color:var(--blue);color:var(--blue);box-shadow:0 2px 0 var(--blue);transform:translateY(-2px)}
+.bword.dragging{opacity:.3}
+.bword.flying{position:fixed;z-index:99;pointer-events:none;transform:rotate(-4deg) scale(1.06);box-shadow:0 10px 24px rgba(20,30,60,.35)}
+.bword.ok{border-color:var(--ok);color:var(--ok);box-shadow:0 2px 0 var(--ok)}
+.bword.bad{border-color:var(--bad);color:var(--bad);box-shadow:0 2px 0 var(--bad);animation:shake .3s}
+.bword.letter{padding:8px 11px;min-width:36px;text-align:center}
+.ritem.flying{position:fixed;z-index:99;pointer-events:none;transform:scale(1.02);box-shadow:0 10px 24px rgba(20,30,60,.35);background:#fff;border:2px solid var(--ink);border-radius:12px;padding:9px 12px;display:flex;align-items:center;gap:10px}
+/* клон-«призрак» при перетаскивании живёт в <body>, вне .rlist.pics — держим размер картинки сами */
+.ritem.flying img{width:76px;height:76px;border-radius:10px;object-fit:cover;flex:none}
+.ritem.flying .say{display:none}
+/* номер на строке — это CSS-счётчик позиции (counter(ri)); в клоне вне .rlist он
+   сбрасывается и показывает произвольную цифру — прячем его на «призраке» */
+.ritem.flying::before{display:none}
+.tocprog{float:right;font-family:'Rubik';font-weight:600;font-size:11.5px;color:#2E9E57;background:#EAF7EF;border-radius:999px;padding:2px 8px;margin-left:8px}
+.tocprog:empty{display:none}
+/* === ПЛАТФОРМА: rewrite — перепиши правильно === */
+.rwrow{margin:12px 0}
+.rwwrong{border:2px solid #F2C6C6;background:#FDEDED;border-radius:12px;padding:9px 12px;font-size:15px;line-height:1.5;margin-bottom:6px}
+.rwwrong .x{font-family:'Rubik';font-weight:800;color:var(--bad);margin-right:8px}
+.tinput.rw{width:100%;max-width:520px}
+/* анаграмма: подсказка своей строкой, буквы — одной неразрывной лентой */
+.bwrow.anag{display:block}
+.bwrow.anag .objtext{margin-bottom:6px}
+.bletters{display:flex;flex-wrap:nowrap;gap:6px;max-width:100%;touch-action:none}
+.bletters .bword.letter{flex:0 1 46px;min-width:28px;padding:8px 0;text-align:center}
+
+/* === ПЛАТФОРМА: metre — ритм-решётка (такт = четыре доли) === */
+.mtbar{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:4px 0 12px}
+.mtcount{font-family:'Rubik';font-weight:800;font-size:19px;color:var(--accent);min-width:1.2em}
+.mthint{color:var(--muted);font-size:13.5px;overflow-wrap:anywhere}
+.mtrow{margin:10px 0}
+.mtlabel{font-family:'Rubik';font-weight:700;font-size:11.5px;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--muted);margin-bottom:5px}
+.mtcells{display:grid;grid-template-columns:repeat(4,1fr);gap:7px}
+.mtcell{border:2px solid var(--line);border-radius:12px;padding:8px 6px;background:#fff;
+  min-width:0;text-align:center;transition:border-color .12s,background .12s}
+/* подсветка доли, на которой сейчас метроном */
+.mtcell.now{border-color:var(--accent);background:#FFF4E8}
+.mtbeat{font-family:'Rubik';font-weight:800;font-size:11px;color:var(--muted)}
+.mtword{font-family:'Rubik';font-weight:700;font-size:15px;line-height:1.25;margin:3px 0 6px;
+  overflow-wrap:anywhere;hyphens:auto}
+.mtn{display:flex;align-items:center;justify-content:center;gap:5px;flex-wrap:wrap}
+.mtnlab{font-size:11px;color:var(--muted)}
+.mtn .tinput{text-align:center;padding:5px 4px}
+@media(max-width:560px){
+  .mtcells{grid-template-columns:repeat(2,1fr)}
+  .mtword{font-size:14px}
+}
+
+/* === ПЛАТФОРМА: shift — «Одно слово — другой смысл» (верного ответа нет) === */
+.shline{font-family:'Rubik';font-weight:600;font-size:clamp(17px,2.4vw,21px);line-height:1.6;
+  margin:6px 0 12px;overflow-wrap:anywhere}
+.shslot{display:inline-block;min-width:4.5em;text-align:center;padding:1px 8px;border-radius:8px;
+  background:#FFF4E8;border:2px dashed var(--accent);color:var(--accent);font-weight:800}
+.shpool{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:10px}
+.shopt{font:inherit;font-family:'Rubik';font-weight:700;font-size:15px;cursor:pointer;
+  border:2px solid var(--line);background:#fff;color:var(--ink);border-radius:999px;padding:8px 16px}
+.shopt:hover{border-color:var(--accent)}
+.shopt.on{background:var(--accent);border-color:var(--accent);color:#fff}
+.shopt.locked{pointer-events:none;opacity:.75}
+.shnote{display:none;border-left:4px solid var(--accent);background:#FCFAF6;border-radius:0 12px 12px 0;
+  padding:10px 14px;font-size:15px;line-height:1.55;overflow-wrap:anywhere}
+.shnote.show{display:block}
+.shnote .shrow+.shrow{margin-top:7px}
+.shask{margin-top:12px;font-size:14.5px;color:var(--muted);line-height:1.5;overflow-wrap:anywhere}
+
+/* === ПЛАТФОРМА: idiom — «Так не бывает!» (буквально ↔ на самом деле) === */
+.idbox{border:2px solid var(--line);border-radius:14px;padding:12px 14px;margin:10px 0;background:#fff}
+.idhead{display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+.idphrase{font-family:'Rubik';font-weight:800;font-size:clamp(16px,2.3vw,20px);overflow-wrap:anywhere}
+.idlit{margin:7px 0 9px;font-size:14.5px;line-height:1.5;color:#8a5a2b;background:#FFF7EC;
+  border-radius:10px;padding:7px 11px;overflow-wrap:anywhere}
+.idq{font-family:'Rubik';font-weight:700;font-size:13.5px;color:var(--muted);margin-bottom:6px}
+.idopts{display:flex;flex-wrap:wrap;gap:7px}
+.idex{margin-top:9px;font-size:14px;line-height:1.5;color:var(--muted);font-style:italic;
+  overflow-wrap:anywhere}
+
+/* === ПЛАТФОРМА: register — «Скажи по-разному» (регистры речи) === */
+.regbox{border:2px solid var(--line);border-radius:14px;padding:11px 13px;margin:10px 0;background:#fff}
+.regsit{font-family:'Rubik';font-weight:700;font-size:14.5px;margin-bottom:9px;overflow-wrap:anywhere}
+.regrow{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}
+.regcell{min-width:0}
+.reglab{font-family:'Rubik';font-weight:800;font-size:11px;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--accent)}
+.regto{font-size:11.5px;color:var(--muted);margin:1px 0 5px;line-height:1.35;overflow-wrap:anywhere}
+@media(max-width:560px){.regrow{grid-template-columns:1fr}.regto{margin-bottom:3px}}
+
+/* === ПЛАТФОРМА: myth — «Миф или правда» === */
+.mybox{border:2px solid var(--line);border-radius:14px;padding:12px 14px;margin:10px 0;background:#fff}
+.myclaim{font-family:'Rubik';font-weight:700;font-size:clamp(15px,2.2vw,18px);line-height:1.45;
+  margin-bottom:9px;overflow-wrap:anywhere}
+.myopts{display:flex;gap:8px;flex-wrap:wrap}
+.mytruth{display:none;margin-top:10px;border-left:4px solid var(--good,#15803D);background:#F3FAF5;
+  border-radius:0 12px 12px 0;padding:9px 13px;font-size:14.5px;line-height:1.55;overflow-wrap:anywhere}
+.mytruth.show{display:block}
+
+/* Картинка буквального прочтения идиомы (необязательная, добавляется волнами) */
+.idlitrow{display:flex;gap:11px;align-items:flex-start;margin:7px 0 9px}
+.idlitrow .idlit{margin:0;flex:1 1 auto;min-width:0}
+.idpic{width:124px;height:124px;flex:0 0 auto;border-radius:12px;object-fit:cover;cursor:pointer;
+  border:2px solid var(--line);background:#FFF7EC}
+.idlitrow.nopic .idpic{display:none}
+/* развёрнутая по нажатию: картинка во всю ширину, текст под ней */
+.idlitrow.big{display:block}
+.idlitrow.big .idpic{width:100%;height:auto;aspect-ratio:1/1;margin-bottom:9px}
+@media(max-width:420px){.idpic{width:96px;height:96px}}
+
+/* Writing File: письмо как процесс (образец → план → текст → чек-лист) */
+.wfmodel{background:#F0FBF4;border:2px solid #2E9E57;border-radius:14px;padding:11px 13px;margin:8px 0}
+.wfmtag{font-family:'Rubik';font-weight:800;font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:#1E7A40;margin-bottom:5px}
+.wfmtext{font-size:14.5px;line-height:1.6}
+.wfplan{background:#EBF1FD;border-radius:12px;padding:10px 13px;margin:8px 0;font-size:13.5px}
+.wfplan b{font-family:'Rubik';font-size:13px}
+.wfq{margin-top:4px;line-height:1.5}
+.wfta{width:100%;border:2.5px solid var(--ink,#1E2630);border-radius:12px;padding:10px 12px;font:inherit;font-size:15px;line-height:1.55;margin-top:6px;background:#fff;resize:vertical}
+.wfta.ok{border-color:#2E9E57}
+.wfcount{font-size:12.5px;color:#8A93A5;margin:4px 2px 8px}
+.wfcount.enough{color:#1E7A40;font-weight:700}
+.wfchecks{margin-top:4px}
+.wfchecks b{font-family:'Rubik';font-size:13px}
+.wfcheck{display:flex;gap:8px;align-items:flex-start;font-size:13.5px;line-height:1.5;margin-top:6px;cursor:pointer}
+.wfcheck input{width:17px;height:17px;flex:none;margin-top:1px;accent-color:#2E9E57}

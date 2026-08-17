@@ -54,16 +54,7 @@
 
   /* ── утилиты ── */
   function idx(arr, v) { for (var i = 0; i < arr.length; i++) if (arr[i] === v) return i; return -1; }
-  function L(obj) {
-    if (!obj) return "";
-    if (typeof obj === "string") return obj;
-    if (obj[lang] != null && String(obj[lang]).trim() !== "") return obj[lang];
-    if (obj.ru != null && String(obj.ru).trim() !== "") return obj.ru;
-    for (var k in obj) {
-      if (Object.prototype.hasOwnProperty.call(obj, k) && obj[k] != null && String(obj[k]).trim() !== "") return obj[k];
-    }
-    return "";
-  }
+  function L(obj) { if (!obj) return ""; return obj[lang] != null ? obj[lang] : (obj.ru != null ? obj.ru : ""); }
   function T(key) { return L(B.ui[key]); }
   function el(tag, cls, html) {
     var e = document.createElement(tag);
@@ -72,18 +63,8 @@
     return e;
   }
   function esc(s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;"); }
-  /* растровые иконки вместо эмодзи (лист 30 шт, img/icons/)
-     *-mark.webp — центрированные круглые бейджи (как в футере): иначе
-     object-fit:cover обрезает смещённый глиф у спрайтов. */
-  var ICO_MARK = {
-    scroll: 1, cards: 1, family: 1, puzzle: 1,
-    amphora: 1, hourglass: 1, magnifier: 1, cloud: 1,
-    book: 1, blocks: 1, headphones: 1, star: 1, boat: 1
-  };
-  function icoSrc(n) { return "img/icons/" + (ICO_MARK[n] ? n + "-mark" : n) + ".webp"; }
-  function icoH(n, cls) {
-    return '<img class="' + (cls || "ico") + '" src="' + icoSrc(n) + '" alt="">';
-  }
+  /* растровые иконки вместо эмодзи (лист 30 шт, img/icons/) */
+  function icoH(n, cls) { return '<img class="' + (cls || "ico") + '" src="img/icons/' + n + '.webp" alt="">'; }
   function shuffle(a) {
     a = a.slice();
     for (var i = a.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)), t = a[i]; a[i] = a[j]; a[j] = t; }
@@ -95,92 +76,25 @@
   function plotImg(p) { return "img/" + p.id + "_" + p.slug + ".webp"; }
   function cardImg(c) { return c.id.indexOf("heroes") === 0 ? heroImg(c) : plotImg(c); }
   function hasImg(c) { return c.id.indexOf("heroes") === 0 ? true : !!c.imgReady; }
-  /* Живой постер поверх чистой акварели (все герои/сюжеты).
-     Данные: window.POSTER_OVERLAY (data/poster_overlay.js).
-     «Найди» / 3 факта — из данных, чтобы тексты переводились.
-     Иконки фактов: img/icons/poster/{icon}.svg (атласный стиль). */
-  var POSTER_OVERLAY = window.POSTER_OVERLAY || {};
-  function posterFactIco(name) {
-    return '<img class="pface-fact-ico" src="img/icons/poster/' + name + '.svg" alt="">';
-  }
-  function posterFindIco() {
-    return '<img class="pface-find-ico" src="img/icons/poster/magnifier.svg" alt="">';
-  }
-  function posterOverlay(c) { return c && POSTER_OVERLAY[c.id] ? POSTER_OVERLAY[c.id] : null; }
-  /* Лицо карты: при оверлее — всегда чистая акварель; иначе ru-baked постер
-     (fallback) или акварель. */
+  /* Лицо карты — информативный постер-инфографика (текст в нём русский);
+     на остальных языках показываем чистую акварельную сцену. */
   function faceImg(c) {
-    if (posterOverlay(c)) return cardImg(c);
     if (c.poster && lang === "ru") return "img/posters/" + c.id + "_" + c.slug + ".webp";
     return cardImg(c);
   }
-  /* mode: "full" (модалка) | "tile" (сетка альбома) — одни и те же переводимые тексты.
-     Вариант 2: акварель на весь кадр, надписи absolute поверх (как вшитый постер). */
-  function buildPosterInto(root, c, mode) {
-    var ov = posterOverlay(c);
-    if (!ov) return false;
-    var compact = mode === "tile";
-    root.classList.add("pface");
-    if (compact) root.classList.add("pface-tile");
-
-    var im = el("img", "pface-art");
-    im.src = cardImg(c);
-    im.alt = esc(L(c.name));
-    if (compact) im.loading = "lazy";
-    root.appendChild(im);
-
-    var frame = el("div", "pface-frame");
-    var head = el("div", "pface-head");
-    head.appendChild(el("div", "pface-title", esc(L(c.name))));
-    head.appendChild(el("div", "pface-sub", esc(c.id.indexOf("heroes") === 0 ? L(c.epithet) : L(c.source))));
-    frame.appendChild(head);
-
-    var foot = el("div", "pface-foot");
-    var find = el("div", "pface-find");
-    find.innerHTML = posterFindIco() +
-      "<b>" + esc(T("lFind")) + "</b>" +
-      "<span>" + esc(L(ov.find)) + "</span>";
-    foot.appendChild(find);
-
-    var facts = el("div", "pface-facts");
-    for (var f = 0; f < ov.facts.length; f++) {
-      var fd = ov.facts[f];
-      var chip = el("div", "pface-fact");
-      var num = fd.num;
-      var html = "";
-      if (fd.icon) html += posterFactIco(fd.icon);
-      html += '<span class="pface-fact-txt">';
-      html += "<b>" + esc(typeof num === "object" ? L(num) : num) + "</b>";
-      html += "<i>" + esc(L(fd.label)) + "</i>";
-      html += "</span>";
-      chip.innerHTML = html;
-      facts.appendChild(chip);
-    }
-    foot.appendChild(facts);
-    frame.appendChild(foot);
-    root.appendChild(frame);
-    return true;
-  }
-  function buildPosterFace(face, c) { return buildPosterInto(face, c, "full"); }
 
   /* ── аудио карт (иконка наушников + play + название; без длительности) ── */
   var cardAudio = null;
   function stopCardAudio() {
     if (cardAudio) { try { cardAudio.pause(); } catch (e) {} cardAudio = null; }
-    var b = document.querySelector(".pl.on, .cb-audio-btn.on");
-    if (b) {
-      b.classList.remove("on"); b.innerHTML = "▶";
-      var wrap = b.closest && b.closest(".cb-audio");
-      if (wrap) wrap.classList.remove("playing");
-    }
+    var b = document.querySelector(".pl.on");
+    if (b) { b.classList.remove("on"); b.innerHTML = "▶"; }
   }
   function toggleCardAudio(btn, src) {
     if (cardAudio && btn.classList.contains("on")) { stopCardAudio(); return; }
     stopCardAudio();
     cardAudio = new Audio(src);
     btn.classList.add("on"); btn.innerHTML = "⏸";
-    var wrap = btn.closest && btn.closest(".cb-audio");
-    if (wrap) wrap.classList.add("playing");
     cardAudio.onended = stopCardAudio;
     cardAudio.play();
   }
@@ -201,36 +115,7 @@
      прячем верхние вкладки и «RU» в шапке, язык уходит в родительский режим,
      навигация идёт нижним баром. Другие колоды без nav.js работают по-старому. */
   var MENU = window.FEED_MENU || null;
-  var EMBED = /[?&]embed=1/.test(location.search);
-  if (EMBED) {
-    try { document.documentElement.classList.add("embed"); document.body.classList.add("embed"); } catch (e) {}
-  }
   var VOLUME_BOOK = { id: "_volume", title: null, reader: "book/reader.html" };
-
-  function shellNav(to, tab) {
-    if (!EMBED || window.parent === window) return false;
-    try { window.parent.postMessage({ type: "bibleShell", action: "nav", to: to, tab: tab || null }, "*"); return true; }
-    catch (e) { return false; }
-  }
-
-  /* В embed хаб живёт в iframe между шапкой и #bnav оболочки.
-     #cardview/#bookview с position:fixed покрывают только iframe —
-     просим родителя развернуть main на весь экран (поверх chrome). */
-  function setShellOverlay(on) {
-    if (!EMBED || window.parent === window) return;
-    try { window.parent.postMessage({ type: "bibleShell", action: "cardOverlay", open: !!on }, "*"); }
-    catch (e) {}
-  }
-  function mountOverlay(ov) {
-    document.body.appendChild(ov);
-    setShellOverlay(true);
-  }
-  function unmountOverlay(ov) {
-    if (ov && ov.parentNode) ov.parentNode.removeChild(ov);
-    if (!document.getElementById("cardview") && !document.getElementById("bookview")) {
-      setShellOverlay(false);
-    }
-  }
 
   function applyDir() {
     document.documentElement.setAttribute("dir", idx(RTL, lang) >= 0 ? "rtl" : "ltr");
@@ -280,20 +165,18 @@
     mainEl = el("main");
     root.appendChild(mainEl);
     render();
-    if (MENU && !EMBED) renderBottomMenu();
+    if (MENU) renderBottomMenu();
   }
 
-  /* нижнее меню тома — общее с Лентой (nav.js). Активен текущий режим.
-     В embed-режиме навигацию держит корневая оболочка index.html. */
-  var MENU_TAB = { cards: "cards", books: "books", build: "lBuild", games: "games", game: "games", glossary: "glossary" };
+  /* нижнее меню тома — общее с Лентой (nav.js). Активен текущий режим. */
+  var MENU_TAB = { cards: "cards", books: "books", build: "lBuild", glossary: "glossary" };
   function renderBottomMenu() {
-    if (EMBED || !MENU) return;
     var old = document.getElementById("botmenu"); if (old) old.parentNode.removeChild(old);
     var nav = el("nav"); nav.id = "botmenu";
     for (var i = 0; i < MENU.length; i++) (function (m) {
       var active = (m.to === "parent") ? false : (MENU_TAB[m.to] === tab);
       var it = el(m.to === "lenta" ? "a" : "button", "bm" + (active ? " on" : ""));
-      it.innerHTML = '<img src="' + icoSrc(m.icon) + '" alt="">' +
+      it.innerHTML = '<img src="img/icons/' + m.icon + '.webp" alt="">' +
         '<span>' + esc(lang === "en" && m.labelEn ? m.labelEn : m.label) + '</span>';
       if (m.to === "lenta") it.href = "feed/index.html";
       else it.onclick = function () {
@@ -317,27 +200,19 @@
   }
   function setTab(id) {
     if (id === "lBook") { openBook({ title: B.title, reader: VOLUME_BOOK.reader }); return; }
-    if (id === "lenta") {
-      if (shellNav("feed")) return;
-      location.href = "feed/index.html";
-      return;
-    }
-    if (id === "books") { tab = "books"; }
-    else if (MENU_TAB[id]) { tab = MENU_TAB[id]; id = tab; }
-    else { tab = id; }
+    if (id === "lenta") { location.href = "feed/index.html"; return; }   // Лента — полноэкранный feed
+    tab = id;
     stopCardAudio();
     if (tabsEl) {
       var bs = tabsEl.childNodes;
-      for (var i = 0; i < bs.length; i++) bs[i].setAttribute("aria-pressed", bs[i].getAttribute("data-tab") === tab ? "true" : "false");
+      for (var i = 0; i < bs.length; i++) bs[i].setAttribute("aria-pressed", bs[i].getAttribute("data-tab") === id ? "true" : "false");
     }
     render();
-    if (MENU && !EMBED) renderBottomMenu();
+    if (MENU) renderBottomMenu();
   }
   function render() {
     mainEl.innerHTML = "";
-    mainEl.classList.remove("buildmode");
     if (tab === "game") renderQuest();
-    else if (tab === "games") renderGames();
     else if (tab === "cards") renderDeck(B.heroes.concat(B.plots), true);   // альбом — все карты открыты
     else if (tab === "heroes") renderDeck(B.heroes);
     else if (tab === "plots") renderDeck(B.plots);
@@ -346,12 +221,6 @@
     else if (tab === "lBuild") renderBuild();
     else if (tab === "timeline") renderTimeline();
     else if (tab === "glossary") renderGlossary();
-  }
-
-  /* ── хаб мини-игр (футер «Игры» / #/games) — не путать со стройкой ── */
-  function renderGames() {
-    mainEl.appendChild(el("p", "hint", esc(T("gamesPick"))));
-    mainEl.appendChild(gamesHub());
   }
 
   /* ── иконостас (ровно 3 колонки) ── */
@@ -372,14 +241,13 @@
         ph2.appendChild(el("div", "em", icoH("question", "ico-xl")));
         ph2.appendChild(el("div", "nm", String(i2 + 1)));
         lockT.appendChild(ph2);
+        lockT.appendChild(el("span", "cap", "· · ·"));
         lockT.onclick = function () { lockedHint(c); };
         g.appendChild(lockT);
         return;
       }
       var t = el("button", "tile" + (hasImg(c) ? "" : " txt"));
-      if (posterOverlay(c) && hasImg(c)) {
-        buildPosterInto(t, c, "tile");
-      } else if (hasImg(c)) {
+      if (hasImg(c)) {
         var im = el("img"); im.src = faceImg(c); im.alt = esc(L(c.name)); im.loading = "lazy";
         t.appendChild(im);
       } else {
@@ -388,6 +256,7 @@
         ph.appendChild(el("div", "nm", esc(L(c.name))));
         t.appendChild(ph);
       }
+      t.appendChild(el("span", "cap", esc(L(c.name))));
       /* скилл-точки: сколько граней карты пройдено (идеология «Стран мира») */
       var sk = skillsFor(c), dn = skCount(c);
       var drow = el("span", "tskdots");
@@ -408,11 +277,11 @@
     box.appendChild(el("p", null, esc(T("qLockCard"))));
     if (era) box.appendChild(el("p", "hint", icoH(ERA_ICON[era.id]) + " " + esc(L(era.name))));
     var go = el("button", "bigbtn", esc(T("qToGame")) + " ▶");
-    go.onclick = function () { unmountOverlay(ov); setTab("cards"); };
+    go.onclick = function () { if (ov.parentNode) ov.parentNode.removeChild(ov); setTab("cards"); };
     box.appendChild(go);
     ov.appendChild(box);
-    ov.onclick = function (e) { if (e.target === ov) unmountOverlay(ov); };
-    mountOverlay(ov);
+    ov.onclick = function (e) { if (e.target === ov) ov.parentNode.removeChild(ov); };
+    document.body.appendChild(ov);
   }
 
   /* ── карта крупно ──
@@ -455,37 +324,24 @@
     var fr = el("div", "frame");
     var showingBack = false;
 
-    function close() { stopCardAudio(); unmountOverlay(ov); }
-    function fitBack() {
-      var sc = back.querySelector(".cb-scroll");
-      var fit = back.querySelector(".cb-fit");
-      if (!sc || !fit) return;
-      fit.style.zoom = "";
-      fit.classList.remove("fill");
-      var avail = sc.clientHeight, nat = fit.scrollHeight;
-      if (nat > avail + 1) fit.style.zoom = Math.max(0.55, (avail - 6) / nat);
-      else if (avail - nat > 16) fit.classList.add("fill");
-    }
+    function close() { stopCardAudio(); if (ov.parentNode) ov.parentNode.removeChild(ov); }
     function flip() {
       /* изнанка ровно того же формата, что лицо: меряем лицо до скрытия */
       if (!showingBack && face.offsetHeight) back.style.height = face.offsetHeight + "px";
       showingBack = !showingBack;
       face.hidden = showingBack; back.hidden = !showingBack;
       if (!showingBack) stopCardAudio();
-      else requestAnimationFrame(fitBack);
     }
     function noflip(fn) { return function (e) { e.stopPropagation(); fn(); }; }
 
     var face = el("div", "face");
-    if (hasImg(c) && buildPosterFace(face, c)) {
-      /* живой постер: акварель + HTML-надписи */
-    } else if (hasImg(c)) {
+    if (hasImg(c)) {
       var fw = el("div", "faceimg");
       var im = el("img"); im.src = faceImg(c); im.alt = esc(L(c.name));
       fw.appendChild(im);
       /* «живая картина»: пульс-точка на объекте «найди» — тап даёт искру
          и подпись (координаты: постер для ru, чистая картинка для других) */
-      var live = isHero ? null : (lang === "ru" && !posterOverlay(c) ? c.findAtP : c.findAt);
+      var live = isHero ? null : (lang === "ru" ? c.findAtP : c.findAt);
       if (live) {
         var dot = el("button", "livedot");
         dot.style.left = live.x + "%";
@@ -516,7 +372,7 @@
     /* «Ещё об этом» живёт на лице — тонкой полосой миниатюр внизу */
     var rel = relatedFor(c);
     if (rel.length) {
-      var fm = el("div", "facemore" + (face.classList.contains("pface") ? " on-pface" : ""));
+      var fm = el("div", "facemore");
       fm.appendChild(el("span", "fml", "→ " + esc(T("lMore"))));
       for (var fr0 = 0; fr0 < rel.length; fr0++) (function (x) {
         var fb = el("button", "fmrel");
@@ -526,43 +382,33 @@
         fm.appendChild(fb);
       })(rel[fr0]);
       face.appendChild(fm);
-      if (face.classList.contains("pface")) face.classList.add("has-facemore");
     }
     face.onclick = flip;
 
     var back = el("div", "backside");
-    var shell = el("div", "cb");
-    var numLabel = (num < 10 ? "0" + num : String(num));
-    var typeLabel = T(isHero ? "lHero" : "lPlotOne");
-
-    /* шапка */
-    var top = el("div", "cb-top");
-    top.appendChild(el("span", "cb-badge", esc(typeLabel) + " · № " + numLabel));
-    top.appendChild(el("h2", "cb-name", esc(L(c.name))));
-    top.appendChild(el("p", "cb-group", esc(isHero ? L(c.epithet) : L(c.source))));
-    shell.appendChild(top);
-
-    /* аудио */
+    /* шапка-банер как в референсе: тип карты + № слева, размер колоды справа */
+    var bar0 = el("div", "encbar");
+    bar0.appendChild(el("span", null, esc(T(isHero ? "lHero" : "lPlotOne")) + " · № " + (num < 10 ? "0" + num : num)));
+    bar0.appendChild(el("span", null, list.length + " " + esc(T("lCards"))));
+    back.appendChild(bar0);
+    /* заголовок прежней версии; справа в нём — только значок ▶ */
+    var head = el("div", "enchead");
+    var hh = el("div", "htxt");
+    hh.appendChild(el("h2", null, esc(L(c.name))));
+    hh.appendChild(el("div", "ep", esc(isHero ? L(c.epithet) : L(c.source))));
+    head.appendChild(hh);
     if (c.audioReady && B.audioLangs && idx(B.audioLangs, lang) >= 0) {
-      var au = el("div", "cb-audio");
-      var pb = el("button", "cb-audio-btn", "▶");
+      var pb = el("button", "pl hd", "▶");
       var src = "audio/" + lang + "/" + c.id + "_" + c.slug + ".mp3";
       pb.onclick = noflip(function () { toggleCardAudio(pb, src); });
-      au.appendChild(pb);
-      var am = el("div", "cb-audio-main");
-      am.appendChild(el("div", "cb-audio-title", esc(T("lListen"))));
-      am.appendChild(el("div", "cb-audio-wave", "<i></i><i></i><i></i><i></i><i></i>"));
-      au.appendChild(am);
-      shell.appendChild(au);
+      head.appendChild(pb);
     }
-
-    /* прокручиваемое тело: при коротком тексте растягиваем, при длинном — scale */
-    var scroll = el("div", "cb-scroll");
-    var fit = el("div", "cb-fit");
-
+    head.appendChild(el("div", "num", (num < 10 ? "0" + num : String(num)) + "<i>/" + list.length + "</i>"));
+    back.appendChild(head);
+    /* грани карты + «Тренировка» (идеология упражнений «Стран мира»/kit) */
     (function () {
       var sk = skillsFor(c), dn = skCount(c);
-      var row = el("div", "cb-skills");
+      var row = el("div", "cardsk");
       var dd = el("div", "skdots");
       for (var i = 0; i < sk.length; i++) {
         var chip = el("span", "skdot" + (skPassed(c.id)[sk[i]] ? " on" : ""));
@@ -573,82 +419,78 @@
       row.appendChild(dd);
       var badge = masteredCard(c) ? T("mastered") : (learnedCard(c) ? T("learned") : dn + "/" + sk.length);
       row.appendChild(el("span", "skbadge" + (masteredCard(c) ? " done" : ""), esc(badge)));
-      fit.appendChild(row);
-      var tb = el("button", "cb-train", icoH("scroll") + " " + esc(T("trainBtn")));
+      var tb = el("button", "trainbtn", icoH("scroll") + " " + esc(T("trainBtn")));
       tb.onclick = noflip(function () { close(); drillCard = c; renderDrill(c); });
-      fit.appendChild(tb);
+      back.appendChild(row);
+      back.appendChild(tb);
     })();
-
-    if (c.book) {
+    if (c.book) { /* книга этой истории — заметной полосой под заголовком */
       var bk = byId(B.books, c.book);
       if (bk && bk.ready) {
-        var bb = el("button", "cb-book", icoH("book") + " " + esc(L(bk.title)) + " →");
+        var bb = el("button", "bookbtn", icoH("book") + " " + esc(L(bk.title)) + " →");
         bb.onclick = noflip(function () { close(); openBook(bk); });
-        fit.appendChild(bb);
+        back.appendChild(bb);
       }
     }
 
     if (isHero) {
-      fit.appendChild(el("div", "cb-sec", esc(T("lFacts"))));
-      var bul = el("ul", "cb-bul");
+      var sf = section(T("lFacts"));
       var facts = L(c.facts);
-      for (var f = 0; f < facts.length; f++) bul.appendChild(el("li", null, esc(facts[f])));
-      fit.appendChild(bul);
+      for (var f = 0; f < facts.length; f++) {
+        var row = el("div", "fact");
+        row.appendChild(el("span", "n", String(f + 1)));
+        row.appendChild(el("span", null, esc(facts[f])));
+        sf.appendChild(row);
+      }
+      back.appendChild(sf);
     } else {
-      fit.appendChild(el("div", "cb-sec", esc(T("lStory"))));
-      fit.appendChild(el("p", "cb-story", esc(L(c.story))));
-      fit.appendChild(el("div", "cb-sec", esc(T("lFind"))));
-      fit.appendChild(el("div", "cb-find", icoH("magnifier") + " " + esc(L(c.findIt))));
+      var ss = section(T("lStory"));
+      ss.appendChild(el("div", "story", esc(L(c.story))));
+      back.appendChild(ss);
+      var sfind = section(T("lFind"));
+      sfind.appendChild(el("div", "find", icoH("magnifier") + " " + esc(L(c.findIt))));
+      back.appendChild(sfind);
     }
 
-    var duo = el("div", "cb-duo");
+    /* «Цифра | Слово» — два столбца, как в референсе */
+    var duo = el("div", "duo");
     if (c.digit) {
-      var sd = el("div", "cb-chip");
-      sd.appendChild(el("div", "cb-chip-l", esc(T("lDigit"))));
-      sd.appendChild(el("div", "cb-chip-n", esc(c.digit.num)));
-      sd.appendChild(el("div", "cb-chip-v", esc(L(c.digit.label))));
+      var sd = section(T("lDigit"));
+      sd.className = "sec digit";
+      sd.appendChild(el("div", "dnum", esc(c.digit.num)));
+      sd.appendChild(el("div", "dlbl", esc(L(c.digit.label))));
       duo.appendChild(sd);
     }
     var gl = glossFor(id);
     if (gl.length) {
+      var sw = section(T("lWord"));
       var g0 = gl[0];
-      var sw = el("div", "cb-chip");
-      sw.appendChild(el("div", "cb-chip-l", esc(T("lWord"))));
-      sw.appendChild(el("div", "cb-chip-n", g0.emoji + " " + esc(L(g0.word))));
-      sw.appendChild(el("div", "cb-chip-v", esc(L(g0.def))));
+      sw.appendChild(el("div", "gw", g0.emoji + " <b>" + esc(L(g0.word)) + "</b>"));
+      sw.appendChild(el("div", "gd", esc(L(g0.def))));
       duo.appendChild(sw);
     }
-    if (duo.childNodes.length) fit.appendChild(duo);
+    if (duo.childNodes.length) back.appendChild(duo);
 
     if (isHero && c.think) {
-      var st = el("div", "cb-wow");
-      st.appendChild(el("b", null, esc(T("lThink"))));
-      st.appendChild(document.createTextNode(L(c.think)));
-      fit.appendChild(st);
+      var st = section(T("lThink"));
+      st.className = "sec tinted";
+      st.appendChild(el("div", "think", esc(L(c.think))));
+      back.appendChild(st);
     }
     if (!isHero && c.wow) {
-      var swow = el("div", "cb-wow");
-      swow.appendChild(el("b", null, esc(T("lWow"))));
-      swow.appendChild(document.createTextNode(L(c.wow)));
-      fit.appendChild(swow);
+      var swow = section(T("lWow"));
+      swow.className = "sec tinted";
+      swow.appendChild(el("div", "wow", esc(L(c.wow))));
+      back.appendChild(swow);
     }
 
-    scroll.appendChild(fit);
-    shell.appendChild(scroll);
-
-    var ft = el("div", "cb-ft");
-    ft.appendChild(el("span", null, esc(typeLabel)));
-    ft.appendChild(el("span", null, numLabel + " / " + list.length));
-    shell.appendChild(ft);
-
-    back.appendChild(shell);
     back.hidden = true;
     back.onclick = flip;
     ov.onclick = function (e) { if (e.target === ov || e.target === fr) close(); };
 
     fr.appendChild(face); fr.appendChild(back);
     ov.appendChild(fr);
-    mountOverlay(ov);
+    document.body.appendChild(ov);
   }
 
   /* ── книги: плитки + встроенный ридер (iframe, приём strany-mira) ── */
@@ -684,18 +526,16 @@
     bar.appendChild(el("div", "bttl", esc(L(bk.title))));
     ov.appendChild(bar);
     var f = document.createElement("iframe");
-    var th = "light";
-    try { th = localStorage.getItem("bible_theme") === "dark" ? "dark" : "light"; } catch (e) {}
-    f.src = bk.reader + "?embed=1" + (extra || "") + "&lang=" + bookLang() + "&theme=" + th;
+    f.src = bk.reader + "?embed=1" + (extra || "") + "&lang=" + bookLang();
     f.setAttribute("allow", "autoplay");
     ov.appendChild(f);
     bookFrame = f;
     closeB.onclick = function () {
       try { f.contentWindow.postMessage({ type: "bookStop" }, "*"); } catch (e) {}
       bookFrame = null;
-      unmountOverlay(ov);
+      if (ov.parentNode) ov.parentNode.removeChild(ov);
     };
-    mountOverlay(ov);
+    document.body.appendChild(ov);
   }
   function syncBookLang() {
     if (!bookFrame) return;
@@ -735,25 +575,21 @@
       if (lang !== "ar" && nm2.indexOf(" ") < 0 && nm2.length >= 3 && nm2.length <= 12) wordable.push(all[w2]);
     }
     var GAMES = [
-      { id: "puzzle", em: "puzzle", name: T("qPuzzle"), run: function () {
-        freeMech(T("qPuzzle"), pickFrom(all), mechPuzzle);
-      } },
-      { id: "jigsaw", em: "puzzle", name: T("qJigsaw"), run: function () {
-        openBook({ title: B.ui.qJigsaw || B.ui.gBook, reader: VOLUME_BOOK.reader }, "&games=1&play=jigsaw");
+      { id: "book", em: "book", name: T("gBook"), run: function () {
+        openBook({ title: B.title, reader: VOLUME_BOOK.reader }, "&games=1");
       } },
       { id: "memory", em: "cards", name: T("gMemory"), run: gameMemory },
       { id: "quiz", em: "scroll", name: T("gQuiz"), run: gameQuiz },
       { id: "artifact", em: "amphora", name: T("gArtifact"), run: gameArtifact },
       { id: "order", em: "hourglass", name: T("gOrder"), run: gameOrder },
-      { id: "arkflap", em: "boat", name: T("gArkFlap"), run: gameArkFlappy },
+      { id: "puzzle", em: "puzzle", name: T("qPuzzle"), run: function () {
+        freeMech(T("qPuzzle"), pickFrom(all), mechPuzzle);
+      } },
       { id: "findon", em: "magnifier", name: T("qFindOn").replace(/[::]\s*$/, ""), run: function () {
         freeMech(T("qFindOn").replace(/[::]\s*$/, ""), pickFrom(findable), mechFind);
       } },
       { id: "mist", em: "cloud", name: T("qShadow"), run: function () {
         freeMech(T("qShadow"), pickFrom(B.heroes), mechShadow);
-      } },
-      { id: "book", em: "book", name: T("gBook"), run: function () {
-        openBook({ title: B.ui.gBook, reader: VOLUME_BOOK.reader }, "&games=1");
       } }
     ];
     if (wordable.length) GAMES.push({ id: "word", em: "blocks", name: T("qWordGame"), run: function () {
@@ -885,8 +721,8 @@
     var ov = el("div"); ov.id = "cardview";
     var box = el("div", "lockbox parentbox");
     ov.appendChild(box);
-    ov.onclick = function (e) { if (e.target === ov) unmountOverlay(ov); };
-    mountOverlay(ov);
+    ov.onclick = function (e) { if (e.target === ov) ov.parentNode.removeChild(ov); };
+    document.body.appendChild(ov);
     var unlocked = false;
     try { unlocked = sessionStorage.getItem(NS + "_parent") === "1"; } catch (e) {}
     if (unlocked) { parentPanel(box); return; }
@@ -929,7 +765,7 @@
       for (var li = 0; li < B.languages.length; li++) (function (lg) {
         var lb = el("button", "planglang" + (lg === lang ? " on" : ""), lg.toUpperCase());
         lb.onclick = function () {
-          var ov = document.getElementById("cardview"); if (ov) unmountOverlay(ov);
+          var ov = document.getElementById("cardview"); if (ov && ov.parentNode) ov.parentNode.removeChild(ov);
           setLang(lg);
         };
         langRow.appendChild(lb);
@@ -1273,27 +1109,26 @@
   function mechPuzzle(stage, c, done) {
     stage.appendChild(el("div", "qq", icoH("puzzle") + " " + esc(T("qPuzzle"))));
     stage.appendChild(el("p", "hint", esc(T("qPuzzleHint"))));
-    /* Аналог из “птицы мира”: пазл 3×3 (9 плиток) — тап по двум плиткам меняет их местами */
-    var N = 3;
-    var order = shuffle([0, 1, 2, 3, 4, 5, 6, 7, 8]);
-    /* если сразу попали в решение — делаем один обмен, чтобы игра была интересной */
-    if (order.every(function (v, i) { return v === i; })) order = [1, 0, 2, 3, 4, 5, 6, 7, 8];
+    var order = shuffle([0, 1, 2, 3, 4, 5]);
+    var solvedAtStart = true;
+    for (var z = 0; z < 6; z++) if (order[z] !== z) solvedAtStart = false;
+    if (solvedAtStart) order = [1, 0, 3, 2, 5, 4];
     var grid = el("div", "pzgrid");
     var sel = -1, tiles = [], swaps = 0;
     function paint() {
-      for (var i = 0; i < 9; i++) {
+      for (var i = 0; i < 6; i++) {
         var pc = order[i];
         tiles[i].style.backgroundPosition =
-          (pc % N) * 50 + "% " + Math.floor(pc / N) * 50 + "%";
+          (pc % 2) * 100 + "% " + Math.floor(pc / 2) * 50 + "%";
         tiles[i].setAttribute("data-piece", pc);
         tiles[i].className = "pz" + (sel === i ? " sel" : "");
       }
     }
     function solved() {
-      for (var i = 0; i < 9; i++) if (order[i] !== i) return false;
+      for (var i = 0; i < 6; i++) if (order[i] !== i) return false;
       return true;
     }
-    for (var i2 = 0; i2 < 9; i2++) (function (slot) {
+    for (var i2 = 0; i2 < 6; i2++) (function (slot) {
       var tl = el("button", "pz");
       tl.style.backgroundImage = "url('" + cardImg(c) + "')";
       tl.setAttribute("data-slot", slot);
@@ -1305,7 +1140,7 @@
         paint();
         if (solved()) {
           grid.classList.add("win");
-          setTimeout(function () { done(swaps <= 12); }, 700);
+          setTimeout(function () { done(swaps <= 9); }, 700);
         }
       };
       tiles.push(tl); grid.appendChild(tl);
@@ -1660,14 +1495,14 @@
     box.appendChild(im);
     box.appendChild(el("p", "hint", esc(L(c.name))));
     var look = el("button", "bt", icoH("cards") + " " + esc(T("openCardBtn")));
-    look.onclick = function () { if (ov.parentNode) ov.parentNode.removeChild(ov); openCard(c.id); };
+    look.onclick = function () { openCard(c.id); };
     var next = el("button", "bigbtn", esc(T("qNext")) + " →");
-    next.onclick = function () { unmountOverlay(ov); render(); };
+    next.onclick = function () { if (ov.parentNode) ov.parentNode.removeChild(ov); render(); };
     var btns = el("div", "rbtns");
     btns.appendChild(look); btns.appendChild(next);
     box.appendChild(btns);
     ov.appendChild(box);
-    mountOverlay(ov);
+    document.body.appendChild(ov);
   }
 
   /* бонус-шаг: стройка внутри квеста (этапы листа 2×2) */
@@ -1932,439 +1767,6 @@
     w.appendChild(lst);
   }
 
-  /* Ковчег-флэппи: механика как у «Птиц мира» (полёт), без выбора персонажа.
-     Игрок — всегда ковчег; препятствия — скалы с просветом. */
-  function gameArkFlappy() {
-    var BEST_KEY = "bible_arkflap_best_v1";
-    /* спрайт без фона; mark-иконка — boat-mark.webp */
-    var ARK_SRCS = ["img/games/ark-flap.webp", "img/icons/poster/ark.svg", "img/icons/boat.webp"];
-    var w = gameShell(T("gArkFlap"), T("gArkFlapHint"));
-    var wrap = el("div", "arkflap-wrap");
-    var canvas = document.createElement("canvas");
-    canvas.className = "arkflap-canvas";
-    canvas.setAttribute("role", "img");
-    wrap.appendChild(canvas);
-    var hud = el("div", "arkflap-hud");
-    var hudL = el("span", null, "");
-    var hudR = el("span", null, "");
-    hud.appendChild(hudL);
-    hud.appendChild(hudR);
-    wrap.appendChild(hud);
-    var overlay = el("div", "arkflap-overlay");
-    overlay.hidden = true;
-    wrap.appendChild(overlay);
-    w.appendChild(wrap);
-
-    var ctx = canvas.getContext("2d");
-    var DPR = Math.min(window.devicePixelRatio || 1, 2);
-    var W = 600, H = 340;
-    var raf = 0, running = false, started = false, dead = false;
-    var py = 0, vy = 0, speed = 2.05, score = 0, t = 0, pipes = [];
-    var best = parseInt(localStorage.getItem(BEST_KEY) || "0", 10) || 0;
-    var lastTs = 0;
-    var arkSprite = null, arkReady = false;
-    var bubbles = [];
-
-    function stopLoop() {
-      running = false;
-      if (raf) { cancelAnimationFrame(raf); raf = 0; }
-    }
-    function size() {
-      W = Math.max(280, Math.round(wrap.clientWidth || 600));
-      H = Math.max(260, Math.round(Math.min(420, Math.max(280, wrap.clientWidth * 0.62))));
-      canvas.width = W * DPR;
-      canvas.height = H * DPR;
-      canvas.style.width = W + "px";
-      canvas.style.height = H + "px";
-      ctx.setTransform(1, 0, 0, 1, 0, 0);
-      ctx.scale(DPR, DPR);
-    }
-    /* вырезает кремовый фон, круг рамки и воду — остаётся только деревянный ковчег */
-    function isolateArkSprite(img) {
-      try {
-        var iw = img.naturalWidth || 64, ih = img.naturalHeight || 64;
-        if (!iw || !ih) return null;
-        var src = document.createElement("canvas");
-        src.width = iw; src.height = ih;
-        var g = src.getContext("2d", { willReadFrequently: true }) || src.getContext("2d");
-        g.drawImage(img, 0, 0, iw, ih);
-        var imageData = g.getImageData(0, 0, iw, ih);
-        var data = imageData.data;
-        var minX = iw, minY = ih, maxX = 0, maxY = 0, found = false;
-        for (var i = 0; i < data.length; i += 4) {
-          var r = data[i], gch = data[i + 1], b = data[i + 2], a = data[i + 3];
-          if (a < 8) { data[i + 3] = 0; continue; }
-          var maxc = Math.max(r, gch, b), minc = Math.min(r, gch, b);
-          var lum = 0.299 * r + 0.587 * gch + 0.114 * b;
-          var sat = maxc - minc;
-          var cream = lum > 200 && sat < 45;
-          var paper = lum > 175 && sat < 28 && Math.abs(r - gch) < 20;
-          var water = b > r + 18 && b > gch + 8 && b > 90 && r < 170;
-          var foam = lum > 210 && b > 150 && sat < 60;
-          if (cream || paper || water || foam) {
-            data[i + 3] = 0;
-            continue;
-          }
-          /* тёплый деревянный тон оставляем */
-          var keepWood = r > 70 && r > gch && r > b - 10 && lum < 210;
-          var keepDark = lum < 70 && sat < 40;
-          if (!keepWood && !keepDark && sat < 18 && lum > 140) {
-            data[i + 3] = 0;
-            continue;
-          }
-          var px = (i / 4) % iw, py2 = ((i / 4) / iw) | 0;
-          found = true;
-          if (px < minX) minX = px;
-          if (py2 < minY) minY = py2;
-          if (px > maxX) maxX = px;
-          if (py2 > maxY) maxY = py2;
-        }
-        if (!found) return null;
-        g.putImageData(imageData, 0, 0);
-        var bw = maxX - minX + 1, bh = maxY - minY + 1;
-        var out = document.createElement("canvas");
-        out.width = bw; out.height = bh;
-        out.getContext("2d").drawImage(src, minX, minY, bw, bh, 0, 0, bw, bh);
-        return out;
-      } catch (e) { return null; }
-    }
-    function loadArk(done) {
-      var idxSrc = 0;
-      function tryNext() {
-        if (idxSrc >= ARK_SRCS.length) { done(null); return; }
-        var im = new Image();
-        var src = ARK_SRCS[idxSrc++];
-        im.onload = function () {
-          var cut = isolateArkSprite(im);
-          if (cut) done(cut);
-          else tryNext();
-        };
-        im.onerror = tryNext;
-        im.src = src;
-      }
-      tryNext();
-    }
-    function seedBubbles() {
-      bubbles = [];
-      for (var i = 0; i < 18; i++) {
-        bubbles.push({
-          x: Math.random() * W,
-          y: Math.random() * H,
-          r: 2 + Math.random() * 5,
-          sp: 0.35 + Math.random() * 0.9,
-          wob: Math.random() * Math.PI * 2
-        });
-      }
-    }
-    function flyTier() { return Math.floor(Math.max(0, score) / 10); }
-    function flySpeed() { return Math.min(4.2, 2.05 + flyTier() * 0.32); }
-    function gapX() {
-      var wide = Math.max(300, Math.min(440, W * 0.62));
-      return Math.max(210, wide - flyTier() * 24);
-    }
-    function spawnPipe(x) {
-      var gap = Math.max(120, Math.min(160, H * 0.36));
-      var top = 40 + Math.random() * Math.max(40, H - gap - 100);
-      pipes.push({
-        x: x, gapY: top, gapH: gap, w: 58,
-        seed: Math.floor(Math.random() * 1000),
-        scored: false
-      });
-    }
-    function reset() {
-      py = H * 0.42;
-      vy = 0;
-      score = 0;
-      speed = flySpeed();
-      pipes = [];
-      t = 0;
-      seedBubbles();
-      var firstX = W + Math.max(160, Math.round(W * 0.55));
-      var spacing = gapX();
-      for (var i = 0; i < 3; i++) spawnPipe(firstX + i * spacing);
-    }
-    function syncHud() {
-      hudL.textContent = T("score") + " " + score;
-      hudR.textContent = "🏆 " + best;
-    }
-    function begin() {
-      overlay.hidden = true;
-      overlay.innerHTML = "";
-      size();
-      reset();
-      started = true;
-      dead = false;
-      running = true;
-      lastTs = 0;
-      if (!raf) loop();
-    }
-    function gameOver() {
-      if (dead) return;
-      dead = true;
-      if (score > best) {
-        best = score;
-        try { localStorage.setItem(BEST_KEY, String(best)); } catch (e) {}
-      }
-      saveBest("arkflap", score);
-      stopLoop();
-      syncHud();
-      overlay.hidden = false;
-      overlay.innerHTML = "";
-      overlay.appendChild(el("div", "arkflap-over-title", esc(T("gArkFlapOver"))));
-      overlay.appendChild(el("div", "arkflap-over-score",
-        esc(T("score")) + ": " + score + " · " + esc(T("gArkFlapBest")) + ": " + best));
-      var again = el("button", "bigbtn", esc(T("again")));
-      again.onclick = function () { begin(); };
-      overlay.appendChild(again);
-    }
-    function onTap(e) {
-      if (e) e.preventDefault();
-      if (!started || dead) { begin(); return; }
-      vy = 3.0;
-    }
-    function step(dt) {
-      if (!started || dead) return;
-      t++;
-      speed = flySpeed();
-      vy -= 0.18;
-      py -= vy;
-      if (py < -40 || py > H + 20) { gameOver(); return; }
-
-      pipes.forEach(function (p) { p.x -= speed; });
-      pipes = pipes.filter(function (p) { return p.x > -120; });
-      if (!pipes.length || pipes[pipes.length - 1].x < W - gapX()) {
-        spawnPipe(W + 40);
-      }
-
-      var bx = W * 0.28, by = py, br = 22;
-      for (var i = 0; i < pipes.length; i++) {
-        var p = pipes[i];
-        if (!p.scored && p.x + p.w < bx - br) {
-          p.scored = true;
-          score++;
-        }
-        var inX = bx + br > p.x && bx - br < p.x + p.w;
-        if (inX) {
-          var botY = p.gapY + p.gapH;
-          if (by - br < p.gapY || by + br > botY) { gameOver(); return; }
-        }
-      }
-    }
-    function rockColor(seed, shade) {
-      /* подводные скалы: сине-зелёно-серые */
-      var tones = [
-        ["#3a4f55", "#5a7378", "#2a383c"],
-        ["#40584a", "#5f7d68", "#2c3c34"],
-        ["#364a5c", "#557089", "#243240"],
-        ["#4a5548", "#6a7864", "#323a30"]
-      ];
-      return tones[seed % tones.length][shade % 3];
-    }
-    function drawRockColumn(x, y, ww, hh, seed, flipY) {
-      if (hh <= 1 || ww <= 1) return;
-      var ledge = Math.round(ww * 0.22);
-      ctx.save();
-      if (flipY) {
-        ctx.translate(x + ww / 2, y + hh);
-        ctx.scale(1, -1);
-        ctx.translate(-(x + ww / 2), 0);
-        y = 0;
-      }
-      ctx.fillStyle = rockColor(seed, 2);
-      ctx.beginPath();
-      ctx.moveTo(x - ledge, y + hh);
-      ctx.lineTo(x + 4, y + 10);
-      ctx.lineTo(x + ww * 0.35, y);
-      ctx.lineTo(x + ww * 0.62, y + 8);
-      ctx.lineTo(x + ww - 2, y + 4);
-      ctx.lineTo(x + ww + ledge, y + hh);
-      ctx.closePath();
-      ctx.fill();
-      ctx.fillStyle = rockColor(seed, 0);
-      ctx.beginPath();
-      ctx.moveTo(x + 6, y + hh);
-      ctx.lineTo(x + ww * 0.28, y + 18);
-      ctx.lineTo(x + ww * 0.48, y + 6);
-      ctx.lineTo(x + ww * 0.72, y + 20);
-      ctx.lineTo(x + ww - 8, y + hh);
-      ctx.closePath();
-      ctx.fill();
-      ctx.fillStyle = rockColor(seed, 1);
-      ctx.fillRect(x + ww * 0.18, y + hh * 0.35, ww * 0.22, Math.max(8, hh * 0.12));
-      ctx.fillRect(x + ww * 0.55, y + hh * 0.55, ww * 0.18, Math.max(8, hh * 0.1));
-      /* водоросли у кромки */
-      ctx.strokeStyle = "rgba(50,140,90,.55)";
-      ctx.lineWidth = 2;
-      for (var a = 0; a < 3; a++) {
-        var ax = x + ww * (0.2 + a * 0.25);
-        ctx.beginPath();
-        ctx.moveTo(ax, y + hh - 4);
-        ctx.quadraticCurveTo(ax + Math.sin(t * 0.05 + a) * 6, y + hh - 22, ax, y + hh - 36);
-        ctx.stroke();
-      }
-      ctx.fillStyle = rockColor(seed + 1, 1);
-      ctx.fillRect(x - 6, y + hh - 16, ww + 12, 16);
-      ctx.restore();
-    }
-    function drawArk(cx, cy, rot) {
-      ctx.save();
-      ctx.translate(cx, cy);
-      if (rot) ctx.rotate(rot);
-      if (arkReady && arkSprite) {
-        var sw = arkSprite.width, sh = arkSprite.height;
-        var tw = 72, th = tw * (sh / Math.max(1, sw));
-        if (th > 52) { th = 52; tw = th * (sw / Math.max(1, sh)); }
-        ctx.drawImage(arkSprite, -tw / 2, -th / 2, tw, th);
-      } else {
-        /* фолбэк: ковчег без фона */
-        ctx.fillStyle = "#b57a38";
-        ctx.beginPath();
-        ctx.moveTo(-30, 2);
-        ctx.lineTo(30, 2);
-        ctx.lineTo(24, 16);
-        ctx.quadraticCurveTo(0, 22, -24, 16);
-        ctx.closePath();
-        ctx.fill();
-        ctx.fillStyle = "#c48a45";
-        ctx.fillRect(-18, -14, 36, 16);
-        ctx.fillStyle = "#a86e32";
-        ctx.beginPath();
-        ctx.moveTo(-20, -14);
-        ctx.lineTo(0, -24);
-        ctx.lineTo(20, -14);
-        ctx.closePath();
-        ctx.fill();
-        ctx.fillStyle = "#3a2a18";
-        ctx.fillRect(-8, -8, 4, 4);
-        ctx.fillRect(6, -8, 4, 4);
-      }
-      ctx.restore();
-    }
-    function draw() {
-      /* толща воды: светлее сверху, темнее снизу */
-      var water = ctx.createLinearGradient(0, 0, 0, H);
-      water.addColorStop(0, "#3a8fc4");
-      water.addColorStop(0.35, "#2a6f9e");
-      water.addColorStop(0.7, "#1a4f78");
-      water.addColorStop(1, "#0e2f4a");
-      ctx.fillStyle = water;
-      ctx.fillRect(0, 0, W, H);
-      /* лучи света сверху */
-      ctx.save();
-      ctx.globalAlpha = 0.12;
-      for (var ray = 0; ray < 5; ray++) {
-        var rx = ((ray * 110 - (t * 0.15) % 110) + W) % (W + 80) - 40;
-        ctx.fillStyle = "#cfefff";
-        ctx.beginPath();
-        ctx.moveTo(rx, 0);
-        ctx.lineTo(rx + 28, 0);
-        ctx.lineTo(rx + 70, H);
-        ctx.lineTo(rx + 18, H);
-        ctx.closePath();
-        ctx.fill();
-      }
-      ctx.restore();
-      /* пузырьки */
-      ctx.strokeStyle = "rgba(200,235,255,.55)";
-      ctx.fillStyle = "rgba(220,245,255,.22)";
-      for (var b = 0; b < bubbles.length; b++) {
-        var bub = bubbles[b];
-        bub.y -= bub.sp;
-        bub.x += Math.sin(t * 0.04 + bub.wob) * 0.35;
-        if (bub.y < -10) {
-          bub.y = H + 10;
-          bub.x = Math.random() * W;
-        }
-        ctx.beginPath();
-        ctx.arc(bub.x, bub.y, bub.r, 0, 7);
-        ctx.fill();
-        ctx.stroke();
-      }
-      /* дно */
-      ctx.fillStyle = "rgba(30,50,40,.45)";
-      ctx.beginPath();
-      ctx.moveTo(0, H);
-      for (var s = 0; s <= 8; s++) {
-        var sx = (s / 8) * W;
-        ctx.lineTo(sx, H - 18 - Math.sin(s * 1.3 + t * 0.01) * 6);
-      }
-      ctx.lineTo(W, H);
-      ctx.closePath();
-      ctx.fill();
-
-      pipes.forEach(function (p) {
-        var botY = p.gapY + p.gapH;
-        drawRockColumn(p.x, 0, p.w, p.gapY, p.seed, true);
-        drawRockColumn(p.x, botY, p.w, H - botY, p.seed + 3, false);
-      });
-      var rot = started ? Math.max(-0.35, Math.min(0.45, -vy * 0.05)) : 0;
-      drawArk(W * 0.28, py, rot);
-      if (!started) {
-        ctx.fillStyle = "rgba(230,245,255,.9)";
-        /* Baloo Bhaijaan 2 — чтобы арабские/кириллические подписи не пропадали на canvas */
-        ctx.font = "700 16px 'Baloo Bhaijaan 2','Baloo 2',system-ui,sans-serif";
-        ctx.textAlign = "center";
-        ctx.direction = (idx(RTL, lang) >= 0) ? "rtl" : "ltr";
-        ctx.fillText(T("gArkFlapTap"), W / 2, H * 0.72);
-      }
-    }
-    function loop(ts) {
-      if (!running) { raf = 0; return; }
-      if (!document.body.contains(canvas)) { stopLoop(); return; }
-      if (!lastTs) lastTs = ts || performance.now();
-      var now = ts || performance.now();
-      var dt = Math.min(40, now - lastTs);
-      lastTs = now;
-      step(dt);
-      draw();
-      syncHud();
-      raf = requestAnimationFrame(loop);
-    }
-
-    var backBtn = w.querySelector(".topbar .bt");
-    if (backBtn) {
-      var prev = backBtn.onclick;
-      backBtn.onclick = function () {
-        stopLoop();
-        if (typeof prev === "function") prev();
-        else render();
-      };
-    }
-
-    canvas.addEventListener("pointerdown", onTap);
-    wrap.addEventListener("pointerdown", function (e) {
-      if (e.target === canvas || e.target === wrap || e.target === hud || e.target === hudL || e.target === hudR) onTap(e);
-    });
-    function onKey(e) {
-      if (!document.body.contains(canvas)) {
-        document.removeEventListener("keydown", onKey);
-        return;
-      }
-      if (e.code === "Space" || e.code === "ArrowUp" || e.key === " ") {
-        e.preventDefault();
-        onTap(e);
-      }
-    }
-    document.addEventListener("keydown", onKey);
-
-    loadArk(function (sprite) {
-      if (sprite) {
-        arkSprite = sprite;
-        arkReady = true;
-      }
-      draw();
-    });
-
-    size();
-    reset();
-    started = false;
-    dead = false;
-    running = true;
-    syncHud();
-    draw();
-    loop();
-  }
-
   /* ── карты мира: Путь Исхода (анимированный маршрут) и Библейский мир ── */
   var mapKind = "exodus";
   function renderMaps() {
@@ -2467,26 +1869,17 @@
       return;
     }
     var o = buildObj, stage = 0;
-    mainEl.classList.add("buildmode");
-    var stageWrap = el("div", "buildstage");
     var top = el("div", "topbar gamewrap");
     var backB = el("button", "bt", "← " + esc(T("back")));
     backB.onclick = function () { buildObj = null; render(); };
     top.appendChild(backB);
     top.appendChild(el("div", "sc", esc(L(o.name))));
-    stageWrap.appendChild(top);
+    mainEl.appendChild(top);
 
-    var media = el("div", "buildmedia");
-    var frame = el("div", "buildmedia-frame");
     var im = el("img", "buildimg");
-    frame.appendChild(im);
-    media.appendChild(frame);
-    stageWrap.appendChild(media);
-
-    var foot = el("div", "buildfoot");
     var cap = el("p", "buildcap");
-    var counterEl = el("div", "buildcount");
     var next = el("button", "mapnext");
+    var counterEl = el("div", "buildcount");
     function show() {
       im.src = o.stages[stage].img;
       cap.textContent = L(o.stages[stage].caption);
@@ -2502,11 +1895,10 @@
       }
     }
     show();
-    foot.appendChild(cap);
-    foot.appendChild(counterEl);
-    foot.appendChild(next);
-    stageWrap.appendChild(foot);
-    mainEl.appendChild(stageWrap);
+    mainEl.appendChild(counterEl);
+    mainEl.appendChild(im);
+    mainEl.appendChild(cap);
+    mainEl.appendChild(next);
   }
 
   /* ── лента времени: 7 эпох, чипы карт ── */
@@ -2558,70 +1950,28 @@
     mainEl.appendChild(wrap);
   }
 
-  /* ── прямой вход: ?go=cards|books|build|games|glossary|parent;
-        ?embed=1 — внутри оболочки тома (без заставки и без #botmenu) ── */
+  /* ── прямой вход в режим из нижнего меню Ленты: ?go=cards|books|build|
+        glossary|parent — минуем заставку и сразу открываем нужное ── */
   function goParam() { var m = /[?&]go=([a-z]+)/.exec(location.search); return m ? m[1] : null; }
   function routeGo(g) {
-    if (g === "parent") {
-      if (shellNav("parent")) return;
-      openParent();
-      return;
-    }
-    if (g === "lenta" || g === "feed") {
-      if (shellNav("feed")) return;
-      location.href = "feed/index.html";
-      return;
-    }
-    if (g === "game" || g === "igry" || g === "play") g = "games";
-    if (g === "books") { tab = "books"; render(); if (MENU && !EMBED) renderBottomMenu(); return; }
-    var t = MENU_TAB[g]; if (t) { tab = t; render(); if (MENU && !EMBED) renderBottomMenu(); }
+    if (g === "parent") { openParent(); return; }
+    if (g === "books") { tab = "books"; render(); if (MENU) renderBottomMenu(); return; }
+    var t = MENU_TAB[g]; if (t) { tab = t; render(); if (MENU) renderBottomMenu(); }
   }
 
-  function applyShellTheme(theme) {
-    theme = theme === "dark" ? "dark" : "light";
-    document.documentElement.setAttribute("data-theme", theme);
-    if (bookFrame) {
-      try { bookFrame.contentWindow.postMessage({ type: "bibleShell", action: "theme", theme: theme }, "*"); } catch (e) {}
-    }
-  }
-
-  window.addEventListener("message", function (e) {
-    var d = e.data;
-    if (!d || d.type !== "bibleShell") return;
-    if (d.action === "lang" && d.lang) setLang(d.lang);
-    if (d.action === "theme") applyShellTheme(d.theme);
-    if (d.action === "tab" && d.tab) routeGo(d.tab);
-  });
-
-  window.BibleQuest = {
-    setTab: setTab,
-    setLang: setLang,
-    routeGo: routeGo,
-    getLang: function () { return lang; }
-  };
-
-  /* ── заставка (только на старом index со #splash; hub/embed стартует сразу) ── */
+  /* ── заставка ── */
   var splash = document.getElementById("splash");
   var go = goParam();
-  if (go || EMBED || !splash) {
+  if (go) {                              // пришли из Ленты в конкретный режим — без заставки
     if (splash && splash.parentNode) splash.parentNode.removeChild(splash);
     build();
-    if (go) routeGo(go);
+    routeGo(go);
   } else {
-    var startBtn = document.getElementById("startbtn");
-    if (startBtn) {
-      startBtn.innerHTML = esc(T("start"));
-      startBtn.onclick = function () {
-        if (splash.parentNode) splash.parentNode.removeChild(splash);
-        build();
-      };
-    } else {
+    document.getElementById("startbtn").innerHTML = esc(T("start"));
+    document.getElementById("startbtn").onclick = function () {
+      splash.parentNode.removeChild(splash);
       build();
-    }
+    };
   }
   applyDir();
-  try {
-    var th = localStorage.getItem("bible_theme");
-    if (th === "dark") applyShellTheme("dark");
-  } catch (e) {}
 })();

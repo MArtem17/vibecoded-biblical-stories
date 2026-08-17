@@ -1,0 +1,132 @@
+<!doctype html><html lang="ru"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<meta name="theme-color" content="#f3eee6">
+<title>Библейские истории · лента</title>
+<script>
+(function(){try{localStorage.setItem("bible_theme","light");}catch(e){}
+document.documentElement.setAttribute("data-theme","light");
+if(/[?&]embed=1/.test(location.search))document.documentElement.classList.add("embed");})();
+</script>
+<link rel="stylesheet" href="../../../core/fonts/fonts.css">
+<link rel="stylesheet" href="../../../core/engines/feed/feed.css">
+<link rel="stylesheet" href="../scrollbars.css">
+<link rel="stylesheet" href="feed-cards.css">
+</head><body tabindex="-1" data-i18n-title="titleFeed">
+
+<div id="hud">
+  <div id="kwrap"><div id="kbar"><div id="kfill"></div></div></div>
+  <button class="enc-back feed-menu" id="feedBack" type="button" data-i18n="menu">← Меню</button>
+  <div id="chapLab" class="fhl" role="button" tabindex="0" data-i18n-title="pathMap" title="Карта пути">···</div>
+  <span id="chapPos" class="fcardn">0/0</span>
+  <button id="muteBtn" style="display:none"></button>
+</div>
+
+<div id="feed"></div>
+<div class="fnav" id="fNav">
+  <button type="button" id="fGoHint" aria-label="Дальше" data-i18n-aria="nextAria">
+    <span class="arw" aria-hidden="true"><svg viewBox="0 0 24 24" width="16" height="16" focusable="false"><path fill="currentColor" d="M12 5.5 5.5 12.2l1.6 1.6L11 9.9V18.5h2V9.9l3.9 3.9 1.6-1.6z"/></svg></span>
+    <span id="fGoHintLab" data-i18n="next">Далее</span>
+  </button>
+</div>
+
+<button id="miniGraph" data-i18n-title="knowledgeMap" title="Карта знаний"></button>
+<div id="celebrate"></div>
+
+<div id="map">
+  <div class="ppanel">
+    <div class="grab" aria-hidden="true"></div>
+    <header>
+      <h1 data-i18n="mapH1">Большой путь по Библии</h1>
+      <button class="close" id="mClose" data-i18n-aria="close" aria-label="Закрыть">✕</button>
+    </header>
+    <div class="sub" data-i18n="mapSub">Нажми любую главу — и лента откроется с её начала. Ты сейчас на подсвеченной.</div>
+    <div id="mapList"></div>
+  </div>
+</div>
+
+<div id="parent">
+  <div class="ppanel">
+    <div class="grab" aria-hidden="true"></div>
+    <header>
+      <h1 data-i18n="parentH1">Карта знаний наполняется</h1>
+      <button class="close" id="pClose" data-i18n-aria="close" aria-label="Закрыть">✕</button>
+    </header>
+    <div class="sub" data-i18n="parentSub">Что ребёнок уже узнал — по эпохам Библии</div>
+    <div id="pbig"><div class="n" id="pbign">0</div><div class="u" id="pbigu">из 0 историй</div></div>
+    <div id="pgraph"></div>
+  </div>
+</div>
+
+<script src="../nav.js"></script>
+<script src="../ui.i18n.js"></script>
+<script src="../i18n-runtime.js"></script>
+<script src="program.js"></script>
+<script src="graph.js"></script>
+<script src="opening.js"></script>
+<script src="chapter2.js"></script>
+<script src="chapter3.js"></script>
+<script src="chapter4.js"></script>
+<script src="chapter5.js"></script>
+<script src="chapter6.js"></script>
+<script src="chapter7.js"></script>
+<script src="chapter_ugaday.js"></script>
+<script src="chapter8.js"></script>
+<script src="chapter9.js"></script>
+<script src="feed-prep.js"></script>
+<script src="quiz-done.js"></script>
+<script src="kinds-colors.js"></script>
+<script src="kinds-tf.js"></script>
+<script src="kinds-quizbg.js"></script>
+<script src="kinds-check.js"></script>
+<script>if (window.BibleI18nRuntime) BibleI18nRuntime.patchFeed();</script>
+<script src="../../../core/vendor/anime.min.js"></script>
+<script src="../../../core/fx/tilt.js"></script>
+<script>
+/* FEED_MENU из nav.js включает botmenu и подменяет ярлык главы на openMap.
+   Как у Птиц мира (singleMenu): кольцо уровня открывает граф + путь по главам. */
+window.FEED_MENU = null;
+</script>
+<script src="../../../core/engines/feed/feed.js"></script>
+<script src="graph-fit.js"></script>
+<script src="quiz-lock.js"></script>
+<script>
+(function () {
+  if (window.BibleI18nRuntime) BibleI18nRuntime.boot();
+  document.getElementById("hud").addEventListener("click", function (e) {
+    if (!e.target.closest("#lvlRing, #chapPos")) return;
+    var lab = document.getElementById("chapLab");
+    if (lab && !lab.contains(e.target)) lab.click();
+  });
+  function bindSheet(id, closeId) {
+    var el = document.getElementById(id);
+    if (!el) return;
+    el.addEventListener("click", function (e) {
+      if (e.target !== el) return;
+      var btn = document.getElementById(closeId);
+      if (btn) btn.click();
+    });
+  }
+  bindSheet("parent", "pClose");
+  bindSheet("map", "mClose");
+  var back = document.getElementById("feedBack");
+  if (back) back.addEventListener("click", function (ev) {
+    ev.preventDefault();
+    ev.stopPropagation();
+    var embed = /[?&]embed=1/.test(location.search) || document.documentElement.classList.contains("embed");
+    if (embed && window.parent && window.parent !== window) {
+      try { window.parent.postMessage({ type: "bibleShell", action: "nav", to: "menu" }, "*"); return; }
+      catch (e) {}
+    }
+    location.href = "../index.html#/";
+  });
+  if (!/[?&]parent=1/.test(location.search)) return;
+  function openParent() {
+    var lab = document.getElementById("chapLab");
+    if (lab) lab.click();
+  }
+  if (document.readyState === "complete") setTimeout(openParent, 80);
+  else window.addEventListener("load", function () { setTimeout(openParent, 80); });
+})();
+</script>
+</body></html>

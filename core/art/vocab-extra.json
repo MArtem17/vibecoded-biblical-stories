@@ -1,0 +1,557 @@
+{
+ "note": "Фотографии, добранные из фотобанков к общей библиотеке core/art/vocab (её саму собирает build-vocab-art.js из колод-словарей). Пишет tools/python/fetch_vocab_photos.py, кадр выбирается глазами. Файлы — core/art/vocab/w-extra/.",
+ "words": {
+  "armchair": {
+   "credit": {
+    "author": "Virender Singh",
+    "id": "hE0nmTffKtM",
+    "license": "Unsplash License",
+    "page": "https://unsplash.com/photos/a-blue-chair-and-a-yellow-lamp-in-a-white-room-hE0nmTffKtM",
+    "source": "unsplash"
+   },
+   "img": "w-extra/armchair.webp",
+   "ru": "кресло",
+   "ru_src": "course"
+  },
+  "birthday": {
+   "credit": {
+    "author": "Vlada Karpovich",
+    "id": "7100317",
+    "license": "Pexels License",
+    "page": "https://www.pexels.com/photo/kids-blowing-candles-on-a-cake-7100317/",
+    "source": "pexels"
+   },
+   "img": "w-extra/birthday.webp",
+   "ru": "день рождения",
+   "ru_src": "course"
+  },
+  "carnival": {
+   "credit": {
+    "author": "MARCIA ANDRADE",
+    "id": "36743804",
+    "license": "Pexels License",
+    "page": "https://www.pexels.com/photo/vibrant-carnival-costume-with-masks-and-umbrellas-36743804/",
+    "source": "pexels"
+   },
+   "img": "w-extra/carnival.webp",
+   "ru": "карнавал",
+   "ru_src": "course"
+  },
+  "carols": {
+   "credit": {
+    "author": "Flaviu Costin",
+    "id": "Sqoi1DSFIlQ",
+    "license": "Unsplash License",
+    "page": "https://unsplash.com/photos/a-group-of-children-standing-next-to-each-other-Sqoi1DSFIlQ",
+    "source": "unsplash"
+   },
+   "img": "w-extra/carols.webp",
+   "ru": "рождественские песни",
+   "ru_src": "dict"
+  },
+  "castle": {
+   "credit": {
+    "author": "Martti Salmi",
+    "id": "gFgYUEukHp8",
+    "license": "Unsplash License",
+    "page": "https://unsplash.com/photos/a-castle-on-top-of-a-hill-with-a-view-of-a-valley-below-gFgYUEukHp8",
+    "source": "unsplash"
+   },
+   "img": "w-extra/castle.webp",
+   "ru": "замок",
+   "ru_src": "course"
+  },
+  "celebration": {
+   "credit": {
+    "author": "Pavel Danilyuk",
+    "id": "7180626",
+    "license": "Pexels License",
+    "page": "https://www.pexels.com/photo/friends-holding-paper-cups-7180626/",
+    "source": "pexels"
+   },
+   "img": "w-extra/celebration.webp",
+   "ru": "празднование",
+   "ru_src": "course"
+  },
+  "corner": {
+   "credit": {
+    "author": "Pascal Bernardon",
+    "id": "f1WMJhx1rb4",
+    "license": "Unsplash License",
+    "page": "https://unsplash.com/photos/ornate-building-on-a-sunny-city-street-corner-f1WMJhx1rb4",
+    "source": "unsplash"
+   },
+   "img": "w-extra/corner.webp",
+   "ru": "угол",
+   "ru_src": "course"
+  },
+  "costume": {
+   "credit": {
+    "author": "Pavel Danilyuk",
+    "id": "8421951",
+    "license": "Pexels License",
+    "page": "https://www.pexels.com/photo/kids-wearing-their-costumes-8421951/",
+    "source": "pexels"
+   },
+   "img": "w-extra/costume.webp",
+   "ru": "костюм",
+   "ru_src": "course"
+  },
+  "cross the road": {
+   "credit": {
+    "author": "Chris Barbalis",
+    "id": "eZsT7oQhG4I",
+    "license": "Unsplash License",
+    "page": "https://unsplash.com/photos/people-walking-on-pedestrian-lane-during-daytime-eZsT7oQhG4I",
+    "source": "unsplash"
+   },
+   "img": "w-extra/cross_the_road.webp",
+   "ru": "",
+   "ru_src": "dict"
+  },
+  "crossroads": {
+   "credit": {
+    "author": "Iain",
+    "id": "bKT7FEIweEA",
+    "license": "Unsplash License",
+    "page": "https://unsplash.com/photos/an-aerial-view-of-a-parking-lot-with-cars-parked-on-it-bKT7FEIweEA",
+    "source": "unsplash"
+   },
+   "img": "w-extra/crossroads.webp",
+   "ru": "перекрёсток",
+   "ru_src": "course"
+  },
+  "decorate": {
+   "credit": {
+    "author": "https://kaboompics.com/",
+    "id": "5469824",
+    "license": "Pexels License",
+    "page": "https://www.pexels.com/photo/person-hanging-a-white-christmas-ball-on-christmas-tree-5469824/",
+    "source": "pexels"
+   },
+   "img": "w-extra/decorate.webp",
+   "ru": "украшать",
+   "ru_src": "course"
+  },
+  "dining room": {
+   "credit": {
+    "author": "Bozica Uglesic",
+    "id": "mf3BJqfZSso",
+    "license": "Unsplash License",
+    "page": "https://unsplash.com/photos/a-dining-table-with-chairs-around-it-mf3BJqfZSso",
+    "source": "unsplash"
+   },
+   "img": "w-extra/dining_room.webp",
+   "ru": "столовая",
+   "ru_src": "course"
+  },
+  "dragon": {
+   "credit": {
+    "author": "Образовариум (ИИ-генерация)",
+    "id": "sheet-tale",
+    "license": "собственная",
+    "page": "tools/python/gen_vocab_art_ai.py",
+    "source": "gpt"
+   },
+   "img": "w-extra/dragon.webp",
+   "ru": "дракон",
+   "ru_src": "dict"
+  },
+  "dust": {
+   "credit": {
+    "author": "Liliana Drew",
+    "id": "9462094",
+    "license": "Pexels License",
+    "page": "https://www.pexels.com/photo/woman-cleaning-the-top-of-a-dresser-9462094/",
+    "source": "pexels"
+   },
+   "img": "w-extra/dust.webp",
+   "ru": "вытирать пыль",
+   "ru_src": "dict"
+  },
+  "feast": {
+   "credit": {
+    "author": "Hasan Hüseyin  TURAN",
+    "id": "36579873",
+    "license": "Pexels License",
+    "page": "https://www.pexels.com/photo/festive-dinner-table-with-traditional-dishes-36579873/",
+    "source": "pexels"
+   },
+   "img": "w-extra/feast.webp",
+   "ru": "праздник",
+   "ru_src": "course"
+  },
+  "fireworks": {
+   "credit": {
+    "author": "Phúc Phạm",
+    "id": "38562165",
+    "license": "Pexels License",
+    "page": "https://www.pexels.com/photo/spectacular-fireworks-display-over-city-skyline-at-night-38562165/",
+    "source": "pexels"
+   },
+   "img": "w-extra/fireworks.webp",
+   "ru": "фейерверк",
+   "ru_src": "course"
+  },
+  "flat": {
+   "credit": {
+    "author": "Brandon Griggs",
+    "id": "wR11KBaB86U",
+    "license": "Unsplash License",
+    "page": "https://unsplash.com/photos/low-angle-view-of-building-wR11KBaB86U",
+    "source": "unsplash"
+   },
+   "img": "w-extra/flat.webp",
+   "ru": "квартира",
+   "ru_src": "course"
+  },
+  "forest": {
+   "credit": {
+    "author": "Bernardo Lorena Ponte",
+    "id": "cEp2Tow6XKk",
+    "license": "Unsplash License",
+    "page": "https://unsplash.com/photos/green-trees-in-forest-during-daytime-cEp2Tow6XKk",
+    "source": "unsplash"
+   },
+   "img": "w-extra/forest.webp",
+   "ru": "лес",
+   "ru_src": "course"
+  },
+  "furniture": {
+   "credit": {
+    "author": "Francesca Tosolini",
+    "id": "6japTIjUQoI",
+    "license": "Unsplash License",
+    "page": "https://unsplash.com/photos/living-room-interior-6japTIjUQoI",
+    "source": "unsplash"
+   },
+   "img": "w-extra/furniture.webp",
+   "ru": "мебель",
+   "ru_src": "course"
+  },
+  "garage": {
+   "credit": {
+    "author": "João Emanuel",
+    "id": "37703762",
+    "license": "Pexels License",
+    "page": "https://www.pexels.com/photo/vintage-car-in-ivy-covered-garage-37703762/",
+    "source": "pexels"
+   },
+   "img": "w-extra/garage.webp",
+   "ru": "гараж",
+   "ru_src": "course"
+  },
+  "ghost": {
+   "credit": {
+    "author": "Образовариум (ИИ-генерация)",
+    "id": "sheet-tale",
+    "license": "собственная",
+    "page": "tools/python/gen_vocab_art_ai.py",
+    "source": "gpt"
+   },
+   "img": "w-extra/ghost.webp",
+   "ru": "привидение",
+   "ru_src": "dict"
+  },
+  "go straight on": {
+   "credit": {
+    "author": "Declan Sun",
+    "id": "9BoQIxBzmPw",
+    "license": "Unsplash License",
+    "page": "https://unsplash.com/photos/a-blue-sign-with-an-arrow-pointing-to-the-right-9BoQIxBzmPw",
+    "source": "unsplash"
+   },
+   "img": "w-extra/go_straight_on.webp",
+   "ru": "",
+   "ru_src": "dict"
+  },
+  "invitation": {
+   "credit": {
+    "author": "https://kaboompics.com/",
+    "id": "5705961",
+    "license": "Pexels License",
+    "page": "https://www.pexels.com/photo/pink-envelopes-and-balloon-5705961/",
+    "source": "pexels"
+   },
+   "img": "w-extra/invitation.webp",
+   "ru": "приглашение",
+   "ru_src": "course"
+  },
+  "iron": {
+   "credit": {
+    "author": "https://kaboompics.com/",
+    "id": "5202801",
+    "license": "Pexels License",
+    "page": "https://www.pexels.com/photo/person-ironing-a-clothes-5202801/",
+    "source": "pexels"
+   },
+   "img": "w-extra/iron.webp",
+   "ru": "гладить",
+   "ru_src": "dict"
+  },
+  "magic": {
+   "credit": {
+    "author": "Образовариум (ИИ-генерация)",
+    "id": "sheet-tale",
+    "license": "собственная",
+    "page": "tools/python/gen_vocab_art_ai.py",
+    "source": "gpt"
+   },
+   "img": "w-extra/magic.webp",
+   "ru": "волшебство",
+   "ru_src": "dict"
+  },
+  "make the bed": {
+   "credit": {
+    "author": "Marcus Aurelius",
+    "id": "9788329",
+    "license": "Pexels License",
+    "page": "https://www.pexels.com/photo/close-up-shot-of-a-person-holding-a-white-blanket-9788329/",
+    "source": "pexels"
+   },
+   "img": "w-extra/make_the_bed.webp",
+   "ru": "заправлять постель",
+   "ru_src": "dict"
+  },
+  "parade": {
+   "credit": {
+    "author": "Walter Martin",
+    "id": "F-4Qf0vR0Cg",
+    "license": "Unsplash License",
+    "page": "https://unsplash.com/photos/a-group-of-people-standing-on-the-side-of-a-road-F-4Qf0vR0Cg",
+    "source": "unsplash"
+   },
+   "img": "w-extra/parade.webp",
+   "ru": "парад",
+   "ru_src": "course"
+  },
+  "presents": {
+   "credit": {
+    "author": "Pixabay",
+    "id": "17796",
+    "license": "Pexels License",
+    "page": "https://www.pexels.com/photo/selective-focus-photography-of-gift-boxes-17796/",
+    "source": "pexels"
+   },
+   "img": "w-extra/presents.webp",
+   "ru": "подарки",
+   "ru_src": "dict"
+  },
+  "prince": {
+   "credit": {
+    "author": "Patricio Ledeill",
+    "id": "36986060",
+    "license": "Pexels License",
+    "page": "https://www.pexels.com/photo/smiling-child-in-royal-costume-with-golden-balloons-36986060/",
+    "source": "pexels"
+   },
+   "img": "w-extra/prince.webp",
+   "ru": "принц",
+   "ru_src": "course"
+  },
+  "roundabout": {
+   "credit": {
+    "author": "Altaf Shah",
+    "id": "8738240",
+    "license": "Pexels License",
+    "page": "https://www.pexels.com/photo/aerial-view-of-cars-on-the-road-8738240/",
+    "source": "pexels"
+   },
+   "img": "w-extra/roundabout.webp",
+   "ru": "",
+   "ru_src": "dict"
+  },
+  "ship": {
+   "credit": {
+    "author": "Chris Pagan",
+    "id": "sfjS-FglvU4",
+    "license": "Unsplash License",
+    "page": "https://unsplash.com/photos/red-and-white-cargo-ship-at-middle-of-ocean-sfjS-FglvU4",
+    "source": "unsplash"
+   },
+   "img": "w-extra/ship.webp",
+   "ru": "корабль",
+   "ru_src": "course"
+  },
+  "sweep": {
+   "credit": {
+    "author": "RDNE Stock project",
+    "id": "5591855",
+    "license": "Pexels License",
+    "page": "https://www.pexels.com/photo/a-person-sweeping-the-floor-5591855/",
+    "source": "pexels"
+   },
+   "img": "w-extra/sweep.webp",
+   "ru": "подметать",
+   "ru_src": "course"
+  },
+  "sweets": {
+   "credit": {
+    "author": "Caio",
+    "id": "65547",
+    "license": "Pexels License",
+    "page": "https://www.pexels.com/photo/m-m-s-chocolates-in-bowl-65547/",
+    "source": "pexels"
+   },
+   "img": "w-extra/sweets.webp",
+   "ru": "сладости",
+   "ru_src": "course"
+  },
+  "sword": {
+   "credit": {
+    "author": "Maria Pop",
+    "id": "18821902",
+    "license": "Pexels License",
+    "page": "https://www.pexels.com/photo/dagger-with-a-blade-wrapped-in-red-silk-18821902/",
+    "source": "pexels"
+   },
+   "img": "w-extra/sword.webp",
+   "ru": "меч",
+   "ru_src": "course"
+  },
+  "take the rubbish out": {
+   "credit": {
+    "author": "Lara Jameson",
+    "id": "9324365",
+    "license": "Pexels License",
+    "page": "https://www.pexels.com/photo/person-holding-white-plastic-bag-9324365/",
+    "source": "pexels"
+   },
+   "img": "w-extra/take_the_rubbish_out.webp",
+   "ru": "выносить мусор",
+   "ru_src": "dict"
+  },
+  "traffic": {
+   "credit": {
+    "author": "Derek Lee",
+    "id": "C031beKcwdQ",
+    "license": "Unsplash License",
+    "page": "https://unsplash.com/photos/cars-on-road-during-daytime-C031beKcwdQ",
+    "source": "unsplash"
+   },
+   "img": "w-extra/traffic.webp",
+   "ru": "движение (машин)",
+   "ru_src": "course"
+  },
+  "traffic lights": {
+   "credit": {
+    "author": "Erik Mclean",
+    "id": "8786465",
+    "license": "Pexels License",
+    "page": "https://www.pexels.com/photo/close-up-of-street-lights-8786465/",
+    "source": "pexels"
+   },
+   "img": "w-extra/traffic_lights.webp",
+   "ru": "",
+   "ru_src": "dict"
+  },
+  "tram": {
+   "credit": {
+    "author": "Matvey Jenssen",
+    "id": "17956494",
+    "license": "Pexels License",
+    "page": "https://www.pexels.com/photo/tram-in-the-street-of-munich-germany-17956494/",
+    "source": "pexels"
+   },
+   "img": "w-extra/tram.webp",
+   "ru": "трамвай",
+   "ru_src": "course"
+  },
+  "transport": {
+   "credit": {
+    "author": "Selim Karadayı",
+    "id": "34728944",
+    "license": "Pexels License",
+    "page": "https://www.pexels.com/photo/rainy-day-commute-on-dublin-s-busy-streets-34728944/",
+    "source": "pexels"
+   },
+   "img": "w-extra/transport.webp",
+   "ru": "транспорт",
+   "ru_src": "course"
+  },
+  "treasure": {
+   "credit": {
+    "author": "Образовариум (ИИ-генерация)",
+    "id": "sheet-tale",
+    "license": "собственная",
+    "page": "tools/python/gen_vocab_art_ai.py",
+    "source": "gpt"
+   },
+   "img": "w-extra/treasure.webp",
+   "ru": "сокровище",
+   "ru_src": "dict"
+  },
+  "turn left": {
+   "credit": {
+    "author": "Jan van der Wolf",
+    "id": "29823279",
+    "license": "Pexels License",
+    "page": "https://www.pexels.com/photo/blue-left-turn-traffic-sign-against-urban-wall-29823279/",
+    "source": "pexels"
+   },
+   "img": "w-extra/turn_left.webp",
+   "ru": "",
+   "ru_src": "dict"
+  },
+  "turn right": {
+   "credit": {
+    "author": "YiTian",
+    "id": "36984369",
+    "license": "Pexels License",
+    "page": "https://www.pexels.com/photo/coastal-road-sign-overlooking-the-ocean-36984369/",
+    "source": "pexels"
+   },
+   "img": "w-extra/turn_right.webp",
+   "ru": "",
+   "ru_src": "dict"
+  },
+  "underground": {
+   "credit": {
+    "author": "Mehrnaz Taghavishavazi",
+    "id": "tHE5_sUytWA",
+    "license": "Unsplash License",
+    "page": "https://unsplash.com/photos/white-and-red-hallway-with-no-people-tHE5_sUytWA",
+    "source": "unsplash"
+   },
+   "img": "w-extra/underground.webp",
+   "ru": "метро",
+   "ru_src": "course"
+  },
+  "vacuum": {
+   "credit": {
+    "author": "Liliana Drew",
+    "id": "9462144",
+    "license": "Pexels License",
+    "page": "https://www.pexels.com/photo/a-person-cleaning-a-carpet-using-a-vacuum-cleaner-9462144/",
+    "source": "pexels"
+   },
+   "img": "w-extra/vacuum.webp",
+   "ru": "пылесосить",
+   "ru_src": "dict"
+  },
+  "witch": {
+   "credit": {
+    "author": "Образовариум (ИИ-генерация)",
+    "id": "sheet-tale",
+    "license": "собственная",
+    "page": "tools/python/gen_vocab_art_ai.py",
+    "source": "gpt"
+   },
+   "img": "w-extra/witch.webp",
+   "ru": "ведьма",
+   "ru_src": "dict"
+  },
+  "wizard": {
+   "credit": {
+    "author": "Образовариум (ИИ-генерация)",
+    "id": "sheet-tale",
+    "license": "собственная",
+    "page": "tools/python/gen_vocab_art_ai.py",
+    "source": "gpt"
+   },
+   "img": "w-extra/wizard.webp",
+   "ru": "волшебник",
+   "ru_src": "dict"
+  }
+ }
+}

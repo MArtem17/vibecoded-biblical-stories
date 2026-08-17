@@ -330,7 +330,15 @@ var ChessTutor = (function () {
         }, 900);
       }
       w.appendChild(el('p', 'ct-say', L.text));
-      var sayBtn = el('button', 'ct-voice', '🔊 послушать');
+      /* Значок — свой SVG, не эмодзи 🔊 (решение владельца 05.08.2026: «нам ни
+         в коем случае не нужны никакие эмодзи в продукте» + 09.08.2026:
+         «давай абсолютно везде рисовать значок динамика одинаково»). Тот же
+         контур, что в decks/slovar-na-stsenah/content.js. */
+      var sayBtn = el('button', 'ct-voice', '<svg class="ic" viewBox="0 0 24 24" width="16" height="16"'
+        + ' fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"'
+        + ' stroke-linejoin="round" aria-hidden="true" focusable="false" style="vertical-align:-2px;margin-right:4px">'
+        + '<path d="M4.5 9.5h3.2L12 5.8v12.4l-4.3-3.7H4.5z"/>'
+        + '<path d="M15.2 9.4a3.6 3.6 0 0 1 0 5.2M17.8 7.2a7 7 0 0 1 0 9.6"/></svg>послушать');
       sayBtn.onclick = function () { speak(L.text); };
       w.appendChild(sayBtn);
       var row = el('div', 'ct-row');

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>История Моисея</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=Baloo+2:wght@600;700;800&family=Baloo+Bhaijaan+2:wght@500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="../../../core/fonts/fonts.css">
+<link rel="stylesheet" href="../../../core/engines/encyclopedia/encyclopedia.css">
+</head>
+<body data-i18n-title="titleBook">
+<!-- Контент книги (window.BOOK) — свой; движок «Энциклопедия» — общий из core/.
+     Порядок обязателен: данные до движка. -->
+<script src="../../ui.i18n.js"></script>
+<script src="../../i18n-runtime.js"></script>
+<script src="book.data.js"></script>
+<script>if (window.BibleI18nRuntime) BibleI18nRuntime.syncBookLang();</script>
+<script src="../../../core/engines/encyclopedia/encyclopedia.js"></script>
+<script>if (window.BibleI18nRuntime) BibleI18nRuntime.boot();</script>
+</body>
+</html>

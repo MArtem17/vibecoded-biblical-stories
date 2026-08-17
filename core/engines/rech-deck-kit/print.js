@@ -157,8 +157,7 @@ function cardRazborBack(s){
   c.appendChild(el('div','ptitle',s.word));
   var box=el('div','pschbox');
   var d=Math.min(19,Math.floor(88/s.sounds.length));
-  box.appendChild(window.RECH_SCHEMA.render(s.sounds,{d:d,colors:DATA.colors,
-    counts:{letters:s.letters_n,sounds:s.sounds_n},cq:true}));
+  box.appendChild(window.RECH_SCHEMA.render(s.sounds,{d:d,colors:DATA.colors,cq:true}));
   c.appendChild(box);
   c.appendChild(el('div','pnum',(s.id<10?'0':'')+s.id+' · оборот'));
   return c;

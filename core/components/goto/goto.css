@@ -1,0 +1,44 @@
+/* «Перейти к разделу» — оформление общего списка (см. goto.js).
+   Цвета берём из переменных колоды, а не задаём свои: у «Искусства» и
+   «Изобретений» разные палитры, а список обязан выглядеть родным в обеих.
+   Фолбэки на случай, если колода такой переменной не объявила. */
+.gt-hint { font: 500 14px/1.45 var(--f, system-ui, sans-serif);
+  color: var(--muted, #667); margin: 0 0 12px; }
+
+.gt-sec { margin-bottom: 8px; }
+
+.gt-head { display: flex; align-items: center; gap: 10px; width: 100%;
+  background: var(--card, #fff); border: 1.5px solid var(--line, #dde);
+  border-radius: 14px; padding: 11px 13px; cursor: pointer;
+  font: 700 16px var(--f, system-ui, sans-serif); color: var(--ink, #14161c);
+  text-align: left; }
+.gt-head b { flex: 1 1 auto; min-width: 0; font-weight: 800; }
+.gt-head .gt-emo { font-size: 20px; line-height: 1; }
+.gt-head .gt-ico { width: 26px; height: 26px; object-fit: contain; flex: 0 0 auto; }
+.gt-head .gt-n { font: 800 13px var(--f, system-ui, sans-serif);
+  color: var(--muted, #667); background: var(--bg2, #eef1f6);
+  border-radius: 999px; padding: 2px 9px; flex: 0 0 auto; }
+.gt-head .gt-chev { color: var(--muted, #667); font-style: normal;
+  transition: transform .18s; flex: 0 0 auto; }
+.gt-head.open .gt-chev { transform: rotate(90deg); }
+
+.gt-list { display: grid; grid-template-columns: 1fr 1fr; gap: 8px;
+  padding: 10px 4px 4px; }
+
+.gt-go { grid-column: 1 / -1; border: 0; border-radius: 12px;
+  background: var(--green, #2e9e5b); color: #fff; cursor: pointer;
+  padding: 11px 14px; font: 800 15px var(--f, system-ui, sans-serif); }
+
+.gt-item { display: flex; align-items: center; gap: 8px; text-align: left;
+  background: var(--card, #fff); border: 1.5px solid var(--line, #dde);
+  border-radius: 12px; padding: 9px 11px; cursor: pointer;
+  font: 600 14px var(--f, system-ui, sans-serif); color: var(--ink, #14161c); }
+.gt-item span { min-width: 0; overflow: hidden; text-overflow: ellipsis; }
+.gt-item img { width: 26px; height: 26px; object-fit: cover; border-radius: 4px;
+  flex: 0 0 auto; box-shadow: 0 1px 3px rgba(0, 0, 0, .25); }
+
+/* На узком экране два столбца названий картин и изобретений не помещаются —
+   у них подписи длиннее, чем названия стран, ради которых сетка задумывалась. */
+@media (max-width: 380px) {
+  .gt-list { grid-template-columns: 1fr; }
+}

@@ -1,0 +1,26 @@
+/* Фото-словарь класса: общий вид для всех классов. Логика — vocab.js,
+   колода приносит только слова (data/words.json + data/fallback.js) и конфиг. */
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html,body{overflow-x:hidden}
+:root{--ink:#1e2630;--mut:#5a6b78;--line:#e4dcca;--b:#1f5fa8;--bd:#8a2230;--o:#e06104}
+body{font-family:'Nunito',ui-rounded,system-ui,sans-serif;color:var(--ink);background:#eef2f0;padding:20px 14px 50px;display:flex;flex-direction:column;align-items:center}
+.wrap{width:100%;max-width:620px;min-width:0}
+.top{display:flex;justify-content:space-between;align-items:center}
+.top a{color:var(--b);font-weight:800;font-size:13px;text-decoration:none}
+h1{font-size:23px;font-weight:900;margin-top:6px}
+.lead{color:var(--mut);font-size:14px;margin:2px 0 14px;line-height:1.5}
+.tabs{display:flex;gap:7px;overflow-x:auto;padding-bottom:6px;margin-bottom:14px;-webkit-overflow-scrolling:touch}
+.tab{flex:none;border:2px solid var(--line);background:#fff;border-radius:20px;padding:7px 13px;font-weight:800;font-size:13.5px;cursor:pointer;color:var(--ink);white-space:nowrap}
+.tab.on{background:var(--bd);border-color:var(--bd);color:#fff}
+.utitle{font-weight:900;font-size:16px;margin-bottom:10px}
+.photogrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:12px}
+.photo{border:1.5px solid var(--line);border-radius:16px;overflow:hidden;background:#fff;cursor:pointer;box-shadow:0 8px 22px -18px rgba(30,40,60,.5)}
+/* приземление по ссылке из библиотеки заданий (?w=слово) — пульс на 2.6с */
+.photo.jump{outline:3px solid var(--bd);outline-offset:2px;animation:jumppulse 1.3s ease-in-out 2}
+@keyframes jumppulse{0%,100%{outline-color:var(--bd)}50%{outline-color:transparent}}
+.photo img{display:block;width:100%;aspect-ratio:1/1;object-fit:cover}
+.photo .cap{padding:8px 8px}
+.photo .cap b{font-weight:900;font-size:15px}
+.photo .cap small{display:block;color:var(--mut);font-weight:700;font-size:12px}
+.credits{color:#9aa3ab;font-size:10.5px;line-height:1.5;margin-top:14px;overflow-wrap:anywhere;word-break:break-word}
+.note{color:var(--mut);font-size:12.5px;margin-top:12px;line-height:1.5}

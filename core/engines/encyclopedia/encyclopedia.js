@@ -55,9 +55,6 @@
     }
     // режим «Игры»: витрина всех мини-игр вместо книги
     if(qs.get("games")==="1"){ document.documentElement.setAttribute("data-games","1"); }
-    // тема оболочки (bible_theme) — словарик и песочницы на тёмном холсте
-    var th=qs.get("theme")||localStorage.getItem("bible_theme");
-    if(th==="dark") document.documentElement.setAttribute("data-theme","dark");
   }catch(e){}
 })();
 
@@ -80,37 +77,15 @@
   let sizeByLayout = {};
   let wordSpans = [];
   const QUIZ_LABEL = {ru:"Вопрос",en:"Quiz",de:"Quiz",es:"Reto",pt:"Quiz",fr:"Question",ar:"سؤال"};
-  const SANDBOX_LABEL = {scale:{ru:"Масштаб",en:"Scale",de:"Maßstab",es:"Escala",pt:"Escala",fr:"Échelle",ar:"المقياس"},timeline:{ru:"Эпохи",en:"Eras",de:"Erdzeitalter",es:"Épocas",pt:"Épocas",fr:"Époques",ar:"الحقب"},sort:{ru:"Сортировка",en:"Sorting",de:"Sortieren",es:"Clasificar",pt:"Classificar",fr:"Tri",ar:"الفرز"},food:{ru:"Цепь",en:"Food chain",de:"Nahrungskette",es:"Cadena",pt:"Cadeia",fr:"Chaîne",ar:"السلسلة الغذائية"},shadow:{ru:"Тени",en:"Shadows",de:"Schatten",es:"Sombras",pt:"Sombras",fr:"Ombres",ar:"الظلال"},memory:{ru:"Пары",en:"Pairs",de:"Paare",es:"Parejas",pt:"Pares",fr:"Paires",ar:"الأزواج"},word:{ru:"Слово",en:"Word",de:"Wort",es:"Palabra",pt:"Palavra",fr:"Mot",ar:"الكلمة"},label:{ru:"Части",en:"Parts",de:"Teile",es:"Partes",pt:"Partes",fr:"Parties",ar:"الأجزاء"},glossary:{ru:"Словарик",en:"Glossary",de:"Glossar",es:"Glosario",pt:"Glossário",fr:"Petit dictionnaire",ar:"القاموس"},ispy:{ru:"Найди и покажи",en:"Find & show",de:"Finde & zeige",es:"Encuentra",pt:"Encontra",fr:"Trouve et montre",ar:"ابحث وأشِر"},truefalse:{ru:"Правда или нет",en:"True or false",de:"Wahr oder falsch",es:"Verdad o no",pt:"Verdade ou não",fr:"Vrai ou faux",ar:"صح أم خطأ"},dig:{ru:"Раскопки",en:"Dig site",de:"Ausgrabung",es:"Excavación",pt:"Escavação",fr:"Fouilles",ar:"التنقيب"},puzzle:{ru:"Собери скелет",en:"Build the skeleton",de:"Skelett bauen",es:"Arma el esqueleto",pt:"Monta o esqueleto",fr:"Assemble le squelette",ar:"ركّب الهيكل العظمي"},jigsaw:{ru:"Пазл-история",en:"Story puzzle",de:"Geschichten-Puzzle",es:"Puzzle de historias",pt:"Puzzle de histórias",fr:"Puzzle d’histoires",ar:"أحجية القصص"},whack:{ru:"Поймай!",en:"Catch!",de:"Fang!",es:"¡Atrapa!",pt:"Apanha!",fr:"Attrape !",ar:"أمسك!"},quiz:{ru:"Квиз-блиц",en:"Quiz blitz",de:"Quiz-Blitz",es:"Quiz rápido",pt:"Quiz relâmpago",fr:"Quiz éclair",ar:"مسابقة سريعة"},duel:{ru:"Дуэль карт",en:"Card duel",de:"Kartenduell",es:"Duelo de cartas",pt:"Duelo de cartas",fr:"Duel de cartes",ar:"مبارزة البطاقات"},foodchain:{ru:"Цепь питания",en:"Food chain",de:"Nahrungskette",es:"Cadena alimenticia",pt:"Cadeia alimentar",fr:"Chaîne alimentaire",ar:"السلسلة الغذائية"},runner:{ru:"Побег",en:"Escape run",de:"Flucht",es:"Escape",pt:"Fuga",fr:"Fuite",ar:"الهروب"}};
+  const SANDBOX_LABEL = {scale:{ru:"Масштаб",en:"Scale",de:"Maßstab",es:"Escala",pt:"Escala",fr:"Échelle",ar:"المقياس"},timeline:{ru:"Эпохи",en:"Eras",de:"Erdzeitalter",es:"Épocas",pt:"Épocas",fr:"Époques",ar:"الحقب"},sort:{ru:"Сортировка",en:"Sorting",de:"Sortieren",es:"Clasificar",pt:"Classificar",fr:"Tri",ar:"الفرز"},food:{ru:"Цепь",en:"Food chain",de:"Nahrungskette",es:"Cadena",pt:"Cadeia",fr:"Chaîne",ar:"السلسلة الغذائية"},shadow:{ru:"Тени",en:"Shadows",de:"Schatten",es:"Sombras",pt:"Sombras",fr:"Ombres",ar:"الظلال"},memory:{ru:"Пары",en:"Pairs",de:"Paare",es:"Parejas",pt:"Pares",fr:"Paires",ar:"الأزواج"},word:{ru:"Слово",en:"Word",de:"Wort",es:"Palabra",pt:"Palavra",fr:"Mot",ar:"الكلمة"},label:{ru:"Части",en:"Parts",de:"Teile",es:"Partes",pt:"Partes",fr:"Parties",ar:"الأجزاء"},glossary:{ru:"Словарик",en:"Glossary",de:"Glossar",es:"Glosario",pt:"Glossário",fr:"Petit dictionnaire",ar:"القاموس"},ispy:{ru:"Найди и покажи",en:"Find & show",de:"Finde & zeige",es:"Encuentra",pt:"Encontra",fr:"Trouve et montre",ar:"ابحث وأشِر"},truefalse:{ru:"Правда или нет",en:"True or false",de:"Wahr oder falsch",es:"Verdad o no",pt:"Verdade ou não",fr:"Vrai ou faux",ar:"صح أم خطأ"},dig:{ru:"Раскопки",en:"Dig site",de:"Ausgrabung",es:"Excavación",pt:"Escavação",fr:"Fouilles",ar:"التنقيب"},puzzle:{ru:"Собери скелет",en:"Build the skeleton",de:"Skelett bauen",es:"Arma el esqueleto",pt:"Monta o esqueleto",fr:"Assemble le squelette",ar:"ركّب الهيكل العظمي"},whack:{ru:"Поймай!",en:"Catch!",de:"Fang!",es:"¡Atrapa!",pt:"Apanha!",fr:"Attrape !",ar:"أمسك!"},quiz:{ru:"Квиз-блиц",en:"Quiz blitz",de:"Quiz-Blitz",es:"Quiz rápido",pt:"Quiz relâmpago",fr:"Quiz éclair",ar:"مسابقة سريعة"},duel:{ru:"Дуэль карт",en:"Card duel",de:"Kartenduell",es:"Duelo de cartas",pt:"Duelo de cartas",fr:"Duel de cartes",ar:"مبارزة البطاقات"},foodchain:{ru:"Цепь питания",en:"Food chain",de:"Nahrungskette",es:"Cadena alimenticia",pt:"Cadeia alimentar",fr:"Chaîne alimentaire",ar:"السلسلة الغذائية"},runner:{ru:"Побег",en:"Escape run",de:"Flucht",es:"Escape",pt:"Fuga",fr:"Fuite",ar:"الهروب"}};
   const GAME_WORD={ru:"Игра",en:"Game",de:"Spiel",es:"Juego",pt:"Jogo",fr:"Jeu",ar:"لعبة"};
-  const GAME_ICON={dig:"⛏️",ispy:"🔍",puzzle:"🧩",jigsaw:"🧩",whack:"✋",word:"🔤",quiz:"⚡",duel:"🃏",foodchain:"🍃",runner:"🦖",shadow:"🌑",memory:"🎴",label:"🏷️",sort:"🗂️",timeline:"⏳",scale:"📏",glossary:"📖",truefalse:"❓"};
-  /* круглые *-mark.webp из хаба (пути от book/reader.html) */
-  const GAME_MARK={timeline:"hourglass",sort:"cards",memory:"cards",word:"blocks",glossary:"book",
-    shadow:"cloud",puzzle:"puzzle",jigsaw:"puzzle",ispy:"magnifier",quiz:"scroll",truefalse:"scroll",
-    dig:"amphora",label:"magnifier",duel:"cards",foodchain:"family",food:"family",
-    runner:"cloud",scale:"hourglass",whack:"cloud"};
-  const GAME_HINT={
-    timeline:{ru:"Разложи героев по эпохам",en:"Sort heroes by era",de:"Helden nach Epochen ordnen",es:"Ordena héroes por época",pt:"Organiza heróis por época",fr:"Classe les héros par époques",ar:"رتّب الأبطال حسب الحقب"},
-    sort:{ru:"Разложи по группам",en:"Sort into groups",de:"In Gruppen sortieren",es:"Ordena en grupos",pt:"Organiza por grupos",fr:"Classe par groupes",ar:"رتّب في مجموعات"},
-    memory:{ru:"Найди одинаковые картинки",en:"Find matching pictures",de:"Finde passende Bilder",es:"Encuentra las parejas",pt:"Encontra os pares",fr:"Trouve les paires",ar:"ابحث عن الصور المتطابقة"},
-    word:{ru:"Собери имя из букв",en:"Build the name from letters",de:"Baue den Namen aus Buchstaben",es:"Arma el nombre con letras",pt:"Monta o nome com letras",fr:"Assemble le nom avec des lettres",ar:"كوّن الاسم من الحروف"},
-    glossary:{ru:"Узнай слова из историй",en:"Learn words from the stories",de:"Lerne Wörter aus den Geschichten",es:"Aprende palabras de las historias",pt:"Aprende palavras das histórias",fr:"Découvre les mots des histoires",ar:"تعرّف على كلمات القصص"},
-    shadow:{ru:"Угадай по силуэту",en:"Guess from the silhouette",de:"Errate am Schatten",es:"Adivina por la silueta",pt:"Adivinha pela silhueta",fr:"Devine d'après la silhouette",ar:"خمّن من الظل"},
-    puzzle:{ru:"Собери картинку",en:"Assemble the picture",de:"Baue das Bild",es:"Arma la imagen",pt:"Monta a imagem",fr:"Assemble l'image",ar:"ركّب الصورة"},
-    jigsaw:{ru:"Собери картинку из кусочков",en:"Assemble the picture from pieces",de:"Setze das Bild aus Teilen zusammen",es:"Arma la imagen con las piezas",pt:"Monta a imagem com as peças",fr:"Assemble l’image avec les pièces",ar:"ركّب الصورة من القطع"},
-    ispy:{ru:"Найди детали на картинке",en:"Find details in the picture",de:"Finde Details im Bild",es:"Encuentra detalles",pt:"Encontra detalhes",fr:"Trouve les détails",ar:"ابحث عن التفاصيل"},
-    quiz:{ru:"Быстрые вопросы",en:"Quick questions",de:"Schnelle Fragen",es:"Preguntas rápidas",pt:"Perguntas rápidas",fr:"Questions rapides",ar:"أسئلة سريعة"},
-    truefalse:{ru:"Правда или нет?",en:"True or false?",de:"Wahr oder falsch?",es:"¿Verdadero o falso?",pt:"Verdade ou mentira?",fr:"Vrai ou faux ?",ar:"صح أم خطأ؟"}
-  };
-  const SB_PLAY={ru:"Играть",en:"Play",de:"Spielen",es:"Jugar",pt:"Jogar",fr:"Jouer",ar:"العب"};
-  const SB_FINISH={ru:"Готово!",en:"Done!",de:"Fertig!",es:"¡Listo!",pt:"Pronto!",fr:"Terminé !",ar:"تم!"};
-  const SB_TO_MENU={ru:"К играм",en:"To games",de:"Zu den Spielen",es:"A los juegos",pt:"Para os jogos",fr:"Vers les jeux",ar:"إلى الألعاب"};
-  const SB_HOW={ru:"Как играть",en:"How to play",de:"So spielt man",es:"Cómo jugar",pt:"Como jogar",fr:"Comment jouer",ar:"كيف تلعب"};
-  const GAMES_TITLE={ru:"Игры книги",en:"Book games",de:"Buchspiele",es:"Juegos del libro",pt:"Jogos do livro",fr:"Jeux du livre",ar:"ألعاب الكتاب"};
+  const GAME_ICON={dig:"⛏️",ispy:"🔍",puzzle:"🧩",whack:"✋",word:"🔤",quiz:"⚡",duel:"🃏",foodchain:"🍃",runner:"🦖",shadow:"🌑",memory:"🎴",label:"🏷️",sort:"🗂️",timeline:"⏳",scale:"📏",glossary:"📖",truefalse:"❓"};
+  const GAMES_TITLE={ru:"Поиграем!",en:"Let's play!",de:"Spielen wir!",es:"¡A jugar!",pt:"Vamos jogar!",fr:"Jouons !",ar:"لنلعب!"};
   const GAMES_SUB={ru:"Выбери игру — нажми на неё",en:"Pick a game — tap it",de:"Wähle ein Spiel — tippe darauf",es:"Elige un juego — tócalo",pt:"Escolhe um jogo — toca nele",fr:"Choisis un jeu — appuie dessus",ar:"اختر لعبة — اضغط عليها"};
   const SB_SOON={ru:"скоро",en:"coming soon",de:"bald",es:"próximamente",pt:"em breve",fr:"bientôt",ar:"قريبًا"};
   const SB_INSTR_SIZE={ru:"Нажми, кого сравнить — увидишь, во сколько раз он больше тебя.",en:"Tap who to compare — and see how many times bigger it is than you.",de:"Tippe an, wen du vergleichen willst — und sieh, wie viel mal größer er ist als du.",es:"Toca a quién comparar y verás cuántas veces es más grande que tú.",pt:"Toca em quem comparar e vê quantas vezes é maior que tu.",fr:"Appuie sur celui à comparer — tu verras combien de fois il est plus grand que toi.",ar:"اضغط على من تريد مقارنته — وسترى كم مرة هو أكبر منك."};
   const SB_PICK_SIZE={ru:"Выбери, кого сравнить.",en:"Choose who to compare.",de:"Wähle, wen du vergleichen willst.",es:"Elige a quién comparar.",pt:"Escolhe quem comparar.",fr:"Choisis qui comparer.",ar:"اختر من تريد مقارنته."};
-  const SB_INSTR_SORT={ru:"Нажми на карточку, потом на нужную корзину.",en:"Tap a card, then the right basket.",de:"Tippe eine Karte an, dann den richtigen Korb.",es:"Toca una carta y luego la cesta correcta.",pt:"Toca numa carta e depois no cesto certo.",fr:"Appuie sur une carte, puis sur le bon panier.",ar:"اضغط على بطاقة، ثم على السلة الصحيحة."};
+  const SB_INSTR_SORT={ru:"Нажми на карточку, потом на нужную корзину.",en:"Tap a card, then the right basket.",de:"Tippe eine Karte an, dann den richtigen Korb.",es:"Toca una tarjeta y luego la cesta correcta.",pt:"Toca num cartão e depois no cesto certo.",fr:"Appuie sur une carte, puis sur le bon panier.",ar:"اضغط على بطاقة، ثم على السلة الصحيحة."};
   const SHADOW_INSTR={ru:"Перетащи каждого динозавра на его тень.",en:"Drag each dinosaur onto its shadow.",de:"Zieh jeden Dinosaurier auf seinen Schatten.",es:"Arrastra cada dinosaurio a su sombra.",pt:"Arrasta cada dinossauro para a sua sombra.",fr:"Fais glisser chaque dinosaure sur son ombre.",ar:"اسحب كل ديناصور إلى ظله."};
   const SHADOW_DONE={ru:"Молодец! Все тени нашлись.",en:"Well done! All shadows found.",de:"Super! Alle Schatten gefunden.",es:"¡Bien hecho! Todas las sombras.",pt:"Muito bem! Todas as sombras.",fr:"Bravo ! Toutes les ombres ont été trouvées.",ar:"أحسنت! عُثر على كل الظلال."};
   const SHADOW_PROG={ru:"Найдено: {c} из {n}.",en:"Found: {c} of {n}.",de:"Gefunden: {c} von {n}.",es:"Encontradas: {c} de {n}.",pt:"Encontradas: {c} de {n}.",fr:"Trouvées : {c} sur {n}.",ar:"تم العثور على: {c} من {n}."};
@@ -135,7 +110,7 @@
   const WK_HERB={ru:"Лови только травоядных!",en:"Catch only the plant-eaters!",de:"Fang nur die Pflanzenfresser!",es:"¡Atrapa solo a los herbívoros!",pt:"Apanha só os herbívoros!",fr:"Attrape seulement les herbivores !",ar:"أمسك آكلات النباتات فقط!"};
   const WK_SCORE={ru:"Очки",en:"Score",de:"Punkte",es:"Puntos",pt:"Pontos",fr:"Points",ar:"النقاط"};
   const WK_RES={ru:"Время вышло! Твои очки: {s}.",en:"Time's up! Your score: {s}.",de:"Zeit um! Deine Punkte: {s}.",es:"¡Se acabó el tiempo! Tus puntos: {s}.",pt:"Acabou o tempo! Os teus pontos: {s}.",fr:"Le temps est écoulé ! Tes points : {s}.",ar:"انتهى الوقت! نقاطك: {s}."};
-  const SR_INSTR={ru:"Чья это тень? Нажми на верный ответ.",en:"Whose shadow is it? Tap the right answer.",de:"Wessen Schatten ist das? Tippe die richtige Antwort an.",es:"¿De quién es la sombra? Toca la respuesta correcta.",pt:"De quem é a sombra? Toca na resposta certa.",fr:"À qui est cette ombre ? Appuie sur la bonne réponse.",ar:"لمن هذا الظل؟ اضغط على الإجابة الصحيحة."};
+  const SR_INSTR={ru:"Узнай по силуэту. Нажми на верный ответ.",en:"Guess from the silhouette. Tap the right answer.",de:"Erkenne es an der Silhouette. Tippe die richtige Antwort an.",es:"Adivina por la silueta. Toca la respuesta correcta.",pt:"Adivinha pela silhueta. Toca na resposta certa.",fr:"Devine d'après la silhouette. Appuie sur la bonne réponse.",ar:"خمّن من الشكل الظليّ. اضغط على الإجابة الصحيحة."};
   const SR_ROUND={ru:"Тень",en:"Shadow",de:"Schatten",es:"Sombra",pt:"Sombra",fr:"Ombre",ar:"الظل"};
   const SR_STREAK={ru:"Серия",en:"Streak",de:"Serie",es:"Racha",pt:"Sequência",fr:"Série",ar:"سلسلة"};
   const SR_DONE={ru:"Готово! Лучшая серия: {b}.",en:"Done! Best streak: {b}.",de:"Fertig! Beste Serie: {b}.",es:"¡Listo! Mejor racha: {b}.",pt:"Pronto! Melhor sequência: {b}.",fr:"Terminé ! Meilleure série : {b}.",ar:"انتهى! أفضل سلسلة: {b}."};
@@ -229,16 +204,7 @@
     langsBox.appendChild(b);
   });
 
-  function T(o){
-    if(!o) return "";
-    if(typeof o==="string") return o;
-    if(o[lang]!=null && String(o[lang]).trim()!=="") return o[lang];
-    if(o.ru!=null && String(o.ru).trim()!=="") return o.ru;
-    var fallback=BOOK.languages&&BOOK.languages[0];
-    if(fallback && o[fallback]!=null && String(o[fallback]).trim()!=="") return o[fallback];
-    for(var k in o){ if(Object.prototype.hasOwnProperty.call(o,k) && o[k]!=null && String(o[k]).trim()!=="") return o[k]; }
-    return "";
-  }
+  function T(o){ return (o&&(o[lang]||o[BOOK.languages[0]]))||""; }
   function escapeHtml(s){return String(s).replace(/[&<>]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]));}
 
   /* один персистентный <audio> на всю книгу: iOS WKWebView разрешает
@@ -482,12 +448,6 @@
     else if(type==="truefalse" && typeof sb==="object"){ stopAudio(); openTrueFalseSandbox(sb); }
     else if(type==="dig" && typeof sb==="object"){ stopAudio(); openDigSandbox(sb); }
     else if(type==="puzzle" && typeof sb==="object"){ stopAudio(); openPuzzleSandbox(sb); }
-    else if(type==="jigsaw" && typeof sb==="object"){
-      stopAudio();
-      if(typeof window.BibleJigsawOpen==="function"){
-        window.BibleJigsawOpen({T:T,escapeHtml:escapeHtml,showSbIntro:showSbIntro,showSbFinish:showSbFinish}, sb);
-      }
-    }
     else if(type==="whack" && typeof sb==="object"){ stopAudio(); openWhackSandbox(sb); }
     else if(type==="quiz" && typeof sb==="object" && sb.items){ stopAudio(); openQuizSandbox(sb); }
     else if(type==="duel" && typeof sb==="object"){ stopAudio(); openDuelSandbox(sb); }
@@ -495,59 +455,6 @@
     else if(type==="runner"){ stopAudio(); openRunnerSandbox(typeof sb==="object"?sb:{}); }
     else { bubble.className="bubble";
       bubble.innerHTML=`<p class="note">«${SANDBOX_LABEL[type]?T(SANDBOX_LABEL[type]):type}» — ${T(SB_SOON)}.</p>`; openBubble(anchor); } }
-
-  /* Модалки инструкции / финала для sandbox-игр (нужны jigsaw и др.) */
-  function sbModalHost(layer){
-    let m=layer.querySelector(".sb-modal");
-    if(!m){ m=document.createElement("div"); m.className="sb-modal"; m.hidden=true; layer.appendChild(m); }
-    return m;
-  }
-  function hideSbModal(layer){ const m=layer.querySelector(".sb-modal"); if(m) m.hidden=true; }
-  function showSbModal(layer, opts){
-    const m=sbModalHost(layer);
-    m.hidden=false;
-    const score=opts.score!=null && opts.score!=="" ? '<div class="sb-m-score">'+escapeHtml(String(opts.score))+'</div>' : "";
-    const ico=opts.icon ? '<div class="sb-m-ico" aria-hidden="true">'+opts.icon+'</div>' : "";
-    const sec=opts.secondary ? '<button type="button" class="sec" id="sbMSec">'+escapeHtml(opts.secondary)+'</button>' : "";
-    m.innerHTML='<div class="sb-modal-card" role="dialog" aria-modal="true">'+ico
-      +'<h2>'+escapeHtml(opts.title||"")+'</h2>'+score
-      +'<p>'+escapeHtml(opts.text||"")+'</p>'
-      +'<div class="sb-modal-actions">'+sec
-      +'<button type="button" class="pri" id="sbMPri">'+escapeHtml(opts.primary||T(SB_PLAY))+'</button>'
-      +'</div></div>';
-    m.querySelector("#sbMPri").onclick=function(){ m.hidden=true; if(opts.onPrimary) opts.onPrimary(); };
-    const secBtn=m.querySelector("#sbMSec");
-    if(secBtn) secBtn.onclick=function(){ m.hidden=true; if(opts.onSecondary) opts.onSecondary(); };
-    return m;
-  }
-  function sbCloseToMenu(layer){
-    hideSbModal(layer);
-    layer.hidden=true;
-  }
-  function showSbIntro(layer, data, instr, onStart){
-    const type=(data&&data.type)||"";
-    showSbModal(layer, {
-      icon: GAME_ICON[type]||"🎮",
-      title: T((data&&(data.title||data.chip))||SB_HOW),
-      text: T(instr||SB_HOW),
-      primary: T(SB_PLAY),
-      onPrimary: onStart
-    });
-  }
-  function showSbFinish(layer, data, opts){
-    opts=opts||{};
-    const again=function(){ hideSbModal(layer); if(opts.onAgain) opts.onAgain(); };
-    showSbModal(layer, {
-      icon:"🎉",
-      title: T(SB_FINISH),
-      score: opts.score,
-      text: opts.text||"",
-      primary: T(TF_AGAIN),
-      secondary: (typeof GAMES_MODE!=="undefined" && GAMES_MODE) ? T(SB_TO_MENU) : null,
-      onPrimary: again,
-      onSecondary: function(){ sbCloseToMenu(layer); }
-    });
-  }
 
   function plural(n){ const a=n%10,b=n%100; if(a===1&&b!==11)return "ребёнок"; if(a>=2&&a<=4&&(b<10||b>=20))return "ребёнка"; return "детей"; }
   function openScaleSandbox(data){
@@ -1753,7 +1660,7 @@
         "padding:10px 18px;border-radius:20px;z-index:10002;font:700 13px Inter,sans-serif;transition:opacity .3s;max-width:88vw;text-align:center"; document.body.appendChild(t); }
     t.textContent=msg; t.style.opacity="1"; setTimeout(()=>{ t.style.opacity="0"; }, 2200); }
 
-  /* режим «Игры»: витрина всех мини-игр (хаб «Игры книги») */
+  /* режим «Игры»: витрина всех мини-игр (собирается из хаба «Поиграем») */
   const GAMES_MODE = (new URLSearchParams(location.search)).get("games")==="1";
   function gamesList(){
     // хаб — разворот с наибольшим числом sandbox-игр
@@ -1761,27 +1668,20 @@
     BOOK.pages.forEach(p=>{ const n=(p.sandboxes||[]).length; if(n>best){ best=n; hub=p; } });
     return (hub&&hub.sandboxes)||[];
   }
-  function gameMarkSrc(mark){ return "../img/icons/"+mark+"-mark.webp"; }
   function buildGamesMenu(){
     const menu=document.getElementById("gamesMenu");
     const list=gamesList();
-    menu.innerHTML=`<div class="gm-head"><h1>${escapeHtml(T(GAMES_TITLE))}</h1><p>${escapeHtml(T(GAMES_SUB))}</p></div><div class="gm-list" role="list"></div>`;
-    const listEl=menu.querySelector(".gm-list");
+    menu.innerHTML=`<div class="gm-head"><h1>${escapeHtml(T(GAMES_TITLE))}</h1><p>${escapeHtml(T(GAMES_SUB))}</p></div><div class="gm-grid"></div>`;
+    const gridEl=menu.querySelector(".gm-grid");
     list.forEach(sb=>{ const type=(typeof sb==="string")?sb:sb.type;
-      const label=(typeof sb==="object"&&sb.title)?T(sb.title)
-        :(typeof sb==="object"&&sb.chip)?T(sb.chip)
-        :(SANDBOX_LABEL[type]?T(SANDBOX_LABEL[type]):type);
-      const hintObj=(typeof sb==="object"&&sb.hint)||GAME_HINT[type];
-      const hint=hintObj?T(hintObj):"";
-      const b=document.createElement("button"); b.className="gm-row"; b.type="button"; b.setAttribute("role","listitem");
-      // растровая иконка: sandbox.icon → BOOK.gameIcons → хаб *-mark.webp → эмодзи
-      const mark=GAME_MARK[type];
-      const ipath=(typeof sb==="object"&&sb.icon)||(BOOK.gameIcons&&BOOK.gameIcons[type])||(mark?gameMarkSrc(mark):null);
+      const label=(typeof sb==="object"&&sb.chip)?T(sb.chip):(SANDBOX_LABEL[type]?T(SANDBOX_LABEL[type]):type);
+      const b=document.createElement("button"); b.className="gm-tile"; b.type="button";
+      // растровая иконка колоды (BOOK.gameIcons[type]) с фолбэком на эмодзи
+      const ipath=BOOK.gameIcons&&BOOK.gameIcons[type];
       const ico=ipath?`<img src="${escapeHtml(ipath)}" alt="" loading="lazy">`:(GAME_ICON[type]||"🎮");
-      b.innerHTML=`<span class="gm-ico">${ico}</span><span class="gm-text"><span class="gm-name">${escapeHtml(label)}</span>${hint?`<span class="gm-hint">${escapeHtml(hint)}</span>`:""}</span><span class="gm-go" aria-hidden="true">›</span>`;
-      if(ipath){ const img=b.querySelector(".gm-ico img"); if(img) img.onerror=()=>{ img.replaceWith(document.createTextNode(GAME_ICON[type]||"🎮")); }; }
+      b.innerHTML=`<span class="gm-ico">${ico}</span><span class="gm-name">${escapeHtml(label)}</span>`;
       b.onclick=()=>launchSandbox(sb,b);
-      listEl.appendChild(b);
+      gridEl.appendChild(b);
     });
     menu.hidden=false;
   }
@@ -1856,14 +1756,7 @@
   window.addEventListener("orientationchange",()=>{ applyMode(); closeBubble(); computeSizes(); fitText(); });
   applyDir();
   if(EDIT_MODE){ device.classList.add("edit"); edLoadSaved(); }
-  if(GAMES_MODE){ buildGamesMenu();
-    const play=(new URLSearchParams(location.search)).get("play");
-    if(play){
-      const list=gamesList();
-      const sb=list.find(s=>(typeof s==="object")&&(s.id===play||s.type===play));
-      if(sb) setTimeout(()=>launchSandbox(sb,null),0);
-    }
-  }
+  if(GAMES_MODE){ buildGamesMenu(); }
   else { applyMode(); render(); computeSizes(); fitText(); }
 })();
 
@@ -1875,10 +1768,6 @@ window.addEventListener("message",function(e){
     var idx=(window.BOOK&&window.BOOK.languages||[]).indexOf(d.lang);
     var btns=document.querySelectorAll("#langs .lang");
     if(idx>=0 && btns[idx] && btns[idx].getAttribute("aria-pressed")!=="true") btns[idx].click();
-    return;
-  }
-  if(d.type==="bibleShell" && d.action==="theme"){
-    document.documentElement.setAttribute("data-theme", d.theme==="dark" ? "dark" : "light");
     return;
   }
   /* остановить чтение/озвучку, когда приложение ушло из вкладки «Книга» */

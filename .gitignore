@@ -1,16 +1,19 @@
-﻿# Archives (do not upload to GitLab)
 *.zip
-*.rar
-*.7z
-*.tar
-*.tar.gz
-*.tgz
-
-# OS / editor
-Thumbs.db
-Desktop.ini
+build/
+dist/
+*.app/
+*.bundle.js
+*.b64.js
+out/
+node_modules/
+__pycache__/
+*.pyc
+.venv/
+venv/
 .DS_Store
-*.swp
-*~
+Thumbs.db
+*.log
 .idea/
 .vscode/
+.env
+.env.*

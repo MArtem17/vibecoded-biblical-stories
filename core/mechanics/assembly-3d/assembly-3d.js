@@ -498,8 +498,20 @@
     var wind = document.getElementById("wind"), btn = document.getElementById("snd");
     if (!wind || !btn) return;
     var on = false;
+    /* Значок — свой SVG, не эмодзи 🔊/🔇 (решение владельца 05.08.2026: «нам
+       ни в коем случае не нужны никакие эмодзи в продукте» + 09.08.2026:
+       «давай абсолютно везде рисовать значок динамика одинаково»). Тот же
+       контур, что в decks/slovar-na-stsenah/content.js; у выключенного —
+       крестик вместо волн, а не отдельный рисунок. */
+    function sndIcon(v) {
+      return '<svg class="ic" viewBox="0 0 24 24" width="18" height="18" fill="none"' +
+        ' stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"' +
+        ' aria-hidden="true" focusable="false"><path d="M4.5 9.5h3.2L12 5.8v12.4l-4.3-3.7H4.5z"/>' +
+        (v ? '<path d="M15.2 9.4a3.6 3.6 0 0 1 0 5.2M17.8 7.2a7 7 0 0 1 0 9.6"/>'
+            : '<path d="M15 9l5 5M20 9l-5 5"/>') + '</svg>';
+    }
     function set(v) {
-      on = v; btn.textContent = on ? "🔊" : "🔇";
+      on = v; btn.innerHTML = sndIcon(on); btn.setAttribute("aria-label", on ? "Звук включён" : "Звук выключен");
       if (on) { wind.volume = 0.22; var p = wind.play(); if (p && p["catch"]) p["catch"](function () { set(false); }); }
       else { try { wind.pause(); } catch (e) {} }
     }

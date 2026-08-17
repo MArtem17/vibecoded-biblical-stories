@@ -1,0 +1,52 @@
+/* Конструктор ДЗ — общий вид для всех классов серии. Вынесен из
+   decks/angliyskiy-5/teacher/hw.html вместе с логикой (core/…/hw.js). */
+:root{--ink:#191C26;--coral:#E8555A;--blue:#2F6BDB;--green:#2E9E57;--yellow:#F5B72F;--purple:#7A4FBF;--orange:#F08A24;--bluebg:#EBF1FD;--pinkbg:#FDEEEF;--line:#E4E7EE}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+body{font-family:'Golos Text',system-ui,sans-serif;color:var(--ink);
+  background:radial-gradient(1200px 600px at 70% -10%,#ffffff88,transparent 60%),linear-gradient(160deg,#DFE6F0,#CBD6E6);
+  min-height:100vh;padding:26px 16px 170px}
+.wrap{max-width:820px;margin:0 auto}
+.kick{font-family:'Rubik';font-weight:700;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--blue)}
+h1{font-family:'Rubik';font-weight:800;font-size:25px;margin:4px 0 6px}
+.sub{color:#4A5163;font-size:14px;max-width:640px;line-height:1.5;margin-bottom:18px}
+.unit{background:#fff;border:1.5px solid var(--line);border-radius:16px;margin:12px 0;overflow:hidden;box-shadow:0 8px 26px -18px rgba(30,40,70,.4)}
+.uh{display:flex;align-items:center;gap:10px;padding:13px 16px;cursor:pointer;user-select:none}
+.uh b{font-family:'Rubik';font-weight:800;font-size:16px;color:var(--coral);flex:1}
+.uh .cnt{font-family:'Rubik';font-weight:700;font-size:12.5px;color:#5A6275;background:var(--bluebg);border-radius:999px;padding:3px 10px}
+.uh .car{font-size:13px;color:#8A93A5;transition:transform .15s}
+.unit.open .car{transform:rotate(90deg)}
+.ubody{display:none;border-top:1.5px solid var(--line)}
+.unit.open .ubody{display:block}
+.sect{font-family:'Rubik';font-weight:800;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--blue);padding:11px 16px 4px}
+.row{display:flex;align-items:flex-start;gap:10px;padding:8px 16px;cursor:pointer}
+.row:hover{background:#FBFCFE}
+.row input{width:17px;height:17px;margin-top:2px;accent-color:var(--blue);flex:0 0 auto}
+.row .tt{font-size:13.5px;line-height:1.4;flex:1}
+.row .ty{font-family:'Rubik';font-weight:700;font-size:10.5px;letter-spacing:.03em;color:#fff;background:#8B93A5;border-radius:6px;padding:2px 7px;white-space:nowrap;margin-top:1px}
+.row .ty.drag{background:var(--blue)}.row .ty.type{background:var(--purple)}.row .ty.game{background:var(--orange)}.row .ty.choice{background:var(--green)}
+.bar{position:fixed;left:0;right:0;bottom:0;background:#fff;border-top:2px solid var(--line);box-shadow:0 -14px 34px -18px rgba(30,40,70,.4);padding:12px 16px;z-index:50}
+.barin{max-width:820px;margin:0 auto;display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.bcnt{font-family:'Rubik';font-weight:800;font-size:15px;color:var(--blue);min-width:120px}
+.blink{flex:1;min-width:220px;font-family:'Rubik';font-weight:600;font-size:12px;color:#3A4152;background:#F7F9FC;border:1.5px dashed #A9B2C4;border-radius:10px;padding:9px 10px;word-break:break-all;max-height:44px;overflow:auto}
+.btn{font-family:'Rubik';font-weight:700;font-size:13.5px;border-radius:11px;cursor:pointer;padding:10px 15px;border:2px solid var(--ink);box-shadow:0 2px 0 var(--ink);background:#fff}
+.btn:active{transform:translateY(2px);box-shadow:none}
+.btn.pri{background:var(--green);border-color:#1E7A40;box-shadow:0 2px 0 #1E7A40;color:#fff}
+.btn.ghost{border-color:#A9B2C4;box-shadow:0 2px 0 #A9B2C4;color:#5A6275}
+.qrbox{display:none;justify-content:center;padding-top:10px;width:100%}
+.qrbox.show{display:flex}
+.qrbox svg{width:170px;height:170px;border:1.5px solid var(--line);border-radius:12px;padding:8px;background:#fff}
+.back{display:inline-block;margin-top:20px;color:var(--blue);font-family:'Rubik';font-weight:700;font-size:13.5px;text-decoration:none}
+/* готовые наборы ДЗ */
+.ready{background:#fff;border:2px solid var(--blue);border-radius:16px;margin:0 0 18px;box-shadow:0 8px 26px -18px rgba(30,40,70,.4);padding:14px 16px}
+.ready h2{font-family:'Rubik';font-weight:800;font-size:17px;color:var(--blue);margin-bottom:2px}
+.ready .rsub{font-size:13px;color:#5A6275;margin-bottom:10px}
+.rrow{display:flex;align-items:center;gap:8px;padding:7px 0;border-top:1px solid var(--line);flex-wrap:wrap}
+.rrow b{font-family:'Rubik';font-weight:700;font-size:13.5px;flex:1;min-width:180px}
+.lvl{display:inline-flex;align-items:center;gap:6px;font-family:'Rubik';font-weight:700;font-size:12.5px;color:var(--ink);text-decoration:none;border:1.5px solid var(--line);border-radius:9px;padding:6px 10px;background:#FBFCFE}
+.lvl:hover{border-color:var(--blue)}
+.lvl i{width:10px;height:10px;border-radius:50%;font-style:normal}
+.lvl.g i{background:var(--green)}.lvl.s i{background:var(--blue)}.lvl.c i{background:var(--purple)}
+.lvl.e i{background:var(--coral)}
+.lvl.v i{background:#0E7490}.lvl.k i{background:#7A4FBF}.lvl.x i{background:#F08A24}.lvl.r i{background:#4D7C0F}
+.lvl .cp{font-weight:600;color:#8B93A5;margin-left:2px;cursor:pointer}
+.lvl .cp:hover{color:var(--blue)}
